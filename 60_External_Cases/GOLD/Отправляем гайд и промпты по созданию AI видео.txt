@@ -1,0 +1,57 @@
+Как адаптировать чужое виральное видео под ваш продукт.
+	•	Берем исходное видео (любое, длинное, короткое, с глосом или нет)
+	•	Адаптируем это видео под короткий и несложный в производстве, но виральный формат (короткий хук 3 сек с эмоцией + демо продукта), пример 
+
+Используем отличную китайскую LLM с именем Qwen (выпущена компанией Alibaba).
+Qwen очень хорош по интеллекту, не хуже ChatGPT. При этом бесплатная, не требует ВПН. И, самое главное, умеет анализировать видео и деже генерировать изображения и видео. Все в обычном чате, как ChatGPT. Попробуйте!
+
+Я взял это видео как исходное
+
+	•	Для начала скачиваем видео, например с помощью сервиса https://cobalt.tools/.  Вводим ссылку на Тикток, получаем видео файл.
+	•	Идем в https://chat.qwen.ai , нажимаем плюсик и выбираем: -  upload video.  (Теперь вы можете анализировать видео - попросить скрипт, получить описание происходящего - все что угодно, просто пишите промпты)
+	•	Добавляем также  файл с описанием нашего продукта  Product Brief (пример)
+	•	Вводим промпт:
+​​✅ Universal Prompt: Generate 3-Part UGC Micro-Script + JSON Image Prompt
+You are a Video Content Analyst specializing in authentic, non-commercial UGC.
+Inputs:
+	•	An original video transcript where a creator talks about a product.
+	•	A product brief for a new product (e.g., an app).
+Task:
+Part 1: Write exactly three short spoken lines that form a complete micro-story:
+	•	Hook: Nearly identical to the original video’s first line. If it names a product type (e.g., “read this book”), replace only that phrase with the new product type (e.g., “use this app”).
+	•	Action: One sentence describing the core user action of the main feature.
+	•	Result: One sentence stating the emotional or relational outcome.
+Part 2: Generate a detailed image generation prompt in English for the first frame of the adapted video — matching the original’s opening shot but without any on-screen text, captions, or graphics.
+Rules for Part 1:
+	•	Each line must be 9 words or fewer.
+	•	No call-to-action of any kind — not even implied.
+	•	Match the original speaker’s tone: real, tired, vulnerable, conversational — never promotional.
+	•	Use only language and concepts from the product brief.
+Rules for Part 2:
+	•	Describe only observable visual details from the 00:00 moment: setting, character appearance, pose, expression, lighting, props.
+	•	Exclude all text overlays, logos, UI, or branding.
+	•	Style: authentic smartphone UGC footage, natural lighting, no retouching, shallow depth of field.
+	•	The prompt must be one clear, descriptive sentence in English.
+Output Format:
+Return exactly two blocks:
+Block 1: Three lines of plain text (no numbering, no labels):
+[Hook line]  
+[Action line]  
+[Result line]
+Block 2: A valid JSON object in a separate block, ready to copy:
+
+4. Получаем 3 предложения, адаптированный текст для нашего нового видео
+	•	Хук (ставим плашку с текстом в первые 3 секунды)
+	•	[Action line]  ставим в середину, когнда появляется апп
+	•	[Result line] - результат, который получает юзер, ставим блже к концу Пример: 
+5. Тут же получаем промпт на генерацию изображение (1-ый кадр нашего видео) Типа такого: A Black woman in her late 20s with long black hair, wearing a black zip-up top, gold earrings, and a gold watch, sits in the driver's seat of a car with hands clasped together showing long light purple nails, looking tired but earnest at the camera under natural daylight, authentic smartphone UGC footage with shallow depth of field and no retouching.
+
+6. Далее вы можете скопировать промпт на генерацию изображения и отнести его в любой генератор (мы используем модель Higgsfield Soul для реалистичного UGC). Вы можете сгенерировать изображение прямо в qwen (надо выбрать Image Generation над блоком чата) 
+Qwen далеко не идеален в натуральных видео, но поиграться можно 
+ 7. Далее вы тут же в Qwen можете сгенерировать видео, добавив любой промт, например:
+Женщина удивленно приоткрывает рот и подносит левую ладонь ко рту 
+ 8. Получившийся результат можно отнести в сервис монтажа типа Capcut, вставить видео, + демо продукта (скринкаст ,запись экрана) + добавить текстовый хук + музыку (хотя это лучше вставить в самом Тикток)
+
+Вот что у меня получилось (HiggsField Soul для image + Kling 2.6 для video) - 202601300050 (1).mp4
+
+Всем творческих успехов и много виральности!

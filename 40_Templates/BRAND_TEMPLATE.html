@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practical AI — Кейсы для [КЛИЕНТ]</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #ebebeb;
+      --surface:  #ffffff;
+      --lime:     #ccff00;
+      --lime-dark:#a8d400;
+      --text:     #0a0a0a;
+      --muted:    #666666;
+      --subtle:   #999999;
+      --border:   rgba(0,0,0,0.08);
+      --red:      #e84545;
+      --teal:     #00a878;
+      --radius:   18px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    /* ── UTILITY ── */
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
+    .pa-badge {
+      display: inline-block;
+      background: var(--text);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 9px 20px;
+      border-radius: 100px;
+    }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .topbar-right { display: flex; align-items: center; gap: 12px; }
+    .btn-pdf {
+      background: transparent;
+      border: 1px solid rgba(0,0,0,0.18);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.15s;
+    }
+    .btn-pdf:hover { background: rgba(0,0,0,0.05); color: var(--text); }
+
+    /* ── HERO BANNER (lime bg) ── */
+    .hero-banner {
+      background: var(--lime);
+      padding: 72px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      min-height: 420px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-content { max-width: 600px; }
+    .hero-for {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(0,0,0,0.5);
+      margin-bottom: 20px;
+      letter-spacing: 0.01em;
+    }
+    .hero-banner h1 {
+      font-size: 68px;
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      color: var(--text);
+    }
+    .hero-banner p {
+      font-size: 18px;
+      color: rgba(0,0,0,0.6);
+      max-width: 480px;
+      line-height: 1.55;
+    }
+    .hero-fruit {
+      width: 380px;
+      flex-shrink: 0;
+    }
+    .hero-fruit img { width: 100%; height: auto; display: block; }
+
+    /* ── SECTION DIVIDER (lime bg, smaller) ── */
+    .section-divider {
+      background: var(--lime);
+      padding: 56px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .section-divider-content {}
+    .section-divider h2 {
+      font-size: 52px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.0;
+      color: var(--text);
+    }
+    .section-divider p {
+      font-size: 16px;
+      color: rgba(0,0,0,0.55);
+      margin-top: 12px;
+    }
+    .section-divider-fruit { width: 260px; flex-shrink: 0; }
+    .section-divider-fruit img { width: 100%; height: auto; display: block; }
+
+    /* ── GRAY SECTIONS ── */
+    .section-gray { padding: 72px 0; }
+    .section-header { margin-bottom: 40px; }
+    .section-tag {
+      display: inline-block;
+      background: var(--text);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+    }
+    .section-title {
+      font-size: 36px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    /* ── TASKS GRID ── */
+    .tasks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .task-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+    .task-num {
+      display: inline-block;
+      background: var(--lime);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 14px;
+    }
+    .task-card h4 { font-size: 17px; font-weight: 800; margin-bottom: 8px; }
+    .task-card .task-sub { font-size: 13px; color: var(--muted); margin-bottom: 14px; font-style: italic; }
+    .task-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+    /* ── CASE CARD ── */
+    .case-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 36px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      margin-bottom: 20px;
+    }
+    .case-card:last-child { margin-bottom: 0; }
+    .case-title { font-size: 22px; font-weight: 900; margin-bottom: 24px; letter-spacing: -0.01em; }
+
+    .case-blocks { display: flex; flex-direction: column; gap: 16px; }
+    .case-block {
+      background: var(--bg);
+      border-radius: 12px;
+      padding: 20px 20px 20px 24px;
+      border-left: 3px solid transparent;
+    }
+    .case-block.problem { border-left-color: var(--red); }
+    .case-block.solution { border-left-color: var(--teal); }
+    .case-block-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .case-block.problem .case-block-label { color: var(--red); }
+    .case-block.solution .case-block-label { color: var(--teal); }
+    .case-block ul { padding-left: 16px; }
+    .case-block li { font-size: 14px; color: var(--text); margin-bottom: 4px; line-height: 1.5; }
+
+    .case-metrics {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-width: 200px;
+    }
+    .metric-pill {
+      background: var(--lime);
+      border-radius: 14px;
+      padding: 18px 20px;
+      text-align: center;
+    }
+    .metric-pill.white { background: var(--bg); }
+    .metric-value { font-size: 40px; font-weight: 900; letter-spacing: -0.03em; line-height: 1; }
+    .metric-label { font-size: 12px; color: rgba(0,0,0,0.55); margin-top: 4px; line-height: 1.3; }
+
+    /* ── HOW WE WORK ── */
+    .process-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .process-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    .process-card.highlight { background: var(--lime); }
+    .step-num-circle {
+      width: 44px; height: 44px;
+      background: var(--text);
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 900;
+      flex-shrink: 0;
+    }
+    .process-card.highlight .step-num-circle { background: var(--text); }
+    .process-card h4 { font-size: 17px; font-weight: 800; margin-bottom: 6px; }
+    .process-card p { font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .process-card.highlight p { color: rgba(0,0,0,0.6); }
+    .process-footer {
+      text-align: center;
+      margin-top: 20px;
+      padding: 20px;
+      background: var(--surface);
+      border-radius: var(--radius);
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    /* ── CTA BANNER (lime bg) ── */
+    .cta-banner {
+      background: var(--lime);
+      padding: 72px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .cta-content {}
+    .cta-steps {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .cta-step {
+      background: rgba(255,255,255,0.6);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 180px;
+    }
+    .cta-step-num {
+      width: 36px; height: 36px;
+      background: var(--text);
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 900;
+      flex-shrink: 0;
+    }
+    .cta-step-label { font-size: 14px; font-weight: 700; }
+    .cta-contact-box {
+      background: rgba(255,255,255,0.6);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      max-width: 480px;
+    }
+    .cta-contact-box-text { font-size: 17px; font-weight: 700; }
+    .cta-contact-box-handle { font-size: 16px; color: var(--muted); font-weight: 600; }
+    .cta-fruit { width: 240px; flex-shrink: 0; }
+    .cta-fruit img { width: 100%; height: auto; display: block; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--text);
+      color: rgba(255,255,255,0.5);
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+    footer .logo { color: #fff; font-weight: 800; font-size: 15px; }
+
+    /* ── PRINT ── */
+    @media print {
+      .topbar .btn-pdf { display: none; }
+      .hero-banner, .section-divider, .cta-banner { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span class="pa-badge">Practical AI</span>
+  <div class="topbar-right">
+    <button class="btn-pdf" onclick="window.print()">↓ Сохранить PDF</button>
+  </div>
+</div>
+
+<!-- HERO BANNER -->
+<div class="hero-banner">
+  <div class="hero-content">
+    <div class="hero-for">Подготовлено для [ИМЯ КЛИЕНТА] · [ДАТА]</div>
+    <h1>Кейсы<br>Practical<br>AI</h1>
+    <p>AI-решения для эффективности продаж, аналитики и сервиса. Подготовлено для обсуждения сотрудничества.</p>
+  </div>
+  <div class="hero-fruit">
+    <img src="assets/lime.png" alt="">
+  </div>
+</div>
+
+<!-- TASKS SECTION -->
+<div class="section-gray">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-title">Ваши задачи — наши решения</div>
+    </div>
+    <div class="tasks-grid">
+      <div class="task-card">
+        <div class="task-num">ЗАДАЧА 1</div>
+        <h4>[Название задачи 1]</h4>
+        <div class="task-sub">[Подзаголовок]</div>
+        <p>[Описание задачи клиента — что именно он хочет решить, своими словами]</p>
+      </div>
+      <div class="task-card">
+        <div class="task-num">ЗАДАЧА 2</div>
+        <h4>[Название задачи 2]</h4>
+        <div class="task-sub">[Подзаголовок]</div>
+        <p>[Описание задачи клиента]</p>
+      </div>
+      <div class="task-card">
+        <div class="task-num">ЗАДАЧА 3</div>
+        <h4>[Название задачи 3]</h4>
+        <div class="task-sub">[Подзаголовок]</div>
+        <p>[Описание задачи клиента]</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION DIVIDER: Category 1 -->
+<div class="section-divider">
+  <div class="section-divider-content">
+    <h2>[Категория<br>кейсов 1]</h2>
+    <p>[Подзаголовок категории]</p>
+  </div>
+  <div class="section-divider-fruit">
+    <img src="assets/raspberry.png" alt="">
+  </div>
+</div>
+
+<!-- CASE 1 -->
+<div class="section-gray">
+  <div class="container">
+    <div class="case-card">
+      <div>
+        <div class="case-title">[Название кейса 1]</div>
+        <div class="case-blocks">
+          <div class="case-block problem">
+            <div class="case-block-label">Проблема</div>
+            <ul>
+              <li>[Проблема 1]</li>
+              <li>[Проблема 2]</li>
+              <li>[Проблема 3]</li>
+            </ul>
+          </div>
+          <div class="case-block solution">
+            <div class="case-block-label">Решение</div>
+            <ul>
+              <li>[Решение 1]</li>
+              <li>[Решение 2]</li>
+              <li>[Решение 3]</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="case-metrics">
+        <div class="metric-pill">
+          <div class="metric-value">[XX%]</div>
+          <div class="metric-label">[главная метрика]</div>
+        </div>
+        <div class="metric-pill white">
+          <div class="metric-value">[YY%]</div>
+          <div class="metric-label">[вторая метрика]</div>
+        </div>
+        <div class="metric-pill white">
+          <div class="metric-value">[ZZ%]</div>
+          <div class="metric-label">[третья метрика]</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CASE 2 -->
+<div class="section-gray" style="padding-top: 0;">
+  <div class="container">
+    <div class="case-card">
+      <div>
+        <div class="case-title">[Название кейса 2]</div>
+        <div class="case-blocks">
+          <div class="case-block problem">
+            <div class="case-block-label">Проблема</div>
+            <ul>
+              <li>[Проблема 1]</li>
+              <li>[Проблема 2]</li>
+              <li>[Проблема 3]</li>
+            </ul>
+          </div>
+          <div class="case-block solution">
+            <div class="case-block-label">Решение</div>
+            <ul>
+              <li>[Решение 1]</li>
+              <li>[Решение 2]</li>
+              <li>[Решение 3]</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="case-metrics">
+        <div class="metric-pill">
+          <div class="metric-value">[XX%]</div>
+          <div class="metric-label">[главная метрика]</div>
+        </div>
+        <div class="metric-pill white">
+          <div class="metric-value">[YY%]</div>
+          <div class="metric-label">[вторая метрика]</div>
+        </div>
+        <div class="metric-pill white">
+          <div class="metric-value">[ZZ%]</div>
+          <div class="metric-label">[третья метрика]</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION DIVIDER: Category 2 -->
+<div class="section-divider">
+  <div class="section-divider-content">
+    <h2>[Категория<br>кейсов 2]</h2>
+    <p>[Подзаголовок]</p>
+  </div>
+  <div class="section-divider-fruit">
+    <img src="assets/lime.png" alt="">
+  </div>
+</div>
+
+<!-- CASE 3 -->
+<div class="section-gray">
+  <div class="container">
+    <div class="case-card">
+      <div>
+        <div class="case-title">[Название кейса 3]</div>
+        <div class="case-blocks">
+          <div class="case-block problem">
+            <div class="case-block-label">Проблема</div>
+            <ul>
+              <li>[Проблема 1]</li>
+              <li>[Проблема 2]</li>
+              <li>[Проблема 3]</li>
+            </ul>
+          </div>
+          <div class="case-block solution">
+            <div class="case-block-label">Решение</div>
+            <ul>
+              <li>[Решение 1]</li>
+              <li>[Решение 2]</li>
+              <li>[Решение 3]</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="case-metrics">
+        <div class="metric-pill">
+          <div class="metric-value">[XX%]</div>
+          <div class="metric-label">[главная метрика]</div>
+        </div>
+        <div class="metric-pill white">
+          <div class="metric-value">[YY%]</div>
+          <div class="metric-label">[вторая метрика]</div>
+        </div>
+        <div class="metric-pill white">
+          <div class="metric-value">[ZZ%]</div>
+          <div class="metric-label">[третья метрика]</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW WE WORK -->
+<div class="section-gray">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-title">Как мы работаем</div>
+    </div>
+    <div class="process-grid">
+      <div class="process-card">
+        <div class="step-num-circle">0</div>
+        <div>
+          <h4>Изучаем текущие процессы</h4>
+          <p>Анализируем процессы, выявляем узкие места и точки роста</p>
+        </div>
+      </div>
+      <div class="process-card">
+        <div class="step-num-circle">1</div>
+        <div>
+          <h4>Готовим решение под ваши задачи</h4>
+          <p>Метрики, аналитика, инсайты, эффективные продажи</p>
+        </div>
+      </div>
+      <div class="process-card">
+        <div class="step-num-circle">2</div>
+        <div>
+          <h4>Обучаем и внедряем AI инструменты</h4>
+          <p>Переводим продуктовую теорию в конкретные AI-решения</p>
+        </div>
+      </div>
+      <div class="process-card highlight">
+        <div class="step-num-circle">3</div>
+        <div>
+          <h4>Разрабатываем кастом AI решения</h4>
+          <p>Разработка индивидуальных решений по автоматизации под конкретные бизнес-задачи</p>
+        </div>
+      </div>
+    </div>
+    <div class="process-footer">
+      Комплексное решение: от анализа до внедрения работающих AI-инструментов
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-banner">
+  <div class="cta-content">
+    <div style="font-size: 36px; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 28px;">Следующие шаги</div>
+    <div class="cta-steps">
+      <div class="cta-step">
+        <div class="cta-step-num">1</div>
+        <div class="cta-step-label">Фидбек по<br>материалам</div>
+      </div>
+      <div class="cta-step">
+        <div class="cta-step-num">2</div>
+        <div class="cta-step-label">AI-<br>стратсессия</div>
+      </div>
+      <div class="cta-step">
+        <div class="cta-step-num">3</div>
+        <div class="cta-step-label">Встреча с<br>командой</div>
+      </div>
+    </div>
+    <div class="cta-contact-box">
+      <div>
+        <div class="cta-contact-box-text">Готовы обсудить?</div>
+        <div class="cta-contact-box-handle">Telegram: @Danil_alto</div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-fruit">
+    <img src="assets/lime.png" alt="">
+  </div>
+</div>
+
+<footer>
+  <span class="logo">Practical AI</span>
+  <span>Конфиденциально · Подготовлено для [КЛИЕНТ] · [ДАТА]</span>
+  <span>@Danil_alto · +7 195 331 23 80</span>
+</footer>
+
+</body>
+</html>

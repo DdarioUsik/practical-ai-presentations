@@ -1,0 +1,9 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:Напоминание: Разослать outreach сообщения в Telegram
+DTSTART:20260306T090000
+DTEND:20260306T091500
+DESCRIPTION:Файл с сообщениями: /Users/home/sales-pipeline/Sales Skills/First Attempt Sales Skills/00_Inbox/OUTREACH_MESSAGES_2026-03-05.md\n\nКонтакты:\n- Даниил (@danny_cx) - БКС Мир Инвестиций\n- Илья (@boltnev) - Инвестиции\n- Екатерина (@skobeyko) - Леста\n- Ксения (@ks_romanova) - Positive Technologies\n- Оксана (@okolshevskaya) - InDrive\n- Анастасия (@logoreaa) - X5\n- Дарья (@dariaheli) - Selecty
+END:VEVENT
+END:VCALENDAR

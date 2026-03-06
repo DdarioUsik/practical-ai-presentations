@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practical AI — Кейсы для Capital Group</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #ebebeb;
+      --surface: #ffffff;
+      --card:    #ffffff;
+      --lime:    #ccff00;
+      --lime-dark: #a8d400;
+      --text:    #0a0a0a;
+      --muted:   #666666;
+      --subtle:  #888888;
+      --border:  rgba(0,0,0,0.09);
+      --red:     #e84545;
+      --teal:    #00a878;
+      --radius:  16px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    /* ── TOP NAV ── */
+    .topbar {
+      padding: 20px 40px;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .pa-badge {
+      background: var(--text);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 18px;
+      border-radius: 100px;
+      letter-spacing: 0.01em;
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 40px 0 72px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-for {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    .hero h1 {
+      font-size: 52px;
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      max-width: 680px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: var(--lime);
+      padding: 0 6px;
+      border-radius: 4px;
+    }
+    .hero-sub {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 540px;
+      line-height: 1.65;
+      margin-bottom: 44px;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 0;
+    }
+    .hero-stat {
+      padding: 20px 32px;
+      background: var(--surface);
+      border-radius: 12px;
+      margin-right: 12px;
+    }
+    .hero-stat:last-child { margin-right: 0; }
+    .hero-stat-val {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .hero-stat-lbl {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ── SECTION ── */
+    section {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-tag {
+      display: inline-block;
+      background: var(--text);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+      margin-bottom: 18px;
+    }
+    .section-title {
+      font-size: 30px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: 36px;
+    }
+
+    /* ── PAIN POINTS ── */
+    .pain-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+    }
+    .pain-item {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+    .pain-num {
+      display: inline-block;
+      background: var(--lime);
+      color: var(--text);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+      margin-bottom: 14px;
+    }
+    .pain-title {
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .pain-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ── CASE SECTION HEADER ── */
+    .case-section-cover {
+      background: var(--text);
+      border-radius: var(--radius);
+      padding: 36px 40px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .case-section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 10px;
+    }
+    .case-section-title {
+      font-size: 28px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .case-section-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      max-width: 300px;
+      text-align: right;
+      line-height: 1.5;
+    }
+
+    /* ── CASE CARD ── */
+    .case-wrap {
+      margin-bottom: 16px;
+    }
+    .case-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .case-screenshot {
+      border-top: 1px solid var(--border);
+      overflow: hidden;
+      max-height: 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f5f5f5;
+    }
+    .case-screenshot img {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .case-top {
+      padding: 28px 32px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 28px;
+      border-bottom: 1px solid var(--border);
+    }
+    .case-industry {
+      display: inline-block;
+      background: var(--bg);
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+      margin-bottom: 10px;
+    }
+    .case-name {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    .case-metrics {
+      display: flex;
+      gap: 0;
+      flex-shrink: 0;
+    }
+    .case-metric {
+      background: var(--lime);
+      border-radius: 12px;
+      padding: 14px 18px;
+      text-align: center;
+      margin-left: 8px;
+      min-width: 84px;
+    }
+    .case-metric:first-child { margin-left: 0; }
+    .cm-val {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .cm-lbl {
+      font-size: 10px;
+      color: rgba(0,0,0,0.55);
+      line-height: 1.35;
+    }
+
+    .case-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .case-col {
+      padding: 24px 32px;
+    }
+    .case-col + .case-col {
+      border-left: 1px solid var(--border);
+    }
+    .col-label {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .col-label::before {
+      content: '';
+      width: 3px;
+      height: 14px;
+      border-radius: 2px;
+      display: inline-block;
+    }
+    .col-label.problem { color: var(--red); }
+    .col-label.problem::before { background: var(--red); }
+    .col-label.solution { color: var(--teal); }
+    .col-label.solution::before { background: var(--teal); }
+
+    .case-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .case-points li {
+      font-size: 13.5px;
+      color: #333;
+      padding-left: 16px;
+      position: relative;
+      line-height: 1.5;
+    }
+    .case-points.prob li::before {
+      content: '•';
+      position: absolute;
+      left: 3px;
+      color: var(--red);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .case-points.sol li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-size: 12px;
+      top: 1px;
+    }
+
+    .case-result {
+      background: #f0fff8;
+      border-top: 1px solid rgba(0,168,120,0.15);
+      padding: 16px 32px;
+      font-size: 13px;
+      color: #333;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .case-result::before {
+      content: '↗';
+      color: var(--teal);
+      font-size: 18px;
+      flex-shrink: 0;
+      font-weight: 700;
+    }
+    .case-result strong { color: var(--text); font-weight: 700; }
+
+    /* ── DEMO BLOCK ── */
+    .demo-block {
+      background: var(--text);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .demo-left {
+      padding: 36px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .demo-tag {
+      display: inline-block;
+      background: var(--lime);
+      color: var(--text);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+      width: fit-content;
+    }
+    .demo-title {
+      font-size: 26px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .demo-desc {
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .demo-metrics {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+    .demo-metric-val {
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--lime);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+    .demo-metric-lbl {
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.4;
+    }
+    .demo-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--lime);
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 800;
+      padding: 14px 24px;
+      border-radius: 100px;
+      text-decoration: none;
+      width: fit-content;
+      transition: opacity 0.15s;
+    }
+    .demo-btn:hover { opacity: 0.85; }
+    .demo-right {
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      padding: 24px 20px 0;
+      background: #1a1a2e;
+    }
+    .demo-right img {
+      flex: 1;
+      max-width: 33%;
+      height: 360px;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      border-radius: 12px 12px 0 0;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
+    }
+
+    /* ── HOW WE WORK ── */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .step-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 24px 26px;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+    .step-card.highlight {
+      background: var(--lime);
+    }
+    .step-num {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--text);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .step-card.highlight .step-num {
+      background: var(--text);
+      color: #fff;
+    }
+    .step-title {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+    .step-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .step-card.highlight .step-desc { color: rgba(0,0,0,0.6); }
+
+    /* ── TEAM ── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .team-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 26px 28px;
+    }
+    .t-role {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .t-name {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+    .t-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+    .team-footer {
+      background: var(--text);
+      color: rgba(255,255,255,0.5);
+      border-radius: var(--radius);
+      padding: 18px 28px;
+      font-size: 13px;
+      text-align: center;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── NEXT STEPS / CTA ── */
+    .cta-section {
+      padding: 64px 0 80px;
+    }
+    .cta-inner {
+      background: var(--lime);
+      border-radius: var(--radius);
+      padding: 48px 48px 44px;
+      text-align: center;
+    }
+    .cta-inner h2 {
+      font-size: 36px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+      color: var(--text);
+    }
+    .cta-inner p {
+      font-size: 16px;
+      color: rgba(0,0,0,0.6);
+      max-width: 440px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+    }
+    .cta-contacts {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .cta-contact-item {
+      background: var(--text);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 13px 26px;
+      border-radius: 100px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: opacity 0.15s;
+    }
+    .cta-contact-item:hover { opacity: 0.8; }
+    .cta-contact-item .icon {
+      font-size: 16px;
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      @page { margin: 16mm 14mm; size: A4; }
+      body { background: #f5f5f5 !important; font-size: 13px; }
+      .topbar { display: none; }
+      .hero { padding: 20pt 0; }
+      section { padding: 20pt 0; }
+      .cta-section { padding: 20pt 0; }
+
+      .case-card, .pain-item, .step-card, .team-card,
+      .case-top, .case-body, .case-result, .case-section-cover {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .no-print { display: none !important; }
+      .case-section-cover { background: #111 !important; }
+      .case-result { background: #f0fff8 !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar no-print">
+  <div class="pa-badge">Practical AI</div>
+</div>
+
+<!-- Save as PDF -->
+<div style="position:fixed;bottom:24px;right:24px;z-index:999;" class="no-print">
+  <button onclick="window.print()" style="background:#0a0a0a;color:#fff;border:none;
+    padding:10px 22px;border-radius:100px;font-size:13px;font-weight:700;
+    cursor:pointer;font-family:inherit;box-shadow:0 4px 16px rgba(0,0,0,0.2);">
+    ↓ Save as PDF
+  </button>
+</div>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-for">Подготовлено для Capital Group</div>
+    <h1>AI-решения для продаж,<br>аналитики и <em>скорости реакции</em></h1>
+    <p class="hero-sub">Три проекта из нашей практики — разные индустрии, одна логика: убрать ручную работу там, где она тормозит решения и закрытие сделок.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-val">50+</div>
+        <div class="hero-stat-lbl">проектов внедрено</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">20</div>
+        <div class="hero-stat-lbl">человек в команде</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">€10–30k</div>
+        <div class="hero-stat-lbl">средний чек проекта</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAIN POINTS -->
+  <section>
+    <div class="section-tag">Что мы слышим от вас</div>
+    <div class="section-title">Три узких места при длинном цикле сделки</div>
+    <div class="pain-grid">
+      <div class="pain-item">
+        <div class="pain-num">01</div>
+        <div class="pain-title">Данные устаревают к моменту решения</div>
+        <div class="pain-desc">Информация по объектам, клиентам, статусам обновляется вручную — и всегда чуть позже, чем нужно.</div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-num">02</div>
+        <div class="pain-title">Воронка непрозрачна без ручного опроса</div>
+        <div class="pain-desc">«Где сейчас этот лид?» — ответ требует звонка менеджеру или часа в CRM. Замёрзшие сделки не видны.</div>
+      </div>
+      <div class="pain-item">
+        <div class="pain-num">03</div>
+        <div class="pain-title">Реакция запаздывает — клиент уходит</div>
+        <div class="pain-desc">Между касаниями — пустота. Нет системы дожима: уместный follow-up зависит от памяти менеджера.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASES SECTION -->
+  <section>
+    <div class="section-tag">Кейсы Practical AI</div>
+    <div class="section-title">Похожие задачи — реальные результаты</div>
+
+    <!-- CASE COVER 1 -->
+    <div class="case-section-cover">
+      <div>
+        <div class="case-section-label">Кейс 01</div>
+        <div class="case-section-title">Эффективность<br>операций</div>
+      </div>
+      <div class="case-section-sub">Автоматизация рутины,<br>ускорение процессов,<br>рост скорости реакции</div>
+    </div>
+
+    <!-- CASE 1 -->
+    <div class="case-wrap">
+      <div class="case-card">
+        <div class="case-top">
+          <div>
+            <div class="case-industry">Недвижимость · Операционная автоматизация</div>
+            <div class="case-name">Данные по объектам в CRM<br>без ручного переноса</div>
+          </div>
+          <div class="case-metrics">
+            <div class="case-metric">
+              <div class="cm-val">99%</div>
+              <div class="cm-lbl">сокращение<br>времени</div>
+            </div>
+            <div class="case-metric">
+              <div class="cm-val">24/7</div>
+              <div class="cm-lbl">актуальные<br>данные</div>
+            </div>
+            <div class="case-metric">
+              <div class="cm-val">80%</div>
+              <div class="cm-lbl">ускорение<br>реакции</div>
+            </div>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-col">
+            <div class="col-label problem">Проблема</div>
+            <ul class="case-points prob">
+              <li>Ручное обновление данных по объектам — каждый день</li>
+              <li>Информация устаревала в течение нескольких часов</li>
+              <li>Голосовые от застройщиков обрабатывались вручную</li>
+              <li>Менеджеры работали с устаревшей картиной на переговорах</li>
+            </ul>
+          </div>
+          <div class="case-col">
+            <div class="col-label solution">Решение</div>
+            <ul class="case-points sol">
+              <li>Приём файлов любого формата — PDF, Excel, голос</li>
+              <li>Автоматическое распознавание: статус, сроки, цены</li>
+              <li>Отправка данных в CRM через API без участия человека</li>
+              <li>Обновление в реальном времени — без расписания синхронизации</li>
+            </ul>
+          </div>
+        </div>
+        <div class="case-result">
+          <strong>Итог:</strong>&nbsp;менеджеры перестали тратить время на сбор данных. Актуальная картина — 24/7, без ручного труда.
+        </div>
+        <div class="case-screenshot">
+          <img src="assets/case1-realestate.jpg" alt="Автоматизация данных по недвижимости">
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE COVER 2 -->
+    <div class="case-section-cover" style="margin-top: 32px;">
+      <div>
+        <div class="case-section-label">Кейс 02</div>
+        <div class="case-section-title">Прогнозируемость<br>и аналитика</div>
+      </div>
+      <div class="case-section-sub">От интуиции<br>к data-driven решениям</div>
+    </div>
+
+    <!-- CASE 2 -->
+    <div class="case-wrap">
+      <div class="case-card">
+        <div class="case-top">
+          <div>
+            <div class="case-industry">B2B Продажи · Аналитика</div>
+            <div class="case-name">AI-дашборд: от разрозненных данных<br>к ежедневным решениям</div>
+          </div>
+          <div class="case-metrics">
+            <div class="case-metric">
+              <div class="cm-val">+24%</div>
+              <div class="cm-lbl">рост ROI<br>без доп. бюджета</div>
+            </div>
+            <div class="case-metric">
+              <div class="cm-val">70%</div>
+              <div class="cm-lbl">сокращение<br>времени</div>
+            </div>
+            <div class="case-metric">
+              <div class="cm-val">80%</div>
+              <div class="cm-lbl">ускорение<br>работы</div>
+            </div>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-col">
+            <div class="col-label problem">Проблема</div>
+            <ul class="case-points prob">
+              <li>Данные из 4 каналов собирались вручную раз в неделю</li>
+              <li>A/B анализ занимал несколько дней работы аналитика</li>
+              <li>Решения по бюджету принимались интуитивно</li>
+              <li>Зависимость от внешнего агентства для интерпретации</li>
+            </ul>
+          </div>
+          <div class="case-col">
+            <div class="col-label solution">Решение</div>
+            <ul class="case-points sol">
+              <li>Автосбор из 4 каналов + Google Analytics в единый дашборд</li>
+              <li>A/B анализ по каналам и креативам — автоматически</li>
+              <li>AI-рекомендации по перераспределению бюджета</li>
+              <li>Ежедневные инсайты без дополнительного агентства</li>
+            </ul>
+          </div>
+        </div>
+        <div class="case-result">
+          <strong>Итог:</strong>&nbsp;решения по бюджету стали приниматься ежедневно на основе данных. Внешнее агентство по аналитике — больше не нужно.
+        </div>
+        <div class="case-screenshot">
+          <img src="assets/case2-analytics.jpg" alt="AI-аналитика рекламных кампаний">
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE COVER 3 -->
+    <div class="case-section-cover" style="margin-top: 32px;">
+      <div>
+        <div class="case-section-label">Кейс 03</div>
+        <div class="case-section-title">Операционная<br>автоматизация</div>
+      </div>
+      <div class="case-section-sub">Сокращение ручного труда,<br>интеграция с 1С,<br>устранение ошибок</div>
+    </div>
+
+    <!-- CASE 3 -->
+    <div class="case-wrap">
+      <div class="case-card">
+        <div class="case-top">
+          <div>
+            <div class="case-industry">B2B · Обработка заказов · Интеграция 1С</div>
+            <div class="case-name">AI-система обработки заказов:<br>от документа до КП за секунды</div>
+          </div>
+          <div class="case-metrics">
+            <div class="case-metric">
+              <div class="cm-val">82%</div>
+              <div class="cm-lbl">сокращение<br>времени на КП</div>
+            </div>
+            <div class="case-metric">
+              <div class="cm-val">100%</div>
+              <div class="cm-lbl">минимизация<br>ошибок</div>
+            </div>
+            <div class="case-metric">
+              <div class="cm-val">30%</div>
+              <div class="cm-lbl">высвобождение<br>ресурсов</div>
+            </div>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-col">
+            <div class="col-label problem">Проблема</div>
+            <ul class="case-points prob">
+              <li>Ручной приём документов — PDF, XLSX, DOCX от клиентов</li>
+              <li>До 4 часов в день на формирование одного коммерческого предложения</li>
+              <li>Высокий процент ошибок при переносе данных в 1С</li>
+              <li>Менеджеры тратят время на рутину вместо продаж</li>
+            </ul>
+          </div>
+          <div class="case-col">
+            <div class="col-label solution">Решение</div>
+            <ul class="case-points sol">
+              <li>Автораспознавание документов любого формата через OCR и NLP</li>
+              <li>Семантическое сопоставление позиций с номенклатурой компании</li>
+              <li>Автоматическое формирование КП и отправка в 1С через API</li>
+              <li>Встроенный контроль качества и логирование ошибок</li>
+            </ul>
+          </div>
+        </div>
+        <div class="case-result">
+          <strong>Итог:</strong>&nbsp;менеджеры получают готовое КП за секунды — без ручного переноса, без ошибок, напрямую в 1С.
+        </div>
+        <div class="case-screenshot">
+          <img src="assets/case3-orders.jpg" alt="AI-система обработки заказов">
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- HOTEL BOT DEMO -->
+  <section>
+    <div class="section-tag">Попробуйте сами</div>
+    <div class="section-title">Живой пример: бот-консьерж для отеля</div>
+    <div class="demo-block">
+      <div class="demo-left">
+        <div>
+          <div class="demo-tag">Работает прямо сейчас</div>
+          <div class="demo-title">AI-консьерж, который бронирует номера в реальном времени</div>
+          <div class="demo-desc">Показывает доступные номера, подбирает по датам и категории, оформляет бронирование — без звонков и ожиданий.</div>
+          <div class="demo-metrics">
+            <div>
+              <div class="demo-metric-val">+42%</div>
+              <div class="demo-metric-lbl">рост прямых<br>бронирований</div>
+            </div>
+            <div>
+              <div class="demo-metric-val">25%</div>
+              <div class="demo-metric-lbl">снижение<br>комиссий OTA</div>
+            </div>
+            <div>
+              <div class="demo-metric-val">15%</div>
+              <div class="demo-metric-lbl">рост<br>допродаж</div>
+            </div>
+          </div>
+        </div>
+        <a href="https://t.me/nika_hotel_ai_bot?profile" target="_blank" class="demo-btn">
+          ✈ Открыть бота в Telegram
+        </a>
+      </div>
+      <div class="demo-right">
+        <img src="assets/hotel_screen1.jpg" alt="Галерея номеров">
+        <img src="assets/hotel_screen2.jpg" alt="Карточка бронирования">
+        <img src="assets/hotel_screen3.jpg" alt="Подтверждение брони">
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW WE WORK -->
+  <section>
+    <div class="section-tag">Подход</div>
+    <div class="section-title">Как мы работаем</div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">0</div>
+        <div>
+          <div class="step-title">Изучаем текущие процессы</div>
+          <div class="step-desc">Анализируем воронку и узкие места — не предлагаем стандартное решение без погружения.</div>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-title">Готовим решение под задачу</div>
+          <div class="step-desc">Метрики, архитектура, приоритеты — всё фиксируется в скоупе до старта разработки.</div>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-title">Разрабатываем и внедряем</div>
+          <div class="step-desc">Итерационно, с еженедельными демо. Клиент видит результат на каждом этапе.</div>
+        </div>
+      </div>
+      <div class="step-card highlight">
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-title">Сопровождаем после запуска</div>
+          <div class="step-desc">Первые 3 месяца — мониторинг и правки включены. Мы отвечаем за результат.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section>
+    <div class="section-tag">Команда</div>
+    <div class="section-title">С кем вы будете работать</div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="t-role">CEO · Стратегия</div>
+        <div class="t-name">Данил Усик</div>
+        <div class="t-desc">Диагностика бизнеса, архитектура решения и финальное согласование на каждом этапе проекта.</div>
+      </div>
+      <div class="team-card">
+        <div class="t-role">CTO · Технический лид</div>
+        <div class="t-name">Светлана Галахова</div>
+        <div class="t-desc">Руководит разработкой и архитектурой интеграций. Прямой контакт на протяжении всего проекта.</div>
+      </div>
+    </div>
+    <div class="team-footer">Practical AI · AI Hub · 20 человек в команде · 50+ проектов · practicalai.es</div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-inner">
+      <h2>Готовы обсудить<br>вашу задачу?</h2>
+      <p>30 минут — разберём, какой из подходов применим к Capital Group и как выглядел бы первый шаг.</p>
+      <div class="cta-contacts">
+        <a href="tel:+71953312380" class="cta-contact-item">
+          <span class="icon">📞</span> +7 195 331 23 80
+        </a>
+        <a href="https://t.me/Danil_alto" class="cta-contact-item">
+          <span class="icon">✈</span> @Danil_alto
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

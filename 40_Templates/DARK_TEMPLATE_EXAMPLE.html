@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practical AI — Кейсы для [КЛИЕНТ]</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0a0a0a;
+      --surface:      #111111;
+      --card:         #141414;
+      --card2:        #181818;
+      --purple:       #7c3aed;
+      --purple-light: #a855f7;
+      --purple-dim:   rgba(124, 58, 237, 0.12);
+      --text:         #f0f0f0;
+      --muted:        #888888;
+      --subtle:       #444444;
+      --border:       rgba(255,255,255,0.07);
+      --green:        #22c55e;
+      --blue:         #3b82f6;
+      --radius:       16px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    /* ── UTILS ── */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 40px; }
+    .section-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--purple); margin-bottom: 28px;
+    }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      padding: 20px 40px;
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px); z-index: 100;
+    }
+    .logo { font-size: 15px; font-weight: 800; color: var(--text); letter-spacing: -0.01em; }
+    .logo span { color: var(--purple); }
+    .topbar-right { display: flex; align-items: center; gap: 12px; }
+    .badge-ai { background: var(--purple); color: #fff; font-size: 11px; font-weight: 700;
+      padding: 5px 14px; border-radius: 100px; letter-spacing: 0.04em; }
+    .btn-pdf {
+      background: transparent; border: 1px solid var(--border); color: var(--muted);
+      font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 8px;
+      cursor: pointer; font-family: inherit; transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-pdf:hover { border-color: var(--purple); color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 88px 0 72px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-for {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--purple); margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: 62px; font-weight: 900; line-height: 1.0;
+      letter-spacing: -0.03em; margin-bottom: 28px; max-width: 760px;
+    }
+    .hero h1 em { font-style: normal; color: var(--purple-light); }
+    .hero p {
+      font-size: 18px; color: var(--muted); max-width: 520px;
+      line-height: 1.55; margin-bottom: 40px;
+    }
+    .hero-stats {
+      display: flex; gap: 40px; flex-wrap: wrap;
+    }
+    .hero-stat { }
+    .hero-stat-value { font-size: 36px; font-weight: 900; color: var(--purple-light); letter-spacing: -0.02em; }
+    .hero-stat-label { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+    /* ── PROBLEMS ── */
+    .problems { padding: 72px 0; border-bottom: 1px solid var(--border); }
+    .problems-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+    }
+    .problem-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px;
+    }
+    .problem-card-icon { font-size: 22px; margin-bottom: 12px; }
+    .problem-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .problem-card p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+    /* ── CASES ── */
+    .cases { padding: 72px 0; border-bottom: 1px solid var(--border); }
+    .cases-list { display: flex; flex-direction: column; gap: 20px; }
+    .case-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 36px; overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .case-card:hover { border-color: rgba(124,58,237,0.35); }
+    .case-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 28px; gap: 20px; }
+    .case-tag {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--purple);
+      background: var(--purple-dim); padding: 4px 12px; border-radius: 100px;
+      display: inline-block; margin-bottom: 14px;
+    }
+    .case-title { font-size: 22px; font-weight: 800; line-height: 1.2; letter-spacing: -0.01em; }
+    .case-metrics {
+      display: flex; flex-direction: column; gap: 8px; min-width: 200px;
+      text-align: right;
+    }
+    .case-metric-value { font-size: 28px; font-weight: 900; color: var(--green); letter-spacing: -0.02em; }
+    .case-metric-label { font-size: 11px; color: var(--muted); }
+    .case-body {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 4px;
+    }
+    .case-col-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+    .case-col p { font-size: 14px; color: var(--text); line-height: 1.6; }
+    .case-results { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border); }
+    .results-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .result-pill {
+      background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.2);
+      color: var(--green); font-size: 13px; font-weight: 600;
+      padding: 6px 14px; border-radius: 100px;
+    }
+
+    /* ── HOW WE WORK ── */
+    .process { padding: 72px 0; border-bottom: 1px solid var(--border); }
+    .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .process-step {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px;
+    }
+    .step-num {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      color: var(--purple); margin-bottom: 16px;
+    }
+    .step-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .step-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+    /* ── TEAM ── */
+    .team { padding: 72px 0; border-bottom: 1px solid var(--border); }
+    .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .team-main {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 32px;
+      display: flex; align-items: center; gap: 24px;
+    }
+    .team-avatar {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: var(--purple-dim); border: 2px solid var(--purple);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; font-weight: 900; color: var(--purple-light); flex-shrink: 0;
+    }
+    .team-name { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+    .team-role { font-size: 13px; color: var(--muted); }
+    .team-stat {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 28px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .team-stat-val { font-size: 40px; font-weight: 900; color: var(--purple-light); letter-spacing: -0.03em; }
+    .team-stat-desc { font-size: 14px; color: var(--muted); margin-top: 4px; }
+
+    /* ── CTA ── */
+    .cta {
+      padding: 88px 0;
+      text-align: center;
+    }
+    .cta h2 { font-size: 44px; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 20px; line-height: 1.1; }
+    .cta h2 em { font-style: normal; color: var(--purple-light); }
+    .cta p { font-size: 17px; color: var(--muted); margin-bottom: 44px; }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--purple); color: #fff;
+      font-size: 15px; font-weight: 700; padding: 14px 32px;
+      border-radius: 12px; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #6d28d9; }
+    .btn-secondary {
+      background: transparent; border: 1px solid var(--border); color: var(--text);
+      font-size: 15px; font-weight: 600; padding: 14px 28px;
+      border-radius: 12px; text-decoration: none;
+      transition: border-color 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--purple); }
+    .cta-contacts { margin-top: 48px; display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; }
+    .cta-contact { font-size: 14px; color: var(--muted); }
+    .cta-contact a { color: var(--text); text-decoration: none; font-weight: 600; }
+    .cta-contact a:hover { color: var(--purple-light); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 40px;
+      display: flex; justify-content: space-between; align-items: center;
+      color: var(--muted); font-size: 12px;
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      .topbar, .btn-pdf, .cta-buttons { display: none !important; }
+      .case-card:hover { border-color: var(--border); }
+      body { background: #fff; color: #111; }
+      .card, .case-card, .problem-card, .process-step, .team-main, .team-stat {
+        background: #f9f9f9; border-color: #ddd;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="logo">Practical <span>AI</span></div>
+  <div class="topbar-right">
+    <button class="btn-pdf" onclick="window.print()">↓ Сохранить PDF</button>
+    <div class="badge-ai">AI Solutions</div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="container">
+  <section class="hero">
+    <div class="hero-for">Подготовлено для [ИМЯ КЛИЕНТА] · [ДАТА]</div>
+    <h1>Как AI меняет<br><em>[ИНДУСТРИЯ]</em><br>изнутри</h1>
+    <p>Реальные кейсы внедрения AI-систем — с цифрами, без воды. Мы подобрали 3 решения, релевантных для [КОМПАНИЯ].</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-value">9</div>
+        <div class="hero-stat-label">успешных кейсов</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">20+</div>
+        <div class="hero-stat-label">AI-специалистов</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">3 мес</div>
+        <div class="hero-stat-label">средний срок запуска</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PROBLEMS -->
+<div class="container">
+  <section class="problems">
+    <div class="section-label">Что тормозит [КОМПАНИЯ]</div>
+    <div class="problems-grid">
+      <div class="problem-card">
+        <div class="problem-card-icon">⏱</div>
+        <h4>Рутина съедает время команды</h4>
+        <p>Менеджеры тратят часы на задачи, которые AI решает за секунды — квалификация лидов, оформление заявок, сбор данных.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-icon">📊</div>
+        <h4>Данные есть, инсайтов нет</h4>
+        <p>CRM, таблицы, переписка — всё это золото, но без аналитики оно просто хранится, а не работает.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-icon">🔄</div>
+        <h4>Процессы не масштабируются</h4>
+        <p>При росте объема работ — найм новых людей. AI позволяет расти без пропорционального увеличения штата.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-icon">💬</div>
+        <h4>Клиенты ждут ответа</h4>
+        <p>Первый отклик решает сделку. AI-ассистенты отвечают 24/7 и не теряют ни одного обращения.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CASES -->
+<div class="container">
+  <section class="cases">
+    <div class="section-label">3 кейса, релевантных для вас</div>
+    <div class="cases-list">
+
+      <!-- CASE 1 -->
+      <div class="case-card">
+        <div class="case-tag">КЕЙС 1 · [ИНДУСТРИЯ]</div>
+        <div class="case-header">
+          <div>
+            <div class="case-title">AI-система обработки<br>заказов в 1С</div>
+          </div>
+          <div class="case-metrics">
+            <div>
+              <div class="case-metric-value">−82%</div>
+              <div class="case-metric-label">времени на оформление КП</div>
+            </div>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-col">
+            <div class="case-col-label">Задача</div>
+            <p>Менеджеры тратили 40+ минут на каждое коммерческое предложение: ручной ввод в 1С, сверка остатков, форматирование документов.</p>
+          </div>
+          <div class="case-col">
+            <div class="case-col-label">Решение</div>
+            <p>AI-агент обрабатывает запрос клиента, автоматически формирует КП из базы 1С, проверяет наличие и отправляет за 3 минуты.</p>
+          </div>
+        </div>
+        <div class="case-results">
+          <div class="case-col-label">Результаты</div>
+          <div class="results-pills">
+            <span class="result-pill">−82% времени на КП</span>
+            <span class="result-pill">100% минимизация ошибок</span>
+            <span class="result-pill">30% высвобождение ресурсов</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CASE 2 -->
+      <div class="case-card">
+        <div class="case-tag">КЕЙС 2 · МАРКЕТИНГ</div>
+        <div class="case-header">
+          <div>
+            <div class="case-title">AI-аналитика<br>рекламных кампаний</div>
+          </div>
+          <div class="case-metrics">
+            <div>
+              <div class="case-metric-value">+24%</div>
+              <div class="case-metric-label">ROI рекламных кампаний</div>
+            </div>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-col">
+            <div class="case-col-label">Задача</div>
+            <p>Маркетологи вручную анализировали кампании из 5 каналов: 70% времени уходило на сбор и нормализацию данных вместо оптимизации.</p>
+          </div>
+          <div class="case-col">
+            <div class="case-col-label">Решение</div>
+            <p>AI-дашборд агрегирует данные всех каналов, выявляет аномалии, автоматически формирует рекомендации по перераспределению бюджета.</p>
+          </div>
+        </div>
+        <div class="case-results">
+          <div class="case-col-label">Результаты</div>
+          <div class="results-pills">
+            <span class="result-pill">+24% ROI</span>
+            <span class="result-pill">−70% времени на аналитику</span>
+            <span class="result-pill">80% ускорение работы</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CASE 3 -->
+      <div class="case-card">
+        <div class="case-tag">КЕЙС 3 · СЕРВИС</div>
+        <div class="case-header">
+          <div>
+            <div class="case-title">AI-ассистент<br>для клиентского сервиса</div>
+          </div>
+          <div class="case-metrics">
+            <div>
+              <div class="case-metric-value">70%</div>
+              <div class="case-metric-label">тикетов без участия человека</div>
+            </div>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-col">
+            <div class="case-col-label">Задача</div>
+            <p>Команда поддержки из 5 человек не справлялась с потоком запросов — среднее время ответа 4+ часа, клиенты уходили к конкурентам.</p>
+          </div>
+          <div class="case-col">
+            <div class="case-col-label">Решение</div>
+            <p>AI-бот обрабатывает 70% стандартных запросов мгновенно 24/7. Сложные кейсы маршрутизируются к нужному специалисту с контекстом.</p>
+          </div>
+        </div>
+        <div class="case-results">
+          <div class="case-col-label">Результаты</div>
+          <div class="results-pills">
+            <span class="result-pill">70% тикетов без человека</span>
+            <span class="result-pill">−40 ч/день нагрузки</span>
+            <span class="result-pill">24/7 доступность</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- HOW WE WORK -->
+<div class="container">
+  <section class="process">
+    <div class="section-label">Как мы работаем</div>
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="step-num">01 — DISCOVERY</div>
+        <div class="step-title">Диагностика</div>
+        <p class="step-desc">Изучаем процессы, находим узкие места, считаем потенциальный эффект от автоматизации.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02 — DESIGN</div>
+        <div class="step-title">Архитектура</div>
+        <p class="step-desc">Проектируем AI-систему под вашу инфраструктуру. Фиксируем KPI и критерии успеха.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03 — BUILD</div>
+        <div class="step-title">Разработка</div>
+        <p class="step-desc">Строим систему итерационно. Промежуточные демо каждые 2 недели.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">04 — LAUNCH</div>
+        <div class="step-title">Запуск</div>
+        <p class="step-desc">Внедряем, обучаем команду, обеспечиваем поддержку. Измеряем результат.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- TEAM -->
+<div class="container">
+  <section class="team">
+    <div class="section-label">Команда</div>
+    <div class="team-grid">
+      <div class="team-main">
+        <div class="team-avatar">Д</div>
+        <div>
+          <div class="team-name">Данил</div>
+          <div class="team-role">Founder, Practical AI</div>
+          <div style="margin-top: 12px; font-size: 13px; color: var(--muted); line-height: 1.55;">
+            Более 3 лет в AI-внедрениях. Строил системы для недвижимости, retail, fintech, horeca.
+          </div>
+        </div>
+      </div>
+      <div class="team-stat">
+        <div class="team-stat-val">20</div>
+        <div class="team-stat-desc">специалистов в команде:<br>ML-инженеры, интеграторы, дата-аналитики</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CTA -->
+<div class="container">
+  <section class="cta">
+    <h2>Обсудим решение<br>для <em>[КОМПАНИЯ]</em>?</h2>
+    <p>Бесплатная 30-минутная сессия — разберём, где AI даст максимальный эффект именно у вас.</p>
+    <div class="cta-buttons">
+      <a href="https://t.me/Danil_alto" class="btn-primary">→ Написать в Telegram</a>
+      <a href="tel:+71953312380" class="btn-secondary">+7 195 331 23 80</a>
+    </div>
+    <div class="cta-contacts">
+      <div class="cta-contact">Telegram: <a href="https://t.me/Danil_alto">@Danil_alto</a></div>
+      <div class="cta-contact">Телефон: <a href="tel:+71953312380">+7 195 331 23 80</a></div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div>Practical AI · 2026</div>
+  <div>Конфиденциальный документ · Подготовлен персонально для [КЛИЕНТ]</div>
+</footer>
+
+</body>
+</html>

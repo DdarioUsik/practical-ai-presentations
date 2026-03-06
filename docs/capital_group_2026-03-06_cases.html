@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practical AI — Кейсы для Capital Group</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #ebebeb;
+      --surface:  #ffffff;
+      --lime:     #ccff00;
+      --lime-dark:#a8d400;
+      --text:     #0a0a0a;
+      --muted:    #666666;
+      --subtle:   #999999;
+      --border:   rgba(0,0,0,0.08);
+      --red:      #e84545;
+      --teal:     #00a878;
+      --radius:   18px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    /* ── UTILITY ── */
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .pa-badge {
+      display: inline-block;
+      background: var(--text);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 9px 22px;
+      border-radius: 100px;
+    }
+    .btn-pdf {
+      background: transparent;
+      border: 1px solid rgba(0,0,0,0.18);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 18px;
+      border-radius: 9px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn-pdf:hover { background: rgba(0,0,0,0.05); color: var(--text); }
+
+    /* ── HERO BANNER ── */
+    .hero-banner {
+      background: var(--lime);
+      padding: 72px 48px 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+      min-height: 440px;
+      overflow: hidden;
+    }
+    .hero-content { max-width: 600px; padding-bottom: 72px; }
+    .hero-for {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(0,0,0,0.45);
+      margin-bottom: 20px;
+    }
+    .hero-banner h1 {
+      font-size: 72px;
+      font-weight: 900;
+      line-height: 0.93;
+      letter-spacing: -0.035em;
+      margin-bottom: 24px;
+      color: var(--text);
+    }
+    .hero-banner p {
+      font-size: 17px;
+      color: rgba(0,0,0,0.55);
+      max-width: 460px;
+      line-height: 1.6;
+    }
+    .hero-fruit {
+      width: 340px;
+      flex-shrink: 0;
+      align-self: flex-end;
+    }
+    .hero-fruit img { width: 100%; height: auto; display: block; }
+
+    /* ── TASKS ── */
+    .section-gray { padding: 72px 0; }
+    .section-title {
+      font-size: 40px;
+      font-weight: 900;
+      letter-spacing: -0.025em;
+      margin-bottom: 36px;
+      line-height: 1.1;
+    }
+    .tasks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .task-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+    .task-num {
+      display: inline-block;
+      background: var(--lime);
+      color: var(--text);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 14px;
+      letter-spacing: 0.04em;
+    }
+    .task-card h4 { font-size: 17px; font-weight: 800; margin-bottom: 8px; line-height: 1.2; }
+    .task-card .task-sub { font-size: 13px; color: var(--subtle); margin-bottom: 12px; }
+    .task-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+    /* ── SECTION DIVIDER ── */
+    .section-divider {
+      background: var(--lime);
+      padding: 56px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .section-divider h2 {
+      font-size: 52px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.0;
+    }
+    .section-divider p {
+      font-size: 16px;
+      color: rgba(0,0,0,0.5);
+      margin-top: 12px;
+    }
+    .divider-fruit { width: 240px; flex-shrink: 0; }
+    .divider-fruit img { width: 100%; height: auto; display: block; }
+
+    /* ── CASE CARD ── */
+    .case-wrap { margin-bottom: 16px; }
+    .case-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 36px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 36px;
+    }
+    .case-industry {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--subtle);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .case-name {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -0.015em;
+      line-height: 1.15;
+      margin-bottom: 28px;
+    }
+    .case-blocks { display: flex; flex-direction: column; gap: 14px; }
+    .case-block {
+      background: var(--bg);
+      border-radius: 12px;
+      padding: 18px 20px 18px 22px;
+      border-left: 3px solid transparent;
+    }
+    .case-block.problem { border-left-color: var(--red); }
+    .case-block.solution { border-left-color: var(--teal); }
+    .case-block-label {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .case-block.problem .case-block-label { color: var(--red); }
+    .case-block.solution .case-block-label { color: var(--teal); }
+    .case-block ul { padding-left: 16px; }
+    .case-block li { font-size: 14px; color: var(--text); margin-bottom: 4px; line-height: 1.5; }
+
+    /* ── METRICS ── */
+    .case-metrics {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 188px;
+    }
+    .metric-pill {
+      background: var(--lime);
+      border-radius: 14px;
+      padding: 20px 18px;
+      text-align: center;
+    }
+    .metric-pill.white { background: var(--bg); }
+    .metric-value {
+      font-size: 42px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .metric-label {
+      font-size: 12px;
+      color: rgba(0,0,0,0.5);
+      margin-top: 5px;
+      line-height: 1.3;
+    }
+
+    /* ── HOW WE WORK ── */
+    .process-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .process-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+    }
+    .process-card.highlight { background: var(--lime); }
+    .step-num-circle {
+      width: 44px; height: 44px;
+      background: var(--text);
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 900;
+      flex-shrink: 0;
+    }
+    .process-card h4 { font-size: 16px; font-weight: 800; margin-bottom: 6px; }
+    .process-card p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+    .process-card.highlight p { color: rgba(0,0,0,0.6); }
+    .process-footer {
+      text-align: center;
+      margin-top: 16px;
+      padding: 20px;
+      background: var(--surface);
+      border-radius: var(--radius);
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* ── CTA ── */
+    .cta-banner {
+      background: var(--lime);
+      padding: 72px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .cta-title {
+      font-size: 40px;
+      font-weight: 900;
+      letter-spacing: -0.025em;
+      margin-bottom: 28px;
+    }
+    .cta-steps { display: flex; gap: 14px; margin-bottom: 28px; flex-wrap: wrap; }
+    .cta-step {
+      background: rgba(255,255,255,0.6);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .cta-step-num {
+      width: 36px; height: 36px;
+      background: var(--text);
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 900;
+      flex-shrink: 0;
+    }
+    .cta-step-label { font-size: 14px; font-weight: 700; line-height: 1.3; }
+    .cta-contact-box {
+      background: rgba(255,255,255,0.6);
+      border-radius: var(--radius);
+      padding: 22px 26px;
+      max-width: 440px;
+    }
+    .cta-contact-text { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
+    .cta-contact-handle { font-size: 15px; color: rgba(0,0,0,0.55); font-weight: 600; }
+    .cta-fruit { width: 240px; flex-shrink: 0; }
+    .cta-fruit img { width: 100%; height: auto; display: block; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--text);
+      color: rgba(255,255,255,0.45);
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+    footer .logo { color: #fff; font-weight: 800; font-size: 15px; }
+
+    /* ── PRINT ── */
+    @media print {
+      .btn-pdf { display: none; }
+      .hero-banner, .section-divider, .cta-banner {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span class="pa-badge">Practical AI</span>
+  <button class="btn-pdf" onclick="window.print()">↓ Сохранить PDF</button>
+</div>
+
+<!-- HERO BANNER -->
+<div class="hero-banner">
+  <div class="hero-content">
+    <div class="hero-for">Подготовлено для Capital Group · Антон · 6 марта 2026</div>
+    <h1>Кейсы<br>Practical<br>AI</h1>
+    <p>AI-решения для эффективности продаж, аналитики и сервиса.<br>Подготовлено для обсуждения сотрудничества.</p>
+  </div>
+  <div class="hero-fruit">
+    <img src="assets/lime.png" alt="">
+  </div>
+</div>
+
+<!-- TASKS SECTION -->
+<div class="section-gray">
+  <div class="container">
+    <div class="section-title">Ваши задачи — наши решения</div>
+    <div class="tasks-grid">
+
+      <div class="task-card">
+        <div class="task-num">ЗАДАЧА 1</div>
+        <h4>Прогнозируемость</h4>
+        <div class="task-sub">Переход от интуиции к точным моделям</div>
+        <p>Анализ текущих клиентов и их индустрий для прогнозирования сделок. Понимать, кто готов к покупке — до звонка менеджера.</p>
+      </div>
+
+      <div class="task-card">
+        <div class="task-num">ЗАДАЧА 2</div>
+        <h4>Эффективность продаж</h4>
+        <div class="task-sub">Унификация процессов, снижение рутины</div>
+        <p>Аналитика коммуникаций с клиентами для поиска точек усиления. Автоматизация follow-up и увеличение допродаж текущим клиентам.</p>
+      </div>
+
+      <div class="task-card">
+        <div class="task-num">ЗАДАЧА 3</div>
+        <h4>AI в продукте</h4>
+        <div class="task-sub">Данные — в реальном времени, без ручного обновления</div>
+        <p>Автоматическая синхронизация данных по объектам в CRM. Менеджеры работают с актуальной картиной — без звонков застройщикам.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- SECTION DIVIDER 1 -->
+<div class="section-divider">
+  <div>
+    <h2>Эффективность<br>продаж</h2>
+    <p>Автоматизация рутины, ускорение процессов, рост конверсии</p>
+  </div>
+  <div class="divider-fruit">
+    <img src="assets/raspberry.png" alt="">
+  </div>
+</div>
+
+<!-- CASE 1 -->
+<div class="section-gray">
+  <div class="container">
+    <div class="case-wrap">
+      <div class="case-card">
+        <div>
+          <div class="case-industry">Недвижимость · Операционная автоматизация</div>
+          <div class="case-name">Данные по объектам<br>в CRM без ручного переноса</div>
+          <div class="case-blocks">
+            <div class="case-block problem">
+              <div class="case-block-label">Проблема</div>
+              <ul>
+                <li>Ручное обновление данных в CRM каждый день</li>
+                <li>Информация устаревала в течение нескольких часов</li>
+                <li>Голосовые от застройщиков обрабатывались вручную</li>
+              </ul>
+            </div>
+            <div class="case-block solution">
+              <div class="case-block-label">Решение</div>
+              <ul>
+                <li>Приём файлов любого формата — PDF, Excel, голос</li>
+                <li>Автоматическое распознавание: статус, сроки, цены</li>
+                <li>Автоотправка в CRM через API в реальном времени</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="case-metrics">
+          <div class="metric-pill">
+            <div class="metric-value">99%</div>
+            <div class="metric-label">сокращение времени на обновление</div>
+          </div>
+          <div class="metric-pill white">
+            <div class="metric-value">24/7</div>
+            <div class="metric-label">актуальные данные в CRM</div>
+          </div>
+          <div class="metric-pill white">
+            <div class="metric-value">80%</div>
+            <div class="metric-label">ускорение реакции менеджеров</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE 2 -->
+    <div class="case-wrap">
+      <div class="case-card">
+        <div>
+          <div class="case-industry">Маркетинг · Аналитика кампаний</div>
+          <div class="case-name">AI-аналитика рекламных<br>кампаний из 4+ каналов</div>
+          <div class="case-blocks">
+            <div class="case-block problem">
+              <div class="case-block-label">Проблема</div>
+              <ul>
+                <li>Данные из 4+ каналов собирались вручную</li>
+                <li>A/B анализ требовал дней работы аналитика</li>
+                <li>Решения по бюджету принимались интуитивно</li>
+              </ul>
+            </div>
+            <div class="case-block solution">
+              <div class="case-block-label">Решение</div>
+              <ul>
+                <li>Автосбор из 4 каналов + Google Analytics</li>
+                <li>A/B анализ по каналам и креативам в реальном времени</li>
+                <li>Авторекомендации по оптимизации бюджета</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="case-metrics">
+          <div class="metric-pill">
+            <div class="metric-value">+24%</div>
+            <div class="metric-label">повышение ROI кампаний</div>
+          </div>
+          <div class="metric-pill white">
+            <div class="metric-value">70%</div>
+            <div class="metric-label">сокращение времени на аналитику</div>
+          </div>
+          <div class="metric-pill white">
+            <div class="metric-value">80%</div>
+            <div class="metric-label">ускорение работы команды</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION DIVIDER 2 -->
+<div class="section-divider">
+  <div>
+    <h2>Прогнозируемость<br>и аналитика</h2>
+    <p>От интуиции к data-driven решениям</p>
+  </div>
+  <div class="divider-fruit">
+    <img src="assets/lime.png" alt="">
+  </div>
+</div>
+
+<!-- CASE 3 -->
+<div class="section-gray">
+  <div class="container">
+    <div class="case-wrap">
+      <div class="case-card">
+        <div>
+          <div class="case-industry">B2B · Автоматизация заказов</div>
+          <div class="case-name">AI-система обработки<br>заказов и формирования КП</div>
+          <div class="case-blocks">
+            <div class="case-block problem">
+              <div class="case-block-label">Проблема</div>
+              <ul>
+                <li>Ручной приём документов — PDF, XLSX, DOCX</li>
+                <li>До 4 часов в день на формирование одного КП</li>
+                <li>Высокий процент ошибок при переносе данных</li>
+              </ul>
+            </div>
+            <div class="case-block solution">
+              <div class="case-block-label">Решение</div>
+              <ul>
+                <li>Авторапознавание через голосовой и файловый ввод</li>
+                <li>Семантическое сопоставление с номенклатурой</li>
+                <li>Автоматическая интеграция с 1С — КП за 3 минуты</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="case-metrics">
+          <div class="metric-pill">
+            <div class="metric-value">82%</div>
+            <div class="metric-label">сокращение времени на КП</div>
+          </div>
+          <div class="metric-pill white">
+            <div class="metric-value">100%</div>
+            <div class="metric-label">минимизация ошибок</div>
+          </div>
+          <div class="metric-pill white">
+            <div class="metric-value">30%</div>
+            <div class="metric-label">высвобождение ресурсов команды</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW WE WORK -->
+<div class="section-gray" style="padding-top: 0;">
+  <div class="container">
+    <div class="section-title">Как мы работаем</div>
+    <div class="process-grid">
+      <div class="process-card">
+        <div class="step-num-circle">0</div>
+        <div>
+          <h4>Изучаем текущие процессы</h4>
+          <p>Анализируем процессы, выявляем узкие места и точки роста</p>
+        </div>
+      </div>
+      <div class="process-card">
+        <div class="step-num-circle">1</div>
+        <div>
+          <h4>Готовим решение под ваши задачи</h4>
+          <p>Метрики, аналитика, инсайты — конкретный план без воды</p>
+        </div>
+      </div>
+      <div class="process-card">
+        <div class="step-num-circle">2</div>
+        <div>
+          <h4>Обучаем и внедряем AI инструменты</h4>
+          <p>Переводим теорию в работающие инструменты для команды</p>
+        </div>
+      </div>
+      <div class="process-card highlight">
+        <div class="step-num-circle">3</div>
+        <div>
+          <h4>Разрабатываем кастом AI решения</h4>
+          <p>Индивидуальная разработка под конкретные бизнес-задачи Capital Group</p>
+        </div>
+      </div>
+    </div>
+    <div class="process-footer">
+      Комплексное решение: от анализа до внедрения работающих AI-инструментов
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-banner">
+  <div>
+    <div class="cta-title">Следующие шаги</div>
+    <div class="cta-steps">
+      <div class="cta-step">
+        <div class="cta-step-num">1</div>
+        <div class="cta-step-label">Фидбек по<br>материалам</div>
+      </div>
+      <div class="cta-step">
+        <div class="cta-step-num">2</div>
+        <div class="cta-step-label">AI-<br>стратсессия</div>
+      </div>
+      <div class="cta-step">
+        <div class="cta-step-num">3</div>
+        <div class="cta-step-label">Встреча с<br>командой</div>
+      </div>
+    </div>
+    <div class="cta-contact-box">
+      <div class="cta-contact-text">Готовы обсудить?</div>
+      <div class="cta-contact-handle">Telegram: @Danil_alto · +7 195 331 23 80</div>
+    </div>
+  </div>
+  <div class="cta-fruit">
+    <img src="assets/lime.png" alt="">
+  </div>
+</div>
+
+<footer>
+  <span class="logo">Practical AI</span>
+  <span>Конфиденциально · Подготовлено для Capital Group (Антон) · 6 марта 2026</span>
+  <span>@Danil_alto · +7 195 331 23 80</span>
+</footer>
+
+</body>
+</html>
