@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practical AI — Presentations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0a; --surface: #111111; --card: #161616;
+      --purple: #7c3aed; --purple-light: #a855f7;
+      --text: #f5f5f5; --muted: #888888; --border: rgba(255,255,255,0.07);
+      --radius: 16px;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; font-size: 15px; }
+    .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+    .topbar { padding: 24px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
+    .logo { font-size: 15px; font-weight: 700; color: var(--text); }
+    .logo span { color: var(--purple); }
+    .badge { background: var(--purple); color: #fff; font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 100px; letter-spacing: 0.02em; }
+    .hero { padding: 80px 0 72px; text-align: center; }
+    .hero-label { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple); margin-bottom: 20px; }
+    .hero h1 { font-size: 56px; font-weight: 900; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 24px; }
+    .hero h1 em { font-style: normal; color: var(--purple-light); }
+    .hero p { font-size: 18px; color: var(--muted); max-width: 540px; margin: 0 auto; }
+    .presentations { padding: 60px 0 80px; }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple); margin-bottom: 24px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; text-decoration: none; color: var(--text); transition: border-color 0.2s; display: block; }
+    .card:hover { border-color: var(--purple); }
+    .card-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--purple); margin-bottom: 12px; }
+    .card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .card p { font-size: 13px; color: var(--muted); }
+    .empty { text-align: center; padding: 60px 0; color: var(--muted); font-size: 15px; }
+    footer { border-top: 1px solid var(--border); padding: 32px 40px; text-align: center; color: var(--muted); font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="logo">Practical <span>AI</span></div>
+    <div class="badge">Client Presentations</div>
+  </div>
+  <div class="container">
+    <div class="hero">
+      <div class="hero-label">Practical AI</div>
+      <h1>Клиентские<br><em>презентации</em></h1>
+      <p>Персонализированные материалы, сгенерированные под каждого клиента</p>
+    </div>
+    <div class="presentations">
+      <div class="section-label">Последние презентации</div>
+      <div class="empty">Презентации появятся здесь после генерации через /presentation</div>
+    </div>
+  </div>
+  <footer>Practical AI · @Danil_alto · +7 195 331 23 80</footer>
+</body>
+</html>
