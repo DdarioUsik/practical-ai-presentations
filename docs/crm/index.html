@@ -6,19 +6,19 @@
 <title>CRM для команд в мессенджерах — Practical AI</title>
 <style>
   :root {
-    --bg: #09090f;
-    --bg2: #111118;
-    --bg3: #1a1a28;
-    --bg4: #0e0e1a;
-    --accent: #7c6bff;
-    --accent2: #a89bff;
-    --green: #10d98a;
-    --red: #ff5252;
-    --yellow: #ffd740;
-    --text: #f0eeff;
-    --muted: #8b89a8;
-    --border: rgba(124,107,255,0.15);
-    --border2: rgba(255,255,255,0.07);
+    --bg: #f7f7ff;
+    --bg2: #ececf8;
+    --bg3: #e2e2f4;
+    --bg4: #f0f0fb;
+    --accent: #6c5ce7;
+    --accent2: #5244c4;
+    --green: #0aaa6a;
+    --red: #d63c3c;
+    --yellow: #b38600;
+    --text: #16162a;
+    --muted: #6a6a99;
+    --border: rgba(108,92,231,0.2);
+    --border2: rgba(0,0,0,0.09);
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; }
@@ -28,7 +28,7 @@
   #progress-bar { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,var(--accent),var(--green)); width:0%; z-index:9999; transition:width 0.1s; }
 
   /* NAV */
-  nav { position:fixed; top:0; left:0; right:0; padding:14px 32px; display:flex; align-items:center; justify-content:space-between; z-index:100; background:rgba(9,9,15,0.88); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
+  nav { position:fixed; top:0; left:0; right:0; padding:14px 32px; display:flex; align-items:center; justify-content:space-between; z-index:100; background:rgba(247,247,255,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
   .logo { font-size:15px; font-weight:700; letter-spacing:.05em; color:var(--accent2); }
   .logo span { color:var(--muted); font-weight:400; }
   nav a { color:#fff; text-decoration:none; font-size:14px; padding:8px 20px; background:var(--accent); border-radius:8px; font-weight:600; transition:opacity .2s; }
@@ -49,8 +49,8 @@
   h1 .accent { color:var(--accent2); }
   h1 .strike { text-decoration:line-through; color:var(--muted); text-decoration-color:var(--red); }
   .hero-sub { font-size:18px; color:var(--muted); max-width:540px; margin-bottom:44px; line-height:1.7; }
-  .hero-cta { display:inline-flex; align-items:center; gap:12px; background:var(--accent); color:#fff; text-decoration:none; padding:16px 32px; border-radius:12px; font-size:16px; font-weight:700; transition:transform .2s,box-shadow .2s; box-shadow:0 0 40px rgba(124,107,255,.3); }
-  .hero-cta:hover { transform:translateY(-2px); box-shadow:0 0 60px rgba(124,107,255,.45); }
+  .hero-cta { display:inline-flex; align-items:center; gap:12px; background:var(--accent); color:#fff; text-decoration:none; padding:16px 32px; border-radius:12px; font-size:16px; font-weight:700; transition:transform .2s,box-shadow .2s; box-shadow:0 0 40px rgba(108,92,231,.22); }
+  .hero-cta:hover { transform:translateY(-2px); box-shadow:0 0 60px rgba(108,92,231,.35); }
   .hero-stats { display:flex; gap:48px; margin-top:60px; padding-top:48px; border-top:1px solid var(--border); flex-wrap:wrap; }
   .stat-num { font-size:36px; font-weight:800; color:var(--green); line-height:1; margin-bottom:4px; }
   .stat-label { font-size:13px; color:var(--muted); }
@@ -75,7 +75,7 @@
 
   /* shared panel */
   .demo-panel { background:var(--bg2); border:1px solid var(--border2); border-radius:16px; overflow:hidden; }
-  .panel-bar { padding:11px 14px; background:rgba(0,0,0,.35); border-bottom:1px solid var(--border2); display:flex; align-items:center; gap:7px; }
+  .panel-bar { padding:11px 14px; background:rgba(0,0,0,.05); border-bottom:1px solid var(--border2); display:flex; align-items:center; gap:7px; }
   .dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
   .dot-r { background:#ff5c57; }
   .dot-y { background:#febc2e; }
@@ -116,12 +116,12 @@
 
   .demo-note { text-align:center; font-size:13px; color:var(--muted); margin-top:18px; }
   .demo-note button { background:none; border:1px solid var(--border); color:var(--accent2); font-size:12px; padding:5px 14px; border-radius:6px; cursor:pointer; margin-left:8px; transition:background .2s; }
-  .demo-note button:hover { background:var(--bg3); }
+  .demo-note button:hover { background:var(--bg2); }
 
   /* ── METRIC ── */
   #metric { padding:60px 32px; max-width:900px; margin:0 auto; }
   .metric-box { background:var(--bg2); border:1px solid var(--border2); border-radius:24px; padding:60px 32px; text-align:center; position:relative; overflow:hidden; }
-  .metric-box::before { content:''; position:absolute; top:-60px; left:50%; transform:translateX(-50%); width:320px; height:320px; background:radial-gradient(circle,rgba(124,107,255,.13) 0%,transparent 70%); pointer-events:none; }
+  .metric-box::before { content:''; position:absolute; top:-60px; left:50%; transform:translateX(-50%); width:320px; height:320px; background:radial-gradient(circle,rgba(108,92,231,.1) 0%,transparent 70%); pointer-events:none; }
   .metric-tag { font-size:12px; color:var(--muted); letter-spacing:.1em; text-transform:uppercase; margin-bottom:32px; }
   .metric-nums { display:flex; align-items:center; justify-content:center; gap:28px; margin-bottom:20px; }
   .m-block { text-align:center; }
@@ -132,28 +132,28 @@
 
   /* ── CRM INTERFACE MOCKUP ── */
   #crm-mockup { padding:100px 32px; max-width:1040px; margin:0 auto; }
-  .mockup-shell { background:var(--bg4); border:1px solid var(--border2); border-radius:20px; overflow:hidden; margin-top:44px; box-shadow:0 32px 80px rgba(0,0,0,.5); }
-  .mockup-titlebar { background:rgba(0,0,0,.5); padding:11px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid var(--border2); }
+  .mockup-shell { background:var(--bg4); border:1px solid var(--border2); border-radius:20px; overflow:hidden; margin-top:44px; box-shadow:0 24px 60px rgba(0,0,0,.1); }
+  .mockup-titlebar { background:rgba(0,0,0,.06); padding:11px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid var(--border2); }
   .mockup-titlebar span { font-size:11px; color:var(--muted); margin-left:6px; }
   .mockup-body { display:grid; grid-template-columns:200px 1fr; min-height:420px; }
 
   /* sidebar */
-  .m-sidebar { border-right:1px solid var(--border2); padding:12px 0; background:rgba(0,0,0,.2); }
+  .m-sidebar { border-right:1px solid var(--border2); padding:12px 0; background:rgba(0,0,0,.04); }
   .m-nav-item { padding:10px 18px; font-size:12.5px; color:var(--muted); display:flex; align-items:center; gap:10px; cursor:default; transition:background .15s,color .15s; border-left:2px solid transparent; }
-  .m-nav-item.active { background:rgba(124,107,255,.1); color:var(--accent2); font-weight:600; border-left-color:var(--accent); }
-  .m-nav-item:hover:not(.active) { background:rgba(255,255,255,.03); }
+  .m-nav-item.active { background:rgba(108,92,231,.1); color:var(--accent2); font-weight:600; border-left-color:var(--accent); }
+  .m-nav-item:hover:not(.active) { background:rgba(0,0,0,.04); }
   .m-nav-icon { width:16px; text-align:center; font-size:14px; }
 
   /* main area */
   .m-main { padding:20px 20px; overflow:hidden; }
   .m-tabs { display:flex; gap:4px; margin-bottom:18px; }
   .m-tab { padding:6px 16px; font-size:12px; border-radius:6px; cursor:default; border:1px solid transparent; }
-  .m-tab.active { background:rgba(124,107,255,.15); color:var(--accent2); border-color:rgba(124,107,255,.3); font-weight:600; }
+  .m-tab.active { background:rgba(108,92,231,.12); color:var(--accent2); border-color:rgba(108,92,231,.28); font-weight:600; }
   .m-tab:not(.active) { color:var(--muted); }
 
   /* stat tiles */
   .stat-tiles { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:18px; }
-  .stat-tile { background:rgba(0,0,0,.3); border:1px solid var(--border2); border-radius:10px; padding:12px 14px; }
+  .stat-tile { background:rgba(255,255,255,.7); border:1px solid var(--border2); border-radius:10px; padding:12px 14px; }
   .st-num { font-size:22px; font-weight:800; line-height:1; margin-bottom:4px; }
   .st-label { font-size:10px; color:var(--muted); line-height:1.3; }
   .st-green { color:var(--green); }
@@ -167,14 +167,14 @@
   .kb-col-head { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:8px; display:flex; align-items:center; justify-content:space-between; }
   .kb-count { background:var(--bg2); padding:2px 7px; border-radius:5px; font-size:10px; color:var(--text); }
   .kb-card { background:var(--bg3); border:1px solid var(--border2); border-radius:8px; padding:10px 11px; margin-bottom:8px; font-size:11px; transition:border-color .2s; }
-  .kb-card:hover { border-color:rgba(124,107,255,.35); }
+  .kb-card:hover { border-color:rgba(108,92,231,.35); }
   .kb-name { font-weight:700; font-size:12px; color:var(--text); margin-bottom:5px; }
   .kb-badges { display:flex; gap:5px; flex-wrap:wrap; margin-bottom:5px; }
   .badge { display:inline-flex; align-items:center; gap:3px; padding:2px 7px; border-radius:4px; font-size:10px; font-weight:600; }
   .b-ig { background:rgba(255,100,100,.12); color:#ff9090; }
   .b-tg { background:rgba(50,150,255,.12); color:#78b8ff; }
   .b-int { background:rgba(100,100,200,.12); color:#a0a0ee; }
-  .b-bot { background:rgba(124,107,255,.15); color:var(--accent2); }
+  .b-bot { background:rgba(108,92,231,.12); color:var(--accent2); }
   .b-conv { background:rgba(16,217,138,.13); color:var(--green); }
   .b-wait { background:rgba(255,215,64,.12); color:var(--yellow); }
   .b-fail { background:rgba(255,82,82,.12); color:var(--red); }
@@ -182,15 +182,15 @@
 
   /* chat panel */
   .chat-mockup { margin-top:44px; }
-  .chat-shell { background:var(--bg4); border:1px solid var(--border2); border-radius:20px; overflow:hidden; box-shadow:0 32px 80px rgba(0,0,0,.5); }
+  .chat-shell { background:var(--bg4); border:1px solid var(--border2); border-radius:20px; overflow:hidden; box-shadow:0 24px 60px rgba(0,0,0,.1); }
   .chat-layout { display:grid; grid-template-columns:260px 1fr; min-height:380px; }
-  .chat-list { border-right:1px solid var(--border2); padding:12px 0; background:rgba(0,0,0,.2); }
+  .chat-list { border-right:1px solid var(--border2); padding:12px 0; background:rgba(0,0,0,.04); }
   .chat-list-head { padding:8px 16px; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; display:flex; align-items:center; gap:8px; }
-  .search-bar { margin:0 12px 10px; background:rgba(255,255,255,.05); border:1px solid var(--border2); border-radius:8px; padding:6px 12px; font-size:12px; color:var(--muted); display:flex; align-items:center; gap:6px; }
+  .search-bar { margin:0 12px 10px; background:rgba(255,255,255,.6); border:1px solid var(--border2); border-radius:8px; padding:6px 12px; font-size:12px; color:var(--muted); display:flex; align-items:center; gap:6px; }
   .chat-list-item { padding:10px 16px; display:flex; gap:10px; align-items:flex-start; cursor:default; transition:background .15s; border-left:2px solid transparent; }
-  .chat-list-item.active { background:rgba(124,107,255,.1); border-left-color:var(--accent); }
-  .chat-list-item:hover:not(.active) { background:rgba(255,255,255,.03); }
-  .cli-ava { width:32px; height:32px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; background:rgba(124,107,255,.2); color:var(--accent2); }
+  .chat-list-item.active { background:rgba(108,92,231,.1); border-left-color:var(--accent); }
+  .chat-list-item:hover:not(.active) { background:rgba(0,0,0,.04); }
+  .cli-ava { width:32px; height:32px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; background:rgba(108,92,231,.15); color:var(--accent2); }
   .cli-ava.ig { background:rgba(255,100,100,.15); color:#ff9090; }
   .cli-meta { flex:1; min-width:0; }
   .cli-name { font-size:12px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
@@ -199,11 +199,11 @@
 
   /* chat view */
   .chat-view { display:flex; flex-direction:column; }
-  .chat-view-head { padding:12px 20px; border-bottom:1px solid var(--border2); display:flex; align-items:center; justify-content:space-between; background:rgba(0,0,0,.2); }
+  .chat-view-head { padding:12px 20px; border-bottom:1px solid var(--border2); display:flex; align-items:center; justify-content:space-between; background:rgba(0,0,0,.04); }
   .chat-user-info {}
   .chat-user-name { font-size:14px; font-weight:700; }
   .chat-user-meta { font-size:11px; color:var(--muted); }
-  .chat-source { font-size:11px; color:var(--accent2); background:rgba(124,107,255,.12); padding:3px 10px; border-radius:5px; }
+  .chat-source { font-size:11px; color:var(--accent2); background:rgba(108,92,231,.1); padding:3px 10px; border-radius:5px; }
 
   .chat-messages { flex:1; padding:16px 20px; display:flex; flex-direction:column; gap:12px; overflow-y:auto; }
   .chat-ai-msg { display:flex; gap:10px; align-items:flex-start; }
@@ -215,14 +215,14 @@
   .client-ava { width:28px; height:28px; border-radius:50%; background:rgba(255,100,100,.15); color:#ff9090; display:flex; align-items:center; justify-content:center; font-size:11px; flex-shrink:0; }
   .client-bubble { background:var(--bg3); border:1px solid var(--border2); border-radius:10px; padding:10px 14px; font-size:12.5px; line-height:1.55; max-width:80%; }
 
-  .chat-input { padding:12px 20px; border-top:1px solid var(--border2); background:rgba(0,0,0,.2); }
-  .chat-input-bar { background:rgba(255,255,255,.05); border:1px solid var(--border2); border-radius:10px; padding:10px 14px; font-size:12px; color:var(--muted); display:flex; align-items:center; justify-content:space-between; }
+  .chat-input { padding:12px 20px; border-top:1px solid var(--border2); background:rgba(0,0,0,.04); }
+  .chat-input-bar { background:rgba(255,255,255,.6); border:1px solid var(--border2); border-radius:10px; padding:10px 14px; font-size:12px; color:var(--muted); display:flex; align-items:center; justify-content:space-between; }
   .send-btn { background:var(--accent); color:#fff; border:none; border-radius:6px; padding:5px 12px; font-size:11px; cursor:default; }
 
   /* FEATURES */
   .feat-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:44px; }
   .feat-card { background:var(--bg2); border:1px solid var(--border2); border-radius:16px; padding:26px; transition:border-color .3s,transform .3s; }
-  .feat-card:hover { border-color:rgba(124,107,255,.4); transform:translateY(-3px); }
+  .feat-card:hover { border-color:rgba(108,92,231,.4); transform:translateY(-3px); }
   .feat-icon { font-size:30px; margin-bottom:14px; }
   .feat-card h3 { font-size:17px; font-weight:700; margin-bottom:9px; }
   .feat-card p { font-size:13.5px; color:var(--muted); line-height:1.6; }
@@ -238,17 +238,17 @@
   /* CTA */
   #cta { padding:80px 32px 120px; max-width:900px; margin:0 auto; }
   .cta-box { background:var(--bg2); border:1px solid var(--border2); border-radius:28px; padding:60px 48px; text-align:center; position:relative; overflow:hidden; }
-  .cta-box::after { content:''; position:absolute; bottom:-80px; right:-80px; width:300px; height:300px; background:radial-gradient(circle,rgba(124,107,255,.12) 0%,transparent 70%); pointer-events:none; }
+  .cta-box::after { content:''; position:absolute; bottom:-80px; right:-80px; width:300px; height:300px; background:radial-gradient(circle,rgba(108,92,231,.09) 0%,transparent 70%); pointer-events:none; }
   .cta-box h2 { margin-bottom:14px; }
   .cta-box .cta-sub-text { color:var(--muted); font-size:16px; margin-bottom:36px; }
-  .cta-btn { display:inline-flex; align-items:center; gap:12px; background:var(--accent); color:#fff; text-decoration:none; padding:17px 38px; border-radius:14px; font-size:17px; font-weight:700; transition:transform .2s,box-shadow .2s; box-shadow:0 0 50px rgba(124,107,255,.35); }
-  .cta-btn:hover { transform:translateY(-3px); box-shadow:0 0 70px rgba(124,107,255,.5); }
+  .cta-btn { display:inline-flex; align-items:center; gap:12px; background:var(--accent); color:#fff; text-decoration:none; padding:17px 38px; border-radius:14px; font-size:17px; font-weight:700; transition:transform .2s,box-shadow .2s; box-shadow:0 0 50px rgba(108,92,231,.25); }
+  .cta-btn:hover { transform:translateY(-3px); box-shadow:0 0 70px rgba(108,92,231,.38); }
   .cta-meta { margin-top:20px; font-size:13px; color:var(--muted); }
   .share-block { margin-top:44px; padding-top:36px; border-top:1px solid var(--border2); }
   .share-block p { font-size:14px; color:var(--muted); margin-bottom:14px; }
   .share-text { background:var(--bg3); border:1px solid var(--border2); border-radius:10px; padding:14px 18px; font-size:13.5px; text-align:left; line-height:1.65; margin-bottom:12px; }
   .copy-btn { background:none; border:1px solid var(--border); color:var(--accent2); font-size:13px; padding:7px 18px; border-radius:8px; cursor:pointer; transition:background .2s; }
-  .copy-btn:hover { background:var(--bg3); }
+  .copy-btn:hover { background:var(--bg2); }
   .copy-btn.done { color:var(--green); border-color:rgba(16,217,138,.3); }
 
   footer { border-top:1px solid var(--border2); padding:28px; text-align:center; color:var(--muted); font-size:13px; }
@@ -339,7 +339,7 @@
 
   <!-- MID CTA -->
   <div style="text-align:center;margin-top:48px">
-    <a href="https://t.me/danil_alto" style="display:inline-flex;align-items:center;gap:10px;background:rgba(124,107,255,0.12);color:var(--accent2);text-decoration:none;padding:14px 28px;border-radius:12px;font-size:15px;font-weight:600;border:1px solid rgba(124,107,255,0.3);transition:background .2s" onmouseover="this.style.background='rgba(124,107,255,0.2)'" onmouseout="this.style.background='rgba(124,107,255,0.12)'">
+    <a href="https://t.me/danil_alto" style="display:inline-flex;align-items:center;gap:10px;background:rgba(108,92,231,0.1);color:var(--accent2);text-decoration:none;padding:14px 28px;border-radius:12px;font-size:15px;font-weight:600;border:1px solid rgba(108,92,231,0.28);transition:background .2s" onmouseover="this.style.background='rgba(108,92,231,0.18)'" onmouseout="this.style.background='rgba(108,92,231,0.1)'">
       Хочу такое для своей команды — написать
       <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
     </a>
@@ -636,12 +636,12 @@ if(window.innerWidth < 600){
 
 // DEMO ANIMATION
 const tgMsgs = [
-  {init:'К1',color:'#8b89a8',bg:'rgba(139,137,168,0.15)',name:'Коллега 1',text:'Кто на связи?',cls:'tg-noise'},
-  {init:'К2',color:'#8b89a8',bg:'rgba(139,137,168,0.15)',name:'Коллега 2',text:'Я тут, разбираемся с EUR',cls:'tg-noise'},
-  {init:'АЛ',color:'#7c6bff',bg:'rgba(124,107,255,0.18)',name:'Александр',text:'@Менеджер нужен обмен 50K USDT',cls:'tg-trigger',trigger:true},
-  {init:'К1',color:'#8b89a8',bg:'rgba(139,137,168,0.15)',name:'Коллега 1',text:'Нужно выдать 20к EUR в Монако',cls:'tg-noise'},
-  {init:'МН',color:'#10d98a',bg:'rgba(16,217,138,0.15)',name:'Менеджер',text:'Александр, курс 92.5 — устроит?',cls:''},
-  {init:'АЛ',color:'#7c6bff',bg:'rgba(124,107,255,0.18)',name:'Александр',text:'Да, давай 👍',cls:''}
+  {init:'К1',color:'#6a6a99',bg:'rgba(106,106,153,0.1)',name:'Коллега 1',text:'Кто на связи?',cls:'tg-noise'},
+  {init:'К2',color:'#6a6a99',bg:'rgba(106,106,153,0.1)',name:'Коллега 2',text:'Я тут, разбираемся с EUR',cls:'tg-noise'},
+  {init:'АЛ',color:'#5244c4',bg:'rgba(108,92,231,0.12)',name:'Александр',text:'@Менеджер нужен обмен 50K USDT',cls:'tg-trigger',trigger:true},
+  {init:'К1',color:'#6a6a99',bg:'rgba(106,106,153,0.1)',name:'Коллега 1',text:'Нужно выдать 20к EUR в Монако',cls:'tg-noise'},
+  {init:'МН',color:'#0aaa6a',bg:'rgba(10,170,106,0.12)',name:'Менеджер',text:'Александр, курс 92.5 — устроит?',cls:''},
+  {init:'АЛ',color:'#5244c4',bg:'rgba(108,92,231,0.12)',name:'Александр',text:'Да, давай 👍',cls:''}
 ];
 
 let demoRunning=false;
