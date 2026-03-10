@@ -1192,12 +1192,12 @@ body {
         </div>
       </div>
 
-      <!-- CARD 4: Fintech -->
+      <!-- CARD 4: Fintech Compliance -->
       <div class="case-card reveal" data-category="fintech">
         <div class="case-header">
-          <div class="case-tag">💳 Финтех / Крипто</div>
-          <div class="case-title">Тысячи объявлений. 90% решений без модератора.</div>
-          <div class="case-desc">Крипто, финтех, гемблинг — реклама с наибольшим риском нарушений. Каждое объявление проверяется до запуска с полным audit trail.</div>
+          <div class="case-tag">💳 Финтех / Комплаенс</div>
+          <div class="case-title">Тысячи заявок. 90% решений до подписи человека.</div>
+          <div class="case-desc">Финансовые платформы под регуляторным давлением — каждое решение должно быть объяснимым. AI проверяет заявки автоматически и ведёт audit trail для регулятора.</div>
         </div>
         <div class="case-metrics">
           <div class="case-metric">
@@ -1206,7 +1206,7 @@ body {
           </div>
           <div class="case-metric">
             <div class="cm-val">&lt;60 с</div>
-            <div class="cm-lbl">на объявление</div>
+            <div class="cm-lbl">на заявку</div>
           </div>
           <div class="case-metric">
             <div class="cm-val">4 нед</div>
@@ -1223,32 +1223,32 @@ body {
               <div class="case-col">
                 <div class="col-label problem">Было</div>
                 <ul class="col-points prob">
-                  <li>Ручная модерация — ошибки и разнобой в трактовках</li>
-                  <li>Задержки в запуске кампаний</li>
-                  <li>Нет прозрачности в причинах отклонения</li>
+                  <li>Ручная проверка — ошибки и несогласованность решений</li>
+                  <li>Клиенты ждут ответа часами</li>
+                  <li>Регулятор требует документацию по каждому отказу</li>
                 </ul>
               </div>
               <div class="case-col">
                 <div class="col-label solution">Стало</div>
                 <ul class="col-points sol">
-                  <li>OCR-анализ баннеров + проверка смарт-контрактов</li>
-                  <li>KYC-статус рекламодателя влияет на порог решения</li>
-                  <li>Статусы Reject/Risky/OK с трассировкой каждого</li>
+                  <li>AI анализирует документы, профиль и историю клиента</li>
+                  <li>KYC/KYB-статус влияет на порог принятия решения</li>
+                  <li>Каждый статус — с трассировкой причины для аудита</li>
                 </ul>
               </div>
             </div>
             <div class="mock-dashboard" style="margin-top:20px">
               <div class="mock-dash-header">
-                <span class="mock-dash-title">Очередь модерации</span>
+                <span class="mock-dash-title">Очередь верификации</span>
                 <span class="mock-dash-dot"></span>
               </div>
               <table class="mock-table">
-                <thead><tr><th>ID</th><th>Тип</th><th>KYC</th><th>Статус</th></tr></thead>
+                <thead><tr><th>ID</th><th>Тип заявки</th><th>KYC</th><th>Статус</th></tr></thead>
                 <tbody>
-                  <tr><td>#4421</td><td>Токен-лаунч</td><td>✓</td><td><span class="status-badge status-ok">Принято</span></td></tr>
-                  <tr><td>#4422</td><td>P2P-обменник</td><td>✓</td><td><span class="status-badge status-ok">Принято</span></td></tr>
-                  <tr><td>#4423</td><td>NFT-минт</td><td>—</td><td><span class="status-badge status-pending">Под вопросом</span></td></tr>
-                  <tr><td>#4424</td><td>Гемблинг</td><td>—</td><td><span class="status-badge status-esc">Отклонено</span></td></tr>
+                  <tr><td>#4421</td><td>Открытие счёта</td><td>✓</td><td><span class="status-badge status-ok">Принято</span></td></tr>
+                  <tr><td>#4422</td><td>Крупный перевод</td><td>✓</td><td><span class="status-badge status-ok">Принято</span></td></tr>
+                  <tr><td>#4423</td><td>Смена реквизитов</td><td>—</td><td><span class="status-badge status-pending">Под вопросом</span></td></tr>
+                  <tr><td>#4424</td><td>Нерезидент</td><td>—</td><td><span class="status-badge status-esc">Отклонено</span></td></tr>
                 </tbody>
               </table>
             </div>
@@ -1361,7 +1361,7 @@ body {
             <button class="quiz-opt" data-q="1" data-val="medicine"><span class="quiz-opt-icon">🏥</span> Медицина / Клиники</button>
             <button class="quiz-opt" data-q="1" data-val="hr"><span class="quiz-opt-icon">👥</span> HR / Рекрутинг</button>
             <button class="quiz-opt" data-q="1" data-val="marketing"><span class="quiz-opt-icon">📊</span> Маркетинг / Бренд</button>
-            <button class="quiz-opt" data-q="1" data-val="fintech"><span class="quiz-opt-icon">💳</span> Финтех / Крипто</button>
+            <button class="quiz-opt" data-q="1" data-val="fintech"><span class="quiz-opt-icon">💳</span> Финтех / Комплаенс</button>
             <button class="quiz-opt" data-q="1" data-val="hotel"><span class="quiz-opt-icon">🏨</span> Гостиничный бизнес</button>
             <button class="quiz-opt" data-q="1" data-val="other"><span class="quiz-opt-icon">🔄</span> Другое</button>
           </div>
@@ -1412,7 +1412,11 @@ body {
           <div class="quiz-result-text" id="result-text"></div>
           <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
             <a href="https://t.me/Danil_alto" class="quiz-result-cta" target="_blank">
-              Обсудить в Telegram ↗
+              ✈️ Telegram ↗
+            </a>
+            <a href="https://calendar.app.google/WMCzmacTGNSJMwcW6" class="quiz-result-cta" target="_blank"
+              style="background:transparent;border:1px solid var(--accent);color:var(--accent)">
+              📅 Calendly ↗
             </a>
             <button class="quiz-all-cases" id="quiz-show-cases">
               Посмотреть все кейсы ↓
@@ -1470,9 +1474,15 @@ body {
         Расскажите — покажем как это решается в вашем случае.
         Без шаблонных предложений.
       </p>
-      <a href="https://t.me/Danil_alto" class="cta-btn" target="_blank">
-        ✈️ Написать в Telegram
-      </a>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:36px">
+        <a href="https://t.me/Danil_alto" class="cta-btn" target="_blank">
+          ✈️ Написать в Telegram
+        </a>
+        <a href="https://calendar.app.google/WMCzmacTGNSJMwcW6" class="cta-btn" target="_blank"
+          style="background:transparent;border:1px solid var(--accent);color:var(--accent);box-shadow:none;animation:none">
+          📅 Запланировать звонок
+        </a>
+      </div>
       <div class="cta-person">
         <div class="cta-avatar">Д</div>
         <div class="cta-person-info">
@@ -1620,8 +1630,8 @@ const caseResults = {
     text: 'Система еженедельно опрашивает ChatGPT, Claude, Gemini и 2 другие платформы. Индекс присутствия бренда, динамика тональности, сравнение с конкурентами.'
   },
   fintech: {
-    title: 'AI-модерация рекламы',
-    text: 'Рекламная платформа в крипто/финтех/гемблинг получила 90% автоматических решений за &lt;60 секунд с полной трассировкой каждого статуса.'
+    title: 'AI-комплаенс для финансовых платформ',
+    text: 'Финансовая платформа перевела 90% проверок заявок в автоматический режим. Каждое решение — с трассировкой причины для регулятора. Внедрение за 4 недели.'
   },
   hotel: {
     title: 'AI-система для отеля',
