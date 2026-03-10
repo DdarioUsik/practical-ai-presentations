@@ -668,12 +668,18 @@ body {
   box-shadow: 0 0 60px rgba(0,200,83,0.05);
 }
 .crm-card-top {
-  padding: 40px;
-  display: grid;
-  grid-template-columns: 340px 1fr;
-  gap: 40px;
-  align-items: start;
+  padding: 40px 40px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
+.crm-desc-row {
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+}
+.crm-desc-text { flex: 0 0 auto; max-width: 420px; }
+.crm-desc-stats { flex: 1; }
 .crm-stats {
   display: flex; gap: 0;
   margin-top: 32px;
@@ -782,7 +788,7 @@ body {
   border-radius: var(--r);
   overflow: hidden;
   background: var(--bg);
-  height: 390px;
+  height: 420px;
   display: flex;
   flex-direction: column;
 }
@@ -1028,7 +1034,8 @@ body {
   .quiz-options { grid-template-columns: 1fr; }
   .quiz-options.three-col { grid-template-columns: 1fr; }
   .footer { flex-direction: column; gap: 12px; text-align: center; }
-  .crm-card-top { grid-template-columns: 1fr; }
+  .crm-desc-row { flex-direction: column; gap: 20px; }
+  .crm-desc-text { max-width: 100%; }
   .crm-ui-mock { height: 340px; }
   .crm-ui-sidebar { width: 80px; }
   .crm-ui-nav-item { font-size: 9px; padding: 5px 7px; }
@@ -1092,28 +1099,33 @@ body {
   <div class="wrap">
     <div class="crm-card reveal">
       <div class="crm-card-top">
-        <div>
-          <div class="section-label">Наш продукт</div>
-          <h2 class="section-title" style="margin-bottom:12px">Мультиканальная CRM<br>для команд в мессенджерах</h2>
-          <p class="section-sub" style="max-width:560px">
-            Telegram, WhatsApp, Instagram — в едином окне. Менеджер ведёт сделку от первого сообщения до закрытия, не теряя контекст при смене канала.
-          </p>
-          <div class="crm-stats">
-            <div class="crm-stat">
-              <div class="crm-stat-val">40 сек</div>
-              <div class="crm-stat-lbl">среднее время ответа<br>(было 4 мин)</div>
-            </div>
-            <div class="crm-stat">
-              <div class="crm-stat-val">0%</div>
-              <div class="crm-stat-lbl">потерянных сделок<br>после внедрения</div>
-            </div>
-            <div class="crm-stat">
-              <div class="crm-stat-val">TG+WA+IG</div>
-              <div class="crm-stat-lbl">все каналы<br>в одной ленте</div>
+        <!-- Description row: title left, stats right -->
+        <div class="crm-desc-row">
+          <div class="crm-desc-text">
+            <div class="section-label">Наш продукт</div>
+            <h2 class="section-title" style="font-size:clamp(24px,2.8vw,38px);margin-bottom:12px">Мультиканальная CRM<br>для команд в мессенджерах</h2>
+            <p class="section-sub">
+              Telegram, WhatsApp, Instagram — в едином окне. Менеджер ведёт сделку от первого сообщения до закрытия, не теряя контекст при смене канала.
+            </p>
+          </div>
+          <div class="crm-desc-stats">
+            <div class="crm-stats">
+              <div class="crm-stat">
+                <div class="crm-stat-val">40 сек</div>
+                <div class="crm-stat-lbl">среднее время ответа<br>(было 4 мин)</div>
+              </div>
+              <div class="crm-stat">
+                <div class="crm-stat-val">0%</div>
+                <div class="crm-stat-lbl">потерянных сделок<br>после внедрения</div>
+              </div>
+              <div class="crm-stat">
+                <div class="crm-stat-val">TG+WA+IG</div>
+                <div class="crm-stat-lbl">все каналы<br>в одной ленте</div>
+              </div>
             </div>
           </div>
         </div>
-        <!-- Rich CRM UI Mock -->
+        <!-- Rich CRM UI Mock — full width -->
         <div class="crm-ui-mock">
           <!-- Window chrome -->
           <div class="crm-ui-chrome">
@@ -1265,6 +1277,7 @@ body {
 
           </div><!-- /crm-ui-body -->
         </div><!-- /crm-ui-mock -->
+        <div style="height:8px"></div>
       </div>
 
       <button class="crm-expand-btn" id="crm-toggle">
