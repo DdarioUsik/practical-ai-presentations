@@ -659,6 +659,141 @@ body {
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 
+/* ── CRM BLOCK ───────────────────────────────────────────── */
+.crm-card {
+  background: var(--card);
+  border: 1px solid rgba(0,200,83,0.2);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: 0 0 60px rgba(0,200,83,0.05);
+}
+.crm-card-top {
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.crm-stats {
+  display: flex; gap: 0;
+  margin-top: 32px;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--bg);
+}
+.crm-stat {
+  flex: 1; padding: 18px 20px;
+  border-right: 1px solid var(--border);
+  text-align: center;
+}
+.crm-stat:last-child { border-right: none; }
+.crm-stat-val {
+  font-size: 22px; font-weight: 900;
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+.crm-stat-lbl {
+  font-size: 10px; color: var(--muted);
+  line-height: 1.4;
+}
+.crm-mock {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.crm-mock-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.crm-mock-title {
+  font-size: 11px; font-weight: 700;
+  color: var(--subtle); letter-spacing: 0.06em; text-transform: uppercase;
+}
+.crm-deal {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.crm-deal:last-child { border-bottom: none; }
+.crm-deal-icon {
+  width: 32px; height: 32px; flex-shrink: 0;
+  background: var(--accent-dim);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 800; color: var(--accent);
+}
+.crm-deal-info { flex: 1; min-width: 0; }
+.crm-deal-name { font-size: 12px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crm-deal-sub { font-size: 11px; color: var(--muted); }
+
+.crm-expand-btn {
+  width: 100%;
+  background: var(--bg2);
+  border: none; border-top: 1px solid var(--border);
+  padding: 14px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--muted); cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+}
+.crm-expand-btn:hover, .crm-expand-btn.open {
+  color: var(--accent); background: var(--accent-dim);
+}
+.crm-body {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.crm-body.open { max-height: 600px; }
+.crm-features {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0;
+  padding: 32px 40px 0;
+}
+.crm-feature {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+.crm-feature:nth-child(odd) { padding-right: 32px; border-right: 1px solid var(--border); }
+.crm-feature:nth-child(even) { padding-left: 32px; }
+.crm-feature:nth-last-child(-n+2) { border-bottom: none; }
+.crm-feature-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+.crm-feature-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.crm-feature-text { font-size: 13px; color: var(--subtle); line-height: 1.6; }
+.crm-link {
+  display: block;
+  margin: 24px 40px 32px;
+  font-size: 13px; font-weight: 700;
+  color: var(--accent); text-decoration: none;
+  transition: opacity 0.2s;
+}
+.crm-link:hover { opacity: 0.7; }
+
+/* ── QUIZ ALL CASES BTN ───────────────────────────────────── */
+.quiz-all-cases {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent;
+  border: 1px solid var(--border2);
+  border-radius: 100px;
+  padding: 14px 28px;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px; font-weight: 700;
+  color: var(--subtle);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.quiz-all-cases:hover {
+  border-color: rgba(0,200,83,0.4);
+  color: var(--accent);
+}
+
 /* ── RESPONSIVE ──────────────────────────────────────────── */
 @media (max-width: 768px) {
   .wrap { padding: 0 20px; }
@@ -726,8 +861,110 @@ body {
   </div>
 </section>
 
+<!-- ── CRM BLOCK ──────────────────────────────────────────── -->
+<section class="section" id="crm" style="padding-bottom:60px">
+  <div class="wrap">
+    <div class="crm-card reveal">
+      <div class="crm-card-top">
+        <div>
+          <div class="section-label">Наш продукт</div>
+          <h2 class="section-title" style="margin-bottom:12px">Мультиканальная CRM<br>для команд в мессенджерах</h2>
+          <p class="section-sub" style="max-width:560px">
+            Telegram, WhatsApp, Instagram — в едином окне. Менеджер ведёт сделку от первого сообщения до закрытия, не теряя контекст при смене канала.
+          </p>
+          <div class="crm-stats">
+            <div class="crm-stat">
+              <div class="crm-stat-val">40 сек</div>
+              <div class="crm-stat-lbl">среднее время ответа<br>(было 4 мин)</div>
+            </div>
+            <div class="crm-stat">
+              <div class="crm-stat-val">0%</div>
+              <div class="crm-stat-lbl">потерянных сделок<br>после внедрения</div>
+            </div>
+            <div class="crm-stat">
+              <div class="crm-stat-val">TG+WA+IG</div>
+              <div class="crm-stat-lbl">все каналы<br>в одной ленте</div>
+            </div>
+          </div>
+        </div>
+        <div class="crm-mock">
+          <div class="crm-mock-header">
+            <span class="crm-mock-title">CRM · Активные сделки</span>
+            <span class="mock-dash-dot"></span>
+          </div>
+          <div class="crm-deal">
+            <div class="crm-deal-icon">TG</div>
+            <div class="crm-deal-info">
+              <div class="crm-deal-name">Александр · OTC-обмен #2841</div>
+              <div class="crm-deal-sub">50 000 USDT · Менеджер: Дима</div>
+            </div>
+            <span class="status-badge status-ok">Активна</span>
+          </div>
+          <div class="crm-deal">
+            <div class="crm-deal-icon" style="background:rgba(37,211,102,0.15);color:#25d366">WA</div>
+            <div class="crm-deal-info">
+              <div class="crm-deal-name">Мария · Запись на приём</div>
+              <div class="crm-deal-sub">PaNa Medica · AI-первая линия</div>
+            </div>
+            <span class="status-badge status-pending">AI отвечает</span>
+          </div>
+          <div class="crm-deal">
+            <div class="crm-deal-icon" style="background:rgba(225,48,108,0.15);color:#e1306c">IG</div>
+            <div class="crm-deal-info">
+              <div class="crm-deal-name">Ivan R. · Новая заявка</div>
+              <div class="crm-deal-sub">Instagram · Ожидает оператора</div>
+            </div>
+            <span class="status-badge status-esc">Очередь</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="crm-expand-btn" id="crm-toggle">
+        <span id="crm-toggle-text">Подробнее о системе</span>
+        <span class="toggle-icon" id="crm-toggle-icon">+</span>
+      </button>
+
+      <div class="crm-body" id="crm-body">
+        <div class="crm-features">
+          <div class="crm-feature">
+            <div class="crm-feature-icon">🔒</div>
+            <div>
+              <div class="crm-feature-title">Изолированный контур</div>
+              <div class="crm-feature-text">Операторы работают через CRM-интерфейс без прямого доступа к аккаунтам. Уволился сотрудник — доступ закрыт мгновенно.</div>
+            </div>
+          </div>
+          <div class="crm-feature">
+            <div class="crm-feature-icon">🗂</div>
+            <div>
+              <div class="crm-feature-title">Единое окно для всех каналов</div>
+              <div class="crm-feature-text">Клиент начал в Telegram, продолжил в WhatsApp — история не обрывается. Менеджер видит полный контекст в одной ленте.</div>
+            </div>
+          </div>
+          <div class="crm-feature">
+            <div class="crm-feature-icon">🤖</div>
+            <div>
+              <div class="crm-feature-title">AI-агент первой линии</div>
+              <div class="crm-feature-text">Принимает входящие, квалифицирует, отвечает на типовые вопросы. Передаёт оператору только сделки, требующие человека.</div>
+            </div>
+          </div>
+          <div class="crm-feature">
+            <div class="crm-feature-icon">📈</div>
+            <div>
+              <div class="crm-feature-title">Аналитика и KPI операторов</div>
+              <div class="crm-feature-text">Лог каждого действия, время ответа, конверсия по менеджерам в реальном времени. Управление на данных, а не на ощущениях.</div>
+            </div>
+          </div>
+        </div>
+        <a href="https://practical-ai.pro/crm/" target="_blank" class="crm-link">
+          Смотреть полную презентацию системы →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ── CASES ─────────────────────────────────────────────── -->
-<section class="section" id="cases">
+<section class="section" id="cases" style="display:none;padding-top:40px">
   <div class="wrap">
     <div class="reveal">
       <div class="section-label">Кейсы</div>
@@ -1173,9 +1410,14 @@ body {
           <div class="quiz-result-tag">Ваш кейс</div>
           <div class="quiz-result-title" id="result-title"></div>
           <div class="quiz-result-text" id="result-text"></div>
-          <a href="https://t.me/Danil_alto" class="quiz-result-cta" target="_blank">
-            Обсудить в Telegram ↗
-          </a>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+            <a href="https://t.me/Danil_alto" class="quiz-result-cta" target="_blank">
+              Обсудить в Telegram ↗
+            </a>
+            <button class="quiz-all-cases" id="quiz-show-cases">
+              Посмотреть все кейсы ↓
+            </button>
+          </div>
           <button class="quiz-restart" id="quiz-restart">← Пройти заново</button>
         </div>
 
@@ -1204,7 +1446,7 @@ body {
         <div class="step-num">02</div>
         <div class="step-icon">⚡</div>
         <div class="step-title">Показываем решение</div>
-        <div class="step-text">Прототип за 5–7 дней. Вы видите как это работает до того, как принять решение. Никакого кота в мешке.</div>
+        <div class="step-text">Прототип за 5–7 дней. Вы видите как это работает до того, как принять решение.</div>
         <div class="step-time">5–7 дней</div>
       </div>
       <div class="step-card reveal reveal-delay-2">
@@ -1235,7 +1477,7 @@ body {
         <div class="cta-avatar">Д</div>
         <div class="cta-person-info">
           <div class="cta-person-name">Данил Усик</div>
-          <div class="cta-person-role">CEO Practical AI · Валенсия, Испания</div>
+          <div class="cta-person-role">AIHUB.WORKS · Валенсия, Испания</div>
         </div>
       </div>
     </div>
@@ -1430,6 +1672,29 @@ document.querySelectorAll('.quiz-opt').forEach(btn => {
       else showResult();
     }, 350);
   });
+});
+
+/* ── CRM EXPAND ────────────────────────────────────────────── */
+const crmToggle = document.getElementById('crm-toggle');
+const crmBody   = document.getElementById('crm-body');
+const crmIcon   = document.getElementById('crm-toggle-icon');
+const crmText   = document.getElementById('crm-toggle-text');
+crmToggle.addEventListener('click', () => {
+  const open = crmBody.classList.toggle('open');
+  crmToggle.classList.toggle('open', open);
+  crmIcon.style.transform = open ? 'rotate(45deg)' : '';
+  crmText.textContent = open ? 'Свернуть' : 'Подробнее о системе';
+});
+
+/* ── SHOW ALL CASES ─────────────────────────────────────────── */
+document.getElementById('quiz-show-cases').addEventListener('click', () => {
+  const casesSection = document.getElementById('cases');
+  casesSection.style.display = 'block';
+  setTimeout(() => {
+    casesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // trigger reveal for cards now visible
+    casesSection.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+  }, 100);
 });
 
 document.getElementById('quiz-restart').addEventListener('click', () => {
