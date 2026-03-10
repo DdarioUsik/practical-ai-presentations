@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DrHead × Practical AI — Аналитический Дашборд</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #0b1120;
+  --surface:   #111827;
+  --card:      #1a2540;
+  --border:    rgba(255,255,255,0.07);
+  --blue:      #3b82f6;
+  --blue-glow: rgba(59,130,246,0.15);
+  --green:     #10b981;
+  --amber:     #f59e0b;
+  --purple:    #8b5cf6;
+  --text:      #f1f5f9;
+  --muted:     #64748b;
+  --subtle:    #94a3b8;
+  --radius:    14px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
+.container { max-width: 900px; margin: 0 auto; padding: 0 32px; }
+
+/* NAV */
+nav { padding: 20px 0; border-bottom: 1px solid var(--border); }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; }
+.logo { font-size: 15px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.logo span { color: var(--blue); }
+.nav-badge { font-size: 11px; color: var(--muted); letter-spacing: 0.5px; }
+
+/* HERO */
+.hero { padding: 72px 0 56px; border-bottom: 1px solid var(--border); }
+.hero-label {
+  display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--blue); background: var(--blue-glow);
+  border: 1px solid rgba(59,130,246,0.2); padding: 5px 12px; border-radius: 20px; margin-bottom: 24px;
+}
+.hero h1 { font-size: 52px; font-weight: 900; line-height: 1.08; letter-spacing: -1.8px; margin-bottom: 20px; max-width: 660px; }
+.hero h1 em { font-style: normal; color: var(--amber); }
+.hero-sub { font-size: 18px; color: var(--subtle); max-width: 520px; line-height: 1.6; }
+
+/* SECTIONS */
+section { padding: 64px 0; border-bottom: 1px solid var(--border); }
+.section-label { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+.section-title { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 32px; }
+
+/* SITUATION */
+.situation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.sit-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+.sit-icon { font-size: 22px; margin-bottom: 10px; }
+.sit-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+.sit-card p { font-size: 13.5px; color: var(--subtle); line-height: 1.55; }
+
+/* MOCKUP */
+.mockup-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 28px; }
+.mockup-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.mockup-title { font-size: 13px; font-weight: 700; }
+.mockup-date { font-size: 11px; color: var(--muted); }
+.mockup-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 14px; }
+.m-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+.m-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
+.m-value { font-size: 22px; font-weight: 900; letter-spacing: -0.8px; }
+.m-change { font-size: 11px; margin-top: 3px; }
+.pos { color: var(--green); } .neg { color: #ef4444; }
+
+.mockup-bottom { display: grid; grid-template-columns: 2fr 1fr; gap: 10px; }
+.bar-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+.bar-card-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 14px; }
+.bars { display: flex; flex-direction: column; gap: 9px; }
+.bar-row { display: flex; align-items: center; gap: 10px; }
+.bar-name { font-size: 11px; color: var(--subtle); width: 90px; flex-shrink: 0; }
+.bar-track { flex: 1; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 4px; background: var(--green); }
+.bar-fill.mid { background: var(--amber); }
+.bar-fill.low { background: #ef4444; }
+.bar-val { font-size: 11px; color: var(--subtle); width: 44px; text-align: right; flex-shrink: 0; }
+
+.insight-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; }
+.insight-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px; }
+.insight-text { font-size: 12px; color: var(--subtle); line-height: 1.55; flex: 1; }
+.insight-badge { display: inline-block; margin-top: 12px; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; background: rgba(245,158,11,0.15); color: var(--amber); }
+.mockup-note { font-size: 11px; color: var(--muted); margin-top: 14px; font-style: italic; text-align: center; }
+
+/* PHASE CARD */
+.phase-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; }
+.phase-card.priority { border-color: rgba(59,130,246,0.3); background: linear-gradient(135deg, var(--card) 0%, rgba(59,130,246,0.05) 100%); }
+.phase-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; }
+.phase-num { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.phase-name { font-size: 26px; font-weight: 900; letter-spacing: -0.5px; }
+.phase-price-block { text-align: right; flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
+.phase-badge { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; }
+.badge-blue { background: rgba(59,130,246,0.15); color: var(--blue); border: 1px solid rgba(59,130,246,0.25); }
+.phase-price { font-size: 34px; font-weight: 900; color: var(--amber); letter-spacing: -1px; }
+.phase-timeline { font-size: 12px; color: var(--muted); }
+.phase-deliverables { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; list-style: none; margin-bottom: 24px; }
+.phase-deliverables li { font-size: 13.5px; color: var(--subtle); padding-left: 20px; position: relative; line-height: 1.4; }
+.phase-deliverables li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+.phase-note { background: rgba(59,130,246,0.05); border-left: 3px solid var(--blue); border-radius: 0 8px 8px 0; padding: 14px 16px; font-size: 13.5px; color: var(--subtle); line-height: 1.55; }
+.phase-note strong { color: var(--text); font-weight: 600; }
+
+/* NEED LIST */
+.need-list { display: flex; flex-direction: column; gap: 14px; }
+.need-item { display: flex; align-items: flex-start; gap: 18px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; }
+.need-num { font-size: 22px; font-weight: 900; color: var(--blue); flex-shrink: 0; line-height: 1; }
+.need-content h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.need-content p { font-size: 13px; color: var(--subtle); }
+
+/* CASES */
+.cases-grid { display: flex; flex-direction: column; gap: 16px; }
+.case-card { background: var(--card); border: 1px solid var(--border); border-left: 4px solid var(--green); border-radius: var(--radius); padding: 28px 32px; }
+.case-card.amber { border-left-color: var(--amber); }
+.case-industry { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--green); margin-bottom: 10px; }
+.case-card.amber .case-industry { color: var(--amber); }
+.case-quote { font-size: 17px; font-weight: 600; line-height: 1.5; color: var(--text); margin-bottom: 10px; }
+.case-result { font-size: 13.5px; color: var(--subtle); line-height: 1.6; }
+
+/* CTA */
+.cta-section { padding: 72px 0; }
+.cta-box { background: linear-gradient(135deg, var(--card) 0%, rgba(59,130,246,0.08) 100%); border: 1px solid rgba(59,130,246,0.2); border-radius: 20px; padding: 52px 48px; text-align: center; }
+.cta-box h2 { font-size: 34px; font-weight: 900; letter-spacing: -0.8px; margin-bottom: 12px; }
+.cta-box p { font-size: 15px; color: var(--subtle); margin-bottom: 32px; max-width: 460px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+.cta-step { display: inline-block; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.25); border-radius: 10px; padding: 14px 28px; font-size: 14px; font-weight: 700; color: var(--blue); }
+.cta-contact { margin-top: 20px; font-size: 13px; color: var(--muted); }
+
+footer { padding: 32px 0; border-top: 1px solid var(--border); text-align: center; }
+footer p { font-size: 12px; color: var(--muted); }
+
+/* PRINT */
+@media print {
+  @page { margin: 18mm 16mm; size: A4; }
+  nav, .cta-section, footer, .no-print { display: none !important; }
+  body { background: #fff !important; color: #1a1a1a !important; }
+  .hero h1, .section-title { color: #0f172a !important; }
+  .hero-sub, .sit-card p, .phase-note, .case-result, .need-content p { color: #475569 !important; }
+  .phase-price { color: #d97706 !important; }
+  .mockup-wrap, .sit-card, .phase-card, .case-card, .need-item, .m-card, .bar-card, .insight-card {
+    background: #f8fafc !important; border-color: #e2e8f0 !important;
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  section { padding: 18pt 0; }
+  .hero { padding: 24pt 0; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <div class="logo">Practical<span>AI</span></div>
+      <div class="nav-badge">DR.HEAD · АНАЛИТИЧЕСКИЙ ДАШБОРД · МАРТ 2026</div>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-label">Аналитика · Ритейл · Владелец</div>
+    <h1>Картина бизнеса —<br>не в <em>23:00,</em><br>а прямо сейчас.</h1>
+    <p class="hero-sub">
+      Как владелец, ты видишь выручку, прибыль и % плана по каждому магазину в реальном времени.
+      Без сборки отчётов. Без лишних звонков в конце дня.
+    </p>
+  </div>
+
+  <!-- SITUATION -->
+  <section>
+    <div class="section-label">Что мы видим</div>
+    <div class="section-title">Два правых человека — два разных расчёта</div>
+    <div class="situation-grid">
+      <div class="sit-card">
+        <div class="sit-icon">📈</div>
+        <h4><span style="color:var(--blue);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">CSO · Никита</span><br>Конвертировать базу во вторую покупку</h4>
+        <p>Правильная гипотеза. Данные по RFM есть в 1С — клиент, покупки, даты, суммы. Но без дашборда это просто гипотеза.</p>
+      </div>
+      <div class="sit-card">
+        <div class="sit-icon">🔍</div>
+        <h4><span style="color:var(--amber);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">CEO · Артём</span><br>Видеть картину целиком</h4>
+        <p>Дубай, Москва, Питер — отчёт в 23:00, консолидации нет. Клиент посмотрел наушники за 40к и ушёл — это зафиксировано или нет?</p>
+      </div>
+      <div class="sit-card">
+        <div class="sit-icon">🗂</div>
+        <h4>Данные есть — картины нет</h4>
+        <p>1С, Битрикс, Excel, Манго, Tally — всё есть, ничего не связано. IT в трёх частях без общей головы.</p>
+      </div>
+      <div class="sit-card">
+        <div class="sit-icon">🌍</div>
+        <h4>Масштабирование блокирует хаос</h4>
+        <p>США, Лондон, Германия — с текущим стеком это масштабирование хаоса, а не системы. Стек должен клонироваться, а не переделываться.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOCKUP -->
+  <section>
+    <div class="section-label">Что ты получишь</div>
+    <div class="section-title">Вот как это выглядит</div>
+    <div class="mockup-wrap">
+      <div class="mockup-header">
+        <div class="mockup-title">Dr.Head Owner Dashboard · март 2026</div>
+        <div class="mockup-date">Обновлено сейчас · 14:23</div>
+      </div>
+
+      <div class="mockup-metrics">
+        <div class="m-card">
+          <div class="m-label">Выручка сегодня</div>
+          <div class="m-value" style="color:var(--green)">₽847k</div>
+          <div class="m-change pos">↑ +12% vs план</div>
+        </div>
+        <div class="m-card">
+          <div class="m-label">% плана · все магазины</div>
+          <div class="m-value" style="color:var(--amber)">94%</div>
+          <div class="m-change neg">↓ Dubai отстаёт</div>
+        </div>
+        <div class="m-card">
+          <div class="m-label">Повторные покупки</div>
+          <div class="m-value" style="color:var(--blue)">18%</div>
+          <div class="m-change neg">↓ цель 30%</div>
+        </div>
+        <div class="m-card">
+          <div class="m-label">Клиентов без follow-up</div>
+          <div class="m-value" style="color:#ef4444">214</div>
+          <div class="m-change neg">смотрели 40k+, не купили</div>
+        </div>
+      </div>
+
+      <div class="mockup-bottom">
+        <div class="bar-card">
+          <div class="bar-card-label">% плана по магазинам · сегодня</div>
+          <div class="bars">
+            <div class="bar-row">
+              <span class="bar-name">Москва-1</span>
+              <div class="bar-track"><div class="bar-fill" style="width:112%"></div></div>
+              <span class="bar-val pos">112%</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">Москва-2</span>
+              <div class="bar-track"><div class="bar-fill mid" style="width:88%"></div></div>
+              <span class="bar-val">88%</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">Санкт-Петербург</span>
+              <div class="bar-track"><div class="bar-fill mid" style="width:79%"></div></div>
+              <span class="bar-val">79%</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">Dubai</span>
+              <div class="bar-track"><div class="bar-fill low" style="width:61%"></div></div>
+              <span class="bar-val neg">61%</span>
+            </div>
+          </div>
+        </div>
+        <div class="insight-card">
+          <div>
+            <div class="insight-label">AI-инсайт</div>
+            <div class="insight-text">
+              Dubai отстаёт 3-й день подряд. Среди клиентов, купивших один раз, 47% не получили follow-up в течение 30 дней. Потенциал повторной продажи: ₽1.2M/мес.
+            </div>
+          </div>
+          <span class="insight-badge">Требует внимания</span>
+        </div>
+      </div>
+
+      <div class="mockup-note">* Демо-данные для иллюстрации. Реальный дашборд подключается к вашим источникам.</div>
+    </div>
+  </section>
+
+  <!-- SCOPE -->
+  <section>
+    <div class="section-label">Что входит</div>
+    <div class="section-title">Один продукт. Одна задача.</div>
+    <div class="phase-card priority">
+      <div class="phase-top">
+        <div class="phase-left">
+          <div class="phase-num">Аналитический дашборд владельца</div>
+          <div class="phase-name">Dr.Head Owner Analytics</div>
+        </div>
+        <div class="phase-price-block">
+          <span class="phase-badge badge-blue">Под тебя</span>
+          <div class="phase-timeline" style="margin-top:6px;">3–4 недели</div>
+        </div>
+      </div>
+      <ul class="phase-deliverables">
+        <li>Выручка и % плана в реальном времени</li>
+        <li>Сравнение магазинов (Dubai / Москва / СПб)</li>
+        <li>RFM-сегментация из данных 1С</li>
+        <li>Повторные покупки и LTV по когортам</li>
+        <li>Клиенты без follow-up — список и сумма</li>
+        <li>Аналитика рекламных каналов + AI-рекомендации</li>
+        <li>Интеграция с 1С (данные не переносятся вручную)</li>
+      </ul>
+      <div class="phase-note">
+        <strong>Что меняется для тебя как владельца:</strong> картина бизнеса не в 23:00, а прямо сейчас. Ты видишь оба расчёта — где теряем и где растём — до того как собирать команду. Стек, который клонируется при открытии нового магазина.
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT STEPS -->
+  <section>
+    <div class="section-label">Дальнейшие шаги</div>
+    <div class="section-title">Как мы двигаемся дальше.</div>
+    <div class="need-list">
+      <div class="need-item">
+        <div class="need-num">1</div>
+        <div class="need-content">
+          <h4>Разбор</h4>
+          <p>Встреча с тобой и Никитой — разбираем текущую картину: какие метрики критичны для принятия решений, где сейчас теряются данные, что должно быть на экране каждый день. Без этого разговора инструмент будет под кого-то другого, не под тебя.</p>
+        </div>
+      </div>
+      <div class="need-item">
+        <div class="need-num">2</div>
+        <div class="need-content">
+          <h4>Доступ ко всем источникам информации с базовыми данными</h4>
+          <p>Подключаемся ко всем источникам: 1С (продажи, клиенты, RFM), Битрикс (воронка, задачи), Excel (текущие отчёты), Манго (звонки), Tally (Dubai). Проверяем качество данных, фиксируем пробелы — до начала разработки, не после.</p>
+        </div>
+      </div>
+      <div class="need-item">
+        <div class="need-num">3</div>
+        <div class="need-content">
+          <h4>Разработка</h4>
+          <p>Собираем дашборд под конкретные решения владельца: выручка и % плана в реальном времени, RFM по базе, сравнение магазинов, клиенты без follow-up. Итерации — быстро, с промежуточными демо. Финальный результат: живой инструмент, который клонируется при открытии нового рынка.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASES -->
+  <section>
+    <div class="section-label">Из практики</div>
+    <div class="section-title">Похожие задачи</div>
+    <div class="cases-grid">
+      <div class="case-card">
+        <div class="case-industry">Аналитика рекламы · 4 канала · Дашборд</div>
+        <div class="case-quote">
+          Данные из 4 рекламных каналов → единый дашборд + AI-рекомендации по перераспределению бюджета.
+        </div>
+        <div class="case-result">
+          Финансовый директор перестал ждать отчёт от агентства. Решение о перераспределении бюджета — в тот же день, без внешнего подрядчика.
+          Это то, на что Женя отреагировал на встрече 5 марта.
+        </div>
+      </div>
+      <div class="case-card amber">
+        <div class="case-industry">1С-интеграция · Данные без ручного ввода</div>
+        <div class="case-quote">
+          Прямая интеграция аналитики с 1С — 82% сокращение времени на сбор данных для отчётности.
+        </div>
+        <div class="case-result">
+          Двойной ввод данных исчез. То, что занимало несколько часов — обновляется автоматически.
+          Та же задача, что у Алексея сейчас между 1С и Tally.
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div style="position:fixed; bottom:24px; right:24px; z-index:999;" class="no-print">
+  <button onclick="window.print()"
+    style="background:#3b82f6; color:#fff; border:none; padding:10px 20px;
+    border-radius:8px; font-size:13px; font-weight:600; cursor:pointer;
+    font-family:inherit; box-shadow:0 4px 12px rgba(59,130,246,0.4);">
+    ↓ Save as PDF
+  </button>
+</div>
+
+
+</body>
+</html>
