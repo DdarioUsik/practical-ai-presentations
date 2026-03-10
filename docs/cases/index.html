@@ -670,7 +670,7 @@ body {
 .crm-card-top {
   padding: 40px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 340px 1fr;
   gap: 40px;
   align-items: start;
 }
@@ -776,6 +776,227 @@ body {
 }
 .crm-link:hover { opacity: 0.7; }
 
+/* ── CRM UI MOCK ─────────────────────────────────────────── */
+.crm-ui-mock {
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--bg);
+  height: 390px;
+  display: flex;
+  flex-direction: column;
+}
+.crm-ui-chrome {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border);
+  background: var(--card);
+  flex-shrink: 0;
+}
+.crm-ui-dots { display: flex; gap: 5px; }
+.crm-ui-dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--border2); }
+.crm-ui-dots span:nth-child(1) { background: #FF5F57; }
+.crm-ui-dots span:nth-child(2) { background: #FEBC2E; }
+.crm-ui-dots span:nth-child(3) { background: #28C840; }
+.crm-ui-url {
+  font-size: 9px; color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  flex: 1; text-align: center;
+}
+.crm-ui-view-toggle {
+  display: flex; gap: 2px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 2px;
+}
+.crm-view-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; font-weight: 700;
+  padding: 3px 8px;
+  border: none; border-radius: 4px;
+  background: transparent;
+  color: var(--muted); cursor: pointer;
+  transition: all 0.2s;
+}
+.crm-view-btn.active { background: var(--accent-dim); color: var(--accent); }
+.crm-ui-body { display: flex; flex: 1; overflow: hidden; }
+.crm-ui-sidebar {
+  width: 110px; flex-shrink: 0;
+  border-right: 1px solid var(--border);
+  padding: 8px 0;
+  background: var(--card);
+  overflow: hidden;
+}
+.crm-ui-sidebar-section {
+  font-size: 8px; font-weight: 800;
+  letter-spacing: 0.12em; color: var(--muted);
+  padding: 0 10px 5px;
+  text-transform: uppercase;
+}
+.crm-ui-nav-item {
+  font-size: 10px; color: var(--muted);
+  padding: 5px 10px;
+  cursor: default;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  display: flex; align-items: center; gap: 6px;
+}
+.crm-ui-nav-item.crm-nav-active {
+  background: var(--accent-dim);
+  color: var(--accent);
+  border-right: 2px solid var(--accent);
+}
+.crm-ui-main {
+  flex: 1; overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.crm-ui-main-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  padding: 10px 12px 8px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.crm-ui-main-title { font-size: 11px; font-weight: 800; color: var(--text); }
+.crm-ui-main-sub { font-size: 9px; color: var(--muted); margin-top: 1px; }
+.crm-ui-tabs { display: flex; gap: 3px; align-items: center; }
+.crm-ui-tab {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px; font-weight: 600;
+  padding: 3px 8px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  background: transparent;
+  color: var(--muted); cursor: default;
+}
+.crm-ui-tab.active {
+  background: var(--accent-dim);
+  border-color: rgba(0,200,83,0.3);
+  color: var(--accent);
+}
+.crm-kstats-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--border);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.crm-kstat { background: var(--bg); padding: 7px 8px; }
+.crm-kstat-lbl { font-size: 7.5px; color: var(--muted); line-height: 1.3; margin-bottom: 3px; }
+.crm-kstat-num {
+  font-size: 17px; font-weight: 900;
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: -0.03em; line-height: 1;
+}
+.kstat-bot { background: rgba(99,102,241,0.08); }
+.kstat-bot .crm-kstat-num { color: #818CF8; }
+.kstat-progress { background: rgba(245,158,11,0.08); }
+.kstat-progress .crm-kstat-num { color: #F59E0B; }
+.kstat-fail { background: rgba(239,68,68,0.08); }
+.kstat-fail .crm-kstat-num { color: #EF4444; }
+.kstat-deal { background: rgba(0,200,83,0.08); }
+.kstat-deal .crm-kstat-num { color: var(--accent); }
+.crm-lead-list { overflow-y: auto; flex: 1; }
+.crm-lead-row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  transition: background 0.15s;
+}
+.crm-lead-row:hover { background: rgba(255,255,255,0.02); }
+.crm-lead-src {
+  width: 26px; height: 26px; flex-shrink: 0;
+  border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 8px; font-weight: 800;
+}
+.crm-lead-src.ig { background: rgba(225,48,108,0.15); color: #E1306C; }
+.crm-lead-src.int { background: rgba(99,102,241,0.15); color: #818CF8; }
+.crm-lead-src.tg { background: rgba(0,136,204,0.15); color: #0088CC; }
+.crm-lead-info { flex: 1; min-width: 0; }
+.crm-lead-name {
+  font-size: 10.5px; font-weight: 600; color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+.crm-lead-meta { font-size: 9px; color: var(--muted); }
+.crm-priority { font-size: 9px; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
+.crm-status-bot { color: #818CF8; }
+.crm-status-fail { color: #EF4444; }
+.crm-status-deal { color: var(--accent); }
+.crm-status-progress { color: #F59E0B; }
+
+/* Chat view */
+.crm-chat-view { flex-direction: row !important; }
+.crm-chat-list {
+  width: 155px; flex-shrink: 0;
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.crm-chat-search { padding: 7px 8px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+.crm-chat-search input {
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 9px; color: var(--muted);
+  font-family: 'Inter', sans-serif;
+  outline: none;
+}
+.crm-chat-item {
+  display: flex; gap: 7px; align-items: center;
+  padding: 7px 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  cursor: default;
+}
+.crm-chat-item.active { background: var(--accent-dim); }
+.crm-chat-avatar {
+  width: 26px; height: 26px; flex-shrink: 0;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 8px; font-weight: 800; color: #fff;
+}
+.crm-chat-avatar.ig-bg { background: rgba(225,48,108,0.3); color: #E1306C; }
+.crm-chat-info { flex: 1; min-width: 0; }
+.crm-chat-name {
+  font-size: 10px; font-weight: 600; color: var(--text);
+  display: flex; justify-content: space-between; margin-bottom: 2px;
+}
+.crm-chat-name span { font-weight: 400; color: var(--muted); font-size: 9px; }
+.crm-chat-preview { font-size: 9px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crm-chat-main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.crm-chat-header { padding: 8px 12px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+.crm-chat-user { font-size: 10px; font-weight: 700; color: var(--text); }
+.crm-chat-source { font-size: 9px; color: var(--muted); }
+.crm-messages {
+  flex: 1; overflow-y: auto; padding: 10px 12px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.crm-msg { display: flex; flex-direction: column; }
+.crm-msg.client { align-items: flex-start; }
+.crm-msg.ai { align-items: flex-end; }
+.crm-msg-label {
+  font-size: 8px; font-weight: 800; color: var(--accent);
+  margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.06em;
+}
+.crm-msg-bubble {
+  max-width: 86%; padding: 6px 9px; border-radius: 10px;
+  font-size: 9.5px; line-height: 1.5;
+}
+.crm-msg.client .crm-msg-bubble {
+  background: var(--card); border: 1px solid var(--border);
+  color: var(--subtle); border-radius: 10px 10px 10px 3px;
+}
+.crm-msg.ai .crm-msg-bubble {
+  background: var(--accent-dim); border: 1px solid rgba(0,200,83,0.2);
+  color: var(--text); border-radius: 10px 10px 3px 10px;
+}
+.crm-chat-input {
+  padding: 8px 12px; border-top: 1px solid var(--border);
+  font-size: 10px; color: var(--muted);
+  background: var(--card); flex-shrink: 0;
+}
+
 /* ── QUIZ ALL CASES BTN ───────────────────────────────────── */
 .quiz-all-cases {
   display: inline-flex; align-items: center; gap: 8px;
@@ -807,6 +1028,11 @@ body {
   .quiz-options { grid-template-columns: 1fr; }
   .quiz-options.three-col { grid-template-columns: 1fr; }
   .footer { flex-direction: column; gap: 12px; text-align: center; }
+  .crm-card-top { grid-template-columns: 1fr; }
+  .crm-ui-mock { height: 340px; }
+  .crm-ui-sidebar { width: 80px; }
+  .crm-ui-nav-item { font-size: 9px; padding: 5px 7px; }
+  .crm-kstats-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 </style>
@@ -887,36 +1113,158 @@ body {
             </div>
           </div>
         </div>
-        <div class="crm-mock">
-          <div class="crm-mock-header">
-            <span class="crm-mock-title">CRM · Активные сделки</span>
-            <span class="mock-dash-dot"></span>
-          </div>
-          <div class="crm-deal">
-            <div class="crm-deal-icon">TG</div>
-            <div class="crm-deal-info">
-              <div class="crm-deal-name">Александр · OTC-обмен #2841</div>
-              <div class="crm-deal-sub">50 000 USDT · Менеджер: Дима</div>
+        <!-- Rich CRM UI Mock -->
+        <div class="crm-ui-mock">
+          <!-- Window chrome -->
+          <div class="crm-ui-chrome">
+            <div class="crm-ui-dots"><span></span><span></span><span></span></div>
+            <div class="crm-ui-url">crm.aihub.works · CRM Space</div>
+            <div class="crm-ui-view-toggle">
+              <button class="crm-view-btn active" data-view="boards">Leads</button>
+              <button class="crm-view-btn" data-view="chats">Chats</button>
             </div>
-            <span class="status-badge status-ok">Активна</span>
           </div>
-          <div class="crm-deal">
-            <div class="crm-deal-icon" style="background:rgba(37,211,102,0.15);color:#25d366">WA</div>
-            <div class="crm-deal-info">
-              <div class="crm-deal-name">Мария · Запись на приём</div>
-              <div class="crm-deal-sub">PaNa Medica · AI-первая линия</div>
+
+          <div class="crm-ui-body">
+            <!-- Sidebar -->
+            <div class="crm-ui-sidebar">
+              <div class="crm-ui-sidebar-section">Public</div>
+              <div class="crm-ui-nav-item">🏠 Home</div>
+              <div class="crm-ui-nav-item crm-nav-active">💬 Chats</div>
+              <div class="crm-ui-nav-item">📚 Knowledge Base</div>
+              <div class="crm-ui-nav-item">⚙️ AI Settings</div>
+              <div class="crm-ui-nav-item">🗂 CRM Space</div>
             </div>
-            <span class="status-badge status-pending">AI отвечает</span>
-          </div>
-          <div class="crm-deal">
-            <div class="crm-deal-icon" style="background:rgba(225,48,108,0.15);color:#e1306c">IG</div>
-            <div class="crm-deal-info">
-              <div class="crm-deal-name">Ivan R. · Новая заявка</div>
-              <div class="crm-deal-sub">Instagram · Ожидает оператора</div>
+
+            <!-- Boards view -->
+            <div class="crm-ui-main" id="crm-mock-boards">
+              <div class="crm-ui-main-header">
+                <div>
+                  <div class="crm-ui-main-title">Engagement Boards</div>
+                  <div class="crm-ui-main-sub">Quick overview & jump</div>
+                </div>
+                <div class="crm-ui-tabs">
+                  <button class="crm-ui-tab active">Leads</button>
+                  <button class="crm-ui-tab">Deals</button>
+                  <button class="crm-ui-tab">Patients</button>
+                </div>
+              </div>
+
+              <div class="crm-kstats-grid">
+                <div class="crm-kstat"><div class="crm-kstat-lbl">All</div><div class="crm-kstat-num">1 122</div></div>
+                <div class="crm-kstat kstat-bot"><div class="crm-kstat-lbl">Bot Active / New Inquiry</div><div class="crm-kstat-num">1 022</div></div>
+                <div class="crm-kstat kstat-progress"><div class="crm-kstat-lbl">In Progress</div><div class="crm-kstat-num">24</div></div>
+                <div class="crm-kstat"><div class="crm-kstat-lbl">Waiting List</div><div class="crm-kstat-num">7</div></div>
+                <div class="crm-kstat"><div class="crm-kstat-lbl">Call Later</div><div class="crm-kstat-num">26</div></div>
+                <div class="crm-kstat kstat-fail"><div class="crm-kstat-lbl">Failed / No Show</div><div class="crm-kstat-num">2</div></div>
+                <div class="crm-kstat"><div class="crm-kstat-lbl">Closed - Not Converted</div><div class="crm-kstat-num">18</div></div>
+                <div class="crm-kstat kstat-deal"><div class="crm-kstat-lbl">Converted to Deal</div><div class="crm-kstat-num">23</div></div>
+              </div>
+
+              <div class="crm-lead-list">
+                <div class="crm-lead-row">
+                  <div class="crm-lead-src ig">IG</div>
+                  <div class="crm-lead-info">
+                    <div class="crm-lead-name">INSTAGRAM_12678172084967...</div>
+                    <div class="crm-lead-meta">Instagram · ru · <span class="crm-status-bot">Bot Active / New Inquiry</span></div>
+                  </div>
+                  <span class="crm-priority">P: Normal</span>
+                </div>
+                <div class="crm-lead-row">
+                  <div class="crm-lead-src int">IN</div>
+                  <div class="crm-lead-info">
+                    <div class="crm-lead-name">INTERNAL_27C0eCRinNWa</div>
+                    <div class="crm-lead-meta">Internal · ru · <span class="crm-status-bot">Bot Active / New Inquiry</span></div>
+                  </div>
+                  <span class="crm-priority">P: Normal</span>
+                </div>
+                <div class="crm-lead-row">
+                  <div class="crm-lead-src ig">IG</div>
+                  <div class="crm-lead-info">
+                    <div class="crm-lead-name">Ivan Rudnitski</div>
+                    <div class="crm-lead-meta">Instagram · <span class="crm-status-fail">Failed / No Show (lead)</span></div>
+                  </div>
+                  <span class="crm-priority">P: Normal</span>
+                </div>
+                <div class="crm-lead-row">
+                  <div class="crm-lead-src ig">IG</div>
+                  <div class="crm-lead-info">
+                    <div class="crm-lead-name">Novik Lidziya (fundacja)</div>
+                    <div class="crm-lead-meta">Instagram · <span class="crm-status-deal">Converted to Deal</span></div>
+                  </div>
+                  <span class="crm-priority">P: Normal</span>
+                </div>
+              </div>
             </div>
-            <span class="status-badge status-esc">Очередь</span>
-          </div>
-        </div>
+
+            <!-- Chats view -->
+            <div class="crm-ui-main crm-chat-view" id="crm-mock-chats" style="display:none">
+              <div class="crm-chat-list">
+                <div class="crm-chat-search"><input type="text" placeholder="Search chats..." readonly></div>
+                <div class="crm-chat-item active">
+                  <div class="crm-chat-avatar" style="background:#5A5FFF">Pi</div>
+                  <div class="crm-chat-info">
+                    <div class="crm-chat-name">Pi... <span>02:15</span></div>
+                    <div class="crm-chat-preview">Да, работаю и отвечаю...</div>
+                  </div>
+                </div>
+                <div class="crm-chat-item">
+                  <div class="crm-chat-avatar" style="background:#2A2A3E">M</div>
+                  <div class="crm-chat-info">
+                    <div class="crm-chat-name">Y... <span>00:57</span></div>
+                    <div class="crm-chat-preview">Уже зову на помощь...</div>
+                  </div>
+                </div>
+                <div class="crm-chat-item">
+                  <div class="crm-chat-avatar ig-bg">IG</div>
+                  <div class="crm-chat-info">
+                    <div class="crm-chat-name">1... <span>23:59</span></div>
+                    <div class="crm-chat-preview">&lt;Content&gt;</div>
+                  </div>
+                </div>
+                <div class="crm-chat-item">
+                  <div class="crm-chat-avatar ig-bg">IG</div>
+                  <div class="crm-chat-info">
+                    <div class="crm-chat-name">6... <span>12:09</span></div>
+                    <div class="crm-chat-preview">Записан Вас на приём</div>
+                  </div>
+                </div>
+                <div class="crm-chat-item">
+                  <div class="crm-chat-avatar ig-bg">IG</div>
+                  <div class="crm-chat-info">
+                    <div class="crm-chat-name">26... <span>11:43</span></div>
+                    <div class="crm-chat-preview">Записан Вас на приём</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="crm-chat-main">
+                <div class="crm-chat-header">
+                  <div class="crm-chat-user">User: yaninazusko ◉</div>
+                  <div class="crm-chat-source">Source: Telegram Mini-App · Started 1d 11h ago</div>
+                </div>
+                <div class="crm-messages">
+                  <div class="crm-msg client">
+                    <div class="crm-msg-bubble">Какова стоимость восстановления зуба штифтом и накрытие коронкой?</div>
+                  </div>
+                  <div class="crm-msg ai">
+                    <div class="crm-msg-label">AI Assistant · PaNa Medica</div>
+                    <div class="crm-msg-bubble">Добрый день! Я Медина, AI-ассистент клиники PaNa Medica. Уже соединяю вас с администратором. Если вопрос срочный — позвоните: +48 511 111 595.</div>
+                  </div>
+                  <div class="crm-msg client">
+                    <div class="crm-msg-bubble">Хорошо, жду</div>
+                  </div>
+                  <div class="crm-msg ai">
+                    <div class="crm-msg-label">AI Assistant</div>
+                    <div class="crm-msg-bubble">Уже зову на помощь администратора. Он подключится, как только сможет. Спасибо за терпение! 🙏</div>
+                  </div>
+                </div>
+                <div class="crm-chat-input">✏️ Написать сообщение...</div>
+              </div>
+            </div>
+
+          </div><!-- /crm-ui-body -->
+        </div><!-- /crm-ui-mock -->
       </div>
 
       <button class="crm-expand-btn" id="crm-toggle">
@@ -1711,6 +2059,17 @@ document.getElementById('quiz-restart').addEventListener('click', () => {
   Object.keys(quizAnswers).forEach(k => delete quizAnswers[k]);
   document.querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('selected'));
   showQuestion(1);
+});
+
+/* ── CRM MOCK VIEW TOGGLE ──────────────────────────────────── */
+document.querySelectorAll('.crm-view-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.crm-view-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const view = btn.dataset.view;
+    document.getElementById('crm-mock-boards').style.display = view === 'boards' ? 'flex' : 'none';
+    document.getElementById('crm-mock-chats').style.display  = view === 'chats'  ? 'flex' : 'none';
+  });
 });
 
 </script>
