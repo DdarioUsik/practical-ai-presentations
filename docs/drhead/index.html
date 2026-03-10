@@ -88,19 +88,32 @@ section { padding: 64px 0; border-bottom: 1px solid var(--border); }
 /* PHASE CARD */
 .phase-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; }
 .phase-card.priority { border-color: rgba(59,130,246,0.3); background: linear-gradient(135deg, var(--card) 0%, rgba(59,130,246,0.05) 100%); }
+.phase-card.quickwin { border-color: rgba(16,185,129,0.35); background: linear-gradient(135deg, var(--card) 0%, rgba(16,185,129,0.05) 100%); }
 .phase-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; }
 .phase-num { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
 .phase-name { font-size: 26px; font-weight: 900; letter-spacing: -0.5px; }
 .phase-price-block { text-align: right; flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
 .phase-badge { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; }
 .badge-blue { background: rgba(59,130,246,0.15); color: var(--blue); border: 1px solid rgba(59,130,246,0.25); }
+.badge-green { background: rgba(16,185,129,0.15); color: var(--green); border: 1px solid rgba(16,185,129,0.25); }
 .phase-price { font-size: 34px; font-weight: 900; color: var(--amber); letter-spacing: -1px; }
+.phase-price-note { font-size: 11px; color: var(--muted); }
 .phase-timeline { font-size: 12px; color: var(--muted); }
 .phase-deliverables { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; list-style: none; margin-bottom: 24px; }
 .phase-deliverables li { font-size: 13.5px; color: var(--subtle); padding-left: 20px; position: relative; line-height: 1.4; }
 .phase-deliverables li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
 .phase-note { background: rgba(59,130,246,0.05); border-left: 3px solid var(--blue); border-radius: 0 8px 8px 0; padding: 14px 16px; font-size: 13.5px; color: var(--subtle); line-height: 1.55; }
+.phase-note.green { background: rgba(16,185,129,0.05); border-left-color: var(--green); }
 .phase-note strong { color: var(--text); font-weight: 600; }
+.phases-stack { display: flex; flex-direction: column; gap: 16px; }
+
+/* SCOPE SUMMARY */
+.scope-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 20px; }
+.scope-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; }
+.scope-card.highlight { border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.04); }
+.scope-label { font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.scope-price { font-size: 28px; font-weight: 900; color: var(--amber); letter-spacing: -0.8px; }
+.scope-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
 
 /* NEED LIST */
 .need-list { display: flex; flex-direction: column; gap: 14px; }
@@ -123,7 +136,7 @@ section { padding: 64px 0; border-bottom: 1px solid var(--border); }
 .cta-box { background: linear-gradient(135deg, var(--card) 0%, rgba(59,130,246,0.08) 100%); border: 1px solid rgba(59,130,246,0.2); border-radius: 20px; padding: 52px 48px; text-align: center; }
 .cta-box h2 { font-size: 34px; font-weight: 900; letter-spacing: -0.8px; margin-bottom: 12px; }
 .cta-box p { font-size: 15px; color: var(--subtle); margin-bottom: 32px; max-width: 460px; margin-left: auto; margin-right: auto; line-height: 1.6; }
-.cta-step { display: inline-block; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.25); border-radius: 10px; padding: 14px 28px; font-size: 14px; font-weight: 700; color: var(--blue); }
+.cta-step { display: inline-block; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); border-radius: 10px; padding: 16px 32px; font-size: 15px; font-weight: 700; color: var(--green); }
 .cta-contact { margin-top: 20px; font-size: 13px; color: var(--muted); }
 
 footer { padding: 32px 0; border-top: 1px solid var(--border); text-align: center; }
@@ -136,8 +149,8 @@ footer p { font-size: 12px; color: var(--muted); }
   body { background: #fff !important; color: #1a1a1a !important; }
   .hero h1, .section-title { color: #0f172a !important; }
   .hero-sub, .sit-card p, .phase-note, .case-result, .need-content p { color: #475569 !important; }
-  .phase-price { color: #d97706 !important; }
-  .mockup-wrap, .sit-card, .phase-card, .case-card, .need-item, .m-card, .bar-card, .insight-card {
+  .phase-price, .scope-price { color: #d97706 !important; }
+  .mockup-wrap, .sit-card, .phase-card, .case-card, .need-item, .m-card, .bar-card, .insight-card, .scope-card {
     background: #f8fafc !important; border-color: #e2e8f0 !important;
     break-inside: avoid; page-break-inside: avoid;
   }
@@ -182,7 +195,7 @@ footer p { font-size: 12px; color: var(--muted); }
       <div class="sit-card">
         <div class="sit-icon">🔍</div>
         <h4><span style="color:var(--amber);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">CEO · Артём</span><br>Видеть картину целиком</h4>
-        <p>Дубай, Москва, Питер — отчёт в 23:00, консолидации нет. Клиент посмотрел наушники за 40к и ушёл — это зафиксировано или нет?</p>
+        <p>Дубай, Москва, Питер — отчёт в 23:00, консолидации нет. Клиент посмотрел наушники за 40к и ушёл — зафиксировано или нет?</p>
       </div>
       <div class="sit-card">
         <div class="sit-icon">🗂</div>
@@ -273,58 +286,91 @@ footer p { font-size: 12px; color: var(--muted); }
 
   <!-- SCOPE -->
   <section>
-    <div class="section-label">Что входит</div>
-    <div class="section-title">Один продукт. Одна задача.</div>
-    <div class="phase-card priority">
-      <div class="phase-top">
-        <div class="phase-left">
-          <div class="phase-num">Аналитический дашборд владельца</div>
-          <div class="phase-name">Dr.Head Owner Analytics</div>
+    <div class="section-label">Как это работает</div>
+    <div class="section-title">Быстрый старт или полный дашборд.</div>
+
+    <div class="phases-stack">
+
+      <!-- QUICK WIN -->
+      <div class="phase-card quickwin">
+        <div class="phase-top">
+          <div class="phase-left">
+            <div class="phase-num">Шаг 1 · Быстрый старт</div>
+            <div class="phase-name">Quick Win</div>
+          </div>
+          <div class="phase-price-block">
+            <span class="phase-badge badge-green">Можно начать сейчас</span>
+            <div class="phase-price">€1,500</div>
+            <div class="phase-timeline">~1 неделя</div>
+          </div>
         </div>
-        <div class="phase-price-block">
-          <span class="phase-badge badge-blue">Под тебя</span>
-          <div class="phase-timeline" style="margin-top:6px;">3–4 недели</div>
+        <ul class="phase-deliverables">
+          <li>Подключение к 1С — один магазин</li>
+          <li>Выручка в реальном времени</li>
+          <li>% выполнения плана за день / неделю</li>
+          <li>Доступ с телефона — без отчётов в 23:00</li>
+        </ul>
+        <div class="phase-note green">
+          <strong>Что это даёт:</strong> через неделю у тебя живой экран с одним магазином. Не демо — реальные данные. Выбираем вместе, с какого магазина начать. Стоимость входит в полный дашборд.
         </div>
       </div>
-      <ul class="phase-deliverables">
-        <li>Выручка и % плана в реальном времени</li>
-        <li>Сравнение магазинов (Dubai / Москва / СПб)</li>
-        <li>RFM-сегментация из данных 1С</li>
-        <li>Повторные покупки и LTV по когортам</li>
-        <li>Клиенты без follow-up — список и сумма</li>
-        <li>Аналитика рекламных каналов + AI-рекомендации</li>
-        <li>Интеграция с 1С (данные не переносятся вручную)</li>
-      </ul>
-      <div class="phase-note">
-        <strong>Что меняется для тебя как владельца:</strong> картина бизнеса не в 23:00, а прямо сейчас. Ты видишь оба расчёта — где теряем и где растём — до того как собирать команду. Стек, который клонируется при открытии нового магазина.
+
+      <!-- FULL DASHBOARD -->
+      <div class="phase-card priority">
+        <div class="phase-top">
+          <div class="phase-left">
+            <div class="phase-num">Шаг 2 · Полный дашборд</div>
+            <div class="phase-name">Dr.Head Owner Analytics</div>
+          </div>
+          <div class="phase-price-block">
+            <span class="phase-badge badge-blue">Под тебя</span>
+            <div class="phase-price">€5,000</div>
+            <div class="phase-price-note">€3,500 если уже сделан Quick Win</div>
+            <div class="phase-timeline">3–4 недели</div>
+          </div>
+        </div>
+        <ul class="phase-deliverables">
+          <li>Выручка и % плана — все магазины</li>
+          <li>Сравнение Dubai / Москва / СПб</li>
+          <li>RFM-сегментация из данных 1С</li>
+          <li>Повторные покупки и LTV по когортам</li>
+          <li>Клиенты без follow-up — список и сумма</li>
+          <li>Аналитика рекламных каналов + AI-рекомендации</li>
+          <li>Интеграция с 1С (данные не переносятся вручную)</li>
+          <li>Стек клонируется при открытии нового магазина</li>
+        </ul>
+        <div class="phase-note">
+          <strong>Что меняется для тебя как владельца:</strong> картина бизнеса не в 23:00, а прямо сейчас. Ты видишь где теряем и где растём — до того как собирать команду.
+        </div>
       </div>
+
     </div>
   </section>
 
   <!-- NEXT STEPS -->
   <section>
     <div class="section-label">Дальнейшие шаги</div>
-    <div class="section-title">Как мы двигаемся дальше.</div>
+    <div class="section-title">Три шага до первого результата.</div>
     <div class="need-list">
       <div class="need-item">
         <div class="need-num">1</div>
         <div class="need-content">
-          <h4>Разбор</h4>
-          <p>Встреча с тобой и Никитой — разбираем текущую картину: какие метрики критичны для принятия решений, где сейчас теряются данные, что должно быть на экране каждый день. Без этого разговора инструмент будет под кого-то другого, не под тебя.</p>
+          <h4>Выбираем магазин для старта</h4>
+          <p>Один звонок на 30 минут — определяем с какого магазина начинаем Quick Win и какую метрику ты хочешь видеть первой. Больше ничего не нужно.</p>
         </div>
       </div>
       <div class="need-item">
         <div class="need-num">2</div>
         <div class="need-content">
-          <h4>Доступ ко всем источникам информации с базовыми данными</h4>
-          <p>Подключаемся ко всем источникам: 1С (продажи, клиенты, RFM), Битрикс (воронка, задачи), Excel (текущие отчёты), Манго (звонки), Tally (Dubai). Проверяем качество данных, фиксируем пробелы — до начала разработки, не после.</p>
+          <h4>Подключаемся к 1С</h4>
+          <p>Алексей подтвердил — данные там есть. Подключаемся напрямую, без ручного переноса. Через неделю у тебя живой экран.</p>
         </div>
       </div>
       <div class="need-item">
         <div class="need-num">3</div>
         <div class="need-content">
-          <h4>Разработка</h4>
-          <p>Собираем дашборд под конкретные решения владельца: выручка и % плана в реальном времени, RFM по базе, сравнение магазинов, клиенты без follow-up. Итерации — быстро, с промежуточными демо. Финальный результат: живой инструмент, который клонируется при открытии нового рынка.</p>
+          <h4>Видишь результат — решаешь про полный дашборд</h4>
+          <p>Quick Win — это не пилот ради пилота. Это рабочий инструмент за одну неделю. Если хочешь все магазины и полный стек — €1,500 уже учтены в цене.</p>
         </div>
       </div>
     </div>
@@ -342,7 +388,6 @@ footer p { font-size: 12px; color: var(--muted); }
         </div>
         <div class="case-result">
           Финансовый директор перестал ждать отчёт от агентства. Решение о перераспределении бюджета — в тот же день, без внешнего подрядчика.
-          Это то, на что Женя отреагировал на встрече 5 марта.
         </div>
       </div>
       <div class="case-card amber">
@@ -352,12 +397,23 @@ footer p { font-size: 12px; color: var(--muted); }
         </div>
         <div class="case-result">
           Двойной ввод данных исчез. То, что занимало несколько часов — обновляется автоматически.
-          Та же задача, что у Алексея сейчас между 1С и Tally.
         </div>
       </div>
     </div>
   </section>
 
+</div>
+
+<!-- CTA -->
+<div class="container">
+  <div class="cta-section">
+    <div class="cta-box">
+      <h2>Начнём с одного магазина.</h2>
+      <p>Один звонок — выбираем магазин, подключаемся к 1С. Через неделю у тебя живой экран вместо отчёта в 23:00.</p>
+      <div class="cta-step">→ Запустить Quick Win за €1,500</div>
+      <div class="cta-contact">Данил Усик · Practical AI · @danilusik</div>
+    </div>
+  </div>
 </div>
 
 <div style="position:fixed; bottom:24px; right:24px; z-index:999;" class="no-print">
@@ -368,7 +424,6 @@ footer p { font-size: 12px; color: var(--muted); }
     ↓ Save as PDF
   </button>
 </div>
-
 
 </body>
 </html>
