@@ -10,17 +10,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#09090E; --card:#12121A; --card2:#171722;
-      --text:#EEEEF5; --sub:#9B9BB2; --mut:#5B5B73;
-      --border:rgba(255,255,255,.08);
-      --g:#00C853; --g2:#00E676;
+      --bg:#f7f7ff; --card:#ffffff; --card2:#f2f3ff;
+      --text:#16162a; --sub:#4f4f72; --mut:#7575a0;
+      --border:rgba(0,0,0,.09);
+      --g:#00a84a; --g2:#00c85a;
       --r:16px;
     }
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:Inter,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
     a{color:inherit}
     .wrap{max-width:1040px;margin:0 auto;padding:0 28px}
-    .nav{position:sticky;top:0;z-index:20;background:rgba(9,9,14,.78);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+    .nav{position:sticky;top:0;z-index:20;background:rgba(247,247,255,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
     .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
     .logo{display:flex;gap:10px;align-items:center;text-decoration:none}
     .logo-badge{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;color:#000;background:linear-gradient(135deg,var(--g),var(--g2))}
@@ -29,8 +29,8 @@
     .cta{display:inline-flex;align-items:center;gap:10px;text-decoration:none;background:var(--g);color:#000;font-weight:800;font-size:13px;padding:10px 16px;border-radius:999px;transition:transform .15s,opacity .15s}
     .cta:hover{transform:translateY(-1px);opacity:.9}
     .hero{padding:56px 0 30px;position:relative;overflow:hidden}
-    .hero:before{content:"";position:absolute;left:50%;top:-220px;transform:translateX(-50%);width:900px;height:620px;background:radial-gradient(ellipse,rgba(0,200,83,.10) 0%,transparent 70%);pointer-events:none}
-    .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(0,200,83,.12);border:1px solid rgba(0,200,83,.25);color:var(--g);padding:6px 14px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px}
+    .hero:before{content:"";position:absolute;left:50%;top:-220px;transform:translateX(-50%);width:900px;height:620px;background:radial-gradient(ellipse,rgba(0,168,74,.10) 0%,transparent 70%);pointer-events:none}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(0,168,74,.10);border:1px solid rgba(0,168,74,.25);color:var(--g);padding:6px 14px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px}
     .dot{width:7px;height:7px;border-radius:50%;background:var(--g)}
     h1{font-size:clamp(32px,4.6vw,52px);line-height:1.08;letter-spacing:-.03em;margin-bottom:14px;max-width:860px}
     .sub{color:var(--sub);font-size:16px;max-width:720px}
