@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>04 — Workflow</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="base.css">
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</head>
+<body>
+<div class="slide">
+  <div class="slide-header">
+    <div class="logo"><img src="logo.png" alt="AIHUB.WORKS"><span class="logo-name">AI HUB</span></div>
+    <span class="slide-num">04 / 08</span>
+  </div>
+
+  <h2 class="slide-title">Ключевые компоненты workflow</h2>
+  <div class="cols" style="flex:1;align-items:flex-start">
+    <div class="col">
+      <ul class="list">
+        <li><strong>Scheduled триггер.</strong> запускает сбор данных по расписанию для регулярного обновления метрик.</li>
+<li><strong>HTTP Request модуль.</strong> получает телеметрию с API контроллеров роботов (статус, время работы, простои).</li>
+<li><strong>Модуль агрегации данных.</strong> рассчитывает коэффициенты производительности и KPI по каждому роботу и линии.</li>
+<li><strong>Интеграция с базой данных Airtable.</strong> сохраняет исторические данные для анализа трендов и построения отчётов.</li>
+<li><strong>Модуль расчёта аномалий.</strong> выявляет отклонения от нормальных показателей утилизации.</li>
+<li><strong>Dashboard обновление Airtable.</strong> передаёт актуальные данные в систему визуализации для мониторинга и отчетов.​</li>
+<li><strong>Alert-уведомления.</strong> отправляет оповещения по email при критическом снижении утилизации или сбоях, а также отправляет оформленные письма для клиентов .</li>
+      </ul>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="overline">Интеграции</div>
+        <ul class="arrow-list">
+          <li>Webhook / входящие события</li>
+          <li>Парсинг документов (PDF/DOCX), OCR при необходимости</li>
+          <li>LLM/Embeddings, векторное хранилище (если нужно)</li>
+          <li>CRM/ATS/BI — запись результата обратно</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">aihub.works</div>
+</div>
+</body>
+</html>

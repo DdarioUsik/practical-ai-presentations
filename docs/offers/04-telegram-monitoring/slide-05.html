@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>05 — Технические особенности</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="base.css">
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</head>
+<body>
+<div class="slide">
+  <div class="slide-header">
+    <div class="logo"><img src="logo.png" alt="AIHUB.WORKS"><span class="logo-name">AI HUB</span></div>
+    <span class="slide-num">05 / 08</span>
+  </div>
+
+  <h2 class="slide-title">Технические особенности</h2>
+  <div class="cols" style="flex:1;align-items:flex-start">
+    <div class="col">
+      <div class="card" style="height:100%">
+        <div style="white-space:pre-line;color:var(--text-muted);font-size:15px;line-height:1.7">Система построена на связке Python с библиотекой Telethon и n8n workflow. Telethon используется для асинхронного прослушивания событий events.NewMessage, что обеспечивает мгновенное получение новых сообщений без задержек.
+Критичным оказался дизайн обогащения данных: скрипт не просто передаёт текст, но и собирает метаинформацию — имя автора, username, название чата — и формирует корректные ссылки как для публичных, так и для приватных каналов.
+Решение является полностью гибким: список отслеживаемых чатов и ключевых слов настраивается в конфигурации скрипта, что позволяет адаптировать систему под разные задачи — от поиска клиентов до мониторинга конкурентов.
+___
+Технология: n8n workflow automation
+Время внедрения: 3 рабочих дня</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="overline">Качество и безопасность</div>
+        <ul class="arrow-list">
+          <li>Логи, трассировка, SLA-метрики</li>
+          <li>Ограничения доступа и секреты через vault/ENV</li>
+          <li>Human-in-the-loop для критичных шагов</li>
+          <li>Версионирование промптов и тест-наборов</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">aihub.works</div>
+</div>
+</body>
+</html>

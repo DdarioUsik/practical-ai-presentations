@@ -1,57 +1,126 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Practical AI — Presentations</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>practical.ai — Vibe Salon и AIHUB</title>
+  <meta name="description" content="Практика: Vibe Salon (нейросети для предпринимателей). AIHUB: кастомная AI-автоматизация для B2B, кейсы и КП." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg: #0a0a0a; --surface: #111111; --card: #161616;
-      --purple: #7c3aed; --purple-light: #a855f7;
-      --text: #f5f5f5; --muted: #888888; --border: rgba(255,255,255,0.07);
-      --radius: 16px;
+    :root{
+      --bg:#09090E; --card:#12121A; --card2:#171722;
+      --text:#EEEEF5; --sub:#9B9BB2; --mut:#5B5B73;
+      --border:rgba(255,255,255,.08);
+      --g:#00C853; --g2:#00E676;
+      --r:16px;
     }
-    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; font-size: 15px; }
-    .container { max-width: 860px; margin: 0 auto; padding: 0 32px; }
-    .topbar { padding: 24px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
-    .logo { font-size: 15px; font-weight: 700; color: var(--text); }
-    .logo span { color: var(--purple); }
-    .badge { background: var(--purple); color: #fff; font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 100px; letter-spacing: 0.02em; }
-    .hero { padding: 80px 0 72px; text-align: center; }
-    .hero-label { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple); margin-bottom: 20px; }
-    .hero h1 { font-size: 56px; font-weight: 900; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 24px; }
-    .hero h1 em { font-style: normal; color: var(--purple-light); }
-    .hero p { font-size: 18px; color: var(--muted); max-width: 540px; margin: 0 auto; }
-    .presentations { padding: 60px 0 80px; }
-    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple); margin-bottom: 24px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; text-decoration: none; color: var(--text); transition: border-color 0.2s; display: block; }
-    .card:hover { border-color: var(--purple); }
-    .card-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--purple); margin-bottom: 12px; }
-    .card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
-    .card p { font-size: 13px; color: var(--muted); }
-    .empty { text-align: center; padding: 60px 0; color: var(--muted); font-size: 15px; }
-    footer { border-top: 1px solid var(--border); padding: 32px 40px; text-align: center; color: var(--muted); font-size: 13px; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+    a{color:inherit}
+    .wrap{max-width:1040px;margin:0 auto;padding:0 28px}
+    .nav{position:sticky;top:0;z-index:20;background:rgba(9,9,14,.78);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .logo{display:flex;gap:10px;align-items:center;text-decoration:none}
+    .logo-badge{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;color:#000;background:linear-gradient(135deg,var(--g),var(--g2))}
+    .logo-text{font-weight:900;letter-spacing:-.02em}
+    .logo-text span{color:var(--g)}
+    .cta{display:inline-flex;align-items:center;gap:10px;text-decoration:none;background:var(--g);color:#000;font-weight:800;font-size:13px;padding:10px 16px;border-radius:999px;transition:transform .15s,opacity .15s}
+    .cta:hover{transform:translateY(-1px);opacity:.9}
+    .hero{padding:56px 0 30px;position:relative;overflow:hidden}
+    .hero:before{content:"";position:absolute;left:50%;top:-220px;transform:translateX(-50%);width:900px;height:620px;background:radial-gradient(ellipse,rgba(0,200,83,.10) 0%,transparent 70%);pointer-events:none}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(0,200,83,.12);border:1px solid rgba(0,200,83,.25);color:var(--g);padding:6px 14px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px}
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--g)}
+    h1{font-size:clamp(32px,4.6vw,52px);line-height:1.08;letter-spacing:-.03em;margin-bottom:14px;max-width:860px}
+    .sub{color:var(--sub);font-size:16px;max-width:720px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:26px 0 10px}
+    .card{background:linear-gradient(180deg,var(--card),var(--card2));border:1px solid var(--border);border-radius:calc(var(--r) + 4px);padding:22px 22px 18px;min-height:260px}
+    .card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:14px}
+    .tag{font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
+    .card h2{font-size:20px;letter-spacing:-.02em;line-height:1.2;margin:6px 0 10px}
+    .card p{color:var(--sub);font-size:14px}
+    ul{margin:14px 0 18px;padding-left:18px;color:var(--sub);font-size:13.5px}
+    li{margin:6px 0}
+    .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto}
+    .btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;border-radius:999px;padding:10px 14px;font-weight:800;font-size:13px;border:1px solid var(--border);background:transparent;color:var(--text);transition:transform .15s,opacity .15s,border-color .15s}
+    .btn:hover{transform:translateY(-1px);opacity:.92;border-color:rgba(0,200,83,.35)}
+    .btn.primary{background:var(--g);border-color:transparent;color:#000}
+    .note{margin:18px 0 0;color:var(--mut);font-size:12px}
+    .footer{border-top:1px solid var(--border);padding:18px 0 26px;color:var(--mut);font-size:12px}
+    .footer a{color:var(--sub);text-decoration:none}
+    .footer a:hover{text-decoration:underline}
+    @media (max-width: 860px){ .grid{grid-template-columns:1fr} .card{min-height:auto} }
   </style>
 </head>
 <body>
-  <div class="topbar">
-    <div class="logo">Practical <span>AI</span></div>
-    <div class="badge">Client Presentations</div>
-  </div>
-  <div class="container">
-    <div class="hero">
-      <div class="hero-label">Practical AI</div>
-      <h1>Клиентские<br><em>презентации</em></h1>
-      <p>Персонализированные материалы, сгенерированные под каждого клиента</p>
+  <nav class="nav">
+    <div class="wrap">
+      <div class="nav-inner">
+        <a class="logo" href="./" aria-label="practical.ai">
+          <div class="logo-badge">PA</div>
+          <div class="logo-text">practical<span>.ai</span></div>
+        </a>
+        <a class="cta" href="https://t.me/Danil_alto" target="_blank" rel="noreferrer">Написать в Telegram ↗</a>
+      </div>
     </div>
-    <div class="presentations">
-      <div class="section-label">Последние презентации</div>
-      <div class="empty">Презентации появятся здесь после генерации через /presentation</div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="eyebrow"><span class="dot"></span> две ветки · один фокус: результат</div>
+      <h1>Vibe Salon — нейросети для предпринимателей.<br><span style="color:var(--g)">AIHUB</span> — кастомная AI‑автоматизация для B2B.</h1>
+      <p class="sub">Если вы пришли “просто потусоваться” — ок. Но лучше уйти с готовой штукой: ботом, автоворонкой, сборщиком лидов, мониторингом, агентом или мини‑CRM.</p>
+
+      <section class="grid" aria-label="Направления">
+        <article class="card">
+          <div class="card-top">
+            <div>
+              <div class="tag">Практика · события</div>
+              <h2>Vibe Salon</h2>
+              <p>Network session + разбор нейросетей + вайбкодинг. Формат для предпринимателей: минимум лекций, максимум внедрения.</p>
+            </div>
+          </div>
+          <ul>
+            <li>Каждый приходит со своей задачей и уходит с прототипом.</li>
+            <li>Шаблоны: контент‑поток, лидоген, ассистент продаж, авто‑отчёты, customer research.</li>
+            <li>Фокус: “в бизнесе стало быстрее/дешевле/понятнее”.</li>
+          </ul>
+          <div class="btns">
+            <a class="btn primary" href="./vibe-salon/">Посмотреть формат →</a>
+            <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noreferrer">Хочу на сессию ↗</a>
+          </div>
+          <div class="note">Ближайшая встреча (Valencia): ВТ 17.03 или СР 18.03 · 19:00–21:00 · билет 10€ (1 напиток + перекус).</div>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <div>
+              <div class="tag">AIHUB · студия</div>
+              <h2>Кастомная разработка</h2>
+              <p>AI‑агенты, CRM, интеграции, n8n, мониторинг, RAG/knowledge base, автоматизация продаж и поддержки.</p>
+            </div>
+          </div>
+          <ul>
+            <li>Быстро показываем демо на вашем процессе (а не “концепт”).</li>
+            <li>Упор на измеримый эффект: время, ошибки, конверсия, SLA.</li>
+            <li>Можно начать с одного use‑case и расширять.</li>
+          </ul>
+          <div class="btns">
+            <a class="btn primary" href="./cases/">Смотреть кейсы →</a>
+            <a class="btn" href="./offers/">КП (слайды) →</a>
+            <a class="btn" href="./aihub/">Лендинг AIHUB →</a>
+          </div>
+          <div class="note">Если у вас “не обучение, а автоматизация” — это сюда.</div>
+        </article>
+      </section>
     </div>
-  </div>
-  <footer>Practical AI · @Danil_alto · +7 195 331 23 80</footer>
+  </header>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div>© practical.ai · <a href="./cases/">кейсы</a> · <a href="./vibe-salon/">Vibe Salon</a> · <a href="https://t.me/Danil_alto" target="_blank" rel="noreferrer">Telegram</a></div>
+    </div>
+  </footer>
 </body>
 </html>

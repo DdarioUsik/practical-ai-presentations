@@ -1,0 +1,237 @@
+/* =============================================================
+   AIHUB.WORKS — BASE STYLES  (Light Theme)
+   ============================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font);
+  background: #F0F0F0;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* ── Слайд ─────────────────────────────────────────────────── */
+.slide {
+  width: var(--w);
+  height: var(--h);
+  background: var(--bg);
+  padding: var(--pad);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Хедер (лого + номер) ───────────────────────────────────── */
+.slide-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  flex-shrink: 0;
+}
+
+/* ── Лого: маленькая иконка + "AI HUB" ──────────────────────── */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+.logo img {
+  height: 22px;
+  width: auto;
+  display: block;
+}
+.logo-name {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text);
+  line-height: 1;
+}
+
+/* ── Номер слайда ────────────────────────────────────────────── */
+.slide-num {
+  font-size: var(--t-xs);
+  color: var(--text-light);
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+
+/* ── Футер "aihub.works" ─────────────────────────────────────── */
+.slide-footer {
+  position: absolute;
+  bottom: var(--pad);
+  right: var(--pad);
+  font-size: var(--t-xs);
+  color: var(--text-light);
+  letter-spacing: 0.06em;
+}
+
+/* ── Overline (надпись над заголовком) ───────────────────────── */
+.overline {
+  font-size: var(--t-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+/* ── Большой заголовок слайда ────────────────────────────────── */
+.slide-title {
+  font-size: var(--t-xl);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 28px;
+  flex-shrink: 0;
+}
+.slide-title .accent { color: var(--accent); }
+
+/* Тег-метка (Правовой ИИ / Бухгалтерский ИИ) */
+.tag {
+  display: inline-block;
+  font-size: var(--t-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
+  border-radius: var(--r-sm);
+  padding: 3px 10px;
+  flex-shrink: 0;
+}
+
+/* ── Список (тире + контент) ─────────────────────────────────── */
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.list li {
+  font-size: var(--t-base);
+  color: var(--text-muted);
+  line-height: 1.55;
+  display: flex;
+  gap: 10px;
+}
+.list li::before {
+  content: '—';
+  color: var(--accent);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.list li b, .list li strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+/* ── Arrow list ──────────────────────────────────────────────── */
+.arrow-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.arrow-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: var(--t-base);
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.arrow-list li::before {
+  content: '›';
+  color: var(--accent);
+  font-weight: 900;
+  font-size: 18px;
+  flex-shrink: 0;
+  line-height: 1.3;
+}
+
+/* ── Таблица ─────────────────────────────────────────────────── */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table th, .table td {
+  padding: 9px 14px;
+  font-size: var(--t-sm);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  vertical-align: top;
+  line-height: 1.4;
+}
+.table th {
+  font-weight: 700;
+  color: var(--text);
+  background: var(--bg-card);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.table td:last-child {
+  white-space: nowrap;
+  font-weight: 600;
+  color: var(--text);
+  min-width: 90px;
+}
+.table tr.total td {
+  font-weight: 800;
+  color: var(--accent-dark);
+  background: var(--bg-accent);
+  border-color: var(--border-accent);
+  font-size: var(--t-md);
+}
+
+/* ── Карточка ────────────────────────────────────────────────── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: var(--sp-5);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ── Две колонки ─────────────────────────────────────────────── */
+.cols {
+  display: flex;
+  gap: 40px;
+  flex: 1;
+}
+.col { flex: 1; min-width: 0; }
+
+/* ── Секция-подзаголовок ─────────────────────────────────────── */
+.section-head {
+  font-size: var(--t-sm);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 12px;
+  margin-top: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+/* ── Утилиты ─────────────────────────────────────────────────── */
+.mt-auto  { margin-top: auto; }
+.flex-1   { flex: 1; }
+.title-row {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-shrink: 0;
+}
+.title-row .slide-title { margin-bottom: 0; }
