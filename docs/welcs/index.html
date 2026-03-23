@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commercial Proposal — Welcs · AIHUB</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #f8fafc;
+      --surface:   #f1f5f9;
+      --card:      #ffffff;
+      --border:    rgba(0,0,0,0.08);
+      --blue:      #2563eb;
+      --blue-glow: rgba(37,99,235,0.08);
+      --green:     #059669;
+      --amber:     #d97706;
+      --purple:    #7c3aed;
+      --cyan:      #0891b2;
+      --text:      #0f172a;
+      --muted:     #94a3b8;
+      --subtle:    #475569;
+      --radius:    14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── LIGHT THEME OVERRIDES ── */
+    .header { background: #fff; box-shadow: 0 1px 0 var(--border); }
+    .logo-mark { color: #0f172a; }
+    .logo-tagline { color: var(--muted); border-left-color: var(--border); }
+    .hero-tag { background: rgba(37,99,235,0.08); border-color: rgba(37,99,235,0.2); }
+    .situation-text { border-left-color: var(--blue); }
+    .pain-list li { background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .phase-card { background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+    .phase-card:hover { border-color: rgba(0,0,0,0.15); box-shadow: 0 3px 10px rgba(0,0,0,0.08); }
+    .phase-card.p1 { border-color: rgba(37,99,235,0.3); }
+    .phase-card.p2 { border-color: rgba(5,150,105,0.3); }
+    .phase-card.p3 { border-color: rgba(124,58,237,0.3); }
+    .phase-note { background: var(--surface); border-left-color: var(--muted); }
+    .scope-card { background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .scope-card.highlight { background: rgba(37,99,235,0.05); border-color: rgba(37,99,235,0.25); }
+    .calc-card { background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+    .result-total { background: rgba(37,99,235,0.06); border-color: rgba(37,99,235,0.2); }
+    .support-item { background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .support-item.free { border-color: rgba(5,150,105,0.3); }
+    .cta-box { background: linear-gradient(135deg, rgba(124,58,237,0.06) 0%, rgba(37,99,235,0.05) 50%, rgba(8,145,178,0.04) 100%); border-color: rgba(124,58,237,0.18); }
+    .detail-table th { background: rgba(37,99,235,0.08); color: var(--blue); border-bottom-color: rgba(37,99,235,0.2); }
+    .detail-table td { border-bottom-color: rgba(0,0,0,0.05); }
+    .detail-table tr.phase-row-1 td { background: rgba(37,99,235,0.03); }
+    .detail-table tr.phase-row-2 td { background: rgba(5,150,105,0.03); }
+    .detail-table tr.phase-row-3 td { background: rgba(124,58,237,0.03); }
+    .detail-table tr.total-row td { background: rgba(37,99,235,0.07); border-top-color: rgba(37,99,235,0.15); }
+    .detail-toggle button { background: #fff; border-color: var(--border); color: var(--muted); }
+    .detail-toggle button:hover { border-color: rgba(0,0,0,0.2); color: var(--subtle); }
+    .result-row { border-bottom-color: rgba(0,0,0,0.05); }
+    input[type=range] { background: rgba(0,0,0,0.1); }
+    input[type=range]::-webkit-slider-thumb { border-color: var(--bg); }
+    .slider-val { background: var(--surface); color: var(--text); }
+    .ci-cal  { background: rgba(37,99,235,0.1); }
+    .ci-mail { background: rgba(5,150,105,0.1); }
+    .ci-web  { background: rgba(124,58,237,0.1); }
+    .badge-blue   { background: rgba(37,99,235,0.08); border-color: rgba(37,99,235,0.2); }
+    .badge-green  { background: rgba(5,150,105,0.08); border-color: rgba(5,150,105,0.2); }
+    .badge-purple { background: rgba(124,58,237,0.08); border-color: rgba(124,58,237,0.2); }
+    .lang-btn.active { background: var(--blue); color: #fff; }
+    .lang-btn:not(.active) { color: var(--muted); }
+    .footer { border-top-color: var(--border); }
+
+    /* ── LANGUAGE TOGGLE ── */
+    .lang-ru { display: none; }
+    body.ru .lang-en { display: none; }
+    body.ru .lang-ru { display: revert; }
+
+    /* For flex/grid children we need inline-level revert */
+    body.ru .lang-ru.flex-item { display: flex; }
+    body.ru .lang-ru.block-item { display: block; }
+
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 3px;
+    }
+    .lang-btn {
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 4px 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background: transparent;
+      color: var(--muted);
+      transition: all 0.15s;
+    }
+    .lang-btn.active {
+      background: var(--blue);
+      color: #fff;
+    }
+    .lang-btn:not(.active):hover {
+      color: var(--subtle);
+    }
+
+    /* ── LAYOUT ── */
+    .wrap { max-width: 900px; margin: 0 auto; padding: 0 32px; }
+
+    /* ── HEADER ── */
+    .header {
+      border-bottom: 1px solid var(--border);
+      padding: 22px 0;
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 10;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-mark {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: #fff;
+    }
+    .logo-icon {
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, #7c3aed, #3b82f6);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.05em;
+    }
+    .logo-tagline {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+      border-left: 1px solid var(--border);
+      padding-left: 12px;
+    }
+    .header-meta { font-size: 13px; color: var(--muted); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 64px 0 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      background: var(--blue-glow);
+      border: 1px solid rgba(59,130,246,0.25);
+      padding: 4px 14px;
+      border-radius: 20px;
+    }
+    .client-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .client-logo-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff;
+      border-radius: 8px;
+      padding: 5px 10px;
+    }
+    .hero h1 {
+      font-size: 40px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      max-width: 700px;
+    }
+    .hero h1 span { color: var(--blue); }
+    .hero-sub {
+      font-size: 16px;
+      color: var(--subtle);
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    /* ── SECTION ── */
+    section { padding: 52px 0; border-bottom: 1px solid var(--border); }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    h2 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+
+    /* ── SITUATION ── */
+    .situation-text {
+      font-size: 16px;
+      color: var(--subtle);
+      line-height: 1.8;
+      max-width: 740px;
+      border-left: 3px solid var(--blue);
+      padding-left: 20px;
+    }
+    .pain-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .pain-list li {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      font-size: 14px;
+      color: var(--subtle);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .pain-list li::before {
+      content: '→';
+      color: var(--amber);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── PHASES ── */
+    .phases { display: flex; flex-direction: column; gap: 16px; }
+
+    .phase-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .phase-card:hover { border-color: rgba(255,255,255,0.15); }
+    .phase-card.p1 { border-color: rgba(59,130,246,0.35); }
+    .phase-card.p2 { border-color: rgba(16,185,129,0.3); }
+    .phase-card.p3 { border-color: rgba(139,92,246,0.3); }
+
+    .phase-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+    .phase-left { flex: 1; min-width: 0; }
+    .phase-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .phase-name {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .phase-price-block {
+      text-align: right;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 5px;
+    }
+    .phase-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .badge-blue   { color: var(--blue);   background: var(--blue-glow);        border: 1px solid rgba(59,130,246,0.3); }
+    .badge-green  { color: var(--green);  background: rgba(16,185,129,0.1);     border: 1px solid rgba(16,185,129,0.25); }
+    .badge-purple { color: var(--purple); background: rgba(139,92,246,0.1);     border: 1px solid rgba(139,92,246,0.25); }
+    .phase-price {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--amber);
+      line-height: 1;
+    }
+    .phase-timeline {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .phase-deliverables {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .phase-deliverables li {
+      font-size: 13.5px;
+      color: var(--subtle);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .phase-deliverables li::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 700;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    .phase-note {
+      margin-top: 16px;
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+      border-left: 3px solid var(--muted);
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    /* ── SCOPE SUMMARY ── */
+    .scope-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .scope-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+    }
+    .scope-label { font-size: 12px; color: var(--muted); margin-bottom: 6px; font-weight: 500; }
+    .scope-value { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; }
+    .scope-card.highlight { border-color: rgba(59,130,246,0.35); background: rgba(59,130,246,0.07); }
+    .scope-card.highlight .scope-value { color: var(--blue); }
+    .scope-card .scope-sub { font-size: 12px; color: var(--muted); margin-top: 3px; }
+
+    /* ── DETAIL TABLE ── */
+    .detail-toggle { margin-top: 16px; text-align: center; }
+    .detail-toggle button {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+      font-family: inherit;
+      padding: 8px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .detail-toggle button:hover { border-color: rgba(255,255,255,0.2); color: var(--subtle); }
+    .detail-table-wrap { display: none; margin-top: 24px; overflow-x: auto; }
+    .detail-table-wrap.open { display: block; }
+    .detail-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .detail-table th {
+      background: rgba(59,130,246,0.15);
+      color: var(--blue);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 10px;
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid rgba(59,130,246,0.25);
+      white-space: nowrap;
+    }
+    .detail-table td {
+      padding: 10px 12px;
+      color: var(--subtle);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+    .detail-table tr:last-child td { border-bottom: none; }
+    .detail-table tr.phase-row-1 td { background: rgba(59,130,246,0.04); }
+    .detail-table tr.phase-row-2 td { background: rgba(16,185,129,0.04); }
+    .detail-table tr.phase-row-3 td { background: rgba(139,92,246,0.04); }
+    .detail-table tr.total-row td {
+      background: rgba(59,130,246,0.1);
+      color: var(--text);
+      font-weight: 700;
+      border-top: 1px solid rgba(59,130,246,0.2);
+    }
+    .phase-tag-cell {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .pt-1 { color: var(--blue); }
+    .pt-2 { color: var(--green); }
+    .pt-3 { color: var(--purple); }
+
+    /* ── CALCULATOR ── */
+    .calc-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+    }
+    .calc-intro { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
+    .calc-inputs { display: flex; flex-direction: column; gap: 24px; margin-bottom: 32px; }
+    .slider-group label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .slider-label { font-size: 14px; font-weight: 500; color: var(--subtle); }
+    .slider-val {
+      font-size: 16px; font-weight: 700; color: var(--text);
+      background: rgba(255,255,255,0.06); padding: 2px 12px;
+      border-radius: 6px; min-width: 80px; text-align: right;
+    }
+    input[type=range] {
+      width: 100%; appearance: none; height: 4px;
+      background: rgba(255,255,255,0.1); border-radius: 2px; outline: none; cursor: pointer;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      appearance: none; width: 18px; height: 18px;
+      background: var(--blue); border-radius: 50%;
+      border: 2px solid var(--bg); box-shadow: 0 0 0 3px rgba(59,130,246,0.3);
+    }
+    .calc-result { border-top: 1px solid var(--border); padding-top: 24px; }
+    .result-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 0; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .result-row:last-of-type { border-bottom: none; }
+    .result-row .label { color: var(--muted); }
+    .result-row .val { font-weight: 600; color: var(--subtle); }
+    .result-total {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 16px; padding: 18px 20px;
+      background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.25); border-radius: 10px;
+    }
+    .result-total .label { font-size: 14px; font-weight: 600; color: var(--subtle); }
+    .result-total .val { font-size: 26px; font-weight: 800; color: var(--amber); letter-spacing: -0.02em; }
+    .calc-note { margin-top: 14px; font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+    /* ── SUPPORT ── */
+    .support-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .support-item {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px;
+    }
+    .support-item .s-label { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+    .support-item .s-rate { font-size: 20px; font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
+    .support-item .s-detail { font-size: 12px; color: var(--muted); margin-top: 4px; }
+    .support-item.free { border-color: rgba(16,185,129,0.3); }
+    .support-item.free .s-rate { color: var(--green); }
+
+    /* ── CTA / CONTACTS ── */
+    .cta-section { padding: 56px 0; }
+    .cta-box {
+      background: linear-gradient(135deg, rgba(124,58,237,0.12) 0%, rgba(59,130,246,0.10) 50%, rgba(6,182,212,0.08) 100%);
+      border: 1px solid rgba(124,58,237,0.25);
+      border-radius: 18px; padding: 44px 48px;
+    }
+    .cta-box h2 { font-size: 28px; margin-bottom: 8px; letter-spacing: -0.03em; }
+    .cta-box .cta-sub { font-size: 15px; color: var(--muted); margin-bottom: 32px; }
+    .contact-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .contact-list li { display: flex; align-items: center; gap: 12px; }
+    .contact-icon {
+      width: 36px; height: 36px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0;
+    }
+    .ci-cal  { background: rgba(59,130,246,0.15); }
+    .ci-mail { background: rgba(16,185,129,0.15); }
+    .ci-web  { background: rgba(139,92,246,0.15); }
+    .contact-text { font-size: 14px; }
+    .contact-text strong { color: var(--text); font-weight: 600; }
+    .contact-text a { color: var(--blue); text-decoration: none; font-weight: 500; }
+    .contact-text a:hover { text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    .footer {
+      padding: 28px 0; border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 12px; color: var(--muted);
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      .no-print { display: none !important; }
+      @page { margin: 18mm 16mm; size: A4; }
+      body { background: #fff !important; color: #0f172a !important; font-size: 11pt; }
+      .wrap { max-width: 100%; padding: 0; }
+      .calc-inputs, input[type=range], .slider-group { display: none !important; }
+      .s-phases  { break-before: page; page-break-before: always; }
+      .s-opex    { break-before: page; page-break-before: always; }
+      .s-support { break-before: page; page-break-before: always; }
+      .phase-card, .scope-grid, .scope-card, .support-item,
+      .pain-list, .result-total, .calc-card, .phase-note, .phase-deliverables {
+        break-inside: avoid; page-break-inside: avoid;
+      }
+      .phases { break-inside: avoid; page-break-inside: avoid; }
+      .pain-list, .scope-grid, .phase-deliverables, .support-grid { grid-template-columns: 1fr 1fr; }
+      .header { border-bottom: 2px solid #e2e8f0; position: static; }
+      .hero { padding: 24pt 0 20pt; border-bottom: 1px solid #e2e8f0; }
+      .hero h1 { font-size: 20pt; color: #0f172a; }
+      .hero-tag { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+      .hero-sub { color: #475569; font-size: 10pt; }
+      section { padding: 18pt 0; border-bottom: 1px solid #f1f5f9; }
+      .section-label { color: #94a3b8; }
+      h2 { font-size: 14pt; color: #0f172a; margin-bottom: 10pt; }
+      .situation-text { color: #334155; border-left-color: #3b82f6; }
+      .pain-list li { background: #f8fafc; border-color: #e2e8f0; color: #475569; break-inside: avoid; }
+      .pain-list li::before { color: #f59e0b; }
+      .phase-card { background: #f8fafc !important; border: 1.5pt solid #e2e8f0 !important; break-inside: avoid; page-break-inside: avoid; margin-bottom: 10pt; }
+      .phase-card.p1 { border-color: #93c5fd !important; background: #f0f7ff !important; }
+      .phase-card.p2 { border-color: #6ee7b7 !important; background: #f0fdf4 !important; }
+      .phase-card.p3 { border-color: #c4b5fd !important; background: #faf5ff !important; }
+      .phase-num { color: #94a3b8; }
+      .phase-name { color: #0f172a; font-size: 13pt; }
+      .phase-price { color: #d97706 !important; font-size: 20pt; }
+      .phase-badge { font-size: 7pt; }
+      .badge-blue  { color: #1d4ed8; background: #eff6ff; border-color: #bfdbfe; }
+      .badge-green { color: #059669; background: #f0fdf4; border-color: #a7f3d0; }
+      .badge-purple{ color: #7c3aed; background: #faf5ff; border-color: #ddd6fe; }
+      .phase-deliverables li { color: #334155; font-size: 10pt; }
+      .phase-deliverables li::before { color: #059669; }
+      .phase-note { background: #f1f5f9; border-left-color: #94a3b8; color: #475569; }
+      .scope-card { background: #f8fafc; border-color: #e2e8f0; break-inside: avoid; }
+      .scope-card.highlight { background: #eff6ff; border-color: #93c5fd; }
+      .scope-card.highlight .scope-value { color: #1d4ed8; }
+      .scope-label { color: #64748b; } .scope-value { color: #0f172a; } .scope-sub { color: #94a3b8; }
+      .calc-card { background: #f8fafc; border-color: #e2e8f0; }
+      .calc-intro { display: none; }
+      .result-row .label { color: #64748b; } .result-row .val { color: #334155; }
+      .result-total { background: #eff6ff; border-color: #93c5fd; }
+      .result-total .label { color: #475569; } .result-total .val { color: #d97706; }
+      .calc-note { color: #94a3b8; }
+      .support-item { background: #f8fafc; border-color: #e2e8f0; break-inside: avoid; }
+      .support-item .s-label { color: #94a3b8; } .support-item .s-rate { color: #0f172a; }
+      .support-item .s-detail { color: #64748b; }
+      .support-item.free { border-color: #a7f3d0; } .support-item.free .s-rate { color: #059669; }
+      .cta-section { break-before: page; page-break-before: always; }
+      .cta-box { background: #f8fafc; border-color: #e2e8f0; }
+      .contact-text a { color: #1d4ed8; }
+      .footer { color: #94a3b8; border-top-color: #e2e8f0; }
+      .detail-table-wrap { display: block !important; }
+      .detail-toggle { display: none; }
+      .client-logo-wrap { background: #f8fafc; }
+      .lang-switcher { display: none; }
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 26px; }
+      .pain-list, .scope-grid, .phase-deliverables, .support-grid { grid-template-columns: 1fr; }
+      .phase-top { flex-direction: column; }
+      .cta-box { padding: 28px 20px; }
+      .hero-eyebrow { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .header-inner { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── PRINT BUTTON ── -->
+<div style="position:fixed; bottom:24px; right:24px; z-index:999;" class="no-print">
+  <button onclick="window.print()" style="background:#3b82f6; color:#fff; border:none; padding:10px 20px; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; font-family:inherit; box-shadow:0 4px 12px rgba(59,130,246,0.4);">
+    <span class="lang-en">↓ Save as PDF</span>
+    <span class="lang-ru">↓ Сохранить PDF</span>
+  </button>
+</div>
+
+<!-- ── HEADER ── -->
+<header class="header">
+  <div class="wrap header-inner">
+    <div class="logo">
+      <div class="logo-mark">
+        <div class="logo-icon">AI</div>
+        HUB
+      </div>
+      <span class="logo-tagline lang-en">We Don't Make Bots</span>
+      <span class="logo-tagline lang-ru">Мы не делаем ботов</span>
+    </div>
+    <div class="header-right">
+      <div class="header-meta">
+        <span class="lang-en">Commercial Proposal · March 2026</span>
+        <span class="lang-ru">Коммерческое предложение · Март 2026</span>
+      </div>
+      <!-- Language switcher -->
+      <div class="lang-switcher no-print">
+        <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" id="btn-ru" onclick="setLang('ru')">RU</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── WELCS LOGO SVG (shared, reused below) ── -->
+<template id="welcs-svg">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M7 4C5.34 4 4 5.34 4 7C4 8.66 5.34 10 7 10C7.74 10 8.41 9.71 8.91 9.24L11.5 12L8.91 14.76C8.41 14.29 7.74 14 7 14C5.34 14 4 15.34 4 17C4 18.66 5.34 20 7 20C8.66 20 10 18.66 10 17C10 16.44 9.83 15.92 9.54 15.49L12 13L14.46 15.49C14.17 15.92 14 16.44 14 17C14 18.66 15.34 20 17 20C18.66 20 20 18.66 20 17C20 15.34 18.66 14 17 14C16.26 14 15.59 14.29 15.09 14.76L12.5 12L15.09 9.24C15.59 9.71 16.26 10 17 10C18.66 10 20 8.66 20 7C20 5.34 18.66 4 17 4C15.34 4 14 5.34 14 7C14 7.56 14.17 8.08 14.46 8.51L12 11L9.54 8.51C9.83 8.08 10 7.56 10 7C10 5.34 8.66 4 7 4Z" fill="#C9A227"/>
+  </svg>
+</template>
+
+<!-- ════════════════════════════════════════════
+     ENGLISH VERSION
+═════════════════════════════════════════════ -->
+<div class="lang-en">
+
+<!-- ── HERO EN ── -->
+<div class="wrap">
+  <div class="hero">
+    <div class="hero-eyebrow">
+      <div class="hero-tag">COMMERCIAL PROPOSAL</div>
+      <div class="client-badge">
+        For:
+        <div class="client-logo-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 4C5.34 4 4 5.34 4 7C4 8.66 5.34 10 7 10C7.74 10 8.41 9.71 8.91 9.24L11.5 12L8.91 14.76C8.41 14.29 7.74 14 7 14C5.34 14 4 15.34 4 17C4 18.66 5.34 20 7 20C8.66 20 10 18.66 10 17C10 16.44 9.83 15.92 9.54 15.49L12 13L14.46 15.49C14.17 15.92 14 16.44 14 17C14 18.66 15.34 20 17 20C18.66 20 20 18.66 20 17C20 15.34 18.66 14 17 14C16.26 14 15.59 14.29 15.09 14.76L12.5 12L15.09 9.24C15.59 9.71 16.26 10 17 10C18.66 10 20 8.66 20 7C20 5.34 18.66 4 17 4C15.34 4 14 5.34 14 7C14 7.56 14.17 8.08 14.46 8.51L12 11L9.54 8.51C9.83 8.08 10 7.56 10 7C10 5.34 8.66 4 7 4Z" fill="#C9A227"/></svg>
+          <span style="font-size:13px; font-weight:700; color:#1a1a1a; letter-spacing:-0.02em;">welcs</span>
+        </div>
+      </div>
+    </div>
+    <h1>Voice AI for every inbound call.<br>Automated bookings via <span>Avantio</span>.<br>WhatsApp and sales quality on top.</h1>
+    <p class="hero-sub">A modular AI system built around your current stack — Bitrix24, Avantio, WhatsApp. Each module delivers standalone results from day one. Start with what hurts most, expand when ready.</p>
+  </div>
+</div>
+
+<!-- ── PROBLEM EN ── -->
+<div class="wrap">
+  <section>
+    <div class="section-label">The Problem</div>
+    <p class="situation-text">Your team handles hundreds of calls and WhatsApp messages every month — manually, in real time, without a safety net. Every unanswered inquiry after hours is a booking that went to the competition. Every call where the agent forgot to log the deal is a guest that vanished from your CRM. The goal isn't to replace your staff — it's to make sure no conversation falls through the cracks.</p>
+    <ul class="pain-list">
+      <li>Inbound calls after hours go unanswered — guests book elsewhere</li>
+      <li>One French-speaking agent, offline after 19:00 — FR guests reach no one for the rest of the day</li>
+      <li>WhatsApp threads pile up, response time lags, operators burn out</li>
+      <li>No systematic way to see which sales scripts work and which don't</li>
+      <li>Every new team member starts from zero — no captured knowledge base</li>
+    </ul>
+  </section>
+</div>
+
+<!-- ── OFFER EN ── -->
+<div class="wrap">
+  <section class="s-phases">
+    <div class="section-label">Offer</div>
+    <h2>Three focused modules. Results after each.</h2>
+    <p style="font-size:15px; color: var(--muted); margin-bottom: 36px; max-width: 600px;">Each module is self-contained — you get working deliverables before we move to the next one. No long wait, no black box.</p>
+
+    <div class="phases">
+      <div class="phase-card p1">
+        <div class="phase-top">
+          <div class="phase-left">
+            <div class="phase-num">Phase 1</div>
+            <div class="phase-name">Voice AI Agent</div>
+          </div>
+          <div class="phase-price-block">
+            <span class="phase-badge badge-blue">3–4 weeks</span>
+            <div class="phase-price">€5,000</div>
+          </div>
+        </div>
+        <ul class="phase-deliverables">
+          <li>Live voice AI agent on your number — 24/7, no missed calls</li>
+          <li>2-persona knowledge base (owners / tourists)</li>
+          <li>Multilingual: EN / FR / RU — one agent, three languages</li>
+          <li>Avantio PMS integration — live availability check &amp; booking creation</li>
+          <li>Full booking flow: inquiry → availability → booking → confirmation</li>
+          <li>Bitrix24 auto-task + deal creation per call</li>
+          <li>Escalation rules &amp; handover logic</li>
+          <li>Call log dashboard</li>
+        </ul>
+        <div class="phase-note"><strong>What changes for you:</strong> Every inbound call is handled 24/7, the caller type is identified, the interaction is logged in Bitrix24 — and when it's a booking request, Avantio handles it end-to-end. No human touch required.</div>
+      </div>
+
+      <div class="phase-card p2">
+        <div class="phase-top">
+          <div class="phase-left">
+            <div class="phase-num">Phase 2</div>
+            <div class="phase-name">WhatsApp AI Agent</div>
+          </div>
+          <div class="phase-price-block">
+            <span class="phase-badge badge-green">Can run in parallel</span>
+            <div class="phase-price">€1,800</div>
+            <div class="phase-timeline">2–3 weeks</div>
+          </div>
+        </div>
+        <ul class="phase-deliverables">
+          <li>WhatsApp Business API connection</li>
+          <li>Shared knowledge base from Phase 1</li>
+          <li>Conversation flows for owners &amp; tourists</li>
+          <li>Bitrix24 auto-deal / task creation per message</li>
+          <li>Operator takeover trigger (human handoff)</li>
+          <li>Full chat history stored in CRM</li>
+        </ul>
+        <div class="phase-note"><strong>What changes for you:</strong> WhatsApp becomes a managed sales channel, not a personal chat no one monitors.</div>
+      </div>
+
+      <div class="phase-card p3">
+        <div class="phase-top">
+          <div class="phase-left">
+            <div class="phase-num">Phase 3</div>
+            <div class="phase-name">Sales QA &amp; Analytics Dashboard</div>
+          </div>
+          <div class="phase-price-block">
+            <span class="phase-badge badge-purple">After phases 1–2</span>
+            <div class="phase-price">€3,200</div>
+            <div class="phase-timeline">4–5 weeks</div>
+          </div>
+        </div>
+        <ul class="phase-deliverables">
+          <li>Connect to call recording source (Bitrix24)</li>
+          <li>Transcribe calls — speech-to-text</li>
+          <li>Script compliance scoring model</li>
+          <li>Evaluation criteria: greeting, discovery, objection handling, closing</li>
+          <li>Per-call report with score + key moments</li>
+          <li>Team dashboard: agent ranking, weekly trends, red flags</li>
+        </ul>
+        <div class="phase-note"><strong>What changes for you:</strong> You stop guessing why some agents close more bookings — you see the exact moments that drive conversion.</div>
+      </div>
+    </div>
+
+    <div class="scope-grid" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="scope-card highlight">
+        <div class="scope-label">Start Smart — Phase 1 only</div>
+        <div class="scope-value">€5,000</div>
+        <div class="scope-sub">3–4 weeks · Voice + Avantio + Bitrix24</div>
+      </div>
+      <div class="scope-card">
+        <div class="scope-label">Core — Phase 1 + 2</div>
+        <div class="scope-value">€6,800</div>
+        <div class="scope-sub">5–7 weeks · Add WhatsApp coverage</div>
+      </div>
+      <div class="scope-card">
+        <div class="scope-label">Full — Phase 1 + 2 + 3</div>
+        <div class="scope-value">€10,000</div>
+        <div class="scope-sub">9–12 weeks · Complete system</div>
+      </div>
+    </div>
+
+    <div class="detail-toggle no-print">
+      <button onclick="toggleDetail('en', this)">▾ View detailed scope breakdown</button>
+    </div>
+    <div class="detail-table-wrap" id="detailTable-en">
+      <table class="detail-table">
+        <thead>
+          <tr>
+            <th>Phase</th><th>Service Block</th><th>Current State (As-Is)</th>
+            <th>Desired State</th><th>What We'll Build</th><th>Business Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="phase-row-1">
+            <td><span class="phase-tag-cell pt-1">Phase 1<br>Voice AI</span></td>
+            <td><strong style="color:var(--text);">Voice Agent — Inbound Call Handling + Avantio Booking</strong></td>
+            <td>All inbound calls go directly to support staff. No pre-screening. Owners and tourists get identical treatment. French-speaking guests unreachable after 19:00. Booking requests handled manually, often delayed.<br><br>Telephony: Bitrix24. Booking system: Avantio PMS.</td>
+            <td>AI voice agent handles 100% of inbound calls 24/7. Identifies caller type (owner vs. tourist), answers in EN/FR/RU, creates booking in Avantio when applicable, logs every interaction in Bitrix24 as task or deal.</td>
+            <td>1. Connect voice AI to Bitrix24 telephony<br>2. Build 2-persona knowledge base (owners / tourists)<br>3. Multilingual: EN / FR / RU<br>4. Avantio API: availability check + booking creation<br>5. Bitrix24 CRM: auto-create task/deal per call<br>6. Escalation trigger → live agent<br>7. End-to-end test</td>
+            <td>Zero missed calls. Bookings created automatically via Avantio. FR guest coverage extended 24/7. Every interaction logged — no manual entry, no lost leads.</td>
+          </tr>
+          <tr class="phase-row-2">
+            <td><span class="phase-tag-cell pt-2">Phase 2<br>WhatsApp</span></td>
+            <td><strong style="color:var(--text);">WhatsApp Agent — Automated Message Handling</strong></td>
+            <td>WhatsApp messages processed manually in Bitrix24. Delays and missed messages off-hours. No automation, no 24/7 coverage.</td>
+            <td>AI agent auto-responds to WhatsApp using same KB as voice agent. Creates Bitrix24 deals/tasks automatically.</td>
+            <td>1. Connect WhatsApp Business API<br>2. Extend KB from Phase 1<br>3. Conversation flows for both personas<br>4. Bitrix24 auto deal/task creation<br>5. Operator handoff trigger<br>6. Store full chat history in CRM</td>
+            <td>24/7 WhatsApp coverage, no extra headcount. Unified voice + chat view per contact. Faster response = higher conversion.</td>
+          </tr>
+          <tr class="phase-row-3">
+            <td><span class="phase-tag-cell pt-3">Phase 3<br>Sales QA</span></td>
+            <td><strong style="color:var(--text);">AI Sales Call Analysis — Script Compliance &amp; Quality Dashboard</strong></td>
+            <td>Sales calls recorded but not systematically analyzed. No consistent scoring. Hard to find coaching opportunities at scale.</td>
+            <td>AI analyzes every sales call recording. Scores against script. Flags deviations. Live dashboard for team leads.</td>
+            <td>1. Connect to Bitrix24 recordings<br>2. Transcribe calls (STT)<br>3. Script compliance scoring model<br>4. Evaluation criteria: greeting, discovery, objection handling, closing<br>5. Per-call report with score + key moments<br>6. Team dashboard: ranking, trends, red flags</td>
+            <td>100% of calls reviewed. Objective scoring. Coaching on real data. Sales quality improves measurably over time.</td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="2"><strong>TOTAL PROJECT (Phase 1–3)</strong></td>
+            <td colspan="4"><strong>€10,000 · 9–12 weeks full scope &nbsp;|&nbsp; €6,800 · 5–7 weeks core (Phase 1+2) &nbsp;|&nbsp; €5,000 · 3–4 weeks entry (Phase 1)</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
+<!-- ── OPEX EN ── -->
+<div class="wrap">
+  <section class="s-opex">
+    <div class="section-label">Monthly Operating Costs</div>
+    <h2>Your actual OPEX — adjust to your volume</h2>
+    <p style="font-size:15px; color: var(--muted); margin-bottom: 28px; max-width: 600px;">Infrastructure costs are paid directly to providers — no markup. Adjust the sliders to see your real monthly spend.</p>
+    <div class="calc-card">
+      <p class="calc-intro">Estimated at 500 calls + 1,000 WhatsApp conversations / month. Adjust to your actual volume.</p>
+      <div class="calc-inputs">
+        <div class="slider-group">
+          <label>
+            <span class="slider-label">Voice calls / month</span>
+            <span class="slider-val" id="callsVal">500</span>
+          </label>
+          <input type="range" id="calls" min="100" max="2000" step="50" value="500" oninput="document.getElementById('callsVal').textContent=this.value; calcOpex();">
+        </div>
+        <div class="slider-group">
+          <label>
+            <span class="slider-label">Avg call duration (min)</span>
+            <span class="slider-val" id="durationVal">3 min</span>
+          </label>
+          <input type="range" id="duration" min="1" max="10" step="0.5" value="3" oninput="document.getElementById('durationVal').textContent=this.value+' min'; calcOpex();">
+        </div>
+        <div class="slider-group">
+          <label>
+            <span class="slider-label">WhatsApp conversations / month</span>
+            <span class="slider-val" id="waVal">1,000</span>
+          </label>
+          <input type="range" id="wa" min="100" max="5000" step="100" value="1000" oninput="document.getElementById('waVal').textContent=Number(this.value).toLocaleString(); calcOpex();">
+        </div>
+      </div>
+      <div class="calc-result">
+        <div class="result-row"><span class="label">Voice AI — TTS + STT (~€0.07/min)</span><span class="val" id="r_voice">€105.00</span></div>
+        <div class="result-row"><span class="label">LLM tokens — Voice calls (~1,500 tokens/call)</span><span class="val" id="r_llm_voice">€11.25</span></div>
+        <div class="result-row"><span class="label">WhatsApp — Meta API (€0.045/convo, 1,000 free/mo)</span><span class="val" id="r_wa_meta">€0.00</span></div>
+        <div class="result-row"><span class="label">LLM tokens — WhatsApp (~6 msgs × 800 tokens/convo)</span><span class="val" id="r_llm_wa">€72.00</span></div>
+        <div class="result-row"><span class="label">Cloud infrastructure &amp; hosting</span><span class="val">€30.00</span></div>
+        <div class="result-row" style="font-size:12px;"><span class="label">Bitrix24 + Avantio subscriptions</span><span class="val" style="color:var(--muted);">client-side cost</span></div>
+        <div class="result-total">
+          <span class="label">Estimated monthly infrastructure</span>
+          <span class="val" id="r_total">~€218</span>
+        </div>
+        <p class="calc-note">✦ All usage costs are estimates. Actual costs depend on call volume, duration, and LLM model choice. First 3 months include proactive monitoring at no charge. Technical support billed at €50/hr (T&amp;M). Emergency SLA at €75/hr.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ── SUPPORT EN ── -->
+<div class="wrap">
+  <section class="s-support">
+    <div class="section-label">Ongoing Support</div>
+    <h2>Technical support — transparent &amp; predictable</h2>
+    <p style="font-size:15px; color: var(--muted); margin-bottom: 28px;">Time &amp; materials billing. Tracked monthly. No retainer required.</p>
+    <div class="support-grid">
+      <div class="support-item free">
+        <div class="s-label">First 3 months post-launch</div>
+        <div class="s-rate">Included</div>
+        <div class="s-detail">Proactive monitoring &amp; QA at no extra charge.</div>
+      </div>
+      <div class="support-item">
+        <div class="s-label">Standard support (T&amp;M)</div>
+        <div class="s-rate">€50 / hr</div>
+        <div class="s-detail">Bug fixes, KB updates, CRM logic changes. Tracked &amp; invoiced monthly.</div>
+      </div>
+      <div class="support-item">
+        <div class="s-label">Emergency SLA</div>
+        <div class="s-rate">€75 / hr</div>
+        <div class="s-detail">Critical fix. Response within 4 hours. On request only.</div>
+      </div>
+    </div>
+    <div style="margin-top:14px; padding:14px 18px; background:rgba(255,255,255,0.03); border-radius:10px; font-size:13px; color:var(--muted);">
+      Typical monthly support: <strong style="color:var(--subtle);">2–4 hours</strong> for routine adjustments. Estimated monthly: <strong style="color:var(--subtle);">€100–200</strong>.
+    </div>
+  </section>
+</div>
+
+<!-- ── CTA EN ── -->
+<div class="wrap">
+  <div class="cta-section">
+    <div class="cta-box">
+      <h2>Let's talk next steps</h2>
+      <p class="cta-sub">Summer season starts in June. Setup takes 3–4 weeks. To be live before the peak — the conversation needs to happen before mid-April.</p>
+      <ul class="contact-list">
+        <li>
+          <div class="contact-icon ci-cal">📅</div>
+          <div class="contact-text"><strong>Book a technical deep dive</strong><br><a href="https://calendly.com/galakhovas" target="_blank">calendly.com/galakhovas</a></div>
+        </li>
+        <li>
+          <div class="contact-icon ci-mail">✉️</div>
+          <div class="contact-text"><strong>Request the pitch deck</strong><br><a href="mailto:techcrew@aihub.works">techcrew@aihub.works</a></div>
+        </li>
+        <li>
+          <div class="contact-icon ci-web">🌐</div>
+          <div class="contact-text"><strong>Website</strong><br><a href="https://aihub.works" target="_blank">aihub.works</a></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER EN ── -->
+<div class="wrap">
+  <div class="footer">
+    <span>AIHUB · aihub.works</span>
+    <span>Commercial Proposal · March 2026 · Confidential</span>
+  </div>
+</div>
+
+</div><!-- /lang-en -->
+
+
+<!-- ════════════════════════════════════════════
+     RUSSIAN VERSION
+═════════════════════════════════════════════ -->
+<div class="lang-ru">
+
+<!-- ── HERO RU ── -->
+<div class="wrap">
+  <div class="hero">
+    <div class="hero-eyebrow">
+      <div class="hero-tag">КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ</div>
+      <div class="client-badge">
+        Клиент:
+        <div class="client-logo-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 4C5.34 4 4 5.34 4 7C4 8.66 5.34 10 7 10C7.74 10 8.41 9.71 8.91 9.24L11.5 12L8.91 14.76C8.41 14.29 7.74 14 7 14C5.34 14 4 15.34 4 17C4 18.66 5.34 20 7 20C8.66 20 10 18.66 10 17C10 16.44 9.83 15.92 9.54 15.49L12 13L14.46 15.49C14.17 15.92 14 16.44 14 17C14 18.66 15.34 20 17 20C18.66 20 20 18.66 20 17C20 15.34 18.66 14 17 14C16.26 14 15.59 14.29 15.09 14.76L12.5 12L15.09 9.24C15.59 9.71 16.26 10 17 10C18.66 10 20 8.66 20 7C20 5.34 18.66 4 17 4C15.34 4 14 5.34 14 7C14 7.56 14.17 8.08 14.46 8.51L12 11L9.54 8.51C9.83 8.08 10 7.56 10 7C10 5.34 8.66 4 7 4Z" fill="#C9A227"/></svg>
+          <span style="font-size:13px; font-weight:700; color:#1a1a1a; letter-spacing:-0.02em;">welcs</span>
+        </div>
+      </div>
+    </div>
+    <h1>Голосовой AI для каждого входящего.<br>Автоматическое бронирование через <span>Avantio</span>.<br>WhatsApp и контроль продаж сверху.</h1>
+    <p class="hero-sub">Модульная AI-система под ваш текущий стек — Bitrix24, Avantio, WhatsApp. Каждый модуль даёт самостоятельный результат с первого дня. Начните с того, что болит сильнее всего — подключите остальное когда будете готовы.</p>
+  </div>
+</div>
+
+<!-- ── PROBLEM RU ── -->
+<div class="wrap">
+  <section>
+    <div class="section-label">Проблема</div>
+    <p class="situation-text">Ваша команда обрабатывает сотни звонков и сообщений WhatsApp каждый месяц — вручную, в режиме реального времени, без страховки. Каждый неотвеченный запрос после рабочих часов — это бронь, которая ушла к конкурентам. Каждый звонок, где агент забыл зафиксировать сделку, — это гость, исчезнувший из CRM. Цель — не заменить вашу команду, а гарантировать, что ни один разговор не провалится в никуда.</p>
+    <ul class="pain-list">
+      <li>Входящие звонки вне рабочего времени остаются без ответа — гости бронируют у конкурентов</li>
+      <li>Один франкоязычный агент — работает до 19:00. Вся вечерняя аудитория без поддержки</li>
+      <li>Сообщения WhatsApp накапливаются, время ответа растёт, операторы выгорают</li>
+      <li>Нет системного понимания, какие скрипты продаж работают, а какие нет</li>
+      <li>Каждый новый сотрудник начинает с нуля — база знаний не зафиксирована</li>
+    </ul>
+  </section>
+</div>
+
+<!-- ── OFFER RU ── -->
+<div class="wrap">
+  <section class="s-phases">
+    <div class="section-label">Предложение</div>
+    <h2>Три целевых модуля. Результат после каждого.</h2>
+    <p style="font-size:15px; color: var(--muted); margin-bottom: 36px; max-width: 600px;">Каждый модуль самодостаточен — вы получаете рабочий результат до перехода к следующему этапу. Без долгого ожидания, без чёрного ящика.</p>
+
+    <div class="phases">
+      <div class="phase-card p1">
+        <div class="phase-top">
+          <div class="phase-left">
+            <div class="phase-num">Этап 1</div>
+            <div class="phase-name">Голосовой AI-агент</div>
+          </div>
+          <div class="phase-price-block">
+            <span class="phase-badge badge-blue">3–4 недели</span>
+            <div class="phase-price">€5 000</div>
+          </div>
+        </div>
+        <ul class="phase-deliverables">
+          <li>Живой голосовой AI на вашем номере — 24/7, ноль пропущенных</li>
+          <li>База знаний на 2 персоны (владельцы / туристы)</li>
+          <li>Мультиязычность: EN / FR / RU — один агент, три языка</li>
+          <li>Интеграция Avantio PMS — проверка доступности и создание брони в реальном времени</li>
+          <li>Полный цикл: запрос → доступность → бронь → подтверждение</li>
+          <li>Автосоздание задач и сделок в Bitrix24 по каждому звонку</li>
+          <li>Правила эскалации и передачи оператору</li>
+          <li>Дашборд журнала звонков</li>
+        </ul>
+        <div class="phase-note"><strong>Что изменится для вас:</strong> Каждый входящий звонок обрабатывается 24/7 — тип звонящего определяется автоматически, взаимодействие фиксируется в Bitrix24, а запросы на бронирование закрываются через Avantio без участия человека.</div>
+      </div>
+
+      <div class="phase-card p2">
+        <div class="phase-top">
+          <div class="phase-left">
+            <div class="phase-num">Этап 2</div>
+            <div class="phase-name">AI-агент WhatsApp</div>
+          </div>
+          <div class="phase-price-block">
+            <span class="phase-badge badge-green">Можно запускать параллельно</span>
+            <div class="phase-price">€1 800</div>
+            <div class="phase-timeline">2–3 недели</div>
+          </div>
+        </div>
+        <ul class="phase-deliverables">
+          <li>Подключение WhatsApp Business API</li>
+          <li>Общая база знаний из Этапа 1</li>
+          <li>Сценарии диалогов для владельцев и туристов</li>
+          <li>Автосоздание сделок / задач в Bitrix24</li>
+          <li>Триггер передачи оператору (живой человек)</li>
+          <li>Полная история чатов в CRM</li>
+        </ul>
+        <div class="phase-note"><strong>Что изменится для вас:</strong> WhatsApp становится управляемым каналом продаж, а не личным чатом, за которым никто не следит.</div>
+      </div>
+
+      <div class="phase-card p3">
+        <div class="phase-top">
+          <div class="phase-left">
+            <div class="phase-num">Этап 3</div>
+            <div class="phase-name">Контроль качества продаж &amp; аналитика</div>
+          </div>
+          <div class="phase-price-block">
+            <span class="phase-badge badge-purple">После этапов 1–2</span>
+            <div class="phase-price">€3 200</div>
+            <div class="phase-timeline">4–5 недель</div>
+          </div>
+        </div>
+        <ul class="phase-deliverables">
+          <li>Подключение к записям звонков (Bitrix24)</li>
+          <li>Транскрибация звонков — speech-to-text</li>
+          <li>Модель скоринга соответствия скриптам</li>
+          <li>Критерии оценки: приветствие, выявление потребностей, работа с возражениями, закрытие</li>
+          <li>Отчёт по каждому звонку с оценкой и ключевыми моментами</li>
+          <li>Командный дашборд: рейтинг агентов, тренды, красные флаги</li>
+        </ul>
+        <div class="phase-note"><strong>Что изменится для вас:</strong> Вы перестанете гадать, почему одни агенты закрывают больше броней, — вы увидите конкретные моменты, которые определяют конверсию.</div>
+      </div>
+    </div>
+
+    <div class="scope-grid" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="scope-card highlight">
+        <div class="scope-label">Стартовый — только Этап 1</div>
+        <div class="scope-value">€5 000</div>
+        <div class="scope-sub">3–4 недели · Голос + Avantio + Bitrix24</div>
+      </div>
+      <div class="scope-card">
+        <div class="scope-label">Базовый — Этапы 1 + 2</div>
+        <div class="scope-value">€6 800</div>
+        <div class="scope-sub">5–7 недель · Добавляется WhatsApp</div>
+      </div>
+      <div class="scope-card">
+        <div class="scope-label">Полный — Этапы 1 + 2 + 3</div>
+        <div class="scope-value">€10 000</div>
+        <div class="scope-sub">9–12 недель · Полная система</div>
+      </div>
+    </div>
+
+    <div class="detail-toggle no-print">
+      <button onclick="toggleDetail('ru', this)">▾ Подробная декомпозиция по этапам</button>
+    </div>
+    <div class="detail-table-wrap" id="detailTable-ru">
+      <table class="detail-table">
+        <thead>
+          <tr>
+            <th>Этап</th><th>Блок работ</th><th>Текущее состояние (As-Is)</th>
+            <th>Целевое состояние</th><th>Что делаем</th><th>Бизнес-ценность</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="phase-row-1">
+            <td><span class="phase-tag-cell pt-1">Этап 1<br>Голос AI</span></td>
+            <td><strong style="color:var(--text);">Голосовой агент — входящие звонки + бронирование через Avantio</strong></td>
+            <td>Все входящие звонки идут напрямую к сотрудникам. Нет предварительной фильтрации. Два типа клиентов (владельцы и туристы) получают одинаковое обслуживание. Франкоязычные гости недоступны после 19:00. Запросы на бронирование обрабатываются вручную.<br><br>Телефония: Bitrix24. Система бронирования: Avantio PMS.</td>
+            <td>AI-голосовой агент обрабатывает 100% входящих звонков 24/7. Определяет тип звонящего (владелец / турист), отвечает на EN/FR/RU, создаёт бронь в Avantio при необходимости, фиксирует каждое взаимодействие в Bitrix24 как задачу или сделку.</td>
+            <td>1. Подключить голосовой AI к телефонии Bitrix24<br>2. База знаний на 2 персоны (владельцы / туристы)<br>3. Мультиязычность: EN / FR / RU<br>4. Интеграция Avantio API: проверка доступности + создание брони<br>5. Автосоздание задач/сделок в Bitrix24 CRM<br>6. Триггер эскалации → передача живому агенту<br>7. Сквозное тестирование</td>
+            <td>Ноль пропущенных звонков. Бронирование создаётся автоматически через Avantio. Франкоязычное покрытие 24/7. Каждое взаимодействие зафиксировано — без ручного ввода, без потерянных лидов.</td>
+          </tr>
+          <tr class="phase-row-2">
+            <td><span class="phase-tag-cell pt-2">Этап 2<br>WhatsApp</span></td>
+            <td><strong style="color:var(--text);">WhatsApp-агент — автоматическая обработка сообщений</strong></td>
+            <td>Сообщения WhatsApp обрабатываются вручную в Bitrix24. Задержки и пропуски сообщений в нерабочее время. Нет автоматизации, нет покрытия 24/7, нет системного захвата лидов из чатов.</td>
+            <td>AI-агент автоматически отвечает на WhatsApp-сообщения, используя ту же базу знаний, что и голосовой агент. Создаёт сделки и задачи в Bitrix24 автоматически.</td>
+            <td>1. Подключить WhatsApp Business API<br>2. Расширить базу знаний из Этапа 1<br>3. Настроить сценарии для обоих типов клиентов<br>4. Интеграция Bitrix24: авто-сделка/задача<br>5. Триггер передачи оператору<br>6. Хранение истории чатов в CRM</td>
+            <td>Покрытие WhatsApp 24/7 без дополнительных сотрудников. Все запросы фиксируются в Bitrix24. Единый вид: звонки + чаты по каждому контакту. Быстрее ответ = выше конверсия.</td>
+          </tr>
+          <tr class="phase-row-3">
+            <td><span class="phase-tag-cell pt-3">Этап 3<br>Sales QA</span></td>
+            <td><strong style="color:var(--text);">AI-анализ звонков — соответствие скриптам &amp; дашборд качества</strong></td>
+            <td>Звонки записываются, но системного анализа нет. Руководители прослушивают лишь часть. Нет единого скоринга. Сложно выявить точки роста и отклонения от скрипта в масштабе.</td>
+            <td>AI автоматически анализирует каждую запись. Оценивает по скрипту. Фиксирует отклонения, выделяет лучшие практики, формирует дашборд для руководителей.</td>
+            <td>1. Подключить к записям звонков Bitrix24<br>2. Транскрибация (speech-to-text)<br>3. Модель скоринга по скрипту<br>4. Критерии оценки: приветствие, выявление потребностей, возражения, закрытие<br>5. Отчёт по каждому звонку<br>6. Командный дашборд: рейтинг, тренды, красные флаги</td>
+            <td>100% звонков проанализированы, а не выборочно. Объективный скоринг без предвзятости. Коучинг на реальных данных. Качество продаж растёт измеримо.</td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="2"><strong>ИТОГО ПРОЕКТ (Этапы 1–3)</strong></td>
+            <td colspan="4"><strong>€10 000 · 9–12 недель полный объём &nbsp;|&nbsp; €6 800 · 5–7 недель базовый (Этапы 1+2) &nbsp;|&nbsp; €5 000 · 3–4 недели стартовый (Этап 1)</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
+<!-- ── OPEX RU ── -->
+<div class="wrap">
+  <section class="s-opex">
+    <div class="section-label">Ежемесячные операционные расходы</div>
+    <h2>Реальный OPEX — под ваш объём</h2>
+    <p style="font-size:15px; color: var(--muted); margin-bottom: 28px; max-width: 600px;">Инфраструктурные расходы оплачиваются напрямую провайдерам — без наценки. Подвиньте ползунки под ваш реальный объём.</p>
+    <div class="calc-card">
+      <p class="calc-intro">Расчёт по умолчанию: 500 звонков + 1 000 WhatsApp-диалогов в месяц.</p>
+      <div class="calc-inputs">
+        <div class="slider-group">
+          <label>
+            <span class="slider-label">Звонков в месяц</span>
+            <span class="slider-val" id="callsVal-ru">500</span>
+          </label>
+          <input type="range" id="calls-ru" min="100" max="2000" step="50" value="500" oninput="document.getElementById('callsVal-ru').textContent=this.value; calcOpexRu();">
+        </div>
+        <div class="slider-group">
+          <label>
+            <span class="slider-label">Средняя длительность звонка (мин)</span>
+            <span class="slider-val" id="durationVal-ru">3 мин</span>
+          </label>
+          <input type="range" id="duration-ru" min="1" max="10" step="0.5" value="3" oninput="document.getElementById('durationVal-ru').textContent=this.value+' мин'; calcOpexRu();">
+        </div>
+        <div class="slider-group">
+          <label>
+            <span class="slider-label">WhatsApp-диалогов в месяц</span>
+            <span class="slider-val" id="waVal-ru">1 000</span>
+          </label>
+          <input type="range" id="wa-ru" min="100" max="5000" step="100" value="1000" oninput="document.getElementById('waVal-ru').textContent=Number(this.value).toLocaleString('ru'); calcOpexRu();">
+        </div>
+      </div>
+      <div class="calc-result">
+        <div class="result-row"><span class="label">Голосовой AI — TTS + STT (~€0.07/мин)</span><span class="val" id="r_voice-ru">€105.00</span></div>
+        <div class="result-row"><span class="label">LLM-токены — голосовые звонки (~1 500 токенов/звонок)</span><span class="val" id="r_llm_voice-ru">€11.25</span></div>
+        <div class="result-row"><span class="label">WhatsApp — Meta API (€0.045/диалог, 1 000 бесплатно/мес)</span><span class="val" id="r_wa_meta-ru">€0.00</span></div>
+        <div class="result-row"><span class="label">LLM-токены — WhatsApp (~6 сообщ. × 800 токенов/диалог)</span><span class="val" id="r_llm_wa-ru">€72.00</span></div>
+        <div class="result-row"><span class="label">Облачная инфраструктура и хостинг</span><span class="val">€30.00</span></div>
+        <div class="result-row" style="font-size:12px;"><span class="label">Подписки Bitrix24 + Avantio</span><span class="val" style="color:var(--muted);">расходы клиента</span></div>
+        <div class="result-total">
+          <span class="label">Расчётные ежемесячные расходы на инфраструктуру</span>
+          <span class="val" id="r_total-ru">~€218</span>
+        </div>
+        <p class="calc-note">✦ Все расходы — оценочные. Реальные затраты зависят от объёма звонков, длительности и выбора LLM-модели. Первые 3 месяца — проактивный мониторинг бесплатно. Техническая поддержка — €50/ч (T&amp;M). SLA по критическим инцидентам — €75/ч.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ── SUPPORT RU ── -->
+<div class="wrap">
+  <section class="s-support">
+    <div class="section-label">Техническая поддержка</div>
+    <h2>Прозрачно и предсказуемо</h2>
+    <p style="font-size:15px; color: var(--muted); margin-bottom: 28px;">Оплата по факту (Time &amp; Materials). Фиксируется ежемесячно. Без абонентского ретейнера.</p>
+    <div class="support-grid">
+      <div class="support-item free">
+        <div class="s-label">Первые 3 месяца после запуска</div>
+        <div class="s-rate">Включено</div>
+        <div class="s-detail">Проактивный мониторинг и QA без дополнительной оплаты.</div>
+      </div>
+      <div class="support-item">
+        <div class="s-label">Стандартная поддержка (T&amp;M)</div>
+        <div class="s-rate">€50 / ч</div>
+        <div class="s-detail">Исправление ошибок, обновление KB, изменения в CRM. Учитывается и выставляется ежемесячно.</div>
+      </div>
+      <div class="support-item">
+        <div class="s-label">Аварийный SLA</div>
+        <div class="s-rate">€75 / ч</div>
+        <div class="s-detail">Критические инциденты. Ответ в течение 4 часов. По запросу.</div>
+      </div>
+    </div>
+    <div style="margin-top:14px; padding:14px 18px; background:rgba(255,255,255,0.03); border-radius:10px; font-size:13px; color:var(--muted);">
+      Типичная ежемесячная поддержка: <strong style="color:var(--subtle);">2–4 часа</strong> на плановые корректировки (обновление KB, новые FAQ, автоматизации CRM). Ориентировочно: <strong style="color:var(--subtle);">€100–200 / мес</strong>.
+    </div>
+  </section>
+</div>
+
+<!-- ── CTA RU ── -->
+<div class="wrap">
+  <div class="cta-section">
+    <div class="cta-box">
+      <h2>Обсудим следующий шаг</h2>
+      <p class="cta-sub">Летний сезон начинается в июне. Запуск занимает 3–4 недели. Чтобы войти в пик готовыми — решение нужно до середины апреля.</p>
+      <ul class="contact-list">
+        <li>
+          <div class="contact-icon ci-cal">📅</div>
+          <div class="contact-text"><strong>Записаться на технический разбор</strong><br><a href="https://calendly.com/galakhovas" target="_blank">calendly.com/galakhovas</a></div>
+        </li>
+        <li>
+          <div class="contact-icon ci-mail">✉️</div>
+          <div class="contact-text"><strong>Запросить презентацию</strong><br><a href="mailto:techcrew@aihub.works">techcrew@aihub.works</a></div>
+        </li>
+        <li>
+          <div class="contact-icon ci-web">🌐</div>
+          <div class="contact-text"><strong>Сайт</strong><br><a href="https://aihub.works" target="_blank">aihub.works</a></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER RU ── -->
+<div class="wrap">
+  <div class="footer">
+    <span>AIHUB · aihub.works</span>
+    <span>Коммерческое предложение · Март 2026 · Конфиденциально</span>
+  </div>
+</div>
+
+</div><!-- /lang-ru -->
+
+
+<script>
+  /* ── Language switcher ── */
+  function setLang(lang) {
+    if (lang === 'ru') {
+      document.body.classList.add('ru');
+    } else {
+      document.body.classList.remove('ru');
+    }
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-ru').classList.toggle('active', lang === 'ru');
+    localStorage.setItem('kp-lang', lang);
+    window.scrollTo(0, 0);
+  }
+
+  /* ── Restore saved language ── */
+  (function() {
+    const saved = localStorage.getItem('kp-lang');
+    if (saved === 'ru') setLang('ru');
+  })();
+
+  /* ── Detail table toggle ── */
+  function toggleDetail(lang, btn) {
+    const wrap = document.getElementById('detailTable-' + lang);
+    const open = wrap.classList.toggle('open');
+    btn.textContent = open
+      ? (lang === 'ru' ? '▴ Скрыть декомпозицию' : '▴ Hide detailed scope breakdown')
+      : (lang === 'ru' ? '▾ Подробная декомпозиция по этапам' : '▾ View detailed scope breakdown');
+  }
+
+  /* ── OPEX Calculator (EN) ── */
+  function calcOpex() {
+    const calls    = parseFloat(document.getElementById('calls').value);
+    const duration = parseFloat(document.getElementById('duration').value);
+    const wa       = parseFloat(document.getElementById('wa').value);
+    const voiceCost = calls * duration * 0.07;
+    const llmVoice  = (calls * 1500 / 1000) * 0.015;
+    const waMeta    = Math.max(0, wa - 1000) * 0.045;
+    const llmWa     = (wa * 6 * 800 / 1000) * 0.015;
+    const total     = voiceCost + llmVoice + waMeta + llmWa + 30;
+    const fmt = n => '€' + n.toFixed(2);
+    document.getElementById('r_voice').textContent     = fmt(voiceCost);
+    document.getElementById('r_llm_voice').textContent = fmt(llmVoice);
+    document.getElementById('r_wa_meta').textContent   = fmt(waMeta);
+    document.getElementById('r_llm_wa').textContent    = fmt(llmWa);
+    document.getElementById('r_total').textContent     = '~€' + Math.round(total);
+  }
+
+  /* ── OPEX Calculator (RU) ── */
+  function calcOpexRu() {
+    const calls    = parseFloat(document.getElementById('calls-ru').value);
+    const duration = parseFloat(document.getElementById('duration-ru').value);
+    const wa       = parseFloat(document.getElementById('wa-ru').value);
+    const voiceCost = calls * duration * 0.07;
+    const llmVoice  = (calls * 1500 / 1000) * 0.015;
+    const waMeta    = Math.max(0, wa - 1000) * 0.045;
+    const llmWa     = (wa * 6 * 800 / 1000) * 0.015;
+    const total     = voiceCost + llmVoice + waMeta + llmWa + 30;
+    const fmt = n => '€' + n.toFixed(2);
+    document.getElementById('r_voice-ru').textContent     = fmt(voiceCost);
+    document.getElementById('r_llm_voice-ru').textContent = fmt(llmVoice);
+    document.getElementById('r_wa_meta-ru').textContent   = fmt(waMeta);
+    document.getElementById('r_llm_wa-ru').textContent    = fmt(llmWa);
+    document.getElementById('r_total-ru').textContent     = '~€' + Math.round(total);
+  }
+
+  calcOpex();
+  calcOpexRu();
+</script>
+
+</body>
+</html>
