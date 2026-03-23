@@ -856,21 +856,21 @@
     <h2>Your actual OPEX — adjust to your volume</h2>
     <p style="font-size:15px; color: var(--muted); margin-bottom: 28px; max-width: 600px;">Infrastructure costs are paid directly to providers — no markup. Adjust the sliders to see your real monthly spend.</p>
     <div class="calc-card">
-      <p class="calc-intro">Estimated at 500 calls + 1,000 WhatsApp conversations / month. Adjust to your actual volume.</p>
+      <p class="calc-intro">Pre-set at your current volume: 1,900 calls / month, avg 5 min. Adjust to model peak season (August).</p>
       <div class="calc-inputs">
         <div class="slider-group">
           <label>
             <span class="slider-label">Voice calls / month</span>
-            <span class="slider-val" id="callsVal">500</span>
+            <span class="slider-val" id="callsVal">1,900</span>
           </label>
-          <input type="range" id="calls" min="100" max="2000" step="50" value="500" oninput="document.getElementById('callsVal').textContent=this.value; calcOpex();">
+          <input type="range" id="calls" min="100" max="3000" step="50" value="1900" oninput="document.getElementById('callsVal').textContent=Number(this.value).toLocaleString(); calcOpex();">
         </div>
         <div class="slider-group">
           <label>
             <span class="slider-label">Avg call duration (min)</span>
-            <span class="slider-val" id="durationVal">3 min</span>
+            <span class="slider-val" id="durationVal">5 min</span>
           </label>
-          <input type="range" id="duration" min="1" max="10" step="0.5" value="3" oninput="document.getElementById('durationVal').textContent=this.value+' min'; calcOpex();">
+          <input type="range" id="duration" min="1" max="10" step="0.5" value="5" oninput="document.getElementById('durationVal').textContent=this.value+' min'; calcOpex();">
         </div>
         <div class="slider-group">
           <label>
@@ -881,17 +881,17 @@
         </div>
       </div>
       <div class="calc-result">
-        <div class="result-row"><span class="label">Voice AI — TTS + STT (~€0.07/min)</span><span class="val" id="r_voice">€105.00</span></div>
-        <div class="result-row"><span class="label">LLM tokens — Voice calls (~1,500 tokens/call)</span><span class="val" id="r_llm_voice">€11.25</span></div>
+        <div class="result-row"><span class="label">Voice AI — premium voice platform (~€0.20/min)</span><span class="val" id="r_voice">€1,900.00</span></div>
+        <div class="result-row"><span class="label">LLM tokens — Voice calls (~1,500 tokens/call)</span><span class="val" id="r_llm_voice">€42.75</span></div>
         <div class="result-row"><span class="label">WhatsApp — Meta API (€0.045/convo, 1,000 free/mo)</span><span class="val" id="r_wa_meta">€0.00</span></div>
         <div class="result-row"><span class="label">LLM tokens — WhatsApp (~6 msgs × 800 tokens/convo)</span><span class="val" id="r_llm_wa">€72.00</span></div>
         <div class="result-row"><span class="label">Cloud infrastructure &amp; hosting</span><span class="val">€30.00</span></div>
         <div class="result-row" style="font-size:12px;"><span class="label">Bitrix24 + Avantio subscriptions</span><span class="val" style="color:var(--muted);">client-side cost</span></div>
         <div class="result-total">
           <span class="label">Estimated monthly infrastructure</span>
-          <span class="val" id="r_total">~€218</span>
+          <span class="val" id="r_total">~€2,045</span>
         </div>
-        <p class="calc-note">✦ All usage costs are estimates. Actual costs depend on call volume, duration, and LLM model choice. First 3 months include proactive monitoring at no charge. Technical support billed at €50/hr (T&amp;M). Emergency SLA at €75/hr.</p>
+        <p class="calc-note">✦ Voice AI cost (~€0.20/min) reflects a premium human-like voice agent. Infrastructure costs are paid directly to providers — no markup from our side. First 3 months include proactive monitoring at no charge. Technical support billed at €50/hr (T&amp;M). Emergency SLA at €75/hr.</p>
       </div>
     </div>
   </section>
@@ -1149,21 +1149,21 @@
     <h2>Реальный OPEX — под ваш объём</h2>
     <p style="font-size:15px; color: var(--muted); margin-bottom: 28px; max-width: 600px;">Инфраструктурные расходы оплачиваются напрямую провайдерам — без наценки. Подвиньте ползунки под ваш реальный объём.</p>
     <div class="calc-card">
-      <p class="calc-intro">Расчёт по умолчанию: 500 звонков + 1 000 WhatsApp-диалогов в месяц.</p>
+      <p class="calc-intro">Предустановлено под ваш текущий объём: 1 900 звонков/мес, ср. 5 мин. Сдвиньте ползунки для моделирования пика (август).</p>
       <div class="calc-inputs">
         <div class="slider-group">
           <label>
             <span class="slider-label">Звонков в месяц</span>
-            <span class="slider-val" id="callsVal-ru">500</span>
+            <span class="slider-val" id="callsVal-ru">1 900</span>
           </label>
-          <input type="range" id="calls-ru" min="100" max="2000" step="50" value="500" oninput="document.getElementById('callsVal-ru').textContent=this.value; calcOpexRu();">
+          <input type="range" id="calls-ru" min="100" max="3000" step="50" value="1900" oninput="document.getElementById('callsVal-ru').textContent=Number(this.value).toLocaleString('ru'); calcOpexRu();">
         </div>
         <div class="slider-group">
           <label>
             <span class="slider-label">Средняя длительность звонка (мин)</span>
-            <span class="slider-val" id="durationVal-ru">3 мин</span>
+            <span class="slider-val" id="durationVal-ru">5 мин</span>
           </label>
-          <input type="range" id="duration-ru" min="1" max="10" step="0.5" value="3" oninput="document.getElementById('durationVal-ru').textContent=this.value+' мин'; calcOpexRu();">
+          <input type="range" id="duration-ru" min="1" max="10" step="0.5" value="5" oninput="document.getElementById('durationVal-ru').textContent=this.value+' мин'; calcOpexRu();">
         </div>
         <div class="slider-group">
           <label>
@@ -1174,17 +1174,17 @@
         </div>
       </div>
       <div class="calc-result">
-        <div class="result-row"><span class="label">Голосовой AI — TTS + STT (~€0.07/мин)</span><span class="val" id="r_voice-ru">€105.00</span></div>
-        <div class="result-row"><span class="label">LLM-токены — голосовые звонки (~1 500 токенов/звонок)</span><span class="val" id="r_llm_voice-ru">€11.25</span></div>
+        <div class="result-row"><span class="label">Голосовой AI — премиальная платформа (~€0.20/мин)</span><span class="val" id="r_voice-ru">€1 900.00</span></div>
+        <div class="result-row"><span class="label">LLM-токены — голосовые звонки (~1 500 токенов/звонок)</span><span class="val" id="r_llm_voice-ru">€42.75</span></div>
         <div class="result-row"><span class="label">WhatsApp — Meta API (€0.045/диалог, 1 000 бесплатно/мес)</span><span class="val" id="r_wa_meta-ru">€0.00</span></div>
         <div class="result-row"><span class="label">LLM-токены — WhatsApp (~6 сообщ. × 800 токенов/диалог)</span><span class="val" id="r_llm_wa-ru">€72.00</span></div>
         <div class="result-row"><span class="label">Облачная инфраструктура и хостинг</span><span class="val">€30.00</span></div>
         <div class="result-row" style="font-size:12px;"><span class="label">Подписки Bitrix24 + Avantio</span><span class="val" style="color:var(--muted);">расходы клиента</span></div>
         <div class="result-total">
           <span class="label">Расчётные ежемесячные расходы на инфраструктуру</span>
-          <span class="val" id="r_total-ru">~€218</span>
+          <span class="val" id="r_total-ru">~€2 045</span>
         </div>
-        <p class="calc-note">✦ Все расходы — оценочные. Реальные затраты зависят от объёма звонков, длительности и выбора LLM-модели. Первые 3 месяца — проактивный мониторинг бесплатно. Техническая поддержка — €50/ч (T&amp;M). SLA по критическим инцидентам — €75/ч.</p>
+        <p class="calc-note">✦ Стоимость голосового AI (~€0.20/мин) — премиальный агент, близкий к человеческому голосу. Инфраструктурные расходы оплачиваются напрямую провайдерам, без нашей наценки. Первые 3 месяца — проактивный мониторинг бесплатно. Техническая поддержка — €50/ч (T&amp;M). SLA по критическим инцидентам — €75/ч.</p>
       </div>
     </div>
   </section>
@@ -1288,7 +1288,7 @@
     const calls    = parseFloat(document.getElementById('calls').value);
     const duration = parseFloat(document.getElementById('duration').value);
     const wa       = parseFloat(document.getElementById('wa').value);
-    const voiceCost = calls * duration * 0.07;
+    const voiceCost = calls * duration * 0.20;
     const llmVoice  = (calls * 1500 / 1000) * 0.015;
     const waMeta    = Math.max(0, wa - 1000) * 0.045;
     const llmWa     = (wa * 6 * 800 / 1000) * 0.015;
@@ -1298,7 +1298,7 @@
     document.getElementById('r_llm_voice').textContent = fmt(llmVoice);
     document.getElementById('r_wa_meta').textContent   = fmt(waMeta);
     document.getElementById('r_llm_wa').textContent    = fmt(llmWa);
-    document.getElementById('r_total').textContent     = '~€' + Math.round(total);
+    document.getElementById('r_total').textContent     = '~€' + Math.round(total).toLocaleString();
   }
 
   /* ── OPEX Calculator (RU) ── */
@@ -1306,7 +1306,7 @@
     const calls    = parseFloat(document.getElementById('calls-ru').value);
     const duration = parseFloat(document.getElementById('duration-ru').value);
     const wa       = parseFloat(document.getElementById('wa-ru').value);
-    const voiceCost = calls * duration * 0.07;
+    const voiceCost = calls * duration * 0.20;
     const llmVoice  = (calls * 1500 / 1000) * 0.015;
     const waMeta    = Math.max(0, wa - 1000) * 0.045;
     const llmWa     = (wa * 6 * 800 / 1000) * 0.015;
@@ -1316,7 +1316,7 @@
     document.getElementById('r_llm_voice-ru').textContent = fmt(llmVoice);
     document.getElementById('r_wa_meta-ru').textContent   = fmt(waMeta);
     document.getElementById('r_llm_wa-ru').textContent    = fmt(llmWa);
-    document.getElementById('r_total-ru').textContent     = '~€' + Math.round(total);
+    document.getElementById('r_total-ru').textContent     = '~€' + Math.round(total).toLocaleString();
   }
 
   calcOpex();
