@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vedenina Design — Конкурентное поле</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0E0E14; --surface: #16161F; --surface2: #1E1E2A;
+    --border: rgba(255,255,255,0.07); --text: #F0F0F5; --muted: #6B6B85;
+    --accent: #7C6FFF; --accent2: #00C9A7;
+    --red: #FF4D6D; --orange: #FF9F43; --yellow: #FFD93D;
+    --green: #00E87A; --blue: #4ECDC4;
+  }
+  body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif; line-height:1.6; min-height:100vh; }
+
+  /* ── LAYOUT ── */
+  .wrap { padding: 0 48px; }
+  @media(max-width:860px){ .wrap { padding:0 16px; } }
+
+  /* ── HEADER ── */
+  .header { padding:36px 48px 0; display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px; }
+  .brand-badge { display:inline-flex; align-items:center; gap:10px; background:var(--surface2); border:1px solid var(--border); border-radius:100px; padding:6px 16px 6px 8px; font-size:13px; color:var(--muted); }
+  .brand-dot { width:28px; height:28px; background:linear-gradient(135deg,var(--accent),var(--accent2)); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; color:#fff; font-weight:700; }
+  .date-badge { font-size:12px; color:var(--muted); background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:6px 14px; }
+
+  /* ── HERO ── */
+  .hero { padding:36px 48px 0; }
+  .hero h1 { font-size:40px; font-weight:800; letter-spacing:-1.5px; line-height:1.1; background:linear-gradient(135deg,#fff 0%,#a09fff 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .hero-sub { margin-top:10px; font-size:15px; color:var(--muted); }
+
+  /* ── STAT ROW ── */
+  .stat-row { display:flex; gap:14px; padding:28px 48px; flex-wrap:wrap; }
+  .stat-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:18px 24px; flex:1; min-width:140px; position:relative; overflow:hidden; }
+  .stat-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--tc, var(--accent)); }
+  .stat-number { font-size:32px; font-weight:800; letter-spacing:-1px; line-height:1; }
+  .stat-label { font-size:11px; color:var(--muted); margin-top:5px; text-transform:uppercase; letter-spacing:0.5px; }
+
+  /* ── SECTION ── */
+  .section-title { font-size:10px; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted); margin-bottom:18px; display:flex; align-items:center; gap:8px; }
+  .section-title::after { content:''; flex:1; height:1px; background:var(--border); }
+  .block { background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:26px; }
+
+  /* ── VEDENINA PROFILE ── */
+  .vd-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+  @media(max-width:860px){ .vd-grid { grid-template-columns:1fr 1fr; } }
+  .vd-item { background:var(--surface2); border-radius:12px; padding:13px 15px; }
+  .vd-label { font-size:9px; color:var(--muted); text-transform:uppercase; letter-spacing:0.8px; margin-bottom:4px; }
+  .vd-value { font-size:12px; font-weight:600; }
+  .tag { display:inline-block; background:rgba(124,111,255,.13); border:1px solid rgba(124,111,255,.28); color:#a09fff; border-radius:6px; padding:2px 8px; font-size:10px; font-weight:600; margin:2px 3px 2px 0; }
+  .tag.green { background:rgba(0,232,122,.1); border-color:rgba(0,232,122,.25); color:var(--green); }
+  .tag.red { background:rgba(255,77,109,.1); border-color:rgba(255,77,109,.25); color:var(--red); }
+  .tag.blue { background:rgba(78,205,196,.1); border-color:rgba(78,205,196,.25); color:var(--blue); }
+
+  .vd-utp { background:rgba(124,111,255,.07); border:1px solid rgba(124,111,255,.18); border-radius:14px; padding:16px 18px; margin-top:12px; font-size:13px; line-height:1.55; }
+  .vd-utp strong { color:var(--accent); }
+
+  .vd-swot { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px; }
+  .swot-box { background:var(--surface2); border-radius:12px; padding:13px 15px; }
+  .swot-title { font-size:9px; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:8px; font-weight:700; }
+  .swot-title.s { color:var(--green); } .swot-title.w { color:var(--red); }
+  .swot-title.o { color:var(--blue); } .swot-title.t { color:var(--orange); }
+  .swot-list { list-style:none; display:flex; flex-direction:column; gap:4px; }
+  .swot-list li { font-size:11px; color:rgba(240,240,245,.8); padding-left:12px; position:relative; }
+  .swot-list li::before { content:'→'; position:absolute; left:0; color:var(--muted); font-size:9px; top:2px; }
+
+  /* ── 2-COL ── */
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  @media(max-width:860px){ .grid2 { grid-template-columns:1fr; } }
+
+  /* ── MAP ── */
+  .map-wrap { position:relative; width:100%; aspect-ratio:1.7/1; background:var(--surface2); border-radius:16px; overflow:hidden; }
+  .map-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px); background-size:20% 25%; }
+  .map-zone { position:absolute; border-radius:10px; background:var(--green); opacity:.07; right:3%; top:5%; width:28%; height:40%; pointer-events:none; }
+  .map-zone-lbl { position:absolute; right:3.5%; top:5.5%; font-size:9px; color:var(--green); opacity:.65; text-transform:uppercase; letter-spacing:.5px; text-align:right; line-height:1.3; pointer-events:none; }
+  .map-xl { position:absolute; bottom:3px; left:50%; transform:translateX(-50%); font-size:9px; color:var(--muted); text-transform:uppercase; letter-spacing:.4px; pointer-events:none; }
+  .map-yl { position:absolute; left:3px; top:50%; transform:translateY(-50%) rotate(-90deg); font-size:9px; color:var(--muted); text-transform:uppercase; letter-spacing:.4px; white-space:nowrap; pointer-events:none; }
+
+  .dot { position:absolute; transform:translate(-50%,-50%); cursor:default; z-index:2; }
+  .dc { width:11px; height:11px; border-radius:50%; border:2px solid; transition:transform .15s; }
+  .dot:hover .dc { transform:scale(1.7); }
+  .dl { position:absolute; left:14px; top:50%; transform:translateY(-50%); font-size:9.5px; white-space:nowrap; font-weight:600; background:rgba(14,14,20,.88); padding:1px 6px; border-radius:4px; pointer-events:none; opacity:0; transition:opacity .15s; }
+  .dot:hover .dl { opacity:1; }
+  .dot.you .dc { width:16px; height:16px; background:var(--accent); border-color:#fff; box-shadow:0 0 0 4px rgba(124,111,255,.3); }
+  .dot.you .dl { opacity:1; background:rgba(124,111,255,.9); color:#fff; font-size:10px; }
+  .dot.direct .dc { background:var(--red); border-color:var(--red); }
+  .dot.indirect .dc { background:var(--orange); border-color:var(--orange); }
+  .dot.nocomp .dc { background:var(--muted); border-color:var(--muted); }
+
+  .map-legend { display:flex; gap:14px; margin-top:14px; flex-wrap:wrap; }
+  .leg { display:flex; align-items:center; gap:6px; font-size:11px; color:var(--muted); }
+  .legdot { width:9px; height:9px; border-radius:50%; border:2px solid; }
+  .legdot.you { background:var(--accent); border-color:#fff; }
+  .legdot.direct { background:var(--red); border-color:var(--red); }
+  .legdot.indirect { background:var(--orange); border-color:var(--orange); }
+  .legdot.nocomp { background:var(--muted); border-color:var(--muted); }
+
+  /* ── COMPETITOR CARDS ── */
+  .threat-hd { display:flex; align-items:center; gap:10px; margin:26px 0 14px; }
+  .tbadge { display:inline-flex; align-items:center; gap:6px; padding:5px 14px; border-radius:100px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; }
+  .tbadge::before { content:''; width:6px; height:6px; border-radius:50%; background:currentColor; }
+  .tbadge.direct { background:rgba(255,77,109,.14); color:var(--red); border:1px solid rgba(255,77,109,.28); }
+  .tbadge.indirect { background:rgba(255,159,67,.14); color:var(--orange); border:1px solid rgba(255,159,67,.28); }
+  .tbadge.nocomp { background:rgba(107,107,133,.14); color:var(--muted); border:1px solid rgba(107,107,133,.28); }
+  .threat-sub { font-size:11px; color:var(--muted); }
+
+  .cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:12px; }
+
+  .cc { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:18px; position:relative; overflow:hidden; transition:border-color .18s, transform .18s; }
+  .cc:hover { transform:translateY(-2px); border-color:rgba(255,255,255,.11); }
+  .cc::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; border-radius:3px 0 0 3px; }
+  .cc.direct::before { background:var(--red); }
+  .cc.indirect::before { background:var(--orange); }
+  .cc.nocomp::before { background:var(--muted); }
+
+  .cc-name { font-size:14px; font-weight:700; margin-bottom:1px; }
+  .cc-tag { font-size:10px; color:var(--muted); font-style:italic; margin-bottom:10px; }
+  .cc-desc { font-size:11.5px; color:rgba(240,240,245,.72); line-height:1.5; margin-bottom:10px; }
+
+  .cc-pills { display:flex; gap:6px; flex-wrap:wrap; }
+  .pill { background:var(--surface2); border-radius:6px; padding:3px 9px; font-size:9.5px; color:var(--muted); }
+  .pill.accent { background:rgba(124,111,255,.12); color:var(--accent); }
+  .pill.red { background:rgba(255,77,109,.12); color:var(--red); }
+  .pill.green { background:rgba(0,232,122,.1); color:var(--green); }
+
+  .bars { margin-top:10px; display:flex; flex-direction:column; gap:4px; }
+  .bar-row { display:flex; align-items:center; gap:7px; }
+  .bar-lbl { width:84px; font-size:9px; color:var(--muted); text-align:right; flex-shrink:0; }
+  .bar-track { flex:1; height:3px; background:var(--surface2); border-radius:2px; overflow:hidden; }
+  .bar-fill { height:100%; border-radius:2px; }
+  .bar-val { width:18px; font-size:9px; font-weight:700; color:var(--text); text-align:right; }
+
+  /* ── CONCLUSION ── */
+  .conclusion { background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:30px; }
+  .conc-title { font-size:20px; font-weight:800; letter-spacing:-.5px; margin-bottom:18px; }
+  .findings { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:20px; }
+  @media(max-width:700px){ .findings { grid-template-columns:1fr; } }
+  .finding { background:var(--surface2); border-radius:13px; padding:16px; border-left:3px solid var(--accent); }
+  .finding.green { border-color:var(--green); } .finding.red { border-color:var(--red); } .finding.orange { border-color:var(--orange); }
+  .fn-num { font-size:9px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; margin-bottom:5px; }
+  .fn-text { font-size:13px; font-weight:700; line-height:1.4; }
+  .fn-sub { font-size:11px; color:var(--muted); margin-top:4px; line-height:1.4; }
+
+  .realcomp { background:rgba(124,111,255,.07); border:1px solid rgba(124,111,255,.2); border-radius:13px; padding:18px; }
+  .realcomp h3 { font-size:11px; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:.5px; margin-bottom:12px; }
+  .ri { display:flex; align-items:flex-start; gap:10px; font-size:12px; margin-bottom:8px; }
+  .ri:last-child { margin-bottom:0; }
+  .rnum { min-width:20px; height:20px; background:rgba(124,111,255,.2); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:700; color:var(--accent); }
+  .rname { font-weight:700; } .rreason { color:var(--muted); margin-top:1px; font-size:11px; }
+
+  .foot { font-size:10px; color:var(--muted); margin-top:20px; padding-top:14px; border-top:1px solid var(--border); display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px; }
+
+  /* number colors */
+  .c-green { color:var(--green); } .c-red { color:var(--red); }
+  .c-orange { color:var(--orange); } .c-blue { color:var(--blue); }
+  .c-muted { color:var(--muted); } .c-accent { color:var(--accent); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="brand-badge"><div class="brand-dot">VD</div>Vedenina Design · Competitive Intelligence</div>
+  <div class="date-badge">Апрель 2026 · 20 конкурентов · EY-формат</div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Конкурентное поле<br>авторских шёлковых платков</h1>
+  <p class="hero-sub">Россия · Сегмент «культура + авторский дизайн» · Анализ 20 игроков + профиль бренда</p>
+</div>
+
+<!-- STATS -->
+<div class="stat-row">
+  <div class="stat-card" style="--tc:var(--red)"><div class="stat-number c-red">6</div><div class="stat-label">Прямых конкурента</div></div>
+  <div class="stat-card" style="--tc:var(--orange)"><div class="stat-number c-orange">10</div><div class="stat-label">Косвенных игрока</div></div>
+  <div class="stat-card" style="--tc:var(--muted)"><div class="stat-number c-muted">6</div><div class="stat-label">Другой сегмент</div></div>
+  <div class="stat-card" style="--tc:var(--green)"><div class="stat-number c-green">1</div><div class="stat-label">Свободный квадрант</div></div>
+  <div class="stat-card" style="--tc:var(--accent)"><div class="stat-number c-accent">2013</div><div class="stat-label">Год основания VD</div></div>
+  <div class="stat-card" style="--tc:var(--yellow)"><div class="stat-number" style="color:var(--yellow)">~1,5B</div><div class="stat-label">Ёмкость рынка, ₽/год</div></div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     VEDENINA DESIGN — ПРОФИЛЬ
+══════════════════════════════════════════════════ -->
+<div class="wrap" style="margin-bottom:18px">
+<div class="block">
+  <div class="section-title">Vedenina Design — Профиль бренда (на основе сайта vedeninadesign.ru)</div>
+
+  <div class="vd-grid">
+    <div class="vd-item">
+      <div class="vd-label">Основатель</div>
+      <div class="vd-value">Лидия Ведениной</div>
+    </div>
+    <div class="vd-item">
+      <div class="vd-label">Год основания</div>
+      <div class="vd-value">2013 · 13 лет на рынке</div>
+    </div>
+    <div class="vd-item">
+      <div class="vd-label">Образование</div>
+      <div class="vd-value">Британская Высшая Школа Дизайна — архитектура и интерьер</div>
+    </div>
+    <div class="vd-item">
+      <div class="vd-label">Правовая форма</div>
+      <div class="vd-value">Самозанятая · ИНН 783900512864</div>
+    </div>
+    <div class="vd-item">
+      <div class="vd-label">Расположение</div>
+      <div class="vd-value">Москва · м. Рижская</div>
+    </div>
+    <div class="vd-item">
+      <div class="vd-label">Портфолио</div>
+      <div class="vd-value">Behance · Telegram-канал (дизайн и арт-лайфстайл)</div>
+    </div>
+
+    <div class="vd-item" style="grid-column:span 3">
+      <div class="vd-label">Продукты</div>
+      <div style="margin-top:5px">
+        <span class="tag green">Шёлковые платки 100%</span>
+        <span class="tag green">Деревянные украшения</span>
+        <span class="tag green">Зонты (трости и складные)</span>
+        <span class="tag">Рождественские игрушки</span>
+        <span class="tag">Ювелирные аксессуары</span>
+      </div>
+    </div>
+
+    <div class="vd-item" style="grid-column:span 3">
+      <div class="vd-label">Источники вдохновения (культурный контекст)</div>
+      <div style="margin-top:5px">
+        <span class="tag blue">Поэзия и проза</span>
+        <span class="tag blue">Театр и танец</span>
+        <span class="tag blue">Живопись и графика</span>
+        <span class="tag blue">Архитектура</span>
+        <span class="tag blue">Орнаменты</span>
+        <span class="tag blue">Традиционные ремёсла</span>
+      </div>
+    </div>
+
+    <div class="vd-item" style="grid-column:span 3">
+      <div class="vd-label">Ценности бренда</div>
+      <div style="margin-top:5px">
+        <span class="tag">Уникальный дизайн</span>
+        <span class="tag">Лаконичные формы</span>
+        <span class="tag">Функционализм</span>
+        <span class="tag">Натуральные материалы</span>
+        <span class="tag">Современные технологии</span>
+      </div>
+    </div>
+
+    <div class="vd-item">
+      <div class="vd-label">Контакты</div>
+      <div class="vd-value" style="font-size:11px">+7 926 708 26 06<br>vedenina_lidiya@bk.ru<br>@lidiaved (TG)</div>
+    </div>
+    <div class="vd-item">
+      <div class="vd-label">Каналы продаж</div>
+      <div class="vd-value" style="font-size:11px">Сайт · Telegram · Email<br>Самовывоз (м. Рижская)</div>
+    </div>
+    <div class="vd-item">
+      <div class="vd-label">Соцсети</div>
+      <div class="vd-value" style="font-size:11px">VK: vedeninadesign<br>TG: @vedeninadesign<br>Behance: портфолио</div>
+    </div>
+
+    <div class="vd-item">
+      <div class="vd-label">Ценовой порог</div>
+      <div class="vd-value">Бесплатная доставка от <strong>10 000 ₽</strong> → средний чек ~5–8 т.р.</div>
+    </div>
+    <div class="vd-item">
+      <div class="vd-label">Масштаб</div>
+      <div class="vd-value">Микро-бренд · авторское производство · малые тиражи</div>
+    </div>
+    <div class="vd-item">
+      <div class="vd-label">Доставка</div>
+      <div class="vd-value" style="font-size:11px">Курьер МКАД 500 ₽ · СДЭК от 500 ₽<br>Почта от 400 ₽ · Яндекс от 350 ₽</div>
+    </div>
+  </div>
+
+  <div class="vd-utp">
+    <strong>Ключевое УТП (формулировка с сайта):</strong> «Мы создаём культурные аксессуары: украшения и шёлковые платки, вдохновлённые русской культурой — стихами и прозой, танцем и театром, живописью и графикой, архитектурой, орнаментами и традиционными ремёслами.»<br><br>
+    <strong>Дифференциатор:</strong> Архитектурное мышление основателя (БВШД) + широкий культурный охват — литература, театр, живопись, архитектура одновременно. Это самый многоплановый культурный нарратив среди всех конкурентов.
+  </div>
+
+  <div class="vd-swot">
+    <div class="swot-box">
+      <div class="swot-title s">Сильные стороны</div>
+      <ul class="swot-list">
+        <li>Широчайший культурный охват (литература + театр + живопись + архитектура)</li>
+        <li>Профессиональное образование (БВШД) — дизайн-мышление высокого уровня</li>
+        <li>13 лет на рынке — опыт и устоявшаяся аудитория</li>
+        <li>Разнообразный продуктовый портфель (платки + украшения + зонты)</li>
+        <li>Личный бренд основателя — прямая коммуникация через TG</li>
+      </ul>
+    </div>
+    <div class="swot-box">
+      <div class="swot-title w">Слабые стороны</div>
+      <ul class="swot-list">
+        <li>УТП слишком широкое — «вдохновлённые русской культурой» без конкретики</li>
+        <li>Слабая медийность — нет публикаций в РБК/Vogue/«Снобе»</li>
+        <li>Нет флагманской точки продаж (только самовывоз м. Рижская)</li>
+        <li>Самозанятая = ограниченный производственный потенциал</li>
+        <li>Слабый цифровой след (нет Instagram-стратегии)</li>
+      </ul>
+    </div>
+    <div class="swot-box">
+      <div class="swot-title o">Возможности</div>
+      <ul class="swot-list">
+        <li>Коллаборация с литературными музеями или театрами</li>
+        <li>Верхний правый квадрант («люкс + глубокая культура») почти пуст</li>
+        <li>Зонты + украшения — уникальная продуктовая экосистема (нет у конкурентов)</li>
+        <li>Рост интереса к российской идентичности = попутный ветер</li>
+        <li>Behance-портфолио → вход в B2B (корпоративные подарки)</li>
+      </ul>
+    </div>
+    <div class="swot-box">
+      <div class="swot-title t">Угрозы</div>
+      <ul class="swot-list">
+        <li>Ярмарка Мастеров давит ценой на всю категорию</li>
+        <li>Sirinbird занимает «топ-оф-майнд» у целевой аудитории</li>
+        <li>Новые авторские микро-бренды появляются каждый год</li>
+        <li>Экономический спад снижает спрос на нишевый премиум</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     КАРТА + ПОЗИЦИОНИРОВАНИЕ
+══════════════════════════════════════════════════ -->
+<div class="wrap" style="margin-bottom:18px">
+<div class="grid2">
+
+  <!-- MAP -->
+  <div class="block">
+    <div class="section-title">Карта позиционирования — наведите на точку</div>
+    <div class="map-wrap">
+      <div class="map-grid"></div>
+      <div class="map-zone"></div>
+      <div class="map-zone-lbl">Свободный<br>квадрант</div>
+      <div class="map-xl">→ Глубина культурного контекста</div>
+      <div class="map-yl">↑ Цена</div>
+
+      <!-- YOU -->
+      <div class="dot you" style="left:80%;top:42%"><div class="dc"></div><div class="dl">▶ Vedenina Design</div></div>
+
+      <!-- DIRECT -->
+      <div class="dot direct" style="left:91%;top:15%"><div class="dc"></div><div class="dl">Sirinbird</div></div>
+      <div class="dot direct" style="left:85%;top:40%"><div class="dc"></div><div class="dl">Т. Кузнецова</div></div>
+      <div class="dot direct" style="left:69%;top:53%"><div class="dc"></div><div class="dl">В. Синельникова</div></div>
+      <div class="dot direct" style="left:62%;top:50%"><div class="dc"></div><div class="dl">Kokosha</div></div>
+
+      <!-- INDIRECT -->
+      <div class="dot indirect" style="left:57%;top:63%"><div class="dc"></div><div class="dl">Lips & Brain</div></div>
+      <div class="dot indirect" style="left:52%;top:33%"><div class="dc"></div><div class="dl">Nina Ruchkina</div></div>
+      <div class="dot indirect" style="left:54%;top:75%"><div class="dc"></div><div class="dl">Русские в моде</div></div>
+      <div class="dot indirect" style="left:38%;top:13%"><div class="dc"></div><div class="dl">Feelosofia</div></div>
+      <div class="dot indirect" style="left:46%;top:56%"><div class="dc"></div><div class="dl">Firdaws</div></div>
+      <div class="dot indirect" style="left:33%;top:65%"><div class="dc"></div><div class="dl">BatikLine</div></div>
+      <div class="dot indirect" style="left:77%;top:20%"><div class="dc"></div><div class="dl">Axenoff</div></div>
+      <div class="dot indirect" style="left:48%;top:67%"><div class="dc"></div><div class="dl">Kurochki.co</div></div>
+      <div class="dot indirect" style="left:40%;top:60%"><div class="dc"></div><div class="dl">ArtAngels</div></div>
+      <div class="dot indirect" style="left:55%;top:68%"><div class="dc"></div><div class="dl">N. Bikbaeva</div></div>
+
+      <!-- NO COMP -->
+      <div class="dot nocomp" style="left:13%;top:19%"><div class="dc"></div><div class="dl">Radical Chic</div></div>
+      <div class="dot nocomp" style="left:28%;top:60%"><div class="dc"></div><div class="dl">ValArt</div></div>
+      <div class="dot nocomp" style="left:42%;top:83%"><div class="dc"></div><div class="dl">Павлов. Посад</div></div>
+      <div class="dot nocomp" style="left:22%;top:80%"><div class="dc"></div><div class="dl">Livemaster</div></div>
+      <div class="dot nocomp" style="left:30%;top:48%"><div class="dc"></div><div class="dl">Russian Silk</div></div>
+    </div>
+    <div class="map-legend">
+      <div class="leg"><div class="legdot you"></div>Vedenina</div>
+      <div class="leg"><div class="legdot direct"></div>Прямой</div>
+      <div class="leg"><div class="legdot indirect"></div>Косвенный</div>
+      <div class="leg"><div class="legdot nocomp"></div>Другой сегмент</div>
+    </div>
+  </div>
+
+  <!-- KEY FACTS -->
+  <div class="block">
+    <div class="section-title">Ключевые структурные выводы</div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+
+      <div class="finding green">
+        <div class="fn-num">Finding #1 · Позиция</div>
+        <div class="fn-text">Верхний правый квадрант почти пуст</div>
+        <div class="fn-sub">«Люкс + глубокий мультикультурный нарратив» не занят никем. Sirinbird ближе всех — но ограничен только мифологией. Vedenina охватывает литературу, театр, живопись, архитектуру — уникальная широта.</div>
+      </div>
+
+      <div class="finding red">
+        <div class="fn-num">Finding #2 · Угроза</div>
+        <div class="fn-text">Главный конкурент — платформа, не бренд</div>
+        <div class="fn-sub">Ярмарка Мастеров / Livemaster захватывает поисковый трафик «авторский шёлковый платок» и давит ценой (1–4 т.р.). Это ценовое якорение против среднего чека Vedenina.</div>
+      </div>
+
+      <div class="finding orange">
+        <div class="fn-num">Finding #3 · Возможность</div>
+        <div class="fn-text">Axenoff — неожиданный конкурент</div>
+        <div class="fn-sub">Ювелирный дом с платками о русских сказках, связан с Большим театром. Та же культурная аудитория, высокая медийность (Tatler, Posta-Magazine) — но другая ценовая лига. Образец для медийной стратегии.</div>
+      </div>
+
+      <div class="finding">
+        <div class="fn-num">Finding #4 · Тактика</div>
+        <div class="fn-text">Коллаборация = главный рычаг отрыва</div>
+        <div class="fn-sub">Axenoff работает с Большим театром. Lips & Brain — со «Снобом» и Art&Brut. Sirinbird — с дипмиссиями. Vedenina без публичных коллабораций теряет нарративный вес.</div>
+      </div>
+
+      <div class="finding green">
+        <div class="fn-num">Finding #5 · Уникальность</div>
+        <div class="fn-text">Зонты + украшения = экосистема без аналогов</div>
+        <div class="fn-sub">Ни один из 20 конкурентов не имеет одновременно платки + деревянные украшения + зонты. Это уникальная продуктовая экосистема — потенциальная основа для подарочных наборов.</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     20 КОНКУРЕНТОВ
+══════════════════════════════════════════════════ -->
+<div class="wrap">
+
+<!-- ── ПРЯМЫЕ ── -->
+<div class="threat-hd">
+  <div class="tbadge direct">Прямые конкуренты · 4</div>
+  <span class="threat-sub">Тот же продукт · та же аудитория · тот же культурный смысл</span>
+</div>
+<div class="cards">
+
+  <div class="cc direct">
+    <div class="cc-name">Sirinbird</div>
+    <div class="cc-tag">«Шёлковые истории о России» · с 2013</div>
+    <div class="cc-desc">Авторский бренд Ирины Батьковой. Каждая коллекция = глубокое исследование: мифы, сказки, эпосы. Производство в Италии (уровень Roberto Cavalli). Коллекционный формат — хранят в дипломатических миссиях. Самый прямой конкурент по позиционированию.</div>
+    <div class="cc-pills"><span class="pill red">Угроза: высокая</span><span class="pill">Пр-во: Италия</span><span class="pill">Мифология</span><span class="pill">Люкс</span></div>
+    <div class="bars">
+      <div class="bar-row"><div class="bar-lbl">Культура</div><div class="bar-track"><div class="bar-fill" style="width:96%;background:linear-gradient(90deg,#FF4D6D,#FF8A65)"></div></div><div class="bar-val">96</div></div>
+      <div class="bar-row"><div class="bar-lbl">Цена</div><div class="bar-track"><div class="bar-fill" style="width:88%;background:linear-gradient(90deg,#7C6FFF,#a09fff)"></div></div><div class="bar-val">88</div></div>
+      <div class="bar-row"><div class="bar-lbl">Дистрибуция</div><div class="bar-track"><div class="bar-fill" style="width:28%;background:linear-gradient(90deg,#555,#888)"></div></div><div class="bar-val">28</div></div>
+      <div class="bar-row"><div class="bar-lbl">Медийность</div><div class="bar-track"><div class="bar-fill" style="width:35%;background:linear-gradient(90deg,#555,#888)"></div></div><div class="bar-val">35</div></div>
+    </div>
+  </div>
+
+  <div class="cc direct">
+    <div class="cc-name">Татьяна Кузнецова</div>
+    <div class="cc-tag">Шёлк + AR-технологии + поэзия</div>
+    <div class="cc-desc">Авторский премиум. Русская культура, природа, сказки, мифы. Уникальный приём: принты с дополненной реальностью — платок «оживает» через приложение. Шоурум «Ясен Красен» на Берсеневской набережной. Схожий масштаб с Vedenina.</div>
+    <div class="cc-pills"><span class="pill red">Угроза: высокая</span><span class="pill accent">AR-принты</span><span class="pill">Москва</span><span class="pill">Микро</span></div>
+    <div class="bars">
+      <div class="bar-row"><div class="bar-lbl">Культура</div><div class="bar-track"><div class="bar-fill" style="width:90%;background:linear-gradient(90deg,#FF4D6D,#FF8A65)"></div></div><div class="bar-val">90</div></div>
+      <div class="bar-row"><div class="bar-lbl">Цена</div><div class="bar-track"><div class="bar-fill" style="width:60%;background:linear-gradient(90deg,#7C6FFF,#a09fff)"></div></div><div class="bar-val">60</div></div>
+      <div class="bar-row"><div class="bar-lbl">Дистрибуция</div><div class="bar-track"><div class="bar-fill" style="width:18%;background:linear-gradient(90deg,#555,#888)"></div></div><div class="bar-val">18</div></div>
+      <div class="bar-row"><div class="bar-lbl">Медийность</div><div class="bar-track"><div class="bar-fill" style="width:25%;background:linear-gradient(90deg,#555,#888)"></div></div><div class="bar-val">25</div></div>
+    </div>
+  </div>
+
+  <div class="cc direct">
+    <div class="cc-name">Валерия Синельникова</div>
+    <div class="cc-tag">«Душа города в авторской коллекции»</div>
+    <div class="cc-desc">Дизайнер и иллюстратор. Платки о городах, путешествиях, истории и культуре. Схожий авторский подход: малые тиражи, цифровая печать на шёлке. Работала с европейскими fashion-брендами. Самый близкий аналог по бизнес-модели и масштабу.</div>
+    <div class="cc-pills"><span class="pill red">Угроза: высокая</span><span class="pill">Города</span><span class="pill">Микро</span><span class="pill">Европейский опыт</span></div>
+    <div class="bars">
+      <div class="bar-row"><div class="bar-lbl">Культура</div><div class="bar-track"><div class="bar-fill" style="width:78%;background:linear-gradient(90deg,#FF4D6D,#FF8A65)"></div></div><div class="bar-val">78</div></div>
+      <div class="bar-row"><div class="bar-lbl">Цена</div><div class="bar-track"><div class="bar-fill" style="width:48%;background:linear-gradient(90deg,#7C6FFF,#a09fff)"></div></div><div class="bar-val">48</div></div>
+      <div class="bar-row"><div class="bar-lbl">Дистрибуция</div><div class="bar-track"><div class="bar-fill" style="width:22%;background:linear-gradient(90deg,#555,#888)"></div></div><div class="bar-val">22</div></div>
+      <div class="bar-row"><div class="bar-lbl">Медийность</div><div class="bar-track"><div class="bar-fill" style="width:20%;background:linear-gradient(90deg,#555,#888)"></div></div><div class="bar-val">20</div></div>
+    </div>
+  </div>
+
+  <div class="cc direct">
+    <div class="cc-name">Ольга Никич · OLGANIKICH</div>
+    <div class="cc-tag">Текстильный художник · музеи · Hermès Grand Prix</div>
+    <div class="cc-desc">Художник по текстилю с нарративом на пересечении конструктивизма, народных узоров, ивановских ситцев и символов китайского календаря. В 2019 вошла в топ-99 из 5 500 участников Le Grand Prix du Carré Hermès. Коллаборации с Третьяковкой, Кремлём, ГИМ, Царицыно. Корпоративные клиенты: S7 Airlines, Альфа Банк, Транснефть, Давидофф.</div>
+    <div class="cc-pills"><span class="pill red">Угроза: очень высокая</span><span class="pill accent">Hermès top-99</span><span class="pill">Третьяковка</span><span class="pill">Кремль · ГИМ</span><span class="pill">S7 · Альфа Банк</span></div>
+    <div class="bars">
+      <div class="bar-row"><div class="bar-lbl">Культура</div><div class="bar-track"><div class="bar-fill" style="width:97%;background:linear-gradient(90deg,#FF4D6D,#FF8A65)"></div></div><div class="bar-val">97</div></div>
+      <div class="bar-row"><div class="bar-lbl">Цена</div><div class="bar-track"><div class="bar-fill" style="width:65%;background:linear-gradient(90deg,#7C6FFF,#a09fff)"></div></div><div class="bar-val">65</div></div>
+      <div class="bar-row"><div class="bar-lbl">Дистрибуция</div><div class="bar-track"><div class="bar-fill" style="width:72%;background:linear-gradient(90deg,#555,#888)"></div></div><div class="bar-val">72</div></div>
+      <div class="bar-row"><div class="bar-lbl">Медийность</div><div class="bar-track"><div class="bar-fill" style="width:80%;background:linear-gradient(90deg,#555,#888)"></div></div><div class="bar-val">80</div></div>
+    </div>
+  </div>
+
+  <div class="cc direct">
+    <div class="cc-name">Гинкас Карпс</div>
+    <div class="cc-tag">Авторский бренд · данные в проработке</div>
+    <div class="cc-desc">Конкурент, указанный заказчиком. Онлайн-присутствие минимально — возможно, микро-бренд без публичного сайта или новый игрок. Требуется прямая разведка: Instagram-профиль, точки продаж, ценовой диапазон.</div>
+    <div class="cc-pills"><span class="pill red">Угроза: уточняется</span><span class="pill">Прямая разведка нужна</span></div>
+    <div class="bars">
+      <div class="bar-row"><div class="bar-lbl">Культура</div><div class="bar-track"><div class="bar-fill" style="width:0%;background:linear-gradient(90deg,#555,#888)"></div></div><div class="bar-val">—</div></div>
+      <div class="bar-row"><div class="bar-lbl">Цена</div><div class="bar-track"><div class="bar-fill" style="width:0%;background:linear-gradient(90deg,#555,#888)"></div></div><div class="bar-val">—</div></div>
+      <div class="bar-row"><div class="bar-lbl">Дистрибуция</div><div class="bar-track"><div class="bar-fill" style="width:0%;background:linear-gradient(90deg,#555,#888)"></div></div><div class="bar-val">—</div></div>
+    </div>
+  </div>
+
+  <div class="cc direct">
+    <div class="cc-name">Kokosha Studio</div>
+    <div class="cc-tag">Народные орнаменты в современном ключе</div>
+    <div class="cc-desc">Основатель — художник-орнаменталист Ксения Косая (БВШД). Мотивы: русский лубок, кружево, прялки XIX века, Кенозерские донца. Шёлковый твил, российское производство. Присутствуют в Legri и мультибрендах — лучше дистрибутированы.</div>
+    <div class="cc-pills"><span class="pill red">Угроза: средняя</span><span class="pill">Legri</span><span class="pill">Орнамент</span><span class="pill">Россия</span></div>
+    <div class="bars">
+      <div class="bar-row"><div class="bar-lbl">Культура</div><div class="bar-track"><div class="bar-fill" style="width:74%;background:linear-gradient(90deg,#FF4D6D,#FF8A65)"></div></div><div class="bar-val">74</div></div>
+      <div class="bar-row"><div class="bar-lbl">Цена</div><div class="bar-track"><div class="bar-fill" style="width:50%;background:linear-gradient(90deg,#7C6FFF,#a09fff)"></div></div><div class="bar-val">50</div></div>
+      <div class="bar-row"><div class="bar-lbl">Дистрибуция</div><div class="bar-track"><div class="bar-fill" style="width:42%;background:linear-gradient(90deg,#555,#888)"></div></div><div class="bar-val">42</div></div>
+      <div class="bar-row"><div class="bar-lbl">Медийность</div><div class="bar-track"><div class="bar-fill" style="width:38%;background:linear-gradient(90deg,#555,#888)"></div></div><div class="bar-val">38</div></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── КОСВЕННЫЕ ── -->
+<div class="threat-hd">
+  <div class="tbadge indirect">Косвенные конкуренты · 10</div>
+  <span class="threat-sub">Пересечение по аудитории, продукту или каналу</span>
+</div>
+<div class="cards">
+
+  <div class="cc indirect">
+    <div class="cc-name">Axenoff Jewellery</div>
+    <div class="cc-tag">Ювелир Пётр Аксенов · русские сказки</div>
+    <div class="cc-desc">Ювелирный дом + линия шёлковых платков. Вдохновение: русские сказки, Большой театр, история XIV–XIX вв. Платки 100% шёлк. Высокая медийность — Tatler, Posta-Magazine, Instagram. Конкурент за культурно состоятельного покупателя.</div>
+    <div class="cc-pills"><span class="pill">Tatler</span><span class="pill accent">Большой театр</span><span class="pill">Люкс</span><span class="pill">100% шёлк</span></div>
+  </div>
+
+  <div class="cc indirect">
+    <div class="cc-name">Lips & Brain</div>
+    <div class="cc-tag">«Первые в мире платки о сильных женщинах»</div>
+    <div class="cc-desc">Светлана Попова + Анна Погосян (ex-реклама). Каждый платок = история выдающейся женщины. Факты → метафоры → образы. Публикации: РБК Стиль, Российская Газета, «Сноб». Коллаборация с галереей Art&Brut. Доступная цена — осознанная стратегия.</div>
+    <div class="cc-pills"><span class="pill">РБК Стиль</span><span class="pill">«Сноб»</span><span class="pill">Феминизм</span><span class="pill">Доступная цена</span></div>
+  </div>
+
+  <div class="cc indirect">
+    <div class="cc-name">Nina Ruchkina (NINA)</div>
+    <div class="cc-tag">Премиальная линия Модного дома · с 2023</div>
+    <div class="cc-desc">Модный дом основан в 2006 (Екатеринбург). Линия NINA (2023) — премиум, дизайн как искусство. Вторая линия «Русские в моде» (2014) — масс (924–6000 ₽, 70% шёлк). Коллаборация VintageDream 2024 — платки с бижутерией XX века.</div>
+    <div class="cc-pills"><span class="pill">Два бренда</span><span class="pill">20 лет на рынке</span><span class="pill">Екатеринбург</span></div>
+  </div>
+
+  <div class="cc indirect">
+    <div class="cc-name">Русские в моде</div>
+    <div class="cc-tag">«Гжель», «Дымково», «Малахитовая шкатулка» · масс</div>
+    <div class="cc-desc">Вторая линия Nina Ruchkina. Состав: 70% шёлк / 30% вискоза. Цены 924–6000 ₽. Визуальный язык «сувенирного» типа. Самое узнаваемое имя в нише. Конкурирует за покупателя, который ищет «русский платок» без высоких ожиданий к глубине.</div>
+    <div class="cc-pills"><span class="pill">924–6 000 ₽</span><span class="pill">70% шёлк</span><span class="pill">Масс-маркет</span></div>
+  </div>
+
+  <div class="cc indirect">
+    <div class="cc-name">Feelosofia</div>
+    <div class="cc-tag">Ювелирный дом + шёлк «от Пекина до Парижа»</div>
+    <div class="cc-desc">Ювелирный бренд с коллекцией шёлковых платков. Тема: выдающиеся мировые культуры — «от Пекина до Парижа». Цена ~16 000 ₽. Шоурум в отеле «Пекин» на Большой Садовой ул., 5. Конкурирует за состоятельного культурно-ориентированного покупателя.</div>
+    <div class="cc-pills"><span class="pill">~16 000 ₽</span><span class="pill">Мировая культура</span><span class="pill">Отель «Пекин»</span></div>
+  </div>
+
+  <div class="cc indirect">
+    <div class="cc-name">Firdaws</div>
+    <div class="cc-tag">Кавказская традиция · haute couture подход</div>
+    <div class="cc-desc">Дом моды. Ручная работа, шёлк, орнаменты Кавказа. Стандарты haute couture: авторские рисунки, лимитированные серии, ручная отделка. Конкурирует за аудиторию ценящую культурный код + мастерство, но с другой этнической рамкой.</div>
+    <div class="cc-pills"><span class="pill">Ручная работа</span><span class="pill">Кавказ</span><span class="pill">Haute couture</span></div>
+  </div>
+
+  <div class="cc indirect">
+    <div class="cc-name">BatikLine</div>
+    <div class="cc-tag">Ручная роспись · техника батик</div>
+    <div class="cc-desc">Авторские расписные шёлковые платки, шарфы, палантины. Ручной труд художника, уникальные экземпляры. Конкурирует за покупателя, ищущего «ручная работа + шёлк». Каналы: Livemaster, Instagram, ярмарки. Более низкая цена, чем у Vedenina.</div>
+    <div class="cc-pills"><span class="pill">Батик</span><span class="pill">Livemaster</span><span class="pill">Ярмарки</span></div>
+  </div>
+
+  <div class="cc indirect">
+    <div class="cc-name">Kurochki.co</div>
+    <div class="cc-tag">Иронические принты · шёлк с 2018</div>
+    <div class="cc-desc">Бренд иронической ручной вышивки и шёлковых платков. Принты: курочки, выпечка, цветы, овощи. Твилли от 3 200 ₽, платки 45×45 от 6 200 ₽. Публикации: Buro 24/7, Manka. Другая эстетика, но та же аудитория — образованные городские женщины.</div>
+    <div class="cc-pills"><span class="pill">3 200–6 200 ₽</span><span class="pill">Buro 24/7</span><span class="pill">Иронично</span></div>
+  </div>
+
+  <div class="cc indirect">
+    <div class="cc-name">ArtAngels (СПб)</div>
+    <div class="cc-tag">Галерея современного искусства · платки 70×70</div>
+    <div class="cc-desc">Галерея Бориса Земскова в Санкт-Петербурге. Производит авторские жикле, коллекционный фарфор и шёлковые платки 70×70 с работами современных российских художников. Подарочная упаковка. Доставка по России и за рубеж.</div>
+    <div class="cc-pills"><span class="pill">Галерея</span><span class="pill">СПб</span><span class="pill">Совр. художники</span></div>
+  </div>
+
+  <div class="cc indirect">
+    <div class="cc-name">Natalya Bikbaeva</div>
+    <div class="cc-tag">Авторские платки · platkinb.ru · Татарстан</div>
+    <div class="cc-desc">Авторский магазин платков и аксессуаров. Производство — Набережные Челны, Республика Татарстан. Доставка по России от 200 ₽. Небольшой масштаб, схожая бизнес-модель с Vedenina. Конкурирует в онлайне за поисковый трафик.</div>
+    <div class="cc-pills"><span class="pill">Татарстан</span><span class="pill">От 200 ₽ доставка</span><span class="pill">Микро</span></div>
+  </div>
+
+</div>
+
+<!-- ── ДРУГОЙ СЕГМЕНТ ── -->
+<div class="threat-hd">
+  <div class="tbadge nocomp">Другой сегмент · 6</div>
+  <span class="threat-sub">Другая логика, другой покупатель — прямой угрозы нет</span>
+</div>
+<div class="cards">
+
+  <div class="cc nocomp">
+    <div class="cc-name">Radical Chic</div>
+    <div class="cc-tag">Fashion без культурного нарратива · с 2013</div>
+    <div class="cc-desc">100% шёлк, производство в Италии (фабрики уровня Roberto Cavalli), дизайн в Москве (студия Solstudio). Цены от 12 920 ₽. Точки: ЦУМ, ГУМ, Неглинная галерея. «Золотое веретено». Нет культурного смысла — чистый fashion.</div>
+    <div class="cc-pills"><span class="pill">ЦУМ · ГУМ</span><span class="pill">Италия</span><span class="pill">От 12 920 ₽</span></div>
+  </div>
+
+  <div class="cc nocomp">
+    <div class="cc-name">ValArt</div>
+    <div class="cc-tag">Репродукции великих художников</div>
+    <div class="cc-desc">Моне, Ван Гог, Рембрандт, Гоген на шёлке и кашемире. Нет оригинального авторского дизайна, нет российской идентичности. Ниша арт-мерча — конкурирует с музейными магазинами, не с Vedenina.</div>
+    <div class="cc-pills"><span class="pill">Репродукции</span><span class="pill">Арт-мерч</span></div>
+  </div>
+
+  <div class="cc nocomp">
+    <div class="cc-name">Павловопосадская мануфактура</div>
+    <div class="cc-tag">Народный промысел · масс · цветочные принты</div>
+    <div class="cc-desc">Более 1 000 видов платков и шалей. Народный промысел. Узнаваемый стиль: большие розы и георгины на красном, чёрном или белом фоне. Масс-маркет, другая эстетика. Покупатели Vedenina к ним не приходят.</div>
+    <div class="cc-pills"><span class="pill">Масс</span><span class="pill">Народный стиль</span></div>
+  </div>
+
+  <div class="cc nocomp">
+    <div class="cc-name">Livemaster / Ярмарка мастеров</div>
+    <div class="cc-tag">Платформа · сотни авторов · 1–4 т.р.</div>
+    <div class="cc-desc">Не бренд — агрегатор. Но захватывает первые позиции по запросу «авторский шёлковый платок» и создаёт ценовое давление на всю категорию. Главная косвенная угроза через восприятие цены.</div>
+    <div class="cc-pills"><span class="pill red">Ценовое давление</span><span class="pill">SEO угроза</span><span class="pill">1–4 000 ₽</span></div>
+  </div>
+
+  <div class="cc nocomp">
+    <div class="cc-name">Russian Silk</div>
+    <div class="cc-tag">Цифровая печать на натуральных тканях</div>
+    <div class="cc-desc">B2B-производство: цифровая печать на шёлке для брендов и дизайнеров. Не прямой конкурент — скорее потенциальный партнёр по производству. Но наличие на рынке снижает барьер входа для новых игроков.</div>
+    <div class="cc-pills"><span class="pill">B2B</span><span class="pill">Производство</span></div>
+  </div>
+
+  <div class="cc nocomp">
+    <div class="cc-name">Камелия (Camellia.ru)</div>
+    <div class="cc-tag">Французский художник русского происхождения</div>
+    <div class="cc-desc">Платки с коллекцией «Путешествие по памяти» художника Владимира Попова. Авторская, но французский культурный контекст. Аудитория — узкий сегмент коллекционеров. Нет конкуренции за российский культурный нарратив.</div>
+    <div class="cc-pills"><span class="pill">Коллекционеры</span><span class="pill">Французский контекст</span></div>
+  </div>
+
+</div>
+
+<!-- ── ЗАКЛЮЧЕНИЕ ── -->
+<div style="margin-top:20px; margin-bottom:48px">
+<div class="conclusion">
+  <div class="conc-title">Кто на самом деле с вами конкурирует</div>
+
+  <div class="findings">
+    <div class="finding green">
+      <div class="fn-num">Вывод #1</div>
+      <div class="fn-text">Ваш квадрант — самый богатый по охвату тем</div>
+      <div class="fn-sub">Sirinbird — только мифология. Kokosha — только орнаменты. Vedenina охватывает литературу + театр + живопись + архитектуру. Это сила, которая пока не упакована в чёткий нарратив на сайте.</div>
+    </div>
+    <div class="finding red">
+      <div class="fn-num">Вывод #2</div>
+      <div class="fn-text">УТП «вдохновлённые русской культурой» — слишком широко</div>
+      <div class="fn-sub">Его говорят все. Нужен конкретный угол: «платки о русской литературе», «платки как театральный занавес», «архитектура на шёлке» — что-то одно, острое.</div>
+    </div>
+    <div class="finding orange">
+      <div class="fn-num">Вывод #3</div>
+      <div class="fn-text">Медийность — главный разрыв с конкурентами</div>
+      <div class="fn-sub">Lips & Brain: РБК + «Сноб» + РГ. Axenoff: Tatler + Posta-Magazine. Sirinbird: РБК Стиль. Vedenina: нет публичных публикаций. Одна публикация = отрыв от 80% прямых конкурентов.</div>
+    </div>
+    <div class="finding green">
+      <div class="fn-num">Вывод #4</div>
+      <div class="fn-text">Продуктовая экосистема — уникальное преимущество</div>
+      <div class="fn-sub">Ни один из 20 конкурентов не сочетает платки + деревянные украшения + зонты. Это основа для «культурного подарочного набора» — ниша с нулевой конкуренцией.</div>
+    </div>
+  </div>
+
+  <div class="realcomp">
+    <h3>Рейтинг реальной конкурентной угрозы для Vedenina Design</h3>
+    <div class="ri">
+      <div class="rnum">1</div>
+      <div><div class="rname">Ярмарка Мастеров / Livemaster</div><div class="rreason">Захватывает SEO-трафик по ключевым запросам и якорит цену категории на уровне 1–4 т.р. Это ценовая война, в которой Vedenina не должна участвовать — нужен выход в другой нарратив.</div></div>
+    </div>
+    <div class="ri">
+      <div class="rnum">2</div>
+      <div><div class="rname">Sirinbird</div><div class="rreason">Идентичная аудитория, схожий продукт. Занимает «топ-оф-майнд» в нише культурного авторского платка. Их слабость (узкая тема — только мифология) = возможность для Vedenina.</div></div>
+    </div>
+    <div class="ri">
+      <div class="rnum">3</div>
+      <div><div class="rname">Валерия Синельникова</div><div class="rreason">Почти идентичная бизнес-модель: автор, иллюстратор, малые тиражи, цифровой шёлк, культурный нарратив. Самый прямой зеркальный конкурент по масштабу.</div></div>
+    </div>
+    <div class="ri">
+      <div class="rnum">4</div>
+      <div><div class="rname">Kokosha Studio</div><div class="rreason">Та же аудитория — образованные ценители «русского через современный дизайн». Лучше дистрибутированы (Legri + мультибренды) при схожей цене.</div></div>
+    </div>
+    <div class="ri">
+      <div class="rnum">5</div>
+      <div><div class="rname">Axenoff Jewellery</div><div class="rreason">Неожиданный конкурент: ювелир + шёлк + русские сказки + Большой театр. Высокая медийность (Tatler). Забирает культурно состоятельного покупателя в люкс-сегменте.</div></div>
+    </div>
+    <div class="ri">
+      <div class="rnum">6</div>
+      <div><div class="rname">Татьяна Кузнецова</div><div class="rreason">Схожий масштаб и культурный охват. AR-технология = техническое преимущество. Но слабая дистрибуция нивелирует разрыв — паритет с Vedenina.</div></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Vedenina Design Competitive Intelligence · 22 игрока · EY-формат · Апрель 2026</span>
+    <span>Источники: vedeninadesign.ru · sirinbird.ru · lipsandbrain.com · РБК Стиль · Tatler · olganikich.ru</span>
+  </div>
+</div>
+</div>
+
+</div><!-- /wrap -->
+
+<!-- ── PRACTICAL AI FOOTER ── -->
+<div style="background:#0A0A10;border-top:1px solid rgba(255,255,255,0.07);padding:40px 48px;margin-top:0;">
+  <div style="max-width:960px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px;">
+
+    <div>
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:2px;color:#6B6B85;margin-bottom:10px;">Исследование подготовлено</div>
+      <div style="font-size:24px;font-weight:800;background:linear-gradient(135deg,#7C6FFF,#00C9A7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-0.5px;">Practical AI</div>
+      <div style="font-size:14px;color:#F0F0F5;margin-top:2px;font-weight:600;">by Danil Usik</div>
+      <div style="font-size:12px;color:#6B6B85;margin-top:4px;">CEO · Valencia, Spain</div>
+    </div>
+
+    <div>
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:2px;color:#6B6B85;margin-bottom:12px;">Что делаем</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;align-items:center;gap:10px;"><div style="width:6px;height:6px;border-radius:50%;background:#7C6FFF;flex-shrink:0;"></div><span style="font-size:13px;color:#F0F0F5;">Конкурентные исследования рынков</span></div>
+        <div style="display:flex;align-items:center;gap:10px;"><div style="width:6px;height:6px;border-radius:50%;background:#00C9A7;flex-shrink:0;"></div><span style="font-size:13px;color:#F0F0F5;">AI-агенты на заказ</span></div>
+        <div style="display:flex;align-items:center;gap:10px;"><div style="width:6px;height:6px;border-radius:50%;background:#FF9F43;flex-shrink:0;"></div><span style="font-size:13px;color:#F0F0F5;">AI-автоматизация продаж</span></div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:2px;color:#6B6B85;margin-bottom:12px;">Связаться</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <a href="https://t.me/DdarioUsik" target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:rgba(124,111,255,0.12);border:1px solid rgba(124,111,255,0.3);border-radius:10px;padding:10px 18px;text-decoration:none;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#7C6FFF"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.012 9.484c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.875.737z"/></svg>
+          <span style="font-size:13px;font-weight:600;color:#a09fff;">@DdarioUsik</span>
+        </a>
+        <a href="https://practical-ai.pro" target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:rgba(0,201,167,0.08);border:1px solid rgba(0,201,167,0.2);border-radius:10px;padding:10px 18px;text-decoration:none;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00C9A7" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span style="font-size:13px;font-weight:600;color:#00C9A7;">practical-ai.pro</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
