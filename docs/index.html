@@ -3,144 +3,734 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Practical AI — Vibe Salon (Valencia) и AIHUB</title>
-  <meta name="description" content="Оффлайн Vibe Salon в Валенсии: за 2 часа собираем AI‑прототип под бизнес‑задачу. Для внедрения и автоматизации: AIHUB (B2B, агенты/CRM/integrations). Есть ICP и фильтр." />
+  <title>Practical AI Working Group Valencia</title>
+  <meta name="description" content="Рабочие группы в Валенсии: 10 человек, 4 недели, 4 большие встречи, закрытый Telegram-канал и один рабочий результат у каждого." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#f7f7ff; --card:#ffffff; --card2:#f2f3ff;
-      --text:#16162a; --sub:#4f4f72; --mut:#7575a0;
-      --border:rgba(0,0,0,.09);
-      --g:#00a84a; --g2:#00c85a;
-      --r:16px;
+    :root {
+      --bg: #f4f0e7;
+      --surface: #ffffff;
+      --panel: #f8f5ee;
+      --ink: #111111;
+      --muted: #5d5850;
+      --border: rgba(17, 17, 17, 0.1);
+      --border-strong: rgba(17, 17, 17, 0.18);
+      --lime: #cbff27;
+      --cyan: #47c8ff;
+      --pink: #ff2ea6;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+      --max: 1160px;
     }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:Inter,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
-    a{color:inherit}
-    .wrap{max-width:1040px;margin:0 auto;padding:0 28px}
-    .nav{position:sticky;top:0;z-index:20;background:rgba(247,247,255,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-    .logo{display:flex;gap:10px;align-items:center;text-decoration:none}
-    .logo-badge{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;color:#000;background:linear-gradient(135deg,var(--g),var(--g2))}
-    .logo-text{font-weight:900;letter-spacing:-.02em}
-    .logo-text span{color:var(--g)}
-    .cta{display:inline-flex;align-items:center;gap:10px;text-decoration:none;background:var(--g);color:#000;font-weight:800;font-size:13px;padding:10px 16px;border-radius:999px;transition:transform .15s,opacity .15s}
-    .cta:hover{transform:translateY(-1px);opacity:.9}
-    .hero{padding:56px 0 30px;position:relative;overflow:hidden}
-    .hero:before{content:"";position:absolute;left:50%;top:-220px;transform:translateX(-50%);width:900px;height:620px;background:radial-gradient(ellipse,rgba(0,168,74,.10) 0%,transparent 70%);pointer-events:none}
-    .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(0,168,74,.10);border:1px solid rgba(0,168,74,.25);color:var(--g);padding:6px 14px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px}
-    .dot{width:7px;height:7px;border-radius:50%;background:var(--g)}
-    h1{font-size:clamp(32px,4.6vw,52px);line-height:1.08;letter-spacing:-.03em;margin-bottom:14px;max-width:860px}
-    .sub{color:var(--sub);font-size:16px;max-width:720px}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:26px 0 10px}
-    .card{background:linear-gradient(180deg,var(--card),var(--card2));border:1px solid var(--border);border-radius:calc(var(--r) + 4px);padding:22px 22px 18px;min-height:260px}
-    .card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:14px}
-    .tag{font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
-    .card h2{font-size:20px;letter-spacing:-.02em;line-height:1.2;margin:6px 0 10px}
-    .card p{color:var(--sub);font-size:14px}
-    ul{margin:14px 0 18px;padding-left:18px;color:var(--sub);font-size:13.5px}
-    li{margin:6px 0}
-    .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto}
-    .btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;border-radius:999px;padding:10px 14px;font-weight:800;font-size:13px;border:1px solid var(--border);background:transparent;color:var(--text);transition:transform .15s,opacity .15s,border-color .15s}
-    .btn:hover{transform:translateY(-1px);opacity:.92;border-color:rgba(0,200,83,.35)}
-    .btn.primary{background:var(--g);border-color:transparent;color:#000}
-    .note{margin:18px 0 0;color:var(--mut);font-size:12px}
-    .footer{border-top:1px solid var(--border);padding:18px 0 26px;color:var(--mut);font-size:12px}
-    .footer a{color:var(--sub);text-decoration:none}
-    .footer a:hover{text-decoration:underline}
-    @media (max-width: 860px){ .grid{grid-template-columns:1fr} .card{min-height:auto} }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(203, 255, 39, 0.18), transparent 34%),
+        radial-gradient(circle at 100% 0%, rgba(71, 200, 255, 0.14), transparent 28%),
+        linear-gradient(180deg, #f8f3ea 0%, #efe9de 100%);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.55;
+      padding: 16px 0 48px;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 18px; }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+      padding: 10px 14px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(140deg, var(--lime), var(--cyan));
+      font-size: 11px;
+      font-weight: 800;
+      color: #0d0d0d;
+    }
+    .nav-link,
+    .btn,
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 20px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+    }
+    .nav-link,
+    .btn {
+      background: var(--ink);
+      color: #fff;
+    }
+    .btn-ghost {
+      background: #fff;
+      border: 1px solid var(--border-strong);
+      color: var(--ink);
+    }
+    .nav-link:hover,
+    .btn:hover,
+    .btn-ghost:hover {
+      transform: translateY(-2px);
+    }
+    .board {
+      display: grid;
+      gap: 16px;
+      padding: 18px;
+      border-radius: 34px;
+      background: rgba(255, 255, 255, 0.64);
+      border: 1px solid rgba(255, 255, 255, 0.48);
+      box-shadow: var(--shadow);
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 16px;
+    }
+    .hero-main,
+    .hero-side,
+    .card,
+    .footer-card {
+      border-radius: 28px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      overflow: hidden;
+    }
+    .hero-main {
+      position: relative;
+      padding: 28px;
+      background:
+        radial-gradient(circle at 84% 12%, rgba(203, 255, 39, 0.22), transparent 24%),
+        linear-gradient(160deg, #ffffff 0%, #faf7f0 100%);
+    }
+    .tc-banner {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: rgba(17, 17, 17, 0.04);
+      border: 1px solid rgba(17, 17, 17, 0.08);
+    }
+    .tc-thumb {
+      width: 126px;
+      height: 72px;
+      border-radius: 14px;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 1px solid rgba(17, 17, 17, 0.08);
+      background: #fff;
+    }
+    .tc-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: left top;
+      display: block;
+    }
+    .tc-copy strong {
+      display: block;
+      font-size: 16px;
+      line-height: 1.28;
+    }
+    .tc-copy span {
+      display: block;
+      margin-top: 4px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--lime);
+    }
+    h1 {
+      margin: 18px 0 0;
+      max-width: 760px;
+      font-size: 70px;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      text-wrap: balance;
+    }
+    .marker {
+      font-family: "Permanent Marker", cursive;
+      font-weight: 400;
+      color: var(--pink);
+      letter-spacing: 0;
+    }
+    .sub {
+      margin-top: 16px;
+      max-width: 700px;
+      font-size: 20px;
+      line-height: 1.62;
+      color: var(--muted);
+    }
+    .chips,
+    .cta-row,
+    .footer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .chips { margin-top: 20px; }
+    .chip {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--border-strong);
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .cta-row { margin-top: 24px; }
+    .hero-side {
+      display: grid;
+      grid-template-rows: 1fr auto;
+      gap: 14px;
+      padding: 16px;
+      background: var(--panel);
+    }
+    .poster {
+      position: relative;
+      min-height: 400px;
+      padding: 22px;
+      border-radius: 22px;
+      background:
+        radial-gradient(ellipse at 20% 18%, rgba(71, 200, 255, 0.82) 0%, transparent 34%),
+        radial-gradient(ellipse at 82% 24%, rgba(255, 46, 166, 0.64) 0%, transparent 28%),
+        radial-gradient(ellipse at 50% 84%, rgba(203, 255, 39, 0.82) 0%, transparent 28%),
+        linear-gradient(145deg, #e8fbff 0%, #fff8ee 58%, #f3ffba 100%);
+    }
+    .poster-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.88);
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .poster-title {
+      margin-top: 18px;
+      max-width: 300px;
+      font-size: 42px;
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+    }
+    .poster-title span { display: block; }
+    .poster-title .scribble {
+      margin-top: 8px;
+      color: #2d16ff;
+      font-size: 28px;
+      font-weight: 800;
+    }
+    .poster img {
+      position: absolute;
+      right: -8px;
+      bottom: -14px;
+      width: 58%;
+      max-width: 270px;
+      pointer-events: none;
+    }
+    .side-note {
+      padding: 20px;
+      border-radius: 20px;
+      background: var(--ink);
+      color: #fff;
+    }
+    .side-note strong {
+      display: block;
+      font-size: 30px;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+    .side-note span {
+      display: block;
+      margin-top: 10px;
+      font-size: 17px;
+      line-height: 1.56;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .side-note em {
+      display: block;
+      margin-top: 14px;
+      font-style: normal;
+      font-size: 20px;
+      line-height: 1.38;
+      color: #fff;
+    }
+    .grid-3,
+    .grid-2,
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .timeline { grid-template-columns: repeat(5, 1fr); }
+    .card {
+      padding: 22px;
+      background: rgba(255, 255, 255, 0.96);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 42px rgba(0, 0, 0, 0.08);
+    }
+    .dark {
+      background: var(--ink);
+      color: #fff;
+      border-color: transparent;
+    }
+    .label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #848484;
+    }
+    .dark .label { color: rgba(255, 255, 255, 0.42); }
+    h2, h3 {
+      margin: 10px 0 0;
+      font-size: 28px;
+      line-height: 1.14;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+    }
+    .card p {
+      margin: 10px 0 0;
+      font-size: 17px;
+      line-height: 1.66;
+      color: var(--muted);
+    }
+    .dark p { color: rgba(255, 255, 255, 0.74); }
+    ul.clean {
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+    ul.clean li {
+      position: relative;
+      padding-left: 18px;
+      font-size: 16px;
+      line-height: 1.62;
+      color: var(--muted);
+    }
+    ul.clean li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--ink);
+    }
+    .dark ul.clean li {
+      color: rgba(255, 255, 255, 0.76);
+    }
+    .dark ul.clean li::before {
+      background: var(--lime);
+    }
+    .group-card {
+      display: grid;
+      gap: 16px;
+    }
+    .group-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+    .group-list li {
+      display: grid;
+      gap: 4px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(17, 17, 17, 0.04);
+      border: 1px solid rgba(17, 17, 17, 0.06);
+    }
+    .group-list strong {
+      display: block;
+      font-size: 15px;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+    .group-list span {
+      display: block;
+      font-size: 15px;
+      line-height: 1.58;
+      color: var(--muted);
+    }
+    .step-tag {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      background: var(--lime);
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--ink);
+      box-shadow: 0 6px 16px rgba(203, 255, 39, 0.28);
+    }
+    .price {
+      margin-top: 10px;
+      font-size: 58px;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      font-weight: 700;
+    }
+    .team-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+    }
+    .avatar {
+      width: 74px;
+      height: 74px;
+      flex-shrink: 0;
+      border-radius: 18px;
+      overflow: hidden;
+      background: linear-gradient(140deg, var(--lime), var(--cyan));
+    }
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .avatar.placeholder {
+      display: grid;
+      place-items: center;
+      background: linear-gradient(140deg, #6b5cff, var(--pink));
+      color: #fff;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .footer-card {
+      position: relative;
+      padding: 32px;
+      background: var(--ink);
+      color: #fff;
+      border-color: transparent;
+    }
+    .footer-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(203, 255, 39, 0.56), transparent);
+    }
+    .footer-card h2,
+    .footer-card p {
+      position: relative;
+      z-index: 1;
+    }
+    .footer-card p {
+      max-width: 640px;
+      color: rgba(255, 255, 255, 0.68);
+    }
+    .footer-card img {
+      position: absolute;
+      right: -12px;
+      bottom: -26px;
+      width: 200px;
+      opacity: 0.2;
+      pointer-events: none;
+    }
+    @media (max-width: 1080px) {
+      .hero,
+      .grid-3,
+      .grid-2,
+      .timeline {
+        grid-template-columns: 1fr;
+      }
+      .poster { min-height: 320px; }
+    }
+    @media (max-width: 720px) {
+      body { padding: 12px 0 40px; }
+      .wrap { padding: 0 14px; }
+      .nav,
+      .board { padding: 12px; }
+      .hero-main,
+      .card,
+      .footer-card { padding: 20px; }
+      .hero-side { padding: 12px; }
+      .tc-banner { align-items: flex-start; }
+      .tc-thumb {
+        width: 92px;
+        height: 58px;
+      }
+      h1 { font-size: 44px; }
+      .poster-title { font-size: 34px; }
+      .poster img,
+      .footer-card img { display: none; }
+    }
   </style>
 </head>
 <body>
-  <nav class="nav">
-    <div class="wrap">
-      <div class="nav-inner">
-        <a class="logo" href="./" aria-label="practical.ai">
-          <div class="logo-badge">PA</div>
-          <div class="logo-text">practical<span>.ai</span></div>
-        </a>
-        <a class="cta" href="https://t.me/Danil_alto" target="_blank" rel="noreferrer">Написать в Telegram ↗</a>
-      </div>
-    </div>
-  </nav>
+  <div class="wrap">
+    <nav class="nav">
+      <a class="brand" href="./" aria-label="Practical AI Working Group">
+        <div class="brand-mark">PA</div>
+        <div>Practical AI Working Group</div>
+      </a>
+      <a class="nav-link" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Записаться ↗</a>
+    </nav>
 
-  <header class="hero">
-    <div class="wrap">
-      <div class="eyebrow"><span class="dot"></span> оффлайн в Валенсии · 8–12 мест · 2 часа</div>
-      <h1>Vibe Salon: за 2 часа соберём AI‑прототип под вашу бизнес‑задачу.</h1>
-      <p class="sub">Это не лекция и не “поболтать про нейросети”. Приходите с ноутом и 1 задачей — уйдёте с прототипом или с чётким планом внедрения.</p>
-
-      <section class="grid" aria-label="Направления">
-        <article class="card">
-          <div class="card-top">
-            <div>
-              <div class="tag">Practical AI · оффлайн</div>
-              <h2>Vibe Salon</h2>
-              <p>Камерная сессия: нетворк + разбор задач + vibe coding. Минимум теории, максимум внедрения.</p>
+    <main class="board">
+      <section class="hero">
+        <article class="hero-main">
+          <div class="tc-banner">
+            <div class="tc-thumb">
+              <img src="./assets/community/tech-connect-poster.png" alt="Tech Connect Meetup">
+            </div>
+            <div class="tc-copy">
+              <strong>Первый состав собирается из сообщества Tech Connect.</strong>
+              <span>Это люди, с которыми мы уже познакомились на Tech Connect Meetup в Валенсии. Дальше состав добирается вручную, по взаимной ценности и силе комнаты.</span>
             </div>
           </div>
-          <ul>
-            <li>Outcome: 1 задача → 1 прототип (бот/пайплайн/ассистент/авто‑отчёт).</li>
-            <li>Шаблоны и “как повторять” после встречи.</li>
-            <li>План на 1–2 недели: что делаете сами, а что — автоматизируем.</li>
-          </ul>
-          <div class="btns">
-            <a class="btn primary" href="./vibe-salon/">Посмотреть формат →</a>
-            <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noreferrer">Подать заявку ↗</a>
+
+          <div class="eyebrow">Валенсия · июнь · 10 человек</div>
+          <h1><span class="marker">Рабочие группы</span>, где каждый делает свой кейс.</h1>
+          <p class="sub">Мы собираем офлайн-группу из 10 человек в Валенсии: 4 недели работы, 4 большие встречи, закрытый Telegram-канал и один конкретный результат у каждого. Мы собираем и внедряем рабочие процессы под живые задачи участников.</p>
+
+          <div class="chips">
+            <div class="chip">4 недели</div>
+            <div class="chip">4 большие офлайн-встречи</div>
+            <div class="chip">установочная встреча в пятницу</div>
+            <div class="chip">вторник или среда, 17:00–20:00</div>
+            <div class="chip">250€ с человека</div>
           </div>
-          <div class="note">Ближайшая встреча (Valencia): ВТ 17.03 или СР 18.03 · 19:00–21:00 · билет 10€ (1 напиток + перекус).</div>
+
+          <div class="cta-row">
+            <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Записаться ↗</a>
+            <a class="btn-ghost" href="#fit">Понять, подходит ли мне</a>
+          </div>
         </article>
 
-        <article class="card">
-          <div class="card-top">
-            <div>
-              <div class="tag">AIHUB · внедрение</div>
-              <h2>Если нужен не салон, а автоматизация</h2>
-              <p>AI‑агенты, CRM, интеграции, n8n, мониторинг, knowledge base/RAG — под ваши процессы (B2B).</p>
+        <article class="hero-side">
+          <div class="poster">
+            <div class="poster-badge">Practical AI · Valencia</div>
+            <div class="poster-title">
+              <span>Working</span>
+              <span class="scribble">Group</span>
             </div>
+            <img src="./assets/community/pink-discs.png" alt="" aria-hidden="true">
           </div>
-          <ul>
-            <li>Быстро показываем демо на вашем процессе.</li>
-            <li>Фокус на измеримый эффект: время, ошибки, конверсия, SLA.</li>
-            <li>Можно начать с одного use‑case и расширять.</li>
-          </ul>
-          <div class="btns">
-            <a class="btn primary" href="./aihub/">Открыть AIHUB →</a>
-            <a class="btn" href="./cases/">Библиотека кейсов →</a>
+          <div class="side-note">
+            <strong>Как получить результат.</strong>
+            <span>Каждый приходит со своей задачей. Остальные помогают её уточнить, собрать решение и проверить на практике.</span>
+            <em>Между встречами это не останавливается: люди двигают свои кейсы, делятся прогрессом, блокерами и рабочими находками в Telegram.</em>
           </div>
-          <div class="note">Если у вас “не обучение, а автоматизация” — это сюда.</div>
         </article>
       </section>
 
-      <section class="grid" aria-label="ICP и фильтр" style="margin-top:14px">
-        <article class="card">
-          <div class="tag">ICP · Vibe Salon</div>
-          <h2>Кому подходит</h2>
-          <ul>
-            <li>Фаундеры / операционные лиды (соло → 1–20 человек).</li>
-            <li>Есть процесс, который бесит: лиды, фоллоу‑ап, контент, саппорт, отчёты, сбор заявок.</li>
-            <li>Готовы 2 часа поработать руками (ноут обязателен).</li>
+      <section class="grid-3">
+        <article class="card dark">
+          <div class="label">Как проходит работа</div>
+          <h2>Проектная команда на месяц</h2>
+          <ul class="clean">
+            <li>10 человек, которых мы собрали по взаимной ценности</li>
+            <li>4 офлайн-встречи по 2–3 часа, где мы разбираем живые задачи участников</li>
+            <li>закрытый Telegram-канал и база знаний между встречами</li>
           </ul>
         </article>
         <article class="card">
-          <div class="tag">Фильтр</div>
-          <h2>Как попасть</h2>
-          <ul>
-            <li>Вход по заявке в личку: кто вы + ниша + задача (1–2 строки).</li>
-            <li>Билет 10€ = фильтр; каждому по 1 напитку + лёгкий перекус.</li>
-            <li>Место (кафе) отправляем после подтверждения.</li>
+          <div class="label">На что вы подписываетесь</div>
+          <h2>Группа сильных профессионалов в своём деле</h2>
+          <p>Предприниматели, топ-менеджеры и разработчики. Это реальные живые люди в одной комнате, с живыми кейсами, реальной практикой применения и высоким уровнем вовлечения, где каждый готов делиться своим опытом и практикой внедрения.</p>
+        </article>
+        <article class="card">
+          <div class="label">Что вы получаете в результате</div>
+          <h2>Результат, артефакты, следующий шаг</h2>
+          <ul class="clean">
+            <li>рабочий инструмент, сценарий или систему, которую вы собираете по своему кейсу вместе с группой</li>
+            <li>оцифровку встреч, заметки и knowledge base группы</li>
+            <li>ваш roadmap развития проекта на 30–90 дней</li>
           </ul>
         </article>
       </section>
-    </div>
-  </header>
 
-  <footer class="footer">
-    <div class="wrap">
-      <div>© Practical AI · <a href="./vibe-salon/">Vibe Salon</a> · <a href="./aihub/">AIHUB</a> · <a href="./cases/">кейсы</a> · <a href="https://t.me/Danil_alto" target="_blank" rel="noreferrer">Telegram</a></div>
-    </div>
-  </footer>
+      <section>
+        <article class="card group-card">
+          <div class="label">Кто уже в группе</div>
+          <h2>Люди с разным фоном, но с очень конкретными задачами</h2>
+          <ul class="group-list">
+            <li>
+              <strong>Владелец бизнеса с 300K SKU</strong>
+              <span>Хочет автоматизировать аналитику рекламы, работу с товарной базой и уведомления в e-commerce.</span>
+            </li>
+            <li>
+              <strong>Инженер из JetBrains</strong>
+              <span>Приходит с задачей долгоживущих кодинговых агентов в больших проектах и вопросами по устойчивой работе таких систем.</span>
+            </li>
+            <li>
+              <strong>Операционный руководитель</strong>
+              <span>Уже использует мультиагентные связки в маркетинге и хочет сверить, что реально работает, а что нет.</span>
+            </li>
+            <li>
+              <strong>Head of Product</strong>
+              <span>Собирает AI-OS для себя и команды: MCP, знания, рабочая среда и понятные правила использования.</span>
+            </li>
+            <li>
+              <strong>Руководитель развития</strong>
+              <span>Хочет уйти из ручной операционки и оставить после себя прозрачную систему управления подрядчиками с AI-слоем.</span>
+            </li>
+            <li>
+              <strong>Разработчики с продакшен-практикой</strong>
+              <span>Память агентов, сбор данных без API, MCP, devtools, реальные внутренние инструменты и внедрение в рабочие процессы.</span>
+            </li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="timeline">
+        <article class="card">
+          <div class="step-tag">0</div>
+          <h3>Установочная встреча</h3>
+          <p>До старта знакомимся, фиксируем кейсы, договариваемся о правилах, ритме и формате общей работы.</p>
+        </article>
+        <article class="card">
+          <div class="step-tag">1</div>
+          <h3>Неделя 1</h3>
+          <p>Берём первых двух участников, глубоко разбираем их задачи и из этого собираем рабочую логику решений. У остальных уже начинается движение по своим кейсам.</p>
+        </article>
+        <article class="card">
+          <div class="step-tag">2</div>
+          <h3>Неделя 2</h3>
+          <p>Разбираем следующих 2–3 человек уже на базе того, что поняли на первой встрече. У всех остальных двигаются свои задачи, и каждый приносит прогресс и выводы.</p>
+        </article>
+        <article class="card">
+          <div class="step-tag">3</div>
+          <h3>Неделя 3</h3>
+          <p>Делаем следующую надстройку: ещё несколько кейсов, ещё больше рабочих решений, люди рассказывают, что у них получилось, где блокеры и что можно переиспользовать.</p>
+        </article>
+        <article class="card">
+          <div class="step-tag">4</div>
+          <h3>Неделя 4</h3>
+          <p>Фиксируем артефакты, собираем общую knowledge base, добиваем открытые хвосты и закрываем roadmap по каждому проекту на следующие 30–90 дней.</p>
+        </article>
+      </section>
+
+      <section class="grid-2" id="fit">
+        <article class="card">
+          <div class="label">Кому подходит участие</div>
+          <ul class="clean">
+            <li>у вас уже есть конкретная рабочая задача, которую надо решить в июне</li>
+            <li>вы хотите смотреть на чужие реальные кейсы, а не на учебные примеры</li>
+            <li>вы готовы быть полезны другим участникам, а не только брать</li>
+            <li>вы можете быть в Валенсии офлайн 4 недели подряд</li>
+          </ul>
+        </article>
+        <article class="card dark">
+          <div class="label">Кому не подходит</div>
+          <ul class="clean">
+            <li>вам нужен вводный курс по базовым AI-инструментам</li>
+            <li>у вас пока нет своей задачи и вы хотите просто посмотреть</li>
+            <li>вам некомфортно регулярно показывать прогресс и держать коммит</li>
+            <li>вы хотите всё сделать чужими руками без включения в работу</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="grid-2">
+        <article class="card">
+          <div class="label">Условия</div>
+          <h2>250€ за участие</h2>
+          <p>В эту цену входят помещение, еда, напитки, интернет, фасилитация группы, закрытый Telegram-канал и техническая поддержка по ходу работы.</p>
+          <div class="price">250€</div>
+        </article>
+        <article class="card dark">
+          <div class="label">Что внутри</div>
+          <ul class="clean">
+            <li>4 большие офлайн-встречи и отдельная установочная</li>
+            <li>комната, еда, напитки и всё бытовое, чтобы не думать ни о чём кроме задачи</li>
+            <li>сбор заметок и общей базы по встречам</li>
+            <li>живой Telegram-канал между встречами</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="grid-2">
+        <article class="card team-card">
+          <div class="avatar">
+            <img src="./assets/community/danil-usik.jpg" alt="Данил Усик">
+          </div>
+          <div>
+            <div class="label">Фасилитатор и куратор состава</div>
+            <h3>Данил Усик</h3>
+            <p>Собирает состав вручную, держит ритм группы и следит, чтобы люди не просто встретились, а действительно продвинули свои кейсы и помогли друг другу.</p>
+          </div>
+        </article>
+        <article class="card team-card">
+          <div class="avatar placeholder">ТС</div>
+          <div>
+            <div class="label">Технический специалист группы</div>
+            <h3>Технический специалист</h3>
+            <p>Помогает с инструментами, собирает общую базу знаний и закрывает технические пробелы, если в самой комнате их не хватает.</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="footer-card">
+        <h2>Если ваша задача совпадает с этой комнатой, дальше лучше не читать, а написать.</h2>
+        <p>В ответе достаточно трёх строк: кто вы, какую задачу хотите дожать за июнь, и готовы ли к офлайн-ритму во вторник или среду вечером в Валенсии. Дальше я уже скажу, держу ли за вами место в первом составе.</p>
+        <div class="footer-actions">
+          <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Записаться ↗</a>
+        </div>
+        <img src="./assets/community/lime-fruit.png" alt="" aria-hidden="true">
+      </section>
+    </main>
+  </div>
 </body>
 </html>
