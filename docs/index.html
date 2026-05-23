@@ -4,26 +4,26 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Practical AI — Working Group Valencia</title>
-  <meta name="description" content="Малая группа AI-практиков в Валенсии. Каждую встречу один показывает как реально работает — агенты, инструменты, систему. Остальные смотрят и задают вопросы." />
+  <meta name="description" content="Малая группа AI-практиков в Валенсии. Каждую встречу один показывает как реально работает. Остальные смотрят и задают вопросы." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg:    #f5f0e8;
-      --ink:   #111111;
-      --muted: #5c574f;
+      --bg:      #f5f0e8;
+      --ink:     #111111;
+      --muted:   #6b6560;
+      --soft:    #9b9690;
       --surface: #ffffff;
-      --panel: #f0ebe0;
-      --border: rgba(17,17,17,0.1);
-      --border-strong: rgba(17,17,17,0.18);
+      --border:  rgba(17,17,17,0.09);
+      --border-strong: rgba(17,17,17,0.16);
       --lime: #cbff27;
       --cyan: #47c8ff;
       --pink: #ff2ea6;
-      --max: 1120px;
-      --r-sm: 18px;
-      --r-md: 24px;
-      --r-lg: 32px;
+      --max: 1100px;
+      --r-sm: 16px;
+      --r-md: 22px;
+      --r-lg: 30px;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -32,669 +32,318 @@
       background: var(--bg);
       color: var(--ink);
       -webkit-font-smoothing: antialiased;
-      line-height: 1.5;
-      padding: 14px 0 56px;
+      line-height: 1.55;
+      padding: 14px 0 60px;
     }
     a { color: inherit; text-decoration: none; }
-    img { display: block; }
 
-    /* ── layout ── */
     .wrap { max-width: var(--max); margin: 0 auto; padding: 0 16px; }
-    .stack { display: grid; gap: 12px; }
+    .board { display: grid; gap: 10px; padding: 12px; border-radius: var(--r-lg); background: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.5); box-shadow: 0 20px 60px rgba(0,0,0,0.05); }
 
-    /* ── nav ── */
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 16px;
-      border-radius: var(--r-md);
-      background: rgba(255,255,255,0.8);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(16px);
-      margin-bottom: 12px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      font-weight: 700;
-    }
-    .brand-mark {
-      width: 34px; height: 34px;
-      border-radius: 10px;
-      background: linear-gradient(140deg, var(--lime), var(--cyan));
-      display: grid;
-      place-items: center;
-      font-size: 10px;
-      font-weight: 800;
-      color: #0d0d0d;
-    }
-    .btn, .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 0 20px;
-      border-radius: 999px;
-      font-family: inherit;
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-      border: none;
-      transition: transform 0.15s, opacity 0.15s;
-    }
-    .btn { background: var(--ink); color: #fff; }
-    .btn-ghost { background: var(--surface); border: 1px solid var(--border-strong); color: var(--ink); }
-    .btn:hover, .btn-ghost:hover { transform: translateY(-1px); opacity: 0.92; }
+    /* nav */
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; border-radius: var(--r-md); background: rgba(255,255,255,0.8); border: 1px solid var(--border); backdrop-filter: blur(16px); margin-bottom: 10px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 700; }
+    .brand-mark { width: 32px; height: 32px; border-radius: 9px; background: linear-gradient(140deg, var(--lime), var(--cyan)); display: grid; place-items: center; font-size: 10px; font-weight: 800; color: #0d0d0d; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 42px; padding: 0 18px; border-radius: 999px; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; border: none; background: var(--ink); color: #fff; transition: opacity 0.15s; }
+    .btn:hover { opacity: 0.82; }
+    .btn-outline { background: transparent; border: 1px solid var(--border-strong); color: var(--ink); }
+    .btn-outline:hover { background: rgba(0,0,0,0.04); opacity: 1; }
 
-    /* ── board (main container) ── */
-    .board {
-      padding: 14px;
-      border-radius: var(--r-lg);
-      background: rgba(255,255,255,0.5);
-      border: 1px solid rgba(255,255,255,0.5);
-      box-shadow: 0 24px 64px rgba(0,0,0,0.06);
-    }
+    /* cards */
+    .card { padding: 22px; border-radius: var(--r-md); background: var(--surface); border: 1px solid var(--border); }
+    .card.dark { background: var(--ink); color: #fff; border-color: transparent; }
+    .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--soft); }
+    .card.dark .label { color: rgba(255,255,255,0.35); }
+    h2 { margin-top: 8px; font-size: 24px; line-height: 1.18; letter-spacing: -0.02em; text-wrap: balance; }
+    h3 { margin-top: 8px; font-size: 19px; line-height: 1.24; letter-spacing: -0.015em; }
+    .card > p, .card > .body { margin-top: 10px; font-size: 15px; line-height: 1.68; color: var(--muted); }
+    .card.dark > p { color: rgba(255,255,255,0.65); }
 
-    /* ── hero ── */
-    .hero {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-    .hero-main {
-      padding: 32px;
-      border-radius: var(--r-md);
-      background: var(--surface);
-      border: 1px solid var(--border);
-      background-image: radial-gradient(circle at 90% 10%, rgba(203,255,39,0.18), transparent 28%);
-    }
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 7px 13px;
-      border-radius: 999px;
-      background: var(--ink);
-      color: #fff;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-    }
-    .tag::before {
-      content: "";
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--lime);
-    }
-    h1 {
-      margin-top: 18px;
-      font-size: 64px;
-      line-height: 0.96;
-      letter-spacing: -0.04em;
-      text-wrap: balance;
-    }
-    .hero-sub {
-      margin-top: 14px;
-      font-size: 19px;
-      line-height: 1.6;
-      color: var(--muted);
-      max-width: 560px;
-    }
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 18px;
-    }
-    .chip {
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: var(--surface);
-      border: 1px solid var(--border-strong);
-      font-size: 13px;
-      font-weight: 600;
-    }
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 22px;
-    }
+    /* hero */
+    .hero { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 10px; }
+    .hero-main { padding: 30px 32px 32px; border-radius: var(--r-md); background: var(--surface); border: 1px solid var(--border); background-image: radial-gradient(circle at 95% 8%, rgba(203,255,39,0.15), transparent 26%); }
+    .tag { display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px; border-radius: 999px; background: var(--ink); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; }
+    .tag::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--lime); }
+    h1 { margin-top: 16px; font-size: 58px; line-height: 0.97; letter-spacing: -0.04em; text-wrap: balance; }
+    .hero-sub { margin-top: 14px; font-size: 18px; line-height: 1.64; color: var(--muted); max-width: 520px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 16px; }
+    .chip { padding: 7px 13px; border-radius: 999px; background: var(--bg); border: 1px solid var(--border-strong); font-size: 13px; font-weight: 500; color: var(--muted); }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 20px; }
 
-    /* ── hero side ── */
-    .hero-side {
-      display: grid;
-      grid-template-rows: auto 1fr;
-      gap: 12px;
-    }
-    .format-card {
-      padding: 26px;
-      border-radius: var(--r-md);
-      background: var(--ink);
-      color: #fff;
-      border: 1px solid transparent;
-    }
-    .format-card .label { color: rgba(255,255,255,0.4); }
-    .format-card h2 {
-      margin-top: 8px;
-      font-size: 26px;
-      line-height: 1.16;
-      letter-spacing: -0.02em;
-    }
-    .format-card p {
-      margin-top: 10px;
-      font-size: 16px;
-      line-height: 1.64;
-      color: rgba(255,255,255,0.72);
-    }
-    .format-steps {
-      margin-top: 18px;
-      display: grid;
-      gap: 10px;
-    }
-    .step {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
-    .step-num {
-      flex-shrink: 0;
-      width: 26px; height: 26px;
-      border-radius: 8px;
-      background: rgba(203,255,39,0.16);
-      border: 1px solid rgba(203,255,39,0.3);
-      display: grid;
-      place-items: center;
-      font-size: 11px;
-      font-weight: 800;
-      color: var(--lime);
-    }
-    .step p {
-      margin: 0;
-      font-size: 15px;
-      line-height: 1.5;
-      color: rgba(255,255,255,0.78);
-      padding-top: 3px;
-    }
-    .poster-mini {
-      padding: 22px;
-      border-radius: var(--r-md);
-      border: 1px solid var(--border);
-      background:
-        radial-gradient(ellipse at 20% 20%, rgba(71,200,255,0.7) 0%, transparent 36%),
-        radial-gradient(ellipse at 80% 22%, rgba(255,46,166,0.55) 0%, transparent 30%),
-        radial-gradient(ellipse at 50% 86%, rgba(203,255,39,0.75) 0%, transparent 30%),
-        linear-gradient(145deg, #e8fbff 0%, #fff8ee 60%, #f2ffb8 100%);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-    }
-    .poster-mini .poster-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 11px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.88);
-      font-size: 11px;
-      font-weight: 700;
-      width: fit-content;
-    }
-    .poster-mini .poster-title {
-      margin-top: 14px;
-      font-size: 36px;
-      line-height: 1.06;
-      letter-spacing: -0.02em;
-    }
-    .poster-mini .poster-title .accent { color: #2d16ff; }
+    /* hero side: two stacked cards, no empty gradients */
+    .hero-side { display: grid; grid-template-rows: 1fr auto; gap: 10px; }
+    .format-card { padding: 24px; border-radius: var(--r-md); background: var(--ink); color: #fff; }
+    .format-card .label { color: rgba(255,255,255,0.35); }
+    .format-card h2 { font-size: 22px; }
+    .format-steps { margin-top: 16px; display: grid; gap: 12px; }
+    .step { display: flex; align-items: flex-start; gap: 11px; }
+    .step-n { flex-shrink: 0; width: 24px; height: 24px; border-radius: 7px; background: rgba(203,255,39,0.14); border: 1px solid rgba(203,255,39,0.28); display: grid; place-items: center; font-size: 11px; font-weight: 800; color: var(--lime); margin-top: 1px; }
+    .step p { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.7); }
 
-    /* ── generic card ── */
-    .card {
-      padding: 24px;
-      border-radius: var(--r-md);
-      background: var(--surface);
-      border: 1px solid var(--border);
-    }
-    .card.dark {
-      background: var(--ink);
-      color: #fff;
-      border-color: transparent;
-    }
-    .label {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #909090;
-    }
-    .card.dark .label { color: rgba(255,255,255,0.38); }
-    h2 {
-      margin-top: 8px;
-      font-size: 26px;
-      line-height: 1.16;
-      letter-spacing: -0.02em;
-      text-wrap: balance;
-    }
-    h3 {
-      margin-top: 8px;
-      font-size: 21px;
-      line-height: 1.22;
-      letter-spacing: -0.02em;
-    }
-    .card > p {
-      margin-top: 10px;
-      font-size: 16px;
-      line-height: 1.66;
-      color: var(--muted);
-    }
-    .card.dark > p { color: rgba(255,255,255,0.68); }
+    .params-card { padding: 20px; border-radius: var(--r-md); background: var(--surface); border: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .param { display: grid; gap: 3px; }
+    .param-val { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; line-height: 1; }
+    .param-key { font-size: 12px; color: var(--soft); }
 
-    /* ── grids ── */
-    .g2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
-    .g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    /* grids */
+    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
 
-    /* ── list styles ── */
-    ul.dots {
-      list-style: none;
-      display: grid;
-      gap: 9px;
-      margin-top: 14px;
-    }
-    ul.dots li {
-      position: relative;
-      padding-left: 16px;
-      font-size: 15px;
-      line-height: 1.6;
-      color: var(--muted);
-    }
-    ul.dots li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 9px;
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--ink);
-    }
-    .card.dark ul.dots li { color: rgba(255,255,255,0.72); }
-    .card.dark ul.dots li::before { background: var(--lime); }
+    /* sessions */
+    .sessions { display: grid; gap: 8px; margin-top: 16px; }
+    .session-row { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; padding: 13px 14px; border-radius: var(--r-sm); background: rgba(17,17,17,0.03); border: 1px solid var(--border); }
+    .s-num { width: 28px; height: 28px; border-radius: 8px; background: var(--lime); display: grid; place-items: center; font-size: 12px; font-weight: 800; color: var(--ink); }
+    .session-row strong { display: block; font-size: 14px; line-height: 1.35; font-weight: 600; }
+    .session-row span { display: block; margin-top: 3px; font-size: 13px; line-height: 1.55; color: var(--muted); }
 
-    /* ── sessions (who shows what) ── */
-    .sessions {
-      display: grid;
-      gap: 10px;
-      margin-top: 16px;
-    }
-    .session-row {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 14px;
-      align-items: start;
-      padding: 14px 16px;
-      border-radius: var(--r-sm);
-      background: rgba(17,17,17,0.04);
-      border: 1px solid rgba(17,17,17,0.06);
-    }
-    .session-num {
-      width: 30px; height: 30px;
-      border-radius: 9px;
-      background: var(--lime);
-      display: grid;
-      place-items: center;
-      font-size: 12px;
-      font-weight: 800;
-      color: var(--ink);
-      flex-shrink: 0;
-    }
-    .session-row strong {
-      display: block;
-      font-size: 15px;
-      line-height: 1.3;
-      letter-spacing: -0.01em;
-    }
-    .session-row span {
-      display: block;
-      margin-top: 3px;
-      font-size: 14px;
-      line-height: 1.55;
-      color: var(--muted);
-    }
+    /* products */
+    .products { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 10px; }
+    .wg-card { padding: 28px; border-radius: var(--r-md); background: var(--ink); color: #fff; }
+    .wg-card .label { color: rgba(255,255,255,0.35); }
+    .wg-card h2 { font-size: 28px; letter-spacing: -0.025em; }
+    .wg-card > p { margin-top: 10px; font-size: 15px; line-height: 1.66; color: rgba(255,255,255,0.65); }
+    .price-big { margin-top: 18px; font-size: 52px; line-height: 1; letter-spacing: -0.04em; font-weight: 700; }
+    .price-note { margin-top: 5px; font-size: 13px; color: rgba(255,255,255,0.42); }
+    ul.dots { list-style: none; display: grid; gap: 8px; margin-top: 14px; }
+    ul.dots li { position: relative; padding-left: 15px; font-size: 14px; line-height: 1.6; color: var(--muted); }
+    ul.dots li::before { content: ""; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--ink); }
+    .wg-card ul.dots li { color: rgba(255,255,255,0.65); }
+    .wg-card ul.dots li::before { background: var(--lime); }
+    .hub-card { padding: 22px; border-radius: var(--r-md); background: var(--surface); border: 1px solid var(--border); display: flex; flex-direction: column; justify-content: space-between; gap: 20px; }
+    .hub-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 11px; border-radius: 999px; background: rgba(71,200,255,0.1); border: 1px solid rgba(71,200,255,0.25); font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #0a7fa8; width: fit-content; }
 
-    /* ── products comparison ── */
-    .products {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 12px;
-    }
-    .product-wg {
-      padding: 28px;
-      border-radius: var(--r-md);
-      background: var(--ink);
-      color: #fff;
-      border: 1px solid transparent;
-    }
-    .product-wg .label { color: rgba(255,255,255,0.38); }
-    .product-wg h2 {
-      font-size: 30px;
-      letter-spacing: -0.03em;
-    }
-    .product-wg p {
-      margin-top: 10px;
-      font-size: 16px;
-      line-height: 1.66;
-      color: rgba(255,255,255,0.68);
-    }
-    .price-big {
-      margin-top: 16px;
-      font-size: 56px;
-      line-height: 1;
-      letter-spacing: -0.04em;
-      font-weight: 700;
-    }
-    .price-note {
-      margin-top: 6px;
-      font-size: 14px;
-      color: rgba(255,255,255,0.5);
-    }
-    .product-hub {
-      padding: 24px;
-      border-radius: var(--r-md);
-      background: var(--surface);
-      border: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .hub-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: rgba(71,200,255,0.12);
-      border: 1px solid rgba(71,200,255,0.3);
-      font-size: 12px;
-      font-weight: 700;
-      color: #0a7fa8;
-      width: fit-content;
-    }
-
-    /* ── footer ── */
-    .footer-card {
-      padding: 32px;
-      border-radius: var(--r-md);
-      background: var(--ink);
-      color: #fff;
-      border: 1px solid transparent;
-      position: relative;
-      overflow: hidden;
-    }
-    .footer-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse at 90% 0%, rgba(203,255,39,0.14), transparent 40%),
-        radial-gradient(ellipse at 10% 100%, rgba(71,200,255,0.1), transparent 36%);
-      pointer-events: none;
-    }
-    .footer-card h2 {
-      font-size: 34px;
-      letter-spacing: -0.03em;
-      max-width: 640px;
-    }
-    .footer-card p {
-      margin-top: 12px;
-      font-size: 17px;
-      line-height: 1.66;
-      color: rgba(255,255,255,0.65);
-      max-width: 580px;
-    }
-    .footer-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 24px;
-    }
-
-    /* ── team ── */
-    .team-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-    }
-    .avatar {
-      width: 68px; height: 68px;
-      flex-shrink: 0;
-      border-radius: 16px;
-      overflow: hidden;
-      background: linear-gradient(140deg, var(--lime), var(--cyan));
-    }
+    /* team */
+    .team-row { display: flex; align-items: flex-start; gap: 15px; }
+    .avatar { width: 64px; height: 64px; flex-shrink: 0; border-radius: 14px; overflow: hidden; background: linear-gradient(140deg, var(--lime), var(--cyan)); }
     .avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .avatar.empty {
-      display: grid;
-      place-items: center;
-      background: linear-gradient(140deg, #6b5cff, var(--pink));
-      color: #fff;
-      font-size: 17px;
-      font-weight: 800;
-    }
 
-    /* ── responsive ── */
-    @media (max-width: 1020px) {
+    /* footer */
+    .footer-card { padding: 30px 32px; border-radius: var(--r-md); background: var(--ink); color: #fff; position: relative; overflow: hidden; }
+    .footer-card::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 92% 0%, rgba(203,255,39,0.1), transparent 38%), radial-gradient(ellipse at 8% 100%, rgba(71,200,255,0.08), transparent 34%); pointer-events: none; }
+    .footer-card h2 { font-size: 30px; letter-spacing: -0.03em; max-width: 560px; }
+    .footer-card p { margin-top: 10px; font-size: 16px; line-height: 1.66; color: rgba(255,255,255,0.6); max-width: 520px; }
+    .footer-actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 22px; }
+
+    /* responsive */
+    @media (max-width: 980px) {
       .hero, .products { grid-template-columns: 1fr; }
-      .g3 { grid-template-columns: 1fr; }
-      .hero-side { grid-template-rows: auto; }
+      .hero-side { grid-template-rows: auto auto; }
+      .g3 { grid-template-columns: 1fr 1fr; }
     }
-    @media (max-width: 680px) {
-      body { padding: 10px 0 40px; }
+    @media (max-width: 640px) {
+      body { padding: 10px 0 44px; }
       .wrap { padding: 0 12px; }
-      .board { padding: 10px; }
+      .board, nav { padding: 10px; }
       .hero-main { padding: 22px; }
-      h1 { font-size: 42px; }
-      .card { padding: 20px; }
-      .product-wg, .footer-card { padding: 22px; }
-      .g2 { grid-template-columns: 1fr; }
+      h1 { font-size: 40px; }
+      .g2, .g3 { grid-template-columns: 1fr; }
+      .params-card { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
+<div class="wrap">
 
-    <nav>
-      <a class="brand" href="./" aria-label="Practical AI">
-        <div class="brand-mark">PA</div>
-        <span>Practical AI</span>
-      </a>
-      <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Написать ↗</a>
-    </nav>
+  <nav>
+    <a class="brand" href="./">
+      <div class="brand-mark">PA</div>
+      <span>Practical AI</span>
+    </a>
+    <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Написать ↗</a>
+  </nav>
 
-    <main class="board stack">
+  <main class="board">
 
-      <!-- hero -->
-      <section class="hero">
-        <article class="hero-main">
-          <div class="tag">Валенсия · офлайн · первый набор</div>
-          <h1>Смотришь как работают другие. Показываешь как работаешь ты.</h1>
-          <p class="hero-sub">Малая группа AI-практиков. Каждую встречу один человек показывает свой реальный workflow — агенты, инструменты, систему. Остальные смотрят и задают вопросы.</p>
-          <div class="chips">
-            <div class="chip">6–8 человек</div>
-            <div class="chip">4 встречи · вт или ср, 17–20</div>
-            <div class="chip">офлайн Валенсия</div>
-            <div class="chip">200€ / месяц</div>
-          </div>
-          <div class="cta-row">
-            <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Написать Данилу ↗</a>
-            <a class="btn-ghost" href="#fit">Кому подходит</a>
-          </div>
-        </article>
-
-        <div class="hero-side">
-          <article class="format-card">
-            <div class="label">Формат встречи</div>
-            <h2>Живое демо, не слайды</h2>
-            <div class="format-steps">
-              <div class="step">
-                <div class="step-num">1</div>
-                <p>Один участник открывает экран и показывает как реально работает — агенты, промпты, инструменты.</p>
-              </div>
-              <div class="step">
-                <div class="step-num">2</div>
-                <p>Остальные смотрят, задают вопросы, разбирают вместе что работает и почему.</p>
-              </div>
-              <div class="step">
-                <div class="step-num">3</div>
-                <p>Между встречами — закрытый чат. Продолжаем там.</p>
-              </div>
-            </div>
-          </article>
-          <article class="poster-mini">
-            <div class="poster-badge">Practical AI · Valencia</div>
-            <div class="poster-title">Working<br><span class="accent">Group</span></div>
-          </article>
+    <!-- hero -->
+    <section class="hero">
+      <article class="hero-main">
+        <div class="tag">Валенсия · офлайн · первый набор</div>
+        <h1>Смотришь как работают другие. Показываешь своё.</h1>
+        <p class="hero-sub">Малая группа AI-практиков. Каждую встречу один человек открывает экран и показывает как работает — агенты, инструменты, систему. Остальные смотрят и задают вопросы.</p>
+        <div class="chips">
+          <div class="chip">6–8 человек</div>
+          <div class="chip">4 встречи, вт или ср 17–20</div>
+          <div class="chip">офлайн Валенсия</div>
+          <div class="chip">200 € / месяц</div>
         </div>
-      </section>
-
-      <!-- sessions: что показывают -->
-      <section class="card">
-        <div class="label">Что показывают на встречах</div>
-        <h2>Реальные кейсы, не учебные примеры</h2>
-        <div class="sessions">
-          <div class="session-row">
-            <div class="session-num">1</div>
-            <div>
-              <strong>Долгоживущие кодинговые агенты в больших проектах</strong>
-              <span>Как устроить агента так, чтобы он не ломался на больших кодовых базах. Опыт изнутри продукта.</span>
-            </div>
-          </div>
-          <div class="session-row">
-            <div class="session-num">2</div>
-            <div>
-              <strong>Мультиагентная система для маркетинга</strong>
-              <span>Контент-маркетолог, дизайнер, аккаунт-менеджер — все агенты. MCP подключён к рекламным платформам.</span>
-            </div>
-          </div>
-          <div class="session-row">
-            <div class="session-num">3</div>
-            <div>
-              <strong>Агенты в продакшене с командой</strong>
-              <span>Память агентов, сбор данных без API, аналитика встреч и температура команды через AI.</span>
-            </div>
-          </div>
-          <div class="session-row">
-            <div class="session-num">4</div>
-            <div>
-              <strong>AI-OS: как организовать harness, MCP и knowledge sharing</strong>
-              <span>Одна папка или несколько? Git, Confluence или общий MCP? Как разделить личное и командное.</span>
-            </div>
-          </div>
-          <div class="session-row">
-            <div class="session-num">5</div>
-            <div>
-              <strong>Монетизация продукта с AI от разработки до дистрибуции</strong>
-              <span>Как строить и продавать расширения. AI в разработке, маркетинге и поддержке пользователей.</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- два продукта -->
-      <section class="products">
-        <article class="product-wg">
-          <div class="label">Working Group</div>
-          <h2>Малая группа практиков. Офлайн Валенсия.</h2>
-          <p>Отбор вручную. Приходишь с тем, что делаешь — показываешь группе, смотришь на других. За месяц видишь 4 разных рабочих подхода от людей своего уровня.</p>
-          <ul class="dots" style="margin-top:16px;">
-            <li>4 встречи по 3 часа, вт или ср 17–20</li>
-            <li>6–8 человек — операторы и билдеры с реальным AI-опытом</li>
-            <li>закрытый чат между встречами</li>
-            <li>место, еда, интернет — в цене</li>
-          </ul>
-          <div class="price-big">200€</div>
-          <div class="price-note">за месяц · первый набор</div>
-          <div style="margin-top:20px;">
-            <a class="btn-ghost" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.18);color:#fff;">Написать Данилу ↗</a>
-          </div>
-        </article>
-
-        <article class="product-hub">
-          <div>
-            <div class="hub-badge">Practical AI Hub</div>
-            <h3 style="margin-top:14px;">Telegram-чат для всех остальных</h3>
-            <p style="margin-top:10px;font-size:15px;line-height:1.65;color:var(--muted);">Ссылки, находки, короткие разборы. Без обязательств и расписания. Кто вырос — переходит в Working Group следующего набора.</p>
-            <ul class="dots" style="margin-top:14px;">
-              <li>асинхронно, в своём темпе</li>
-              <li>что реально работает — без хайпа</li>
-              <li>воронка в группу для следующих наборов</li>
-            </ul>
-          </div>
-          <div style="margin-top:20px;">
-            <a class="btn-ghost" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Войти в Hub ↗</a>
-          </div>
-        </article>
-      </section>
-
-      <!-- fit -->
-      <section class="g2" id="fit">
-        <article class="card">
-          <div class="label">Кому подходит Working Group</div>
-          <ul class="dots">
-            <li>уже используешь AI в работе — не первый месяц</li>
-            <li>есть что показать: агент, workflow, систему</li>
-            <li>хочешь смотреть как работают другие практики своего уровня</li>
-            <li>можешь быть в Валенсии офлайн раз в неделю</li>
-          </ul>
-        </article>
-        <article class="card dark">
-          <div class="label">Кому не подходит</div>
-          <ul class="dots">
-            <li>нужен вводный курс или объяснение с нуля</li>
-            <li>пока нечего показать — только интерес</li>
-            <li>хочется просто послушать без участия</li>
-          </ul>
-          <p style="margin-top:16px;font-size:14px;">Для таких есть Hub — заходи туда, расти, потом в группу.</p>
-        </article>
-      </section>
-
-      <!-- кто ведёт -->
-      <section class="g2">
-        <article class="card">
-          <div class="team-row">
-            <div class="avatar">
-              <img src="./assets/community/danil-usik.jpg" alt="Данил Усик">
-            </div>
-            <div>
-              <div class="label">Куратор и организатор</div>
-              <h3>Данил Усик</h3>
-              <p style="margin-top:8px;font-size:15px;line-height:1.6;color:var(--muted);">Собирает состав вручную. Договаривается кто когда показывает. Держит ритм.</p>
-            </div>
-          </div>
-        </article>
-        <article class="card dark">
-          <div class="label">Как попасть</div>
-          <h3>Три строки в Telegram</h3>
-          <p>Кто ты, что используешь в работе прямо сейчас, что хочешь показать или узнать. Скажу, есть ли место.</p>
-          <div style="margin-top:16px;">
-            <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Написать ↗</a>
-          </div>
-        </article>
-      </section>
-
-      <!-- footer -->
-      <section class="footer-card">
-        <h2>Мест 6–8. Часть уже занята.</h2>
-        <p>Написал — скажу есть ли место и подходит ли формат под то, что ты делаешь. Если нет — позову в Hub и следующий набор.</p>
-        <div class="footer-actions">
+        <div class="cta-row">
           <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Написать Данилу ↗</a>
+          <a class="btn btn-outline" href="#fit">Кому подходит</a>
         </div>
-      </section>
+      </article>
 
-    </main>
-  </div>
+      <div class="hero-side">
+        <article class="format-card">
+          <div class="label">Как проходит встреча</div>
+          <h2>Живое демо, без слайдов</h2>
+          <div class="format-steps">
+            <div class="step">
+              <div class="step-n">1</div>
+              <p>Один участник показывает как реально работает — открывает экран, агенты, промпты.</p>
+            </div>
+            <div class="step">
+              <div class="step-n">2</div>
+              <p>Остальные смотрят, задают вопросы, разбирают что работает и почему.</p>
+            </div>
+            <div class="step">
+              <div class="step-n">3</div>
+              <p>Между встречами продолжаем в закрытом чате — находки, вопросы, прогресс.</p>
+            </div>
+          </div>
+        </article>
+
+        <div class="params-card">
+          <div class="param">
+            <div class="param-val">4</div>
+            <div class="param-key">встречи в месяц</div>
+          </div>
+          <div class="param">
+            <div class="param-val">3 ч</div>
+            <div class="param-key">каждая встреча</div>
+          </div>
+          <div class="param">
+            <div class="param-val">6–8</div>
+            <div class="param-key">человек в группе</div>
+          </div>
+          <div class="param">
+            <div class="param-val">200€</div>
+            <div class="param-key">за месяц</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- что показывают -->
+    <section class="card">
+      <div class="label">Что показывают на встречах</div>
+      <h2>Кейсы из реальной работы</h2>
+      <div class="sessions">
+        <div class="session-row">
+          <div class="s-num">1</div>
+          <div>
+            <strong>Долгоживущие кодинговые агенты в больших проектах</strong>
+            <span>Как устроить агента так, чтобы он не ломался на сложных кодовых базах. Опыт изнутри продукта.</span>
+          </div>
+        </div>
+        <div class="session-row">
+          <div class="s-num">2</div>
+          <div>
+            <strong>Мультиагентная система для маркетинга</strong>
+            <span>Контент-маркетолог, дизайнер, аккаунт-менеджер — всё агенты. MCP подключён к рекламным платформам.</span>
+          </div>
+        </div>
+        <div class="session-row">
+          <div class="s-num">3</div>
+          <div>
+            <strong>Агенты в продакшене с командой</strong>
+            <span>Память агентов, сбор данных без API, аналитика встреч и настроений команды через AI.</span>
+          </div>
+        </div>
+        <div class="session-row">
+          <div class="s-num">4</div>
+          <div>
+            <strong>Как организовать AI-OS: harness, MCP, знания команды</strong>
+            <span>Одна папка или несколько? Общий MCP? Как разделить личное и командное пространство.</span>
+          </div>
+        </div>
+        <div class="session-row">
+          <div class="s-num">5</div>
+          <div>
+            <strong>Монетизация продукта с AI</strong>
+            <span>Как строить и продавать расширения. AI в разработке, маркетинге и поддержке пользователей.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- два продукта -->
+    <section class="products">
+      <article class="wg-card">
+        <div class="label">Working Group</div>
+        <h2>Малая группа практиков. Офлайн Валенсия.</h2>
+        <p>Отбор вручную. Приходишь с тем, что делаешь — показываешь группе, смотришь на других. За месяц видишь 4 разных рабочих подхода от людей своего уровня.</p>
+        <ul class="dots">
+          <li>4 встречи по 3 часа, вт или ср 17–20</li>
+          <li>операторы и билдеры с реальным AI-опытом</li>
+          <li>закрытый чат между встречами</li>
+          <li>место, еда, интернет — всё включено</li>
+        </ul>
+        <div class="price-big">200€</div>
+        <div class="price-note">за месяц · первый набор</div>
+        <div style="margin-top:18px;">
+          <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer" style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.18);">Написать ↗</a>
+        </div>
+      </article>
+
+      <article class="hub-card">
+        <div>
+          <div class="hub-badge">Practical AI Hub</div>
+          <h3 style="margin-top:12px;">Telegram-чат для всех остальных</h3>
+          <p class="body" style="margin-top:9px;font-size:14px;line-height:1.65;color:var(--muted);">Находки, разборы, ссылки — без расписания и обязательств. Кто дорастёт — переходит в группу следующего набора.</p>
+          <ul class="dots" style="margin-top:12px;">
+            <li>асинхронно, в своём темпе</li>
+            <li>что работает — без лишнего хайпа</li>
+            <li>приоритет в следующий набор группы</li>
+          </ul>
+        </div>
+        <a class="btn btn-outline" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Войти в Hub ↗</a>
+      </article>
+    </section>
+
+    <!-- fit -->
+    <section class="g2" id="fit">
+      <article class="card">
+        <div class="label">Кому подходит Working Group</div>
+        <ul class="dots" style="margin-top:12px;">
+          <li>уже используешь AI в работе — не первый месяц</li>
+          <li>есть что показать: агент, workflow, систему</li>
+          <li>хочешь смотреть как работают другие практики</li>
+          <li>можешь быть в Валенсии раз в неделю</li>
+        </ul>
+      </article>
+      <article class="card dark">
+        <div class="label">Кому сначала в Hub</div>
+        <ul class="dots" style="margin-top:12px;">
+          <li>только начинаешь — нужна база</li>
+          <li>пока нечего показать, хочется посмотреть</li>
+          <li>не уверен по формату или датам</li>
+        </ul>
+        <p style="margin-top:14px;font-size:13px;">Заходи в Hub, смотри, расти — потом в группу.</p>
+      </article>
+    </section>
+
+    <!-- кто ведёт + как попасть -->
+    <section class="g2">
+      <article class="card">
+        <div class="team-row">
+          <div class="avatar"><img src="./assets/community/danil-usik.jpg" alt="Данил Усик"></div>
+          <div>
+            <div class="label">Куратор и организатор</div>
+            <h3>Данил Усик</h3>
+            <p style="margin-top:8px;font-size:14px;line-height:1.65;color:var(--muted);">Собирает состав вручную, договаривается кто когда показывает, держит ритм группы.</p>
+          </div>
+        </div>
+      </article>
+      <article class="card dark">
+        <div class="label">Как попасть</div>
+        <h3>Три строки в Telegram</h3>
+        <p style="margin-top:9px;">Кто ты, что делаешь с AI прямо сейчас, что хочешь показать или узнать. Отвечу — есть ли место и подходит ли формат.</p>
+        <div style="margin-top:16px;">
+          <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Написать ↗</a>
+        </div>
+      </article>
+    </section>
+
+    <!-- footer -->
+    <section class="footer-card">
+      <h2>Места есть. Группа небольшая.</h2>
+      <p>Напиши — скажу есть ли место и подходит ли тебе формат. Если нет — позову в Hub и следующий набор.</p>
+      <div class="footer-actions">
+        <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer" style="background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.18);">Написать Данилу ↗</a>
+      </div>
+    </section>
+
+  </main>
+</div>
 </body>
 </html>
