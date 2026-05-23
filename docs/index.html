@@ -3,53 +3,56 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Practical AI Working Group Valencia</title>
-  <meta name="description" content="Рабочие группы в Валенсии: 10 человек, 4 недели, 4 большие встречи, закрытый Telegram-канал и один рабочий результат у каждого." />
+  <title>Practical AI — Working Group Valencia</title>
+  <meta name="description" content="Малая группа AI-практиков в Валенсии. Каждую встречу один показывает как реально работает — агенты, инструменты, систему. Остальные смотрят и задают вопросы." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f4f0e7;
+      --bg:    #f5f0e8;
+      --ink:   #111111;
+      --muted: #5c574f;
       --surface: #ffffff;
-      --panel: #f8f5ee;
-      --ink: #111111;
-      --muted: #5d5850;
-      --border: rgba(17, 17, 17, 0.1);
-      --border-strong: rgba(17, 17, 17, 0.18);
+      --panel: #f0ebe0;
+      --border: rgba(17,17,17,0.1);
+      --border-strong: rgba(17,17,17,0.18);
       --lime: #cbff27;
       --cyan: #47c8ff;
       --pink: #ff2ea6;
-      --shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-      --max: 1160px;
+      --max: 1120px;
+      --r-sm: 18px;
+      --r-md: 24px;
+      --r-lg: 32px;
     }
-    * { box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      margin: 0;
       font-family: "Space Grotesk", system-ui, sans-serif;
+      background: var(--bg);
       color: var(--ink);
-      background:
-        radial-gradient(circle at 0% 0%, rgba(203, 255, 39, 0.18), transparent 34%),
-        radial-gradient(circle at 100% 0%, rgba(71, 200, 255, 0.14), transparent 28%),
-        linear-gradient(180deg, #f8f3ea 0%, #efe9de 100%);
       -webkit-font-smoothing: antialiased;
-      line-height: 1.55;
-      padding: 16px 0 48px;
+      line-height: 1.5;
+      padding: 14px 0 56px;
     }
     a { color: inherit; text-decoration: none; }
-    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 18px; }
-    .nav {
+    img { display: block; }
+
+    /* ── layout ── */
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 16px; }
+    .stack { display: grid; gap: 12px; }
+
+    /* ── nav ── */
+    nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 18px;
-      padding: 10px 14px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.76);
+      padding: 10px 16px;
+      border-radius: var(--r-md);
+      background: rgba(255,255,255,0.8);
       border: 1px solid var(--border);
       backdrop-filter: blur(16px);
+      margin-bottom: 12px;
     }
     .brand {
       display: flex;
@@ -57,270 +60,207 @@
       gap: 10px;
       font-size: 14px;
       font-weight: 700;
-      letter-spacing: -0.01em;
     }
     .brand-mark {
-      width: 36px;
-      height: 36px;
+      width: 34px; height: 34px;
       border-radius: 10px;
+      background: linear-gradient(140deg, var(--lime), var(--cyan));
       display: grid;
       place-items: center;
-      background: linear-gradient(140deg, var(--lime), var(--cyan));
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 800;
       color: #0d0d0d;
     }
-    .nav-link,
-    .btn,
-    .btn-ghost {
+    .btn, .btn-ghost {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 46px;
+      min-height: 44px;
       padding: 0 20px;
       border-radius: 999px;
+      font-family: inherit;
       font-size: 14px;
       font-weight: 700;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.15s, opacity 0.15s;
     }
-    .nav-link,
-    .btn {
-      background: var(--ink);
-      color: #fff;
-    }
-    .btn-ghost {
-      background: #fff;
-      border: 1px solid var(--border-strong);
-      color: var(--ink);
-    }
-    .nav-link:hover,
-    .btn:hover,
-    .btn-ghost:hover {
-      transform: translateY(-2px);
-    }
+    .btn { background: var(--ink); color: #fff; }
+    .btn-ghost { background: var(--surface); border: 1px solid var(--border-strong); color: var(--ink); }
+    .btn:hover, .btn-ghost:hover { transform: translateY(-1px); opacity: 0.92; }
+
+    /* ── board (main container) ── */
     .board {
-      display: grid;
-      gap: 16px;
-      padding: 18px;
-      border-radius: 34px;
-      background: rgba(255, 255, 255, 0.64);
-      border: 1px solid rgba(255, 255, 255, 0.48);
-      box-shadow: var(--shadow);
+      padding: 14px;
+      border-radius: var(--r-lg);
+      background: rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.5);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.06);
     }
+
+    /* ── hero ── */
     .hero {
       display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 16px;
-    }
-    .hero-main,
-    .hero-side,
-    .card,
-    .footer-card {
-      border-radius: 28px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      overflow: hidden;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 12px;
+      margin-bottom: 12px;
     }
     .hero-main {
-      position: relative;
-      padding: 28px;
-      background:
-        radial-gradient(circle at 84% 12%, rgba(203, 255, 39, 0.22), transparent 24%),
-        linear-gradient(160deg, #ffffff 0%, #faf7f0 100%);
+      padding: 32px;
+      border-radius: var(--r-md);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      background-image: radial-gradient(circle at 90% 10%, rgba(203,255,39,0.18), transparent 28%);
     }
-    .tc-banner {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 12px 14px;
-      border-radius: 18px;
-      background: rgba(17, 17, 17, 0.04);
-      border: 1px solid rgba(17, 17, 17, 0.08);
-    }
-    .tc-thumb {
-      width: 126px;
-      height: 72px;
-      border-radius: 14px;
-      overflow: hidden;
-      flex-shrink: 0;
-      border: 1px solid rgba(17, 17, 17, 0.08);
-      background: #fff;
-    }
-    .tc-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: left top;
-      display: block;
-    }
-    .tc-copy strong {
-      display: block;
-      font-size: 16px;
-      line-height: 1.28;
-    }
-    .tc-copy span {
-      display: block;
-      margin-top: 4px;
-      font-size: 14px;
-      line-height: 1.5;
-      color: var(--muted);
-    }
-    .eyebrow {
+    .tag {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      margin-top: 18px;
-      padding: 8px 14px;
+      gap: 7px;
+      padding: 7px 13px;
       border-radius: 999px;
       background: var(--ink);
       color: #fff;
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.07em;
       text-transform: uppercase;
     }
-    .eyebrow::before {
+    .tag::before {
       content: "";
-      width: 7px;
-      height: 7px;
+      width: 6px; height: 6px;
       border-radius: 50%;
       background: var(--lime);
     }
     h1 {
-      margin: 18px 0 0;
-      max-width: 760px;
-      font-size: 70px;
-      line-height: 0.95;
+      margin-top: 18px;
+      font-size: 64px;
+      line-height: 0.96;
       letter-spacing: -0.04em;
       text-wrap: balance;
     }
-    .marker {
-      font-family: "Space Grotesk", system-ui, sans-serif;
-      font-weight: 700;
-      color: var(--ink);
-      letter-spacing: -0.04em;
-    }
-    .sub {
-      margin-top: 16px;
-      max-width: 700px;
-      font-size: 20px;
-      line-height: 1.62;
+    .hero-sub {
+      margin-top: 14px;
+      font-size: 19px;
+      line-height: 1.6;
       color: var(--muted);
+      max-width: 560px;
     }
-    .chips,
-    .cta-row,
-    .footer-actions {
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .chip {
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .cta-row {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
+      margin-top: 22px;
     }
-    .chips { margin-top: 20px; }
-    .chip {
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: #fff;
-      border: 1px solid var(--border-strong);
-      font-size: 13px;
-      font-weight: 700;
-    }
-    .cta-row { margin-top: 24px; }
+
+    /* ── hero side ── */
     .hero-side {
       display: grid;
-      grid-template-rows: 1fr auto;
-      gap: 14px;
-      padding: 16px;
-      background: var(--panel);
+      grid-template-rows: auto 1fr;
+      gap: 12px;
     }
-    .poster {
-      position: relative;
-      min-height: 400px;
+    .format-card {
+      padding: 26px;
+      border-radius: var(--r-md);
+      background: var(--ink);
+      color: #fff;
+      border: 1px solid transparent;
+    }
+    .format-card .label { color: rgba(255,255,255,0.4); }
+    .format-card h2 {
+      margin-top: 8px;
+      font-size: 26px;
+      line-height: 1.16;
+      letter-spacing: -0.02em;
+    }
+    .format-card p {
+      margin-top: 10px;
+      font-size: 16px;
+      line-height: 1.64;
+      color: rgba(255,255,255,0.72);
+    }
+    .format-steps {
+      margin-top: 18px;
+      display: grid;
+      gap: 10px;
+    }
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 26px; height: 26px;
+      border-radius: 8px;
+      background: rgba(203,255,39,0.16);
+      border: 1px solid rgba(203,255,39,0.3);
+      display: grid;
+      place-items: center;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--lime);
+    }
+    .step p {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.78);
+      padding-top: 3px;
+    }
+    .poster-mini {
       padding: 22px;
-      border-radius: 22px;
+      border-radius: var(--r-md);
+      border: 1px solid var(--border);
       background:
-        radial-gradient(ellipse at 20% 18%, rgba(71, 200, 255, 0.82) 0%, transparent 34%),
-        radial-gradient(ellipse at 82% 24%, rgba(255, 46, 166, 0.64) 0%, transparent 28%),
-        radial-gradient(ellipse at 50% 84%, rgba(203, 255, 39, 0.82) 0%, transparent 28%),
-        linear-gradient(145deg, #e8fbff 0%, #fff8ee 58%, #f3ffba 100%);
+        radial-gradient(ellipse at 20% 20%, rgba(71,200,255,0.7) 0%, transparent 36%),
+        radial-gradient(ellipse at 80% 22%, rgba(255,46,166,0.55) 0%, transparent 30%),
+        radial-gradient(ellipse at 50% 86%, rgba(203,255,39,0.75) 0%, transparent 30%),
+        linear-gradient(145deg, #e8fbff 0%, #fff8ee 60%, #f2ffb8 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
     }
-    .poster-badge {
+    .poster-mini .poster-badge {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 7px 12px;
+      padding: 6px 11px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.88);
+      background: rgba(255,255,255,0.88);
       font-size: 11px;
       font-weight: 700;
+      width: fit-content;
     }
-    .poster-title {
-      margin-top: 18px;
-      max-width: 300px;
-      font-size: 42px;
-      line-height: 1.04;
-      letter-spacing: -0.02em;
-      text-wrap: balance;
-    }
-    .poster-title span { display: block; }
-    .poster-title .scribble {
-      margin-top: 8px;
-      color: #2d16ff;
-      font-size: 28px;
-      font-weight: 800;
-    }
-    .poster img {
-      position: absolute;
-      right: -8px;
-      bottom: -14px;
-      width: 58%;
-      max-width: 270px;
-      pointer-events: none;
-    }
-    .side-note {
-      padding: 20px;
-      border-radius: 20px;
-      background: var(--ink);
-      color: #fff;
-    }
-    .side-note strong {
-      display: block;
-      font-size: 30px;
-      line-height: 1.08;
-      letter-spacing: -0.03em;
-    }
-    .side-note span {
-      display: block;
-      margin-top: 10px;
-      font-size: 17px;
-      line-height: 1.56;
-      color: rgba(255, 255, 255, 0.7);
-    }
-    .side-note em {
-      display: block;
+    .poster-mini .poster-title {
       margin-top: 14px;
-      font-style: normal;
-      font-size: 20px;
-      line-height: 1.38;
-      color: #fff;
+      font-size: 36px;
+      line-height: 1.06;
+      letter-spacing: -0.02em;
     }
-    .grid-3,
-    .grid-2,
-    .timeline {
-      display: grid;
-      gap: 16px;
-    }
-    .grid-3 { grid-template-columns: repeat(3, 1fr); }
-    .grid-2 { grid-template-columns: repeat(2, 1fr); }
-    .timeline { grid-template-columns: repeat(5, 1fr); }
+    .poster-mini .poster-title .accent { color: #2d16ff; }
+
+    /* ── generic card ── */
     .card {
-      padding: 22px;
-      background: rgba(255, 255, 255, 0.96);
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      padding: 24px;
+      border-radius: var(--r-md);
+      background: var(--surface);
+      border: 1px solid var(--border);
     }
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 42px rgba(0, 0, 0, 0.08);
-    }
-    .dark {
+    .card.dark {
       background: var(--ink);
       color: #fff;
       border-color: transparent;
@@ -330,397 +270,430 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: #848484;
+      color: #909090;
     }
-    .dark .label { color: rgba(255, 255, 255, 0.42); }
-    h2, h3 {
-      margin: 10px 0 0;
-      font-size: 28px;
-      line-height: 1.14;
+    .card.dark .label { color: rgba(255,255,255,0.38); }
+    h2 {
+      margin-top: 8px;
+      font-size: 26px;
+      line-height: 1.16;
       letter-spacing: -0.02em;
       text-wrap: balance;
     }
-    .card p {
-      margin: 10px 0 0;
-      font-size: 17px;
+    h3 {
+      margin-top: 8px;
+      font-size: 21px;
+      line-height: 1.22;
+      letter-spacing: -0.02em;
+    }
+    .card > p {
+      margin-top: 10px;
+      font-size: 16px;
       line-height: 1.66;
       color: var(--muted);
     }
-    .dark p { color: rgba(255, 255, 255, 0.74); }
-    ul.clean {
-      margin: 14px 0 0;
-      padding: 0;
+    .card.dark > p { color: rgba(255,255,255,0.68); }
+
+    /* ── grids ── */
+    .g2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+    .g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+
+    /* ── list styles ── */
+    ul.dots {
       list-style: none;
       display: grid;
-      gap: 10px;
+      gap: 9px;
+      margin-top: 14px;
     }
-    ul.clean li {
+    ul.dots li {
       position: relative;
-      padding-left: 18px;
-      font-size: 16px;
-      line-height: 1.62;
+      padding-left: 16px;
+      font-size: 15px;
+      line-height: 1.6;
       color: var(--muted);
     }
-    ul.clean li::before {
+    ul.dots li::before {
       content: "";
       position: absolute;
       left: 0;
-      top: 10px;
-      width: 7px;
-      height: 7px;
+      top: 9px;
+      width: 6px; height: 6px;
       border-radius: 50%;
       background: var(--ink);
     }
-    .dark ul.clean li {
-      color: rgba(255, 255, 255, 0.76);
-    }
-    .dark ul.clean li::before {
-      background: var(--lime);
-    }
-    .group-card {
+    .card.dark ul.dots li { color: rgba(255,255,255,0.72); }
+    .card.dark ul.dots li::before { background: var(--lime); }
+
+    /* ── sessions (who shows what) ── */
+    .sessions {
       display: grid;
-      gap: 16px;
+      gap: 10px;
+      margin-top: 16px;
     }
-    .group-list {
-      margin: 0;
-      padding: 0;
-      list-style: none;
+    .session-row {
       display: grid;
-      gap: 12px;
-    }
-    .group-list li {
-      display: grid;
-      gap: 4px;
+      grid-template-columns: auto 1fr;
+      gap: 14px;
+      align-items: start;
       padding: 14px 16px;
-      border-radius: 18px;
-      background: rgba(17, 17, 17, 0.04);
-      border: 1px solid rgba(17, 17, 17, 0.06);
+      border-radius: var(--r-sm);
+      background: rgba(17,17,17,0.04);
+      border: 1px solid rgba(17,17,17,0.06);
     }
-    .group-list strong {
+    .session-num {
+      width: 30px; height: 30px;
+      border-radius: 9px;
+      background: var(--lime);
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--ink);
+      flex-shrink: 0;
+    }
+    .session-row strong {
       display: block;
       font-size: 15px;
       line-height: 1.3;
       letter-spacing: -0.01em;
     }
-    .group-list span {
+    .session-row span {
       display: block;
-      font-size: 15px;
-      line-height: 1.58;
+      margin-top: 3px;
+      font-size: 14px;
+      line-height: 1.55;
       color: var(--muted);
     }
-    .step-tag {
-      width: 38px;
-      height: 38px;
+
+    /* ── products comparison ── */
+    .products {
       display: grid;
-      place-items: center;
-      border-radius: 11px;
-      background: var(--lime);
-      font-size: 12px;
-      font-weight: 800;
-      color: var(--ink);
-      box-shadow: 0 6px 16px rgba(203, 255, 39, 0.28);
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 12px;
     }
-    .price {
+    .product-wg {
+      padding: 28px;
+      border-radius: var(--r-md);
+      background: var(--ink);
+      color: #fff;
+      border: 1px solid transparent;
+    }
+    .product-wg .label { color: rgba(255,255,255,0.38); }
+    .product-wg h2 {
+      font-size: 30px;
+      letter-spacing: -0.03em;
+    }
+    .product-wg p {
       margin-top: 10px;
-      font-size: 58px;
+      font-size: 16px;
+      line-height: 1.66;
+      color: rgba(255,255,255,0.68);
+    }
+    .price-big {
+      margin-top: 16px;
+      font-size: 56px;
       line-height: 1;
       letter-spacing: -0.04em;
       font-weight: 700;
     }
-    .team-card {
+    .price-note {
+      margin-top: 6px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+    }
+    .product-hub {
+      padding: 24px;
+      border-radius: var(--r-md);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .hub-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(71,200,255,0.12);
+      border: 1px solid rgba(71,200,255,0.3);
+      font-size: 12px;
+      font-weight: 700;
+      color: #0a7fa8;
+      width: fit-content;
+    }
+
+    /* ── footer ── */
+    .footer-card {
+      padding: 32px;
+      border-radius: var(--r-md);
+      background: var(--ink);
+      color: #fff;
+      border: 1px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+    .footer-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 90% 0%, rgba(203,255,39,0.14), transparent 40%),
+        radial-gradient(ellipse at 10% 100%, rgba(71,200,255,0.1), transparent 36%);
+      pointer-events: none;
+    }
+    .footer-card h2 {
+      font-size: 34px;
+      letter-spacing: -0.03em;
+      max-width: 640px;
+    }
+    .footer-card p {
+      margin-top: 12px;
+      font-size: 17px;
+      line-height: 1.66;
+      color: rgba(255,255,255,0.65);
+      max-width: 580px;
+    }
+    .footer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    /* ── team ── */
+    .team-row {
       display: flex;
       align-items: flex-start;
-      gap: 18px;
+      gap: 16px;
     }
     .avatar {
-      width: 74px;
-      height: 74px;
+      width: 68px; height: 68px;
       flex-shrink: 0;
-      border-radius: 18px;
+      border-radius: 16px;
       overflow: hidden;
       background: linear-gradient(140deg, var(--lime), var(--cyan));
     }
-    .avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .avatar.placeholder {
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .avatar.empty {
       display: grid;
       place-items: center;
       background: linear-gradient(140deg, #6b5cff, var(--pink));
       color: #fff;
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 800;
-      letter-spacing: -0.02em;
     }
-    .footer-card {
-      position: relative;
-      padding: 32px;
-      background: var(--ink);
-      color: #fff;
-      border-color: transparent;
+
+    /* ── responsive ── */
+    @media (max-width: 1020px) {
+      .hero, .products { grid-template-columns: 1fr; }
+      .g3 { grid-template-columns: 1fr; }
+      .hero-side { grid-template-rows: auto; }
     }
-    .footer-card::before {
-      content: "";
-      position: absolute;
-      inset: 0 auto auto 0;
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(203, 255, 39, 0.56), transparent);
-    }
-    .footer-card h2,
-    .footer-card p {
-      position: relative;
-      z-index: 1;
-    }
-    .footer-card p {
-      max-width: 640px;
-      color: rgba(255, 255, 255, 0.68);
-    }
-    .footer-card img {
-      position: absolute;
-      right: -12px;
-      bottom: -26px;
-      width: 200px;
-      opacity: 0.2;
-      pointer-events: none;
-    }
-    @media (max-width: 1080px) {
-      .hero,
-      .grid-3,
-      .grid-2,
-      .timeline {
-        grid-template-columns: 1fr;
-      }
-      .poster { min-height: 320px; }
-    }
-    @media (max-width: 720px) {
-      body { padding: 12px 0 40px; }
-      .wrap { padding: 0 14px; }
-      .nav,
-      .board { padding: 12px; }
-      .hero-main,
-      .card,
-      .footer-card { padding: 20px; }
-      .hero-side { padding: 12px; }
-      .tc-banner { align-items: flex-start; }
-      .tc-thumb {
-        width: 92px;
-        height: 58px;
-      }
-      h1 { font-size: 44px; }
-      .poster-title { font-size: 34px; }
-      .poster img,
-      .footer-card img { display: none; }
+    @media (max-width: 680px) {
+      body { padding: 10px 0 40px; }
+      .wrap { padding: 0 12px; }
+      .board { padding: 10px; }
+      .hero-main { padding: 22px; }
+      h1 { font-size: 42px; }
+      .card { padding: 20px; }
+      .product-wg, .footer-card { padding: 22px; }
+      .g2 { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <nav class="nav">
-      <a class="brand" href="./" aria-label="Practical AI Working Group">
+
+    <nav>
+      <a class="brand" href="./" aria-label="Practical AI">
         <div class="brand-mark">PA</div>
-        <div>Practical AI Working Group</div>
+        <span>Practical AI</span>
       </a>
-      <a class="nav-link" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Записаться ↗</a>
+      <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Написать ↗</a>
     </nav>
 
-    <main class="board">
+    <main class="board stack">
+
+      <!-- hero -->
       <section class="hero">
         <article class="hero-main">
-          <div class="eyebrow">Первый запуск · Валенсия · офлайн</div>
-          <h1><span class="marker">Рабочая группа,</span> где каждый делает свой кейс.</h1>
-          <p class="sub">Это первый запуск формата. Я честно тестирую — цена ниже, вы получаете реальный результат и участвуете в формировании того, каким будет этот спринт дальше. 10 человек, 4 недели, 4 офлайн-встречи в Валенсии.</p>
-
+          <div class="tag">Валенсия · офлайн · первый набор</div>
+          <h1>Смотришь как работают другие. Показываешь как работаешь ты.</h1>
+          <p class="hero-sub">Малая группа AI-практиков. Каждую встречу один человек показывает свой реальный workflow — агенты, инструменты, систему. Остальные смотрят и задают вопросы.</p>
           <div class="chips">
-            <div class="chip">🧪 тестовый запуск</div>
-            <div class="chip">4 недели · 4 встречи</div>
-            <div class="chip">установочная встреча до старта</div>
-            <div class="chip">вт или ср, 17:00–20:00</div>
-            <div class="chip">120 € за участие</div>
+            <div class="chip">6–8 человек</div>
+            <div class="chip">4 встречи · вт или ср, 17–20</div>
+            <div class="chip">офлайн Валенсия</div>
+            <div class="chip">200€ / месяц</div>
           </div>
-
           <div class="cta-row">
-            <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Записаться ↗</a>
-            <a class="btn-ghost" href="#fit">Понять, подходит ли мне</a>
+            <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Написать Данилу ↗</a>
+            <a class="btn-ghost" href="#fit">Кому подходит</a>
           </div>
         </article>
 
-        <article class="hero-side">
-          <div class="poster">
-            <div class="poster-badge">Practical AI · Valencia</div>
-            <div class="poster-title">
-              <span>Working</span>
-              <span class="scribble">Group</span>
+        <div class="hero-side">
+          <article class="format-card">
+            <div class="label">Формат встречи</div>
+            <h2>Живое демо, не слайды</h2>
+            <div class="format-steps">
+              <div class="step">
+                <div class="step-num">1</div>
+                <p>Один участник открывает экран и показывает как реально работает — агенты, промпты, инструменты.</p>
+              </div>
+              <div class="step">
+                <div class="step-num">2</div>
+                <p>Остальные смотрят, задают вопросы, разбирают вместе что работает и почему.</p>
+              </div>
+              <div class="step">
+                <div class="step-num">3</div>
+                <p>Между встречами — закрытый чат. Продолжаем там.</p>
+              </div>
             </div>
-            <img src="./assets/community/pink-discs.png" alt="" aria-hidden="true">
+          </article>
+          <article class="poster-mini">
+            <div class="poster-badge">Practical AI · Valencia</div>
+            <div class="poster-title">Working<br><span class="accent">Group</span></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- sessions: что показывают -->
+      <section class="card">
+        <div class="label">Что показывают на встречах</div>
+        <h2>Реальные кейсы, не учебные примеры</h2>
+        <div class="sessions">
+          <div class="session-row">
+            <div class="session-num">1</div>
+            <div>
+              <strong>Долгоживущие кодинговые агенты в больших проектах</strong>
+              <span>Как устроить агента так, чтобы он не ломался на больших кодовых базах. Опыт изнутри продукта.</span>
+            </div>
           </div>
-          <div class="side-note">
-            <strong>Как получить результат.</strong>
-            <span>Каждый приходит со своей задачей. Остальные помогают её уточнить, собрать решение и проверить на практике.</span>
-            <em>Между встречами это не останавливается: люди двигают свои кейсы, делятся прогрессом, блокерами и рабочими находками в Telegram.</em>
+          <div class="session-row">
+            <div class="session-num">2</div>
+            <div>
+              <strong>Мультиагентная система для маркетинга</strong>
+              <span>Контент-маркетолог, дизайнер, аккаунт-менеджер — все агенты. MCP подключён к рекламным платформам.</span>
+            </div>
+          </div>
+          <div class="session-row">
+            <div class="session-num">3</div>
+            <div>
+              <strong>Агенты в продакшене с командой</strong>
+              <span>Память агентов, сбор данных без API, аналитика встреч и температура команды через AI.</span>
+            </div>
+          </div>
+          <div class="session-row">
+            <div class="session-num">4</div>
+            <div>
+              <strong>AI-OS: как организовать harness, MCP и knowledge sharing</strong>
+              <span>Одна папка или несколько? Git, Confluence или общий MCP? Как разделить личное и командное.</span>
+            </div>
+          </div>
+          <div class="session-row">
+            <div class="session-num">5</div>
+            <div>
+              <strong>Монетизация продукта с AI от разработки до дистрибуции</strong>
+              <span>Как строить и продавать расширения. AI в разработке, маркетинге и поддержке пользователей.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- два продукта -->
+      <section class="products">
+        <article class="product-wg">
+          <div class="label">Working Group</div>
+          <h2>Малая группа практиков. Офлайн Валенсия.</h2>
+          <p>Отбор вручную. Приходишь с тем, что делаешь — показываешь группе, смотришь на других. За месяц видишь 4 разных рабочих подхода от людей своего уровня.</p>
+          <ul class="dots" style="margin-top:16px;">
+            <li>4 встречи по 3 часа, вт или ср 17–20</li>
+            <li>6–8 человек — операторы и билдеры с реальным AI-опытом</li>
+            <li>закрытый чат между встречами</li>
+            <li>место, еда, интернет — в цене</li>
+          </ul>
+          <div class="price-big">200€</div>
+          <div class="price-note">за месяц · первый набор</div>
+          <div style="margin-top:20px;">
+            <a class="btn-ghost" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.18);color:#fff;">Написать Данилу ↗</a>
+          </div>
+        </article>
+
+        <article class="product-hub">
+          <div>
+            <div class="hub-badge">Practical AI Hub</div>
+            <h3 style="margin-top:14px;">Telegram-чат для всех остальных</h3>
+            <p style="margin-top:10px;font-size:15px;line-height:1.65;color:var(--muted);">Ссылки, находки, короткие разборы. Без обязательств и расписания. Кто вырос — переходит в Working Group следующего набора.</p>
+            <ul class="dots" style="margin-top:14px;">
+              <li>асинхронно, в своём темпе</li>
+              <li>что реально работает — без хайпа</li>
+              <li>воронка в группу для следующих наборов</li>
+            </ul>
+          </div>
+          <div style="margin-top:20px;">
+            <a class="btn-ghost" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Войти в Hub ↗</a>
           </div>
         </article>
       </section>
 
-      <section class="grid-3">
-        <article class="card dark">
-          <div class="label">Как проходит работа</div>
-          <h2>Проектная команда на месяц</h2>
-          <ul class="clean">
-            <li>10 человек, которых мы собрали по взаимной ценности</li>
-            <li>4 офлайн-встречи по 2–3 часа, где мы разбираем живые задачи участников</li>
-            <li>закрытый Telegram-канал и база знаний между встречами</li>
-          </ul>
-        </article>
+      <!-- fit -->
+      <section class="g2" id="fit">
         <article class="card">
-          <div class="label">На что вы подписываетесь</div>
-          <h2>Группа сильных профессионалов в своём деле</h2>
-          <p>Предприниматели, топ-менеджеры и разработчики. Это реальные живые люди в одной комнате, с живыми кейсами, реальной практикой применения и высоким уровнем вовлечения, где каждый готов делиться своим опытом и практикой внедрения.</p>
-        </article>
-        <article class="card">
-          <div class="label">Что вы получаете в результате</div>
-          <h2>Результат, артефакты, следующий шаг</h2>
-          <ul class="clean">
-            <li>рабочий инструмент, сценарий или систему, которую вы собираете по своему кейсу вместе с группой</li>
-            <li>оцифровку встреч, заметки и knowledge base группы</li>
-            <li>ваш roadmap развития проекта на 30–90 дней</li>
-          </ul>
-        </article>
-      </section>
-
-      <section>
-        <article class="card group-card">
-          <div class="label">Кто уже в группе</div>
-          <h2>Люди с разным фоном, но с очень конкретными задачами</h2>
-          <ul class="group-list">
-            <li>
-              <strong>Владелец бизнеса с 300K SKU</strong>
-              <span>Хочет автоматизировать аналитику рекламы, работу с товарной базой и уведомления в e-commerce.</span>
-            </li>
-            <li>
-              <strong>Инженер из JetBrains</strong>
-              <span>Приходит с задачей долгоживущих кодинговых агентов в больших проектах и вопросами по устойчивой работе таких систем.</span>
-            </li>
-            <li>
-              <strong>Операционный руководитель</strong>
-              <span>Уже использует мультиагентные связки в маркетинге и хочет сверить, что реально работает, а что нет.</span>
-            </li>
-            <li>
-              <strong>Head of Product</strong>
-              <span>Собирает AI-OS для себя и команды: MCP, знания, рабочая среда и понятные правила использования.</span>
-            </li>
-            <li>
-              <strong>Руководитель развития</strong>
-              <span>Хочет уйти из ручной операционки и оставить после себя прозрачную систему управления подрядчиками с AI-слоем.</span>
-            </li>
-            <li>
-              <strong>Разработчики с продакшен-практикой</strong>
-              <span>Память агентов, сбор данных без API, MCP, devtools, реальные внутренние инструменты и внедрение в рабочие процессы.</span>
-            </li>
-          </ul>
-        </article>
-      </section>
-
-      <section class="timeline">
-        <article class="card">
-          <div class="step-tag">0</div>
-          <h3>Установочная встреча</h3>
-          <p>До старта знакомимся, фиксируем кейсы, договариваемся о правилах, ритме и формате общей работы.</p>
-        </article>
-        <article class="card">
-          <div class="step-tag">1</div>
-          <h3>Неделя 1</h3>
-          <p>Берём первых двух участников, глубоко разбираем их задачи и из этого собираем рабочую логику решений. У остальных уже начинается движение по своим кейсам.</p>
-        </article>
-        <article class="card">
-          <div class="step-tag">2</div>
-          <h3>Неделя 2</h3>
-          <p>Разбираем следующих 2–3 человек уже на базе того, что поняли на первой встрече. У всех остальных двигаются свои задачи, и каждый приносит прогресс и выводы.</p>
-        </article>
-        <article class="card">
-          <div class="step-tag">3</div>
-          <h3>Неделя 3</h3>
-          <p>Делаем следующую надстройку: ещё несколько кейсов, ещё больше рабочих решений, люди рассказывают, что у них получилось, где блокеры и что можно переиспользовать.</p>
-        </article>
-        <article class="card">
-          <div class="step-tag">4</div>
-          <h3>Неделя 4</h3>
-          <p>Фиксируем артефакты, собираем общую knowledge base, добиваем открытые хвосты и закрываем roadmap по каждому проекту на следующие 30–90 дней.</p>
-        </article>
-      </section>
-
-      <section class="grid-2" id="fit">
-        <article class="card">
-          <div class="label">Кому подходит участие</div>
-          <ul class="clean">
-            <li>у вас уже есть конкретная рабочая задача, которую надо сдвинуть за следующие 4 недели</li>
-            <li>вы хотите смотреть на чужие реальные кейсы, а не на учебные примеры</li>
-            <li>вы готовы быть полезны другим участникам, а не только брать</li>
-            <li>вы можете быть в Валенсии офлайн 4 недели подряд</li>
+          <div class="label">Кому подходит Working Group</div>
+          <ul class="dots">
+            <li>уже используешь AI в работе — не первый месяц</li>
+            <li>есть что показать: агент, workflow, систему</li>
+            <li>хочешь смотреть как работают другие практики своего уровня</li>
+            <li>можешь быть в Валенсии офлайн раз в неделю</li>
           </ul>
         </article>
         <article class="card dark">
           <div class="label">Кому не подходит</div>
-          <ul class="clean">
-            <li>вам нужен вводный курс по базовым AI-инструментам</li>
-            <li>у вас пока нет своей задачи и вы хотите просто посмотреть</li>
-            <li>вам некомфортно регулярно показывать прогресс и держать коммит</li>
-            <li>вы хотите всё сделать чужими руками без включения в работу</li>
+          <ul class="dots">
+            <li>нужен вводный курс или объяснение с нуля</li>
+            <li>пока нечего показать — только интерес</li>
+            <li>хочется просто послушать без участия</li>
           </ul>
+          <p style="margin-top:16px;font-size:14px;">Для таких есть Hub — заходи туда, расти, потом в группу.</p>
         </article>
       </section>
 
-      <section class="grid-2">
+      <!-- кто ведёт -->
+      <section class="g2">
         <article class="card">
-          <div class="label">Условия · первый запуск</div>
-          <h2>120€ вместо 250€</h2>
-          <p>Это тестовый запуск, поэтому цена ниже. Результат — тот же. Ваш feedback формирует следующие группы. Помещение, еда, напитки и интернет входят в цену — думайте только о задаче.</p>
-          <div class="price">120€</div>
+          <div class="team-row">
+            <div class="avatar">
+              <img src="./assets/community/danil-usik.jpg" alt="Данил Усик">
+            </div>
+            <div>
+              <div class="label">Куратор и организатор</div>
+              <h3>Данил Усик</h3>
+              <p style="margin-top:8px;font-size:15px;line-height:1.6;color:var(--muted);">Собирает состав вручную. Договаривается кто когда показывает. Держит ритм.</p>
+            </div>
+          </div>
         </article>
         <article class="card dark">
-          <div class="label">Что входит</div>
-          <ul class="clean">
-            <li>4 офлайн-встречи по 2–3 часа и отдельная установочная</li>
-            <li>комната, еда, напитки, интернет — всё бытовое закрыто</li>
-            <li>сбор заметок и общей базы знаний по встречам</li>
-            <li>закрытый Telegram-канал между встречами</li>
-            <li>ваш feedback помогает сформировать следующие запуски</li>
-          </ul>
-        </article>
-      </section>
-
-      <section class="grid-2">
-        <article class="card team-card">
-          <div class="avatar">
-            <img src="./assets/community/danil-usik.jpg" alt="Данил Усик">
-          </div>
-          <div>
-            <div class="label">Фасилитатор и куратор состава</div>
-            <h3>Данил Усик</h3>
-            <p>Собирает состав вручную, держит ритм группы и следит, чтобы люди не просто встретились, а действительно продвинули свои кейсы и помогли друг другу.</p>
-          </div>
-        </article>
-        <article class="card team-card">
-          <div class="avatar placeholder">+1</div>
-          <div>
-            <div class="label">Технический бэкап</div>
-            <h3>Вайбкодер из сети</h3>
-            <p>В каждой группе есть технический участник — кто-то из практикующих разработчиков, кого я зову лично. Закрывает пробелы там, где нужна реализация, а не только обсуждение.</p>
+          <div class="label">Как попасть</div>
+          <h3>Три строки в Telegram</h3>
+          <p>Кто ты, что используешь в работе прямо сейчас, что хочешь показать или узнать. Скажу, есть ли место.</p>
+          <div style="margin-top:16px;">
+            <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Написать ↗</a>
           </div>
         </article>
       </section>
 
+      <!-- footer -->
       <section class="footer-card">
-        <h2>Это первый запуск. Таких мест будет 10 — и они уже почти заполнены.</h2>
-        <p>В ответе достаточно трёх строк: кто вы, какую задачу хотите сдвинуть за 4 недели, и готовы ли к офлайн-ритму во вторник или среду вечером в Валенсии. Дальше я скажу, держу ли за вами место.</p>
+        <h2>Мест 6–8. Часть уже занята.</h2>
+        <p>Написал — скажу есть ли место и подходит ли формат под то, что ты делаешь. Если нет — позову в Hub и следующий набор.</p>
         <div class="footer-actions">
-          <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Записаться ↗</a>
+          <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Написать Данилу ↗</a>
         </div>
-        <img src="./assets/community/lime-fruit.png" alt="" aria-hidden="true">
       </section>
+
     </main>
   </div>
 </body>
