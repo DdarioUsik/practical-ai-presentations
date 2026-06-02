@@ -164,7 +164,7 @@
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(300px, 0.7fr);
+      grid-template-columns: minmax(0, 1.42fr) minmax(280px, 0.58fr);
       gap: 10px;
       min-height: calc(100vh - 96px);
     }
@@ -199,14 +199,17 @@
     .hero-card {
       overflow: hidden;
       display: grid;
-      grid-template-rows: minmax(280px, 1fr) auto;
+      grid-template-rows: auto auto;
+      align-self: start;
     }
     .portrait {
       width: 100%;
-      height: 100%;
-      min-height: 420px;
+      height: min(36vw, 430px);
+      min-height: 300px;
+      max-height: 430px;
+      aspect-ratio: 4 / 5;
       object-fit: cover;
-      object-position: center;
+      object-position: center 28%;
     }
     .profile-note {
       padding: 24px;
@@ -414,7 +417,7 @@
       main { padding-top: 10px; }
       .hero-main, .card, .wide, .profile-note { padding: 22px; }
       .metrics, .grid-2, .grid-3 { grid-template-columns: 1fr; }
-      .portrait { min-height: 320px; }
+      .portrait { height: 300px; min-height: 0; }
       .step { grid-template-columns: 34px 1fr; }
       .num { width: 34px; height: 34px; }
     }
