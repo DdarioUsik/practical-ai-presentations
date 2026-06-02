@@ -1,360 +1,663 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Practical AI — Working Group Valencia</title>
-  <meta name="description" content="Малая группа AI-практиков в Валенсии. Каждую встречу один показывает как реально работает. Остальные смотрят и задают вопросы." />
+  <title>Danil Usik — Practical AI Pilot Advisor</title>
+  <meta name="description" content="Danil Usik helps teams find the first useful AI workflow, frame it as a practical pilot, and move it into adoption with clear owners, data, KPI, and rollout logic." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg:      #f5f0e8;
-      --ink:     #111111;
-      --muted:   #6b6560;
-      --soft:    #9b9690;
+      --bg: #f6f3ed;
+      --ink: #101010;
+      --muted: #615d56;
+      --soft: #8d8981;
       --surface: #ffffff;
-      --border:  rgba(17,17,17,0.09);
-      --border-strong: rgba(17,17,17,0.16);
-      --lime: #cbff27;
-      --cyan: #47c8ff;
-      --pink: #ff2ea6;
-      --max: 1100px;
-      --r-sm: 16px;
-      --r-md: 22px;
-      --r-lg: 30px;
+      --line: rgba(16, 16, 16, 0.1);
+      --line-strong: rgba(16, 16, 16, 0.18);
+      --lime: #caff2c;
+      --blue: #47c8ff;
+      --max: 1120px;
+      --r: 8px;
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: "Space Grotesk", system-ui, sans-serif;
-      background: var(--bg);
+      margin: 0;
+      font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--ink);
-      -webkit-font-smoothing: antialiased;
+      background: var(--bg);
       line-height: 1.55;
-      padding: 14px 0 60px;
+      -webkit-font-smoothing: antialiased;
     }
     a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .wrap { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
 
-    /* типографика */
-    h1, h2, h3 {
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(18px);
+      background: rgba(246, 243, 237, 0.82);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+    .mark {
+      width: 34px;
+      height: 34px;
+      border-radius: var(--r);
+      display: grid;
+      place-items: center;
+      background: var(--ink);
+      color: var(--lime);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 17px;
+      border-radius: var(--r);
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: #fff;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .btn:hover { opacity: 0.86; }
+    .btn.secondary {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--line-strong);
+    }
+
+    main { padding: 18px 0 48px; }
+    section { margin-top: 10px; }
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+    }
+    .dark {
+      background: var(--ink);
+      color: #fff;
+      border-color: var(--ink);
+    }
+    .kicker {
+      font-size: 11px;
+      line-height: 1.3;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--soft);
+    }
+    .dark .kicker { color: rgba(255,255,255,0.55); }
+    h1, h2, h3, p { margin: 0; }
+    h1 {
+      margin-top: 16px;
+      max-width: 760px;
+      font-size: clamp(44px, 7vw, 82px);
+      line-height: 0.94;
+      letter-spacing: 0;
       text-wrap: balance;
     }
-    p, li, span {
-      -webkit-hyphens: auto;
-      hyphens: auto;
-      overflow-wrap: break-word;
+    h2 {
+      margin-top: 8px;
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.05;
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+    h3 {
+      margin-top: 9px;
+      font-size: 21px;
+      line-height: 1.18;
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+    .lead {
+      margin-top: 18px;
+      max-width: 700px;
+      font-size: clamp(18px, 2.2vw, 24px);
+      line-height: 1.45;
+      color: var(--muted);
+      text-wrap: pretty;
+    }
+    .dark .lead, .dark p { color: rgba(255,255,255,0.68); }
+    .body {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.66;
       text-wrap: pretty;
     }
 
-    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 16px; }
-    .board { display: grid; gap: 10px; padding: 12px; border-radius: var(--r-lg); background: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.5); box-shadow: 0 20px 60px rgba(0,0,0,0.05); }
-
-    /* nav */
-    nav { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; border-radius: var(--r-md); background: rgba(255,255,255,0.8); border: 1px solid var(--border); backdrop-filter: blur(16px); margin-bottom: 10px; }
-    .brand { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 700; }
-    .brand-mark { width: 32px; height: 32px; border-radius: 9px; background: linear-gradient(140deg, var(--lime), var(--cyan)); display: grid; place-items: center; font-size: 10px; font-weight: 800; color: #0d0d0d; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 42px; padding: 0 18px; border-radius: 999px; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; border: none; background: var(--ink); color: #fff; transition: opacity 0.15s; }
-    .btn:hover { opacity: 0.82; }
-    .btn-outline { background: transparent; border: 1px solid var(--border-strong); color: var(--ink); }
-    .btn-outline:hover { background: rgba(0,0,0,0.04); opacity: 1; }
-
-    /* cards */
-    .card { padding: 22px; border-radius: var(--r-md); background: var(--surface); border: 1px solid var(--border); }
-    .card.dark { background: var(--ink); color: #fff; border-color: transparent; }
-    .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
-    .card.dark .label { color: rgba(255,255,255,0.55); }
-    h2 { margin-top: 8px; font-size: 24px; line-height: 1.18; letter-spacing: -0.02em; text-wrap: balance; }
-    h3 { margin-top: 8px; font-size: 19px; line-height: 1.24; letter-spacing: -0.015em; }
-    .card > p, .card > .body { margin-top: 10px; font-size: 15px; line-height: 1.68; color: var(--muted); max-width: 62ch; }
-    .card.dark > p { color: rgba(255,255,255,0.65); }
-
-    /* hero */
-    .hero { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 10px; }
-    .hero-main { padding: 30px 32px 32px; border-radius: var(--r-md); background: var(--surface); border: 1px solid var(--border); background-image: radial-gradient(circle at 95% 8%, rgba(203,255,39,0.15), transparent 26%); }
-    .tag { display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px; border-radius: 999px; background: var(--ink); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; }
-    .tag::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--lime); }
-    h1 { margin-top: 16px; font-size: 58px; line-height: 0.97; letter-spacing: -0.04em; text-wrap: balance; }
-    .hero-sub { margin-top: 14px; font-size: 18px; line-height: 1.64; color: var(--muted); max-width: 520px; }
-    .chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 16px; }
-    .chip { padding: 7px 13px; border-radius: 999px; background: var(--bg); border: 1px solid var(--border-strong); font-size: 13px; font-weight: 500; color: var(--muted); }
-    .cta-row { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 20px; }
-
-    /* hero side: two stacked cards, no empty gradients */
-    .hero-side { display: grid; grid-template-rows: 1fr auto; gap: 10px; }
-    .format-card { padding: 24px; border-radius: var(--r-md); background: var(--ink); color: #fff; }
-    .format-card .label { color: rgba(255,255,255,0.55); }
-    .format-card h2 { font-size: 22px; }
-    .format-steps { margin-top: 16px; display: grid; gap: 12px; }
-    .step { display: flex; align-items: flex-start; gap: 11px; }
-    .step-n { flex-shrink: 0; width: 24px; height: 24px; border-radius: 7px; background: rgba(203,255,39,0.14); border: 1px solid rgba(203,255,39,0.28); display: grid; place-items: center; font-size: 11px; font-weight: 800; color: var(--lime); margin-top: 1px; }
-    .step p { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.7); }
-
-    .params-card { padding: 20px; border-radius: var(--r-md); background: var(--surface); border: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .param { display: grid; gap: 3px; }
-    .param-val { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; line-height: 1; }
-    .param-key { font-size: 12px; color: var(--soft); }
-
-    /* grids */
-    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
-
-    /* sessions */
-    .sessions { display: grid; gap: 8px; margin-top: 16px; }
-    .session-row { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; padding: 13px 14px; border-radius: var(--r-sm); background: rgba(17,17,17,0.03); border: 1px solid var(--border); }
-    .s-num { width: 28px; height: 28px; border-radius: 8px; background: var(--lime); display: grid; place-items: center; font-size: 12px; font-weight: 800; color: var(--ink); }
-    .session-row strong { display: block; font-size: 14px; line-height: 1.35; font-weight: 600; }
-    .session-row span { display: block; margin-top: 3px; font-size: 13px; line-height: 1.55; color: var(--muted); }
-
-    /* products */
-    .products { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 10px; }
-    .wg-card { padding: 28px; border-radius: var(--r-md); background: var(--ink); color: #fff; }
-    .wg-card .label { color: rgba(255,255,255,0.55); }
-    .wg-card h2 { font-size: 28px; letter-spacing: -0.025em; }
-    .wg-card > p { margin-top: 10px; font-size: 15px; line-height: 1.66; color: rgba(255,255,255,0.65); max-width: 54ch; }
-    .price-big { margin-top: 18px; font-size: 52px; line-height: 1; letter-spacing: -0.04em; font-weight: 700; }
-    .price-note { margin-top: 5px; font-size: 13px; color: rgba(255,255,255,0.42); }
-    ul.dots { list-style: none; display: grid; gap: 8px; margin-top: 14px; }
-    ul.dots li { position: relative; padding-left: 15px; font-size: 14px; line-height: 1.6; color: var(--muted); }
-    ul.dots li::before { content: ""; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--ink); }
-    .wg-card ul.dots li { color: rgba(255,255,255,0.65); }
-    .wg-card ul.dots li::before { background: var(--lime); }
-    .hub-card { padding: 22px; border-radius: var(--r-md); background: var(--surface); border: 1px solid var(--border); display: flex; flex-direction: column; gap: 16px; }
-    .hub-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 11px; border-radius: 999px; background: rgba(71,200,255,0.1); border: 1px solid rgba(71,200,255,0.25); font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #0a7fa8; width: fit-content; }
-
-    /* team */
-    .team-row { display: flex; align-items: flex-start; gap: 15px; }
-    .avatar { width: 64px; height: 64px; flex-shrink: 0; border-radius: 14px; overflow: hidden; background: linear-gradient(140deg, var(--lime), var(--cyan)); }
-    .avatar img { width: 100%; height: 100%; object-fit: cover; }
-
-    /* footer */
-    .footer-card { padding: 30px 32px; border-radius: var(--r-md); background: var(--ink); color: #fff; position: relative; overflow: hidden; }
-    .footer-card::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 92% 0%, rgba(203,255,39,0.1), transparent 38%), radial-gradient(ellipse at 8% 100%, rgba(71,200,255,0.08), transparent 34%); pointer-events: none; }
-    .footer-card h2 { font-size: 30px; letter-spacing: -0.03em; max-width: 560px; }
-    .footer-card p { margin-top: 10px; font-size: 16px; line-height: 1.66; color: rgba(255,255,255,0.6); max-width: 54ch; }
-    .footer-actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 22px; }
-
-    /* responsive */
-    @media (max-width: 980px) {
-      .hero, .products { grid-template-columns: 1fr; }
-      .hero-side { grid-template-rows: auto auto; }
-      .g3 { grid-template-columns: 1fr 1fr; }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(300px, 0.7fr);
+      gap: 10px;
+      min-height: calc(100vh - 96px);
     }
-    @media (max-width: 640px) {
-      body { padding: 10px 0 44px; }
-      .wrap { padding: 0 12px; }
-      .board, nav { padding: 10px; }
-      .hero-main { padding: 22px; }
-      h1 { font-size: 40px; }
-      .g2, .g3 { grid-template-columns: 1fr; }
-      .params-card { grid-template-columns: 1fr 1fr; }
+    .hero-main {
+      padding: clamp(28px, 5vw, 56px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 620px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+    .chip {
+      padding: 8px 12px;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--r);
+      color: var(--muted);
+      background: rgba(255,255,255,0.7);
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .hero-card {
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: minmax(280px, 1fr) auto;
+    }
+    .portrait {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      object-fit: cover;
+      object-position: center;
+    }
+    .profile-note {
+      padding: 24px;
+      border-top: 1px solid var(--line);
+    }
+    .profile-note strong {
+      display: block;
+      font-size: 18px;
+      line-height: 1.2;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .metric {
+      padding: 22px;
+      min-height: 128px;
+    }
+    .metric b {
+      display: block;
+      font-size: clamp(26px, 4vw, 42px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+    .metric span {
+      display: block;
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .card { padding: 28px; }
+    .wide { padding: clamp(28px, 5vw, 46px); }
+
+    .steps {
+      display: grid;
+      gap: 10px;
+      margin-top: 22px;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 14px;
+      padding: 15px;
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      background: rgba(16,16,16,0.03);
+    }
+    .num {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--r);
+      display: grid;
+      place-items: center;
+      background: var(--lime);
+      color: var(--ink);
+      font-weight: 800;
+      font-size: 14px;
+    }
+    .step strong {
+      display: block;
+      font-size: 16px;
+      line-height: 1.25;
+    }
+    .step span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .list {
+      display: grid;
+      gap: 9px;
+      margin-top: 18px;
+      padding: 0;
+      list-style: none;
+    }
+    .list li {
+      position: relative;
+      padding-left: 17px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.58;
+    }
+    .list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--ink);
+    }
+    .dark .list li { color: rgba(255,255,255,0.7); }
+    .dark .list li::before { background: var(--lime); }
+
+    .cases {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 10px;
+    }
+    .case-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .case-row {
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: var(--r);
+      background: rgba(255,255,255,0.05);
+    }
+    .case-row strong {
+      display: block;
+      color: #fff;
+      font-size: 16px;
+    }
+    .case-row span {
+      display: block;
+      margin-top: 5px;
+      color: rgba(255,255,255,0.66);
+      font-size: 14px;
+      line-height: 1.52;
+    }
+
+    .offer {
+      display: flex;
+      min-height: 100%;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 22px;
+    }
+    .offer-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .dark .offer-foot { border-color: rgba(255,255,255,0.16); color: rgba(255,255,255,0.6); }
+
+    .training {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .training .panel:first-child {
+      background: var(--lime);
+    }
+    .training .panel:first-child .body,
+    .training .panel:first-child .list li {
+      color: rgba(16,16,16,0.74);
+    }
+
+    .final {
+      padding: clamp(30px, 5vw, 56px);
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: end;
+    }
+    .final h2 { color: #fff; max-width: 720px; }
+    .final .body { color: rgba(255,255,255,0.66); max-width: 620px; }
+    .final-actions {
+      display: flex;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .final .btn.secondary {
+      border-color: rgba(255,255,255,0.22);
+      color: #fff;
+    }
+
+    @media (max-width: 920px) {
+      .nav-links a:not(.btn) { display: none; }
+      .hero, .cases, .training, .final { grid-template-columns: 1fr; }
+      .hero-main { min-height: auto; }
+      .metrics, .grid-3 { grid-template-columns: repeat(2, 1fr); }
+      .final-actions { justify-content: flex-start; }
+    }
+    @media (max-width: 620px) {
+      .wrap { width: min(100% - 20px, var(--max)); }
+      .nav-inner { height: 62px; }
+      main { padding-top: 10px; }
+      .hero-main, .card, .wide, .profile-note { padding: 22px; }
+      .metrics, .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .portrait { min-height: 320px; }
+      .step { grid-template-columns: 34px 1fr; }
+      .num { width: 34px; height: 34px; }
     }
   </style>
 </head>
 <body>
-<div class="wrap">
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="./" aria-label="Practical AI home">
+        <span class="mark">PA</span>
+        <span>Practical AI</span>
+      </a>
+      <nav class="nav-links" aria-label="Page navigation">
+        <a href="#work">Work</a>
+        <a href="#training">Training</a>
+        <a href="#fit">Fit</a>
+        <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Contact Danil</a>
+      </nav>
+    </div>
+  </header>
 
-  <nav>
-    <a class="brand" href="./">
-      <div class="brand-mark">PA</div>
-      <span>Practical AI</span>
-    </a>
-    <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Написать ↗</a>
-  </nav>
+  <main>
+    <div class="wrap">
+      <section class="hero">
+        <article class="panel hero-main">
+          <div>
+            <div class="kicker">Danil Usik · Valencia · Remote-first</div>
+            <h1>I help teams turn AI interest into the first useful operational pilot.</h1>
+            <p class="lead">I work at the front of AI implementation: finding the real bottleneck, shaping a pilot the business can own, and helping people adopt it without pretending AI is magic.</p>
+            <div class="chips" aria-label="Positioning tags">
+              <span class="chip">AI pilot advisor</span>
+              <span class="chip">B2B discovery</span>
+              <span class="chip">Customer adoption</span>
+              <span class="chip">Workshops & training</span>
+            </div>
+            <div class="hero-actions">
+              <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Start a conversation</a>
+              <a class="btn secondary" href="#work">See how I work</a>
+            </div>
+          </div>
+          <p class="body">Useful for companies hiring AI adoption / solutions / customer-facing roles, partners who need a commercial discovery lead, and teams that want practical AI training around their own workflows.</p>
+        </article>
 
-  <main class="board">
+        <aside class="panel hero-card" aria-label="Profile">
+          <img class="portrait" src="./assets/community/danil-usik.jpg" alt="Danil Usik" />
+          <div class="profile-note">
+            <div class="kicker">Current frame</div>
+            <strong>Founder, Practical AI. Commercial discovery and pilot framing for B2B AI workflows.</strong>
+            <p class="body">Technical delivery runs through engineering partners. My role is to make sure the use case, owner, data, KPI and rollout path make business sense before a build starts.</p>
+          </div>
+        </aside>
+      </section>
 
-    <!-- hero -->
-    <section class="hero">
-      <article class="hero-main">
-        <div class="tag">Валенсия · офлайн · первый набор</div>
-        <h1>Живые AI-воркфлоу участников. Смотрим, разбираем, задаём вопросы.</h1>
-        <p class="hero-sub">Каждую встречу один участник открывает экран — показывает агентов, инструменты, рабочую систему. Группа смотрит, задаёт вопросы, разбирает вместе. Вживую, не в записи.</p>
-        <div class="chips">
-          <div class="chip">6–8 человек</div>
-          <div class="chip">4 встречи, вт или ср 17–20</div>
-          <div class="chip">офлайн Валенсия</div>
-          <div class="chip">200 € / месяц</div>
+      <section class="metrics" aria-label="Proof points">
+        <div class="panel metric">
+          <b>7</b>
+          <span>AI pilots shaped from discovery into implementation logic.</span>
         </div>
-        <div class="cta-row">
-          <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Написать Данилу ↗</a>
-          <a class="btn btn-outline" href="#fit">Кому подходит</a>
+        <div class="panel metric">
+          <b>€20-30k</b>
+          <span>Typical pilot deal range across recent B2B AI work.</span>
         </div>
-      </article>
+        <div class="panel metric">
+          <b>10+ yrs</b>
+          <span>B2B sales, business development, education and consulting background.</span>
+        </div>
+        <div class="panel metric">
+          <b>100 CV/h</b>
+          <span>AI screening workflow benchmarked at 92% match vs expert review.</span>
+        </div>
+      </section>
 
-      <div class="hero-side">
-        <article class="format-card">
-          <div class="label">Как проходит встреча</div>
-          <h2>Живое демо, без слайдов</h2>
-          <div class="format-steps">
+      <section class="grid-2" id="work">
+        <article class="panel wide">
+          <div class="kicker">What I am good at</div>
+          <h2>I enter before the tool decision is obvious.</h2>
+          <p class="lead">Most AI projects do not fail because the model is weak. They fail because nobody clarified the workflow, the data boundary, the owner, or what success would look like in daily operations.</p>
+          <div class="steps">
             <div class="step">
-              <div class="step-n">1</div>
-              <p>Один участник показывает как реально работает — открывает экран, агенты, промпты.</p>
+              <div class="num">1</div>
+              <div>
+                <strong>Diagnose the operational bottleneck</strong>
+                <span>Where does work slow down, disappear, repeat, or depend on one tired human?</span>
+              </div>
             </div>
             <div class="step">
-              <div class="step-n">2</div>
-              <p>Остальные смотрят, задают вопросы, разбирают что работает и почему.</p>
+              <div class="num">2</div>
+              <div>
+                <strong>Translate it into a pilot brief</strong>
+                <span>Pain, data, process, owner, KPI, risk, adoption path, and what not to build.</span>
+              </div>
             </div>
             <div class="step">
-              <div class="step-n">3</div>
-              <p>Между встречами продолжаем в закрытом чате — находки, вопросы, прогресс.</p>
+              <div class="num">3</div>
+              <div>
+                <strong>Keep business and delivery aligned</strong>
+                <span>Make the technical team, buyer and operators talk about the same thing.</span>
+              </div>
             </div>
           </div>
         </article>
 
-        <div class="params-card">
-          <div class="param">
-            <div class="param-val">4</div>
-            <div class="param-key">встречи в месяц</div>
-          </div>
-          <div class="param">
-            <div class="param-val">3 ч</div>
-            <div class="param-key">каждая встреча</div>
-          </div>
-          <div class="param">
-            <div class="param-val">6–8</div>
-            <div class="param-key">человек в группе</div>
-          </div>
-          <div class="param">
-            <div class="param-val">200€</div>
-            <div class="param-key">за месяц</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- что показывают -->
-    <section class="card">
-      <div class="label">Программа</div>
-      <h2>5 встреч — 5 тем из реальной практики</h2>
-      <div class="sessions">
-        <div class="session-row">
-          <div class="s-num">1</div>
-          <div>
-            <strong>Долгоживущие кодинговые агенты в больших проектах</strong>
-            <span>Как устроить агента так, чтобы он не ломался на сложных кодовых базах. Опыт изнутри продукта.</span>
-          </div>
-        </div>
-        <div class="session-row">
-          <div class="s-num">2</div>
-          <div>
-            <strong>Мультиагентная система для маркетинга</strong>
-            <span>Контент-маркетолог, дизайнер, аккаунт-менеджер — всё агенты. MCP подключён к рекламным платформам.</span>
-          </div>
-        </div>
-        <div class="session-row">
-          <div class="s-num">3</div>
-          <div>
-            <strong>Агенты в продакшене с командой</strong>
-            <span>Память агентов, сбор данных без API, аналитика встреч и настроений команды через AI.</span>
-          </div>
-        </div>
-        <div class="session-row">
-          <div class="s-num">4</div>
-          <div>
-            <strong>Как организовать AI-OS: harness, MCP, знания команды</strong>
-            <span>Одна папка или несколько? Общий MCP? Как разделить личное и командное пространство.</span>
-          </div>
-        </div>
-        <div class="session-row">
-          <div class="s-num">5</div>
-          <div>
-            <strong>Монетизация продукта с AI</strong>
-            <span>Как строить и продавать расширения. AI в разработке, маркетинге и поддержке пользователей.</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- два продукта -->
-    <section class="products">
-      <article class="wg-card">
-        <div class="label">Working Group</div>
-        <h2>Малая группа практиков. Офлайн Валенсия.</h2>
-        <p>Отбор вручную. Приходишь с тем, что делаешь — показываешь группе, смотришь на других. За месяц видишь 4 разных рабочих подхода от людей своего уровня.</p>
-        <ul class="dots">
-          <li>4 встречи по 3 часа, вт или ср 17–20</li>
-          <li>операторы и билдеры с реальным AI-опытом</li>
-          <li>закрытый чат между встречами</li>
-          <li>место, еда, интернет — всё включено</li>
-        </ul>
-        <div class="price-big">200€</div>
-        <div class="price-note">за месяц · первый набор</div>
-        <div style="margin-top:18px;">
-          <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer" style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.18);">Написать ↗</a>
-        </div>
-      </article>
-
-      <article class="hub-card">
-        <div>
-          <div class="hub-badge">Чат · бесплатно</div>
-          <h3 style="margin-top:12px;">Следишь за темой, но пока не в группе</h3>
-          <p class="body" style="margin-top:9px;font-size:14px;line-height:1.65;color:var(--muted);">Находки, разборы, ссылки — без расписания и обязательств. Кто захочет — берём в следующий набор группы.</p>
-          <ul class="dots" style="margin-top:12px;">
-            <li>асинхронно, в своём темпе</li>
-            <li>что работает — без лишнего хайпа</li>
-            <li>приоритет в следующий набор группы</li>
+        <article class="panel card dark">
+          <div class="kicker">What should be readable after the page</div>
+          <h2>Calm commercial judgment around AI.</h2>
+          <ul class="list">
+            <li>I do not sell AI as a vague transformation program.</li>
+            <li>I ask where the work actually breaks before naming a solution.</li>
+            <li>I can talk to founders, COOs, sales leaders, operators and technical partners.</li>
+            <li>I know when to hand delivery to engineers and stay responsible for clarity.</li>
+            <li>I am useful where customer trust depends on explanation, structure and follow-through.</li>
           </ul>
-        </div>
-        <a class="btn btn-outline" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Войти в Hub ↗</a>
-      </article>
-    </section>
+        </article>
+      </section>
 
-    <!-- fit -->
-    <section class="g2" id="fit">
-      <article class="card">
-        <div class="label">Кому подходит Working Group</div>
-        <ul class="dots" style="margin-top:12px;">
-          <li>уже используешь AI в работе — не первый месяц</li>
-          <li>есть что показать: агент, промпты, рабочую систему</li>
-          <li>хочешь смотреть как работают другие практики</li>
-          <li>можешь быть в Валенсии раз в неделю</li>
-        </ul>
-      </article>
-      <article class="card dark">
-        <div class="label">Кому сначала в Hub</div>
-        <ul class="dots" style="margin-top:12px;">
-          <li>только начинаешь работать с AI</li>
-          <li>пока нечего показать, хочется сначала посмотреть</li>
-          <li>не уверен по датам или формату</li>
-        </ul>
-        <p style="margin-top:14px;font-size:13px;">Заходи в чат — там без обязательств. Когда будешь готов, позовём в группу.</p>
-      </article>
-    </section>
+      <section class="cases">
+        <article class="panel card">
+          <div class="kicker">Experience base</div>
+          <h2>Across education, B2B sales, AI workflows and customer discovery.</h2>
+          <p class="body">Before Practical AI, my work moved through K-12 learning environments, key account sales, commercial strategy, founder interviews, CRM discipline and service delivery. That background is why I listen for the operating reality before talking about agents, RAG, automation or tooling.</p>
+          <ul class="list">
+            <li>ISKU Finland: B2B education sales, approximately €560k in closed deals.</li>
+            <li>LES Interior: educational space projects, customer interviews and commercial lead role.</li>
+            <li>Strategy Insights and CoSales: B2B pipeline, CRM follow-up and structured discovery.</li>
+            <li>Practical AI / AIHUB.WORKS: commercial layer across AI pilots and adoption planning.</li>
+          </ul>
+        </article>
 
-    <!-- кто ведёт + как попасть -->
-    <section class="g2">
-      <article class="card">
-        <div class="team-row">
-          <div class="avatar"><img src="./assets/community/danil-usik.jpg" alt="Данил Усик"></div>
-          <div>
-            <div class="label">Куратор и организатор</div>
-            <h3>Данил Усик</h3>
-            <p style="margin-top:8px;font-size:14px;line-height:1.65;color:var(--muted);">Собирает состав вручную, договаривается кто когда показывает, держит ритм группы.</p>
+        <article class="panel card dark">
+          <div class="kicker">Selected AI proof points</div>
+          <h2>Not case-study theatre. The operational shape matters.</h2>
+          <div class="case-list">
+            <div class="case-row">
+              <strong>OMNI CRM</strong>
+              <span>Messenger-first sales workflow: 3x operator capacity and first response reduced from 4 minutes to 40 seconds.</span>
+            </div>
+            <div class="case-row">
+              <strong>Panamedica</strong>
+              <span>Dental operations pilot: discovery and framing for a patient data pipeline handling 5,000+ records and audit trail logic.</span>
+            </div>
+            <div class="case-row">
+              <strong>Kastell</strong>
+              <span>Robotics company: OCR and speech workflow scoped around 34 parameters from 3 data sources.</span>
+            </div>
+            <div class="case-row">
+              <strong>CORE.XP</strong>
+              <span>Real estate data processing: semantic listing workflow for 10,000+ listings per day across multiple formats.</span>
+            </div>
           </div>
-        </div>
-      </article>
-      <article class="card dark">
-        <div class="label">Как попасть</div>
-        <h3>Три строки в Telegram</h3>
-        <p style="margin-top:9px;">Кто ты, что делаешь с AI прямо сейчас, что хочешь показать или узнать. Отвечу — есть ли место и подходит ли формат.</p>
-        <div style="margin-top:16px;">
-          <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Написать ↗</a>
-        </div>
-      </article>
-    </section>
+        </article>
+      </section>
 
-    <!-- footer -->
-    <section class="footer-card">
-      <h2>Всего 10 мест.</h2>
-      <p>Напиши — скажу есть ли место и подходит ли тебе формат. Если нет — позову в Hub и следующий набор.</p>
-      <div class="footer-actions">
-        <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer" style="background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.18);">Написать Данилу ↗</a>
-      </div>
-    </section>
+      <section class="grid-3">
+        <article class="panel card offer">
+          <div>
+            <div class="kicker">For hiring teams</div>
+            <h3>AI adoption, solutions, customer success or presales roles.</h3>
+            <p class="body">I fit roles where the job is to understand customer pain, make a product or AI workflow usable, and create trust between commercial, operational and technical stakeholders.</p>
+          </div>
+          <div class="offer-foot">Remote-first · CET · English-speaking roles</div>
+        </article>
 
+        <article class="panel card offer">
+          <div>
+            <div class="kicker">For partners</div>
+            <h3>Commercial discovery lead for AI implementation work.</h3>
+            <p class="body">I can help qualify opportunities, run diagnostic calls, turn vague interest into pilot briefs, and keep the buyer aligned before delivery starts.</p>
+          </div>
+          <div class="offer-foot">Discovery · scoping · client alignment</div>
+        </article>
+
+        <article class="panel card offer">
+          <div>
+            <div class="kicker">For project clients</div>
+            <h3>A practical diagnostic before you commit to building.</h3>
+            <p class="body">We choose one workflow where AI could produce a clear operational win, then write the pilot logic: process, data, owner, KPI, risk and rollout.</p>
+          </div>
+          <div class="offer-foot">Pilot brief · 30-day logic · next step</div>
+        </article>
+      </section>
+
+      <section class="training" id="training">
+        <article class="panel card">
+          <div class="kicker">Personal training</div>
+          <h2>One-to-one AI implementation training around your real work.</h2>
+          <p class="body">For founders, operators, consultants and managers who do not need another prompt list. We pick a real task, build the first useful workflow, document it, and leave you with a repeatable way to improve it.</p>
+          <ul class="list">
+            <li>AI workflow diagnosis for your actual process.</li>
+            <li>Agent, automation or knowledge-system prototype where useful.</li>
+            <li>Operating rules: when to use AI, when not to, how to review output.</li>
+            <li>Reusable documentation for you or your team.</li>
+          </ul>
+        </article>
+
+        <article class="panel card">
+          <div class="kicker">Group training</div>
+          <h2>Practical AI implementation for teams and small cohorts.</h2>
+          <p class="body">A focused training format for teams that want to move from “we should use AI” to concrete workflows. The format can be online or in-person, depending on the team and goal.</p>
+          <ul class="list">
+            <li>Shared language: use cases, risks, evaluation, handoff.</li>
+            <li>Live workflow teardown from your team’s own operations.</li>
+            <li>Guided build sessions with artifacts, not lecture-only training.</li>
+            <li>30-90 day AI adoption roadmap for the most promising workflows.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="grid-2" id="fit">
+        <article class="panel card">
+          <div class="kicker">Good fit</div>
+          <h2>Where I am most useful.</h2>
+          <ul class="list">
+            <li>Teams with a real operational bottleneck and enough data or process maturity to test a pilot.</li>
+            <li>AI, SaaS or workflow companies that need customer-facing adoption and solution framing.</li>
+            <li>Founders and operators who want practical implementation without internal AI theatre.</li>
+            <li>Partners who already have engineering capacity and need stronger commercial discovery.</li>
+          </ul>
+        </article>
+
+        <article class="panel card">
+          <div class="kicker">Not the right fit</div>
+          <h2>What I should not be hired for.</h2>
+          <ul class="list">
+            <li>Pure engineering ownership or pretending to be the technical builder.</li>
+            <li>Generic AI inspiration workshops with no workflow, owner or follow-through.</li>
+            <li>Large anonymous roles where judgment is less important than process compliance.</li>
+            <li>Roles that require Spanish, German or French as the working language.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="panel dark final">
+        <div>
+          <div class="kicker">Next step</div>
+          <h2>If you are hiring, partnering, or trying to make AI useful inside a team, send me the context.</h2>
+          <p class="body">A useful first message is simple: who you are, what workflow or role you are thinking about, what is blocked now, and what would make the next 30 days a win.</p>
+        </div>
+        <div class="final-actions">
+          <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Telegram</a>
+          <a class="btn secondary" href="mailto:argentinausik@gmail.com">Email</a>
+        </div>
+      </section>
+    </div>
   </main>
-</div>
 </body>
 </html>
