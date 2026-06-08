@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Блог — Practical AI</title>
+  <meta name="description" content="Заметки Данила Усика о практическом AI: как собирать рабочие процессы, агентов и решения под реальные задачи." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f3ed;
+      --ink: #101010;
+      --muted: #615d56;
+      --soft: #8d8981;
+      --surface: #ffffff;
+      --line: rgba(16, 16, 16, 0.1);
+      --lime: #caff2c;
+      --r: 8px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(820px, calc(100% - 32px)); margin: 0 auto; }
+    .nav { border-bottom: 1px solid var(--line); background: var(--bg); position: sticky; top: 0; z-index: 10; }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; color: var(--ink); }
+    .mark { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 7px; background: var(--lime); font-weight: 700; font-size: 13px; }
+    .nav-links { display: flex; align-items: center; gap: 22px; font-size: 15px; }
+    .nav-links a { color: var(--muted); }
+    .nav-links a:hover { color: var(--ink); }
+    .btn { display: inline-flex; align-items: center; padding: 10px 16px; border-radius: var(--r); background: var(--ink); color: #fff; font-weight: 600; font-size: 14px; border: 1px solid var(--ink); }
+    main { padding: 48px 0 72px; }
+    .head h1 { font-size: clamp(30px, 5vw, 44px); margin: 0 0 10px; letter-spacing: -0.01em; }
+    .head p { color: var(--muted); font-size: 18px; margin: 0 0 36px; max-width: 60ch; }
+    .post-card { display: block; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 26px 28px; margin-bottom: 18px; transition: border-color .15s ease; }
+    .post-card:hover { border-color: var(--ink); }
+    .post-card .meta { font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--soft); margin-bottom: 10px; }
+    .post-card h2 { font-size: 23px; margin: 0 0 8px; letter-spacing: -0.01em; }
+    .post-card p { color: var(--muted); margin: 0; }
+    @media (max-width: 640px) { .nav-links a:not(.btn) { display: none; } }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="../" aria-label="Practical AI home">
+        <span class="mark">PA</span>
+        <span>Practical AI</span>
+      </a>
+      <nav class="nav-links" aria-label="Page navigation">
+        <a href="../#work">Work</a>
+        <a href="../#training">Training</a>
+        <a href="./">Blog</a>
+        <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Contact Danil</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div class="head">
+        <h1>Блог</h1>
+        <p>Заметки о практическом AI: как собирать рабочие процессы, агентов и решения под реальные задачи — без магии и без театра.</p>
+      </div>
+
+      <a class="post-card" href="./ai-my-voice/">
+        <div class="meta">8 июня 2026 · AI &amp; voice</div>
+        <h2>Можно ли научить AI писать «моим голосом»?</h2>
+        <p>Сырой голос против публичного, и почему хороший AI-текст — это мышление человека после редактуры. Плюс гайд: что было за кадром.</p>
+      </a>
+    </div>
+  </main>
+</body>
+</html>

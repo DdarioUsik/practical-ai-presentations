@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Можно ли научить AI писать «моим голосом»? — Practical AI</title>
+  <meta name="description" content="Как я собирал агента, который пишет тексты от моего имени: сырой голос против публичного, и почему хороший AI-текст — это мышление человека после редактуры." />
+  <meta property="og:title" content="Можно ли научить AI писать «моим голосом»?" />
+  <meta property="og:description" content="Сырой голос против публичного, и почему хороший AI-текст — это мышление человека после редактуры." />
+  <meta property="og:type" content="article" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f3ed;
+      --ink: #101010;
+      --muted: #615d56;
+      --soft: #8d8981;
+      --surface: #ffffff;
+      --line: rgba(16, 16, 16, 0.1);
+      --line-strong: rgba(16, 16, 16, 0.18);
+      --lime: #caff2c;
+      --blue: #47c8ff;
+      --max: 760px;
+      --r: 8px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    .wrap { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+
+    .nav { border-bottom: 1px solid var(--line); background: var(--bg); position: sticky; top: 0; z-index: 10; }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; text-decoration: none; color: var(--ink); }
+    .mark { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 7px; background: var(--lime); font-weight: 700; font-size: 13px; }
+    .nav-links { display: flex; align-items: center; gap: 22px; font-size: 15px; }
+    .nav-links a { text-decoration: none; color: var(--muted); }
+    .nav-links a:hover { color: var(--ink); }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: var(--r); background: var(--ink); color: #fff; font-weight: 600; font-size: 14px; text-decoration: none; border: 1px solid var(--ink); }
+    .btn.secondary { background: transparent; color: var(--ink); }
+
+    main { padding: 40px 0 64px; }
+    .kicker { font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--soft); margin-bottom: 14px; }
+    .back-link { display: inline-block; margin-bottom: 22px; font-size: 14px; color: var(--muted); text-decoration: none; }
+    .back-link:hover { color: var(--ink); }
+    article h1 { font-size: clamp(28px, 5vw, 40px); line-height: 1.12; margin: 0 0 10px; letter-spacing: -0.01em; text-wrap: balance; }
+    .nowrap { white-space: nowrap; }
+    article h2 { font-size: 24px; margin: 44px 0 8px; letter-spacing: -0.01em; }
+    article h3 { font-size: 18px; margin: 28px 0 6px; }
+    article p { margin: 14px 0; color: #1c1c1c; }
+    article ul { margin: 12px 0; padding-left: 22px; }
+    article li { margin: 6px 0; color: #1c1c1c; }
+    article a { color: #0a66c2; text-decoration: underline; text-underline-offset: 2px; }
+    article a:hover { color: var(--ink); }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(16,16,16,0.06); padding: 1px 6px; border-radius: 5px; }
+    .lead { font-size: 19px; color: var(--ink); }
+    .meta { font-size: 14px; color: var(--soft); margin: 0 0 28px; }
+    .rule { border: 0; border-top: 1px solid var(--line); margin: 48px 0; }
+    .behind { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 6px 26px 26px; margin-top: 8px; }
+    .cta { background: var(--ink); color: #fff; border-radius: 14px; padding: 32px; margin-top: 56px; }
+    .cta h2 { margin: 8px 0 10px; color: #fff; }
+    .cta p { color: rgba(255,255,255,0.78); }
+    .cta-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
+    .cta .btn { background: var(--lime); color: var(--ink); border-color: var(--lime); }
+    .cta .btn.secondary { background: transparent; color: #fff; border-color: rgba(255,255,255,0.4); }
+    @media (max-width: 640px) { .nav-links a:not(.btn) { display: none; } }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="../../" aria-label="Practical AI home">
+        <span class="mark">PA</span>
+        <span>Practical AI</span>
+      </a>
+      <nav class="nav-links" aria-label="Page navigation">
+        <a href="../../#work">Work</a>
+        <a href="../../#training">Training</a>
+        <a href="../">Blog</a>
+        <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Contact Danil</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <a class="back-link" href="../">← Blog</a>
+      <article>
+        <div class="kicker">Blog · AI &amp; voice</div>
+        <h1>Можно ли научить AI писать <span class="nowrap">«моим&nbsp;голосом»?</span></h1>
+        <p class="meta">Данил Усик · 8 июня 2026</p>
+
+        <p class="lead">Последние дни я собираю себе агента, который должен писать тексты от моего имени.</p>
+
+        <p>Не просто «в стиле Данила», а так, чтобы я сам читал и думал: да, это похоже на меня, только как если бы я успел подумать, отредактировать и структурировать мысль.</p>
+
+        <p>И тут быстро выяснилась неприятная штука.</p>
+
+        <p>Мой настоящий голос в разговоре — это не готовый текст. Это поиск.</p>
+
+        <p>Я начинаю формулировать, сбиваюсь, уточняю, спорю сам с собой, потом вдруг нахожу точную фразу. Иногда в этом много сомнений, возможно слишком много. Если просто взять эту речь и перенести в пост, получится честно, но читать невозможно))</p>
+
+        <p>С другой стороны, если AI сразу всё причешет, получится профессионально, но плоско. Слишком ровные абзацы, слишком симметричные буллеты, слишком уверенная мысль. Как будто человек уже родился с готовым выводом.</p>
+
+        <p>Поэтому я пришёл к простой схеме: внутри агента должно быть два слоя.</p>
+
+        <p><strong>Первый слой — сырой.</strong></p>
+
+        <p>Там сохраняется фактура: как я реально размышляю, где сомневаюсь, какие примеры привожу, где меняю формулировку, какая фраза вдруг становится точной.</p>
+
+        <p><strong>Второй слой — публичный.</strong></p>
+
+        <p>Там этот сырой материал собирается в текст, который уважает внимание читателя: понятная мысль, нормальная структура, живой пример, без имитации моей устной каши.</p>
+
+        <p>Для меня это оказалось важным различием.</p>
+
+        <p>Публичный голос — это не то «каким я хочу казаться», а ясный структурированный текст.</p>
+
+        <p>Хороший текст должен быть лёгким в восприятии и сложным по содержанию. В нём должна быть фактура, ясность и ощущение, что о читателе подумали.</p>
+
+        <p>Не идеально гладко и не стерильно, но собрано и понятно.</p>
+
+        <p>Этот пост и есть пример работы с агентом.</p>
+
+        <p>А чтобы было видно, сколько работы стоит за такой короткой заметкой, ниже маленький гайд: что именно было «за кадром».</p>
+
+        <p>Моя подруга недавно сказала, что у неё сложное отношение к любому AI-творчеству.</p>
+
+        <p>Интересно, а как вы используете нейронки: как инструмент для черновиков, как редактора, как собеседника или как способ собрать свои мысли?</p>
+
+        <hr class="rule" />
+
+        <div class="behind">
+          <h2>За кадром: что стоит за этим постом</h2>
+
+          <h3>1. Точка старта</h3>
+          <p>Толчком стал текст Ruben Hassid <a href="https://ruben.substack.com/p/i-am-just-a-text-file" target="_blank" rel="noopener noreferrer">«I am just a text file»</a>.<br>Мысль простая: голос держится на сформулированных паттернах, ритмах и границах, без всякой магии.<br>Зацепило меня даже не «скопируй автора». Зацепило другое: модели нужен мой конкретный вкус.<br>Особенно то, что я никогда бы не сказал.</p>
+
+          <h3>2. Интервью на вкус</h3>
+          <p>Я прошёл интервью на сто вопросов и сложил ответы в профиль голоса.<br>Первый проход дал материал, но получилось очень далеко от идеала, и это меня разочаровало.<br>Тогда я решил всё-таки добить до результата.<br>Часть ответов была про то, как я думаю вслух, а на публику я пишу совсем иначе.</p>
+
+          <h3>3. Где переписывал</h3>
+          <p>Я вернулся к ответам и переписал слабые блоки:</p>
+          <ul>
+            <li>Базовые убеждения про текст. Там меня всё время сносило в продажи и во взрослость, хотя вопрос был про другое.</li>
+            <li>Заголовки, концовки, ритм, удачные и неудачные примеры.</li>
+            <li>Слова, которые мне противны, и признаки, по которым сразу видно нейросеть.</li>
+          </ul>
+          <p>Главный вывод в том, что публичный голос должен звучать как я, но после того, как я обдумал и причесал мысль.</p>
+
+          <h3>4. Два слоя вместо двух агентов</h3>
+          <p>Сначала я хотел двух отдельных агентов: один держит сырой голос, второй пишет на публику.<br>Поковырялся и понял, что это лишняя конструкция.<br>Чище держать одного агента с двумя стадиями внутри:</p>
+          <ul>
+            <li><strong>Сырой захват:</strong> где я сомневаюсь, какие примеры привожу, где спорю сам с собой, где вдруг попадаю в точную фразу.</li>
+            <li><strong>Публичная сборка:</strong> из этого материала собрать текст, который приятно читать.</li>
+          </ul>
+
+          <h3>5. Как агент пишет</h3>
+          <p>Я запретил ему выдавать готовый пост с одного захода.<br>Сначала сырьё, потом блоки, потом внутренний критик, и только в конце финальный текст.<br>Критик гоняет текст по простым вопросам:</p>
+          <ul>
+            <li>Есть ли живая фактура или всё слишком гладко?</li>
+            <li>Не легли ли буллеты под одну гребёнку?</li>
+            <li>Звучит ли это как я после редактуры или как нейросеть, которая старается мной прикинуться?</li>
+            <li>Подумали ли о внимании читателя?</li>
+          </ul>
+
+          <h3>6. Что оставил из сырого</h3>
+          <ul>
+            <li>Что мой настоящий голос это поиск, а не готовый текст.</li>
+            <li>Что устное мышление и письмо на публику живут отдельно.</li>
+            <li>Страх, что полировка делает текст гладким, но мёртвым.</li>
+          </ul>
+
+          <h3>7. Что выкинул</h3>
+          <ul>
+            <li>Повторные самопояснения, где я по второму кругу объясняю одно и то же.</li>
+            <li>Долгие рассуждения про устройство агента.</li>
+            <li>Тяжёлые термины, которые читателю тут ни к чему.</li>
+            <li>Сырую устную неуверенность, которая осталась от разговора.</li>
+          </ul>
+
+          <h3>8. Что из этого можно забрать себе</h3>
+          <p>Первичный слой состоит из фактов, сомнений и черт моей личности. А в публичное поле читатель получает уже готовый, ясный текст.</p>
+          <p>Работая над этим агентом, я понял главное: хорошее авторское AI-письмо это человеческая мысль после редакторской пересборки. И весь фокус в том, чтобы настроить эту редакторскую призму.</p>
+
+          <h3>Источник</h3>
+          <p>Ruben Hassid, <a href="https://ruben.substack.com/p/i-am-just-a-text-file" target="_blank" rel="noopener noreferrer">«I am just a text file»</a> (21 января 2026).</p>
+        </div>
+
+        <section class="cta">
+          <div class="kicker" style="color: var(--lime);">Next step</div>
+          <h2>Хотите так же собрать рабочий AI-процесс под свою задачу?</h2>
+          <div class="cta-actions">
+            <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Telegram</a>
+            <a class="btn secondary" href="mailto:argentinausik@gmail.com">Email</a>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+</body>
+</html>
