@@ -133,8 +133,8 @@
     }
     h2 {
       margin-top: 8px;
-      font-size: clamp(28px, 4vw, 46px);
-      line-height: 1.05;
+      font-size: clamp(25px, 3.3vw, 38px);
+      line-height: 1.1;
       letter-spacing: 0;
       text-wrap: balance;
     }
@@ -155,12 +155,13 @@
     }
     .dark .lead, .dark p { color: rgba(255,255,255,0.68); }
     .body {
-      margin-top: 12px;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.66;
+      margin-top: 14px;
+      color: #2e2b27;
+      font-size: 17px;
+      line-height: 1.62;
       text-wrap: pretty;
     }
+    .body b, .body strong, .lead b, .list li b, .list li strong { color: var(--ink); font-weight: 700; }
     .lead + .lead { margin-top: 10px; }
     .body + .body { margin-top: 10px; }
 
@@ -299,27 +300,28 @@
 
     .list {
       display: grid;
-      gap: 9px;
-      margin-top: 18px;
+      gap: 14px;
+      margin-top: 20px;
       padding: 0;
       list-style: none;
     }
     .list li {
       position: relative;
-      padding-left: 17px;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.58;
+      padding-left: 22px;
+      color: #2e2b27;
+      font-size: 16.5px;
+      line-height: 1.55;
     }
     .list li::before {
       content: "";
       position: absolute;
       left: 0;
-      top: 10px;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--ink);
+      top: 9px;
+      width: 9px;
+      height: 9px;
+      border-radius: 3px;
+      background: var(--lime);
+      border: 1.5px solid var(--ink);
     }
     .dark .list li { color: rgba(255,255,255,0.7); }
     .dark .list li::before { background: var(--lime); }
@@ -449,8 +451,8 @@
           <div>
             <div class="kicker">Данил Усик · Валенсия · удалённо</div>
             <h1>Разбираюсь в задаче клиента и довожу до решения, которое сработает.</h1>
-            <p class="lead">Мой домен — переговоры, диагностика и выстраивание доверительной коммуникации с клиентом.</p>
-            <p class="lead">Плюс умею в нейросети: собираю агентов и автоматизации под конкретную задачу.</p>
+            <p class="lead">Мой домен — <b>переговоры, диагностика и доверительная коммуникация</b> с клиентом.</p>
+            <p class="lead">Плюс умею в нейросети: <b>собираю агентов и автоматизации</b> под конкретную задачу.</p>
             <div class="chips" aria-label="Позиционирование">
               <span class="chip">Развитие клиентов</span>
               <span class="chip">B2B-продажи</span>
@@ -498,7 +500,7 @@
         <article class="panel wide" style="grid-column: 1 / -1;">
           <div class="kicker">Как я работаю</div>
           <h2>Сначала разбираюсь в задаче, потом предлагаю решение.</h2>
-          <p class="lead">Для меня продажа — это понять, чего человек правда хочет, и довести его до решения, которое сработает в его контексте.</p>
+          <p class="lead">Для меня продажа — это <b>понять, чего человек правда хочет</b>, и довести его до решения, которое сработает в его контексте.</p>
           <p class="lead">Когда понял, чего он хочет, цена и следующий шаг перестают быть спором.</p>
           <div class="steps">
             <div class="step">
@@ -534,9 +536,9 @@
           <p class="body">До Practical AI я прошёл через образовательную среду, продажи в школы и интерьерные проекты, коммерческую стратегию, интервью с заказчиками, дисциплину CRM и доведение проектов до результата.</p>
           <p class="body">Поэтому сначала слушаю, как реально устроена работа, и только потом говорю про агентов, RAG и автоматизацию.</p>
           <ul class="list">
-            <li>ISKU Finland: продажи в школы, около €560k закрытых сделок, годовой план за 5 месяцев.</li>
-            <li>LES Interior: запустил коммерческое направление с нуля, оборот $50k за первый год.</li>
-            <li>Strategy Insights: холодный outreach и продажи, 15 клиентов в месяц 5 месяцев подряд.</li>
+            <li>ISKU Finland: продажи в школы, <b>около €560k</b> закрытых сделок, годовой план за 5 месяцев.</li>
+            <li>LES Interior: запустил коммерческое направление с нуля, <b>оборот $50k</b> за первый год.</li>
+            <li>Strategy Insights: холодный outreach и продажи, <b>15 клиентов в месяц</b> 5 месяцев подряд.</li>
             <li>Practical AI / AIHUB.WORKS: discovery, переупаковка сделок и коммерческий слой на AI-пилотах.</li>
           </ul>
         </article>
@@ -600,9 +602,9 @@
           <div class="kicker">Кому я подхожу</div>
           <h2>Мы классно сработаемся, если…</h2>
           <ul class="list">
-            <li>вам нужен человек на развитие клиентов, продажи или customer success;</li>
-            <li>важно сначала понять клиента, а потом продавать;</li>
-            <li>у вас есть инженерная команда, а нужен сильный discovery и упаковка решения;</li>
+            <li>вам нужен человек на <b>развитие клиентов, продажи или customer success</b>;</li>
+            <li>важно <b>сначала понять клиента</b>, а потом продавать;</li>
+            <li>у вас есть инженерная команда, а нужен <b>сильный discovery</b> и упаковка решения;</li>
             <li>роль с лицом к клиенту, где решают суждение и доведение до результата;</li>
             <li>хотите внедрить AI в реальный процесс, а не словить хайп.</li>
           </ul>
