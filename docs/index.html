@@ -200,6 +200,7 @@
       overflow: hidden;
       display: grid;
       grid-template-rows: minmax(280px, 1fr) auto;
+      position: relative;
     }
     .portrait {
       width: 100%;
@@ -209,8 +210,14 @@
       object-position: center;
     }
     .profile-note {
+      position: relative;
+      margin: -112px 16px 16px;
       padding: 24px;
-      border-top: 1px solid var(--line);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 18px 50px rgba(16, 16, 16, 0.18);
     }
     .profile-note strong {
       display: block;
@@ -415,6 +422,7 @@
       .hero-main, .card, .wide, .profile-note { padding: 22px; }
       .metrics, .grid-2, .grid-3 { grid-template-columns: 1fr; }
       .portrait { min-height: 320px; }
+      .profile-note { margin: -72px 12px 12px; }
       .step { grid-template-columns: 34px 1fr; }
       .num { width: 34px; height: 34px; }
     }
@@ -553,16 +561,16 @@
               <span>Messenger-first sales workflow: 3x operator capacity and first response reduced from 4 minutes to 40 seconds.</span>
             </div>
             <div class="case-row">
-              <strong>Panamedica</strong>
-              <span>Dental operations pilot: discovery and framing for a patient data pipeline handling 5,000+ records and audit trail logic.</span>
+              <strong>WELCS</strong>
+              <span>Discovery and commercial reframing for a complex AI implementation deal: aligned four stakeholders and moved the offer from a weak one-step proposal to a staged project.</span>
             </div>
             <div class="case-row">
-              <strong>Kastell</strong>
-              <span>Robotics company: OCR and speech workflow scoped around 34 parameters from 3 data sources.</span>
+              <strong>DrHead</strong>
+              <span>Turned a broad CRM and analytics request into a clear first pilot around incoming calls, customer loss at the first touchpoint, and the data needed to see the problem.</span>
             </div>
             <div class="case-row">
-              <strong>CORE.XP</strong>
-              <span>Real estate data processing: semantic listing workflow for 10,000+ listings per day across multiple formats.</span>
+              <strong>AI resume screening</strong>
+              <span>Primary candidate screening workflow processing around 100 CVs per hour with 92% match against expert review.</span>
             </div>
           </div>
         </article>
@@ -624,7 +632,7 @@
       </section>
 
       <section class="grid-2" id="fit">
-        <article class="panel card">
+        <article class="panel card" style="grid-column: 1 / -1;">
           <div class="kicker">Good fit</div>
           <h2>Where Practical AI is most useful.</h2>
           <ul class="list">
@@ -632,17 +640,6 @@
             <li>AI, SaaS or workflow companies that need customer-facing adoption and solution framing.</li>
             <li>Founders and operators who want practical implementation grounded in real work.</li>
             <li>Partners who already have engineering capacity and need stronger commercial discovery.</li>
-          </ul>
-        </article>
-
-        <article class="panel card">
-          <div class="kicker">Best avoided</div>
-          <h2>Situations where another partner will fit better.</h2>
-          <ul class="list">
-            <li>Pure engineering ownership where the main need is full-time technical delivery.</li>
-            <li>Generic AI inspiration sessions detached from a workflow, owner and follow-through.</li>
-            <li>Large anonymous programs where process compliance matters more than judgment.</li>
-            <li>Projects that require Spanish, German or French as the working language.</li>
           </ul>
         </article>
       </section>
