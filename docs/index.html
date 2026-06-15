@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Данил Усик — развитие клиентов, B2B-продажи, discovery</title>
-  <meta name="description" content="Данил Усик: 10 лет в B2B-продажах и развитии клиентов. Discovery, выстраивание воронки и доведение сделки до результата. AI — как рабочий инструмент." />
+  <title>Practical AI — AI implementation for real business workflows</title>
+  <meta name="description" content="Practical AI helps founders and teams choose the right AI opportunity, turn it into a focused pilot, and move from interest to a working operational system." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -126,15 +126,15 @@
     h1 {
       margin-top: 16px;
       max-width: 760px;
-      font-size: clamp(29px, 4.7vw, 55px);
+      font-size: clamp(44px, 7vw, 82px);
       line-height: 0.94;
       letter-spacing: 0;
       text-wrap: balance;
     }
     h2 {
       margin-top: 8px;
-      font-size: clamp(25px, 3.3vw, 38px);
-      line-height: 1.1;
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.05;
       letter-spacing: 0;
       text-wrap: balance;
     }
@@ -155,19 +155,16 @@
     }
     .dark .lead, .dark p { color: rgba(255,255,255,0.68); }
     .body {
-      margin-top: 14px;
-      color: #2e2b27;
-      font-size: 17px;
-      line-height: 1.62;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.66;
       text-wrap: pretty;
     }
-    .body b, .body strong, .lead b, .list li b, .list li strong { color: var(--ink); font-weight: 700; }
-    .lead + .lead { margin-top: 10px; }
-    .body + .body { margin-top: 10px; }
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.42fr) minmax(280px, 0.58fr);
+      grid-template-columns: minmax(0, 1.3fr) minmax(300px, 0.7fr);
       gap: 10px;
       min-height: calc(100vh - 96px);
     }
@@ -202,17 +199,14 @@
     .hero-card {
       overflow: hidden;
       display: grid;
-      grid-template-rows: auto auto;
-      align-self: start;
+      grid-template-rows: minmax(280px, 1fr) auto;
     }
     .portrait {
       width: 100%;
-      height: min(36vw, 430px);
-      min-height: 300px;
-      max-height: 430px;
-      aspect-ratio: 4 / 5;
+      height: 100%;
+      min-height: 420px;
       object-fit: cover;
-      object-position: center 28%;
+      object-position: center;
     }
     .profile-note {
       padding: 24px;
@@ -300,28 +294,27 @@
 
     .list {
       display: grid;
-      gap: 14px;
-      margin-top: 20px;
+      gap: 9px;
+      margin-top: 18px;
       padding: 0;
       list-style: none;
     }
     .list li {
       position: relative;
-      padding-left: 22px;
-      color: #2e2b27;
-      font-size: 16.5px;
-      line-height: 1.55;
+      padding-left: 17px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.58;
     }
     .list li::before {
       content: "";
       position: absolute;
       left: 0;
-      top: 9px;
-      width: 9px;
-      height: 9px;
-      border-radius: 3px;
-      background: var(--lime);
-      border: 1.5px solid var(--ink);
+      top: 10px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--ink);
     }
     .dark .list li { color: rgba(255,255,255,0.7); }
     .dark .list li::before { background: var(--lime); }
@@ -421,7 +414,7 @@
       main { padding-top: 10px; }
       .hero-main, .card, .wide, .profile-note { padding: 22px; }
       .metrics, .grid-2, .grid-3 { grid-template-columns: 1fr; }
-      .portrait { height: 300px; min-height: 0; }
+      .portrait { min-height: 320px; }
       .step { grid-template-columns: 34px 1fr; }
       .num { width: 34px; height: 34px; }
     }
@@ -435,11 +428,11 @@
         <span>Practical AI</span>
       </a>
       <nav class="nav-links" aria-label="Page navigation">
-        <a href="#work">Как работаю</a>
-        <a href="#training">Обучение</a>
-        <a href="#fit">Где полезен</a>
-        <a href="./blog/">Блог</a>
-        <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Связаться</a>
+        <a href="#work">Approach</a>
+        <a href="#training">Training</a>
+        <a href="#fit">Fit</a>
+        <a href="./blog/">Blog</a>
+        <a class="btn" href="https://calendar.app.google/Rq43Awwope18xP4Q8" target="_blank" rel="noopener noreferrer">Book a call</a>
       </nav>
     </div>
   </header>
@@ -449,119 +442,127 @@
       <section class="hero">
         <article class="panel hero-main">
           <div>
-            <div class="kicker">Данил Усик · Валенсия · удалённо</div>
-            <h1>Разбираюсь в задаче клиента и довожу до решения, которое сработает.</h1>
-            <p class="lead">10 лет в <b>B2B-продажах, развитии клиентов и коммерческой диагностике</b>. Работаю коммерческим лидом между клиентом, собственником и командой внедрения.</p>
-            <p class="lead">Сильные стороны — переговоры, диагностика сложных сделок с несколькими участниками решения и <b>AI как рабочий инструмент</b> для анализа и автоматизации.</p>
-            <div class="chips" aria-label="Позиционирование">
-              <span class="chip">Развитие клиентов</span>
-              <span class="chip">B2B-продажи</span>
-              <span class="chip">Discovery</span>
-              <span class="chip">AI-инструменты</span>
+            <div class="kicker">Practical AI · Valencia · Remote-first</div>
+            <h1>Turn AI interest into a working business system.</h1>
+            <p class="lead">Practical AI helps founders and teams find the right first AI opportunity, shape it into a focused pilot, and connect the workflow, data, owner, KPI and adoption path before development starts.</p>
+            <div class="chips" aria-label="Positioning tags">
+              <span class="chip">AI Opportunity Audit</span>
+              <span class="chip">Pilot scoping</span>
+              <span class="chip">Workflow automation</span>
+              <span class="chip">Team adoption</span>
             </div>
             <div class="hero-actions">
-              <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Связаться</a>
-              <a class="btn secondary" href="#work">Как я работаю</a>
+              <a class="btn" href="https://calendar.app.google/Rq43Awwope18xP4Q8" target="_blank" rel="noopener noreferrer">Book a discovery call</a>
+              <a class="btn secondary" href="#work">See the approach</a>
             </div>
           </div>
+          <p class="body">The first step is a practical diagnostic: we choose one high-value workflow, clarify the business case, and define what a useful pilot should prove in the next 30-60 days.</p>
         </article>
 
         <aside class="panel hero-card" aria-label="Profile">
           <img class="portrait" src="./assets/community/danil-usik.jpg" alt="Danil Usik" />
           <div class="profile-note">
-            <div class="kicker">Сейчас</div>
-            <strong>Коммерческий лид: продажи, пресейл, упаковка, первые клиенты и запуск новых направлений.</strong>
-            <p class="body">Быстро разбираюсь в сложной ситуации с несколькими участниками решения и собираю общую картину.</p>
-            <p class="body">Формулирую предложение, техническое задание и стратегию следующих шагов.</p>
+            <div class="kicker">Led by Danil Usik</div>
+            <strong>Commercial discovery, pilot design and adoption logic for B2B AI workflows.</strong>
+            <p class="body">Danil works between the business owner, operating team and technical delivery. His job is to make the use case clear enough to build, test and adopt.</p>
           </div>
         </aside>
       </section>
 
       <section class="metrics" aria-label="Proof points">
         <div class="panel metric">
-          <b>€560k</b>
-          <span>Закрытых сделок в B2B-продажах в образование (ISKU Finland).</span>
+          <b>7</b>
+          <span>AI pilots shaped from customer discovery into implementation logic.</span>
         </div>
         <div class="panel metric">
-          <b>€3k → €6,5k</b>
-          <span>Пересобрал убыточную сделку в многоэтапную и поднял ценник (WELCS).</span>
+          <b>€20-30k</b>
+          <span>Typical pilot deal range across recent B2B AI work.</span>
         </div>
         <div class="panel metric">
-          <b>10+ лет</b>
-          <span>B2B-продажи, развитие клиентов, discovery и переговоры с ЛПР.</span>
+          <b>10+ yrs</b>
+          <span>B2B sales, business development, education and implementation consulting.</span>
         </div>
         <div class="panel metric">
-          <b>400+</b>
-          <span>Участников в сообществе практиков AI: 7 встреч, 6 стран.</span>
+          <b>100 CV/h</b>
+          <span>AI screening workflow benchmarked at 92% match with expert review.</span>
         </div>
       </section>
 
       <section class="grid-2" id="work">
-        <article class="panel wide" style="grid-column: 1 / -1;">
-          <div class="kicker">Как я работаю</div>
-          <h2>Сначала разбираюсь в задаче, потом предлагаю решение.</h2>
-          <p class="lead">Продажа начинается с того, чтобы <b>точно понять задачу клиента</b> и предложить решение под его контекст.</p>
-          <p class="lead">Когда задача понята верно, цена и следующий шаг перестают быть предметом спора.</p>
+        <article class="panel wide">
+          <div class="kicker">How Practical AI works</div>
+          <h2>Start with the workflow, then choose the system.</h2>
+          <p class="lead">Useful AI work starts before the tool decision. We clarify where the work slows down, what data exists, who owns the process, and what success should look like in daily operations.</p>
           <div class="steps">
             <div class="step">
               <div class="num">1</div>
               <div>
-                <strong>Discovery</strong>
-                <span>Интервью с ЛПР и командой, распутываю противоречивые хотелки, свожу интересы в одну картину.</span>
+                <strong>Diagnose the operational bottleneck</strong>
+                <span>Find the point where work slows down, repeats, disappears, or depends on one overextended person.</span>
               </div>
             </div>
             <div class="step">
               <div class="num">2</div>
               <div>
-                <strong>Воронка</strong>
-                <span>Квалификация, потребность, работа с возражениями, follow-up и доведение до решения.</span>
+                <strong>Translate it into a pilot brief</strong>
+                <span>Pain, data, process, owner, KPI, risk, adoption path, and the first build boundary.</span>
               </div>
             </div>
             <div class="step">
               <div class="num">3</div>
               <div>
-                <strong>Первый шаг</strong>
-                <span>Называю пилот или первый шаг, который двигает к сделке, и держу бизнес и разработку в одной картине.</span>
+                <strong>Keep business and delivery aligned</strong>
+                <span>Help the technical team, buyer and operators work from the same brief.</span>
               </div>
             </div>
           </div>
         </article>
 
+        <article class="panel card dark">
+          <div class="kicker">What you get</div>
+          <h2>Clear commercial judgment around AI.</h2>
+          <ul class="list">
+            <li>A concrete AI opportunity, selected from real operational pressure.</li>
+            <li>A pilot brief with workflow, data, owner, KPI, risk and rollout logic.</li>
+            <li>A shared language between founders, operators, sales leaders and technical partners.</li>
+            <li>A practical next step that can move into delivery, training or a team sprint.</li>
+            <li>A calm implementation process with clear explanations and follow-through.</li>
+          </ul>
+        </article>
       </section>
 
       <section class="cases">
         <article class="panel card">
-          <div class="kicker">Опыт</div>
-          <h2>Моя экспертиза в продажах.</h2>
-          <p class="body">До Practical AI я прошёл через образовательную среду, продажи в школы и интерьерные проекты, коммерческую стратегию, интервью с заказчиками, дисциплину CRM и доведение проектов до результата.</p>
-          <p class="body">Поэтому сначала слушаю, как реально устроена работа, и только потом говорю про агентов, RAG и автоматизацию.</p>
+          <div class="kicker">Experience base</div>
+          <h2>B2B sales, customer discovery, AI workflows and adoption.</h2>
+          <p class="body">Before Practical AI, Danil worked across education, key account sales, commercial strategy, founder interviews, CRM discipline and service delivery. That background shapes the method: understand the operating reality first, then talk about agents, RAG, automation or tooling.</p>
           <ul class="list">
-            <li>ISKU Finland: продажи в школы, <b>около €560k</b> закрытых сделок, годовой план за 5 месяцев.</li>
-            <li>LES Interior: запустил коммерческое направление с нуля, <b>оборот $50k</b> за первый год.</li>
-            <li>Strategy Insights: холодный outreach и продажи, <b>15 клиентов в месяц</b> 5 месяцев подряд.</li>
-            <li>Practical AI / AIHUB.WORKS: discovery, переупаковка сделок и коммерческий слой на AI-пилотах.</li>
+            <li>ISKU Finland: B2B education sales, approximately €560k in closed deals.</li>
+            <li>LES Interior: educational space projects, customer interviews and commercial lead role.</li>
+            <li>Strategy Insights and CoSales: B2B pipeline, CRM follow-up and structured discovery.</li>
+            <li>Practical AI / AIHUB.WORKS: commercial discovery, pilot packaging and adoption planning for AI workflows.</li>
           </ul>
         </article>
 
         <article class="panel card dark">
-          <div class="kicker">Избранные кейсы</div>
-          <h2>Мои кейсы.</h2>
+          <div class="kicker">Selected AI proof points</div>
+          <h2>The operational shape matters more than the demo.</h2>
           <div class="case-list">
             <div class="case-row">
-              <strong>WELCS</strong>
-              <span>Провёл диагностику, свёл интересы четырёх стейкхолдеров и пересобрал убыточную сделку в многоэтапную, подняв ценник с €3000 до €6500.</span>
-            </div>
-            <div class="case-row">
-              <strong>DrHead</strong>
-              <span>Сузил размытый запрос «CRM и аналитика» до понятного первого шага и вывел на первый пилот: нашёл, где теряются деньги — входящие звонки и потеря клиентов на входе.</span>
-            </div>
-            <div class="case-row">
               <strong>OMNI CRM</strong>
-              <span>Единый контакт-центр по мессенджерам: выше ёмкость операторов, быстрее первый ответ, чище передача в воронку.</span>
+              <span>Messenger-first sales workflow: 3x operator capacity and first response reduced from 4 minutes to 40 seconds.</span>
             </div>
             <div class="case-row">
-              <strong>AI-скрининг резюме</strong>
-              <span>Обработка около 100 резюме в час с 92% совпадением с экспертной оценкой: быстрый первичный отбор кандидатов без потери качества.</span>
+              <strong>Panamedica</strong>
+              <span>Dental operations pilot: discovery and framing for a patient data pipeline handling 5,000+ records and audit trail logic.</span>
+            </div>
+            <div class="case-row">
+              <strong>Kastell</strong>
+              <span>Robotics company: OCR and speech workflow scoped around 34 parameters from 3 data sources.</span>
+            </div>
+            <div class="case-row">
+              <strong>CORE.XP</strong>
+              <span>Real estate data processing: semantic listing workflow for 10,000+ listings per day across multiple formats.</span>
             </div>
           </div>
         </article>
@@ -570,71 +571,90 @@
       <section class="grid-3">
         <article class="panel card offer">
           <div>
-            <div class="kicker">Командам, которые нанимают</div>
-            <h3>Развитие клиентов, продажи, customer success, discovery.</h3>
-            <p class="body">Сильнее всего в ролях, где надо понять клиента, довести сделку до результата и держать доверие между коммерцией, операционкой и разработкой.</p>
+            <div class="kicker">AI Opportunity Audit</div>
+            <h3>Find the first AI workflow worth building.</h3>
+            <p class="body">A focused diagnostic for founders and teams. We identify 1-3 high-value opportunities, choose the strongest first process, and define the pilot hypothesis, data needs and success criteria.</p>
           </div>
-          <div class="offer-foot">Удалённо · CET · русский и английский</div>
+          <div class="offer-foot">60-90 min · clear next step · pilot-ready brief</div>
         </article>
 
         <article class="panel card offer">
           <div>
-            <div class="kicker">Партнёрам</div>
-            <h3>Discovery-лид для проектов внедрения AI.</h3>
-            <p class="body">Квалифицирую сделки, веду диагностические созвоны, превращаю ранний интерес в пилот-бриф и держу клиента в одной картине до старта разработки.</p>
+            <div class="kicker">Two-Month AI Pilot</div>
+            <h3>Build one concrete workflow with clear ownership.</h3>
+            <p class="body">For sales, support, research, CRM, documents, reporting or content operations. The pilot is scoped around one measurable process and a rollout path the team can actually use.</p>
           </div>
-          <div class="offer-foot">Discovery · скоуп · работа с клиентом</div>
+          <div class="offer-foot">One process · measurable result · adoption path</div>
         </article>
 
         <article class="panel card offer">
           <div>
-            <div class="kicker">Проектным клиентам</div>
-            <h3>Практическая диагностика до старта разработки.</h3>
-            <p class="body">Выбираем один процесс, где AI даст понятный выигрыш.</p>
-            <p class="body">И собираем логику пилота: процесс, данные, владелец, KPI, риск и развёртывание.</p>
+            <div class="kicker">Team Practical AI Sprint</div>
+            <h3>Help your team move from AI talk to working habits.</h3>
+            <p class="body">A guided sprint for small teams: shared language, live workflow teardown, build sessions, documentation and a 30-90 day adoption roadmap.</p>
           </div>
-          <div class="offer-foot">Пилот-бриф · логика на 30 дней · следующий шаг</div>
+          <div class="offer-foot">Workshops · artifacts · team operating rules</div>
+        </article>
+      </section>
+
+      <section class="training" id="training">
+        <article class="panel card">
+          <div class="kicker">One-to-one training</div>
+          <h2>AI implementation training around your real work.</h2>
+          <p class="body">For founders, operators, consultants and managers who want AI to become part of the way they work. We pick a real task, build the first useful workflow, document it, and leave you with a repeatable way to improve it.</p>
+          <ul class="list">
+            <li>AI workflow diagnosis for your actual process.</li>
+            <li>Agent, automation or knowledge-system prototype where useful.</li>
+            <li>Operating rules: when to use AI, when to involve a person, and how to review output.</li>
+            <li>Reusable documentation for you or your team.</li>
+          </ul>
+        </article>
+
+        <article class="panel card">
+          <div class="kicker">Group training</div>
+          <h2>Practical AI implementation for teams and small cohorts.</h2>
+          <p class="body">A focused training format for teams that want to move from AI curiosity to concrete workflows. The format can be online or in-person, depending on the team and goal.</p>
+          <ul class="list">
+            <li>Shared language: use cases, risks, evaluation, handoff.</li>
+            <li>Live workflow teardown from your team’s own operations.</li>
+            <li>Guided build sessions with practical artifacts and shared documentation.</li>
+            <li>30-90 day AI adoption roadmap for the most promising workflows.</li>
+          </ul>
         </article>
       </section>
 
       <section class="grid-2" id="fit">
-        <article class="panel card" style="grid-column: 1 / -1;">
-          <div class="kicker">Кому я подхожу</div>
-          <h2>Где сотрудничество со мной наиболее эффективно.</h2>
+        <article class="panel card">
+          <div class="kicker">Good fit</div>
+          <h2>Where Practical AI is most useful.</h2>
           <ul class="list">
-            <li>вам нужен <b>коммерческий лид</b> на развитие клиентов, продажи или customer success;</li>
-            <li>важно <b>сначала понять клиента</b>, а затем выстраивать продажу;</li>
-            <li>у вас есть инженерная команда, а нужен <b>сильный discovery</b> и упаковка решения;</li>
-            <li>роль с прямой работой с клиентом, где важны суждение и доведение до результата;</li>
-            <li>хотите внедрить AI в реальный процесс с <b>измеримой ценностью</b>.</li>
+            <li>Teams with a real operational bottleneck and enough data or process maturity to test a pilot.</li>
+            <li>AI, SaaS or workflow companies that need customer-facing adoption and solution framing.</li>
+            <li>Founders and operators who want practical implementation grounded in real work.</li>
+            <li>Partners who already have engineering capacity and need stronger commercial discovery.</li>
           </ul>
         </article>
-      </section>
 
-      <section class="grid-2" id="training">
-        <article class="panel card" style="grid-column: 1 / -1;">
-          <div class="kicker">Обучение</div>
-          <h2>Чему я могу научить команду.</h2>
-          <p class="body">Это практическая работа на ваших реальных задачах. Берём приоритетный процесс и доводим до первого рабочего AI-воркфлоу в ходе сессии.</p>
-          <p class="body">Что остаётся у команды после:</p>
+        <article class="panel card">
+          <div class="kicker">Best avoided</div>
+          <h2>Situations where another partner will fit better.</h2>
           <ul class="list">
-            <li>общий язык про AI: где он помогает, где нужен человек, как проверять качество;</li>
-            <li>первый рабочий процесс или агент под вашу задачу, а не абстрактный пример;</li>
-            <li>понимание, что у вас стоит автоматизировать первым;</li>
-            <li>документация и повторяемый способ улучшать это дальше уже без меня.</li>
+            <li>Pure engineering ownership where the main need is full-time technical delivery.</li>
+            <li>Generic AI inspiration sessions detached from a workflow, owner and follow-through.</li>
+            <li>Large anonymous programs where process compliance matters more than judgment.</li>
+            <li>Projects that require Spanish, German or French as the working language.</li>
           </ul>
-          <p class="body">Работаю один на один с основателем или руководителем и с небольшими командами. Онлайн или офлайн.</p>
         </article>
       </section>
 
       <section class="panel dark final">
         <div>
-          <div class="kicker">Следующий шаг</div>
-          <h2>Нанимаете, ищете партнёра или хотите сделать AI полезным в команде — давайте созвонимся.</h2>
-          <p class="body">Выберите удобное время. На звонке я задам нужные вопросы и пойму, чем могу быть полезен.</p>
+          <div class="kicker">Next step</div>
+          <h2>If you want AI to become useful inside a real workflow, bring the context.</h2>
+          <p class="body">A useful first conversation is simple: who you are, what process you want to improve, what is stuck now, and what would make the next 30-60 days a win.</p>
         </div>
         <div class="final-actions">
-          <a class="btn" href="https://calendar.app.google/Rq43Awwope18xP4Q8" target="_blank" rel="noopener noreferrer">Выбрать время для звонка</a>
+          <a class="btn" href="https://calendar.app.google/Rq43Awwope18xP4Q8" target="_blank" rel="noopener noreferrer">Book a call</a>
           <a class="btn secondary" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Telegram</a>
         </div>
       </section>
