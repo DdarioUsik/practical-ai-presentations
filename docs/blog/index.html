@@ -1,83 +1,45 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Блог — Practical AI</title>
-  <meta name="description" content="Заметки Данила Усика о практическом AI: как собирать рабочие процессы, агентов и решения под реальные задачи." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #f6f3ed;
-      --ink: #101010;
-      --muted: #615d56;
-      --soft: #8d8981;
-      --surface: #ffffff;
-      --line: rgba(16, 16, 16, 0.1);
-      --lime: #caff2c;
-      --r: 8px;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--ink);
-      background: var(--bg);
-      line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; text-decoration: none; }
-    .wrap { width: min(820px, calc(100% - 32px)); margin: 0 auto; }
-    .nav { border-bottom: 1px solid var(--line); background: var(--bg); position: sticky; top: 0; z-index: 10; }
-    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
-    .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; color: var(--ink); }
-    .mark { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 7px; background: var(--lime); font-weight: 700; font-size: 13px; }
-    .nav-links { display: flex; align-items: center; gap: 22px; font-size: 15px; }
-    .nav-links a { color: var(--muted); }
-    .nav-links a:hover { color: var(--ink); }
-    .btn { display: inline-flex; align-items: center; padding: 10px 16px; border-radius: var(--r); background: var(--ink); color: #fff; font-weight: 600; font-size: 14px; border: 1px solid var(--ink); }
-    main { padding: 48px 0 72px; }
-    .head h1 { font-size: clamp(30px, 5vw, 44px); margin: 0 0 10px; letter-spacing: -0.01em; }
-    .head p { color: var(--muted); font-size: 18px; margin: 0 0 36px; max-width: 60ch; }
-    .post-card { display: block; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 26px 28px; margin-bottom: 18px; transition: border-color .15s ease; }
-    .post-card:hover { border-color: var(--ink); }
-    .post-card .meta { font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--soft); margin-bottom: 10px; }
-    .post-card h2 { font-size: 23px; margin: 0 0 8px; letter-spacing: -0.01em; }
-    .post-card p { color: var(--muted); margin: 0; }
-    @media (max-width: 640px) { .nav-links a:not(.btn) { display: none; } }
-  </style>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17213d"><meta name="robots" content="index,follow,max-image-preview:large">
+  <title>Practical AI guides for business teams · Practical AI</title><meta name="description" content="Practical guides for leaders and nontechnical teams applying AI to everyday business workflows.">
+  <link rel="canonical" href="https://practical-ai.pro/blog/"><link rel="alternate" hreflang="en" href="https://practical-ai.pro/blog/">
+  <link rel="alternate" hreflang="ru" href="https://practical-ai.pro/ru/blog/"><link rel="alternate" hreflang="x-default" href="https://practical-ai.pro/blog/">
+  <meta property="og:type" content="website"><meta property="og:site_name" content="Practical AI">
+  <meta property="og:title" content="Practical AI guides for business teams"><meta property="og:description" content="Practical guides for leaders and nontechnical teams applying AI to everyday business workflows.">
+  <meta property="og:url" content="https://practical-ai.pro/blog/"><link rel="stylesheet" href="../assets/blog.css">
 </head>
 <body>
-  <header class="nav">
-    <div class="nav-inner">
-      <a class="brand" href="../" aria-label="Practical AI home">
-        <span class="mark">PA</span>
-        <span>Practical AI</span>
-      </a>
-      <nav class="nav-links" aria-label="Page navigation">
-        <a href="../#work">Work</a>
-        <a href="../#training">Training</a>
-        <a href="./">Blog</a>
-        <a class="btn" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Contact Danil</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <div class="wrap">
-      <div class="head">
-        <h1>Блог</h1>
-        <p>Заметки о практическом AI: как собирать рабочие процессы, агентов и решения под реальные задачи — без магии и без театра.</p>
-      </div>
-
-      <a class="post-card" href="./ai-my-voice/">
-        <div class="meta">8 июня 2026 · AI &amp; voice</div>
-        <h2>Можно ли научить AI писать «моим голосом»?</h2>
-        <p>Сырой голос против публичного, и почему хороший AI-текст — это мышление человека после редактуры. Плюс гайд: что было за кадром.</p>
-      </a>
-    </div>
-  </main>
+  <header class="blog-nav"><div class="site-shell blog-nav-inner">
+    <a class="logo-pill" href="../" aria-label="Practical AI">Practical AI</a>
+    <nav class="blog-nav-links" aria-label="Page navigation"><a href="../#programs">Programs</a><a href="./" aria-current="page">Blog</a>
+      <a class="language-link" href="../ru/blog/" lang="ru">Русский</a></nav>
+  </div></header>
+  <main class="article-listing"><div class="site-shell">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../">Home</a><span class="crumb-divider" aria-hidden="true">/</span><span aria-current="page">Blog</span></nav>
+    <header class="listing-heading"><span class="article-eyebrow">Practical AI · Team learning</span>
+      <h1>Practical AI guides for business teams</h1><p>Guides for leaders and teams building AI capability through real business work.</p></header>
+    <section class="blog-list" aria-label="Practical guides"><a class="blog-list-card" href="./corporate-ai-training/">
+          <img src="../assets/corporate/blog-team-ai-practice.jpg" alt="A cross-functional team practising AI around its everyday work" width="1536" height="1024" loading="lazy">
+          <div class="blog-list-copy"><span class="blog-list-label">Corporate learning</span>
+            <h2>Corporate AI Training for Business Teams</h2><p>A practical plan for corporate AI training: start with team workflows, build role-based skills, agree on review standards and measure progress.</p>
+            <span class="blog-list-link">Read the guide <span aria-hidden="true">↗</span></span>
+          </div>
+        </a><a class="blog-list-card" href="./ai-for-project-managers/">
+          <img src="../assets/corporate/blog-workflow-sprint.jpg" alt="Project colleagues mapping a shared workflow together" width="1536" height="1024" loading="lazy">
+          <div class="blog-list-copy"><span class="blog-list-label">Project management</span>
+            <h2>AI for Project Managers: Practical Workflows</h2><p>Practical AI workflows for project managers: meeting follow-ups, status updates, risk reviews and planning, with clear human ownership.</p>
+            <span class="blog-list-link">Read the guide <span aria-hidden="true">↗</span></span>
+          </div>
+        </a><a class="blog-list-card" href="./ai-for-finance-teams/">
+          <img src="../assets/corporate/blog-finance-accounting-workflow.jpg" alt="Finance colleagues reviewing a workflow together" width="1536" height="1024" loading="lazy">
+          <div class="blog-list-copy"><span class="blog-list-label">Finance operations</span>
+            <h2>AI for Finance Teams: Review, Report, Reconcile</h2><p>Where AI can support finance workflows: variance explanations, spreadsheet analysis and reporting, with source checks and accountant approval.</p>
+            <span class="blog-list-link">Read the guide <span aria-hidden="true">↗</span></span>
+          </div>
+        </a></section>
+  </div></main>
+  <footer class="site-footer"><div class="site-shell site-footer-inner"><a class="logo-pill" href="../">Practical AI</a><p>AI learning for business teams</p></div></footer>
 </body>
 </html>

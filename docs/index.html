@@ -1,721 +1,1618 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Данил Усик — Practical AI · упакуй свой опыт в актив, пока ищешь работу</title>
-  <meta name="description" content="Индивидуальное обучение AI: собираем твой опыт в личного агента, который усиливает поиск работы, приносит доход на фрилансе и делает тебя дороже как специалиста. Продуктизируй себя уже сейчас." />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17213d">
+  <meta name="description" content="Practical AI capability programs for business teams. Role-based training built around company tools, workflows and priorities.">
+  <link rel="canonical" href="https://practical-ai.pro/">
+  <link rel="alternate" hreflang="en" href="https://practical-ai.pro/">
+  <link rel="alternate" hreflang="ru" href="https://practical-ai.pro/?lang=ru">
+  <link rel="alternate" hreflang="x-default" href="https://practical-ai.pro/">
+  <meta property="og:title" content="Practical AI — Build AI capability across your business">
+  <meta property="og:description" content="Practical AI capability programs for business teams. Role-based training built around company tools, workflows and priorities.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://practical-ai.pro/">
+  <meta property="og:image" content="https://practical-ai.pro/assets/corporate/hero-team-workflow.jpg">
+  <title>Practical AI — Build AI capability across your business</title>
   <style>
     :root {
-      --ink: #0a0a0a;
-      --bg: #f1f1f1;
-      --card: #ffffff;
-      --muted: #6b6b6b;
-      --muted-soft: #8a8a8a;
-      --line: #e4e4e4;
-      --line-strong: #d2d2d2;
-      --lime: #d3f24e;
-      --lime-soft: #ecf9ad;
-      --lime-line: #c2e63a;
-      --max: 1140px;
-      --radius: 22px;
-      --radius-sm: 16px;
+      color-scheme: light;
+      --ink: #17213d;
+      --ink-2: #293550;
+      --paper: #e9eff6;
+      --white: #ffffff;
+      --line: #cbd5e1;
+      --muted: #5c687d;
+      --lime: #f4d447;
+      --cyan: #82bba8;
+      --body: Inter, "Avenir Next", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      --display: var(--body);
+      --mono: var(--body);
+      --radius-lg: 14px;
+      --radius-md: 10px;
+      --shadow: 0 22px 60px rgba(18, 22, 29, .12);
     }
+
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--paper);
       color: var(--ink);
-      background: var(--bg);
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.6;
+      letter-spacing: .02em;
       -webkit-font-smoothing: antialiased;
-      line-height: 1.55;
     }
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 22px; }
-    .section { padding: 66px 0; }
-
-    /* LOGO PILL */
-    .logo-pill {
-      display: inline-flex; align-items: center;
-      background: var(--ink); color: #fff;
-      font-weight: 800; letter-spacing: -0.01em;
-      padding: 7px 15px; border-radius: 999px;
-      font-size: 14px; line-height: 1;
+    a { color: inherit; }
+    a:focus-visible, summary:focus-visible {
+      outline: 3px solid var(--cyan);
+      outline-offset: 4px;
+      border-radius: 4px;
     }
+    .wrap { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--muted);
+      font: 700 11px/1.2 var(--mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 0 4px rgba(244, 212, 71, .2);
+    }
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 11px;
+      min-height: 52px;
+      padding: 0 20px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      background: var(--lime);
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 750;
+      text-decoration: none;
+      transition: transform .2s ease, background .2s ease, color .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); background: #f7df73; }
+    .button svg { width: 16px; height: 16px; }
+    .button--ghost {
+      border-color: rgba(255,255,255,.28);
+      background: transparent;
+      color: var(--white);
+    }
+    .button--ghost:hover { background: rgba(255,255,255,.1); }
+    .button--dark { background: var(--ink); color: var(--white); }
+    .button--dark:hover { background: #354260; }
 
-    /* NAV */
+    .site-header {
+      position: absolute;
+      z-index: 10;
+      inset: 0 0 auto;
+      color: var(--white);
+    }
     .nav {
-      position: sticky; top: 0; z-index: 20;
-      background: rgba(241, 241, 241, 0.82);
-      backdrop-filter: blur(14px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 84px;
+      border-bottom: 1px solid rgba(255,255,255,.14);
+    }
+    .wordmark {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--white);
+      font-weight: 760;
+      letter-spacing: .015em;
+      text-decoration: none;
+    }
+    .logo-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 13px;
+      border: 1px solid rgba(255,255,255,.52);
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .01em;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a {
+      color: rgba(255,255,255,.78);
+      font-size: 13px;
+      text-decoration: none;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav .button { min-height: 42px; padding-inline: 16px; font-size: 12px; }
+    .language-toggle { min-width: 60px; min-height: 38px; padding: 0 12px; border: 1px solid rgba(255,255,255,.3); border-radius: 999px; background: transparent; color: var(--white); font: 700 11px/1 var(--mono); cursor: pointer; }
+    .language-toggle:hover { border-color: var(--lime); color: var(--lime); }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 700px;
+      padding: 150px 0 74px;
+      background:
+        radial-gradient(ellipse at 77% 36%, rgba(130,187,168,.18), transparent 34%),
+        radial-gradient(ellipse at 5% 100%, rgba(84,28,245,.13), transparent 34%),
+        var(--ink);
+      color: var(--white);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: linear-gradient(to bottom, black, transparent 92%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(380px, .98fr);
+      align-items: center;
+      gap: 66px;
+    }
+    .hero-copy { max-width: 620px; }
+    .hero .eyebrow { color: #c4c9d0; }
+    .hero h1 {
+      max-width: 710px;
+      margin: 24px 0 22px;
+      font: 700 clamp(42px, 5.6vw, 72px)/1.03 var(--display);
+      letter-spacing: .015em;
+    }
+    .hero h1 .highlight { color: var(--lime); }
+    .hero-lede {
+      max-width: 590px;
+      margin: 0;
+      color: #c8cdd4;
+      font-size: 18px;
+      line-height: 1.65;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    .hero-note {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 28px;
+      color: #9ca4ae;
+      font-size: 12px;
+    }
+    .hero-note svg { width: 18px; height: 18px; color: var(--lime); flex: none; }
+
+    .workflow-card {
+      position: relative;
+      min-height: 444px;
+      padding: 27px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(255,255,255,.095), rgba(255,255,255,.025));
+      box-shadow: 0 26px 70px rgba(0,0,0,.18);
+      backdrop-filter: blur(10px);
+    }
+    .workflow-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      color: #9ca4ae;
+      font: 600 10px/1.3 var(--mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .live-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--lime);
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    .live-dot::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+    .workflow-map { position: relative; padding: 22px 0 15px; }
+    .flow-line {
+      position: absolute;
+      top: 32px;
+      bottom: 38px;
+      left: 21px;
+      width: 1px;
+      background: linear-gradient(var(--cyan), var(--lime));
+      opacity: .7;
+    }
+    .flow-step {
+      position: relative;
+      display: grid;
+      grid-template-columns: 44px 1fr auto;
+      align-items: center;
+      gap: 13px;
+      min-height: 76px;
+    }
+    .flow-number {
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      width: 43px;
+      height: 43px;
+      border: 1px solid rgba(255,255,255,.24);
+      border-radius: 14px;
+      background: #202c49;
+      color: #d3d7dd;
+      font: 600 11px var(--mono);
+    }
+    .flow-step:nth-of-type(3) .flow-number { border-color: var(--cyan); color: var(--cyan); }
+    .flow-step:nth-of-type(4) .flow-number { border-color: rgba(244,212,71,.6); color: var(--lime); }
+    .flow-label { color: #8f98a4; font-size: 11px; }
+    .flow-title { color: var(--white); font-size: 14px; font-weight: 700; }
+    .flow-tag {
+      padding: 5px 8px;
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 7px;
+      color: #bac1ca;
+      font: 10px var(--mono);
+      white-space: nowrap;
+    }
+    .workflow-footer {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-top: 14px;
+      padding: 14px;
+      border: 1px solid rgba(244,212,71,.35);
+      border-radius: 14px;
+      background: rgba(244,212,71,.07);
+    }
+    .workflow-footer svg { width: 25px; height: 25px; flex: none; color: var(--lime); }
+    .workflow-footer strong { display: block; color: var(--white); font-size: 12px; }
+    .workflow-footer span { display: block; color: #aeb6bf; font-size: 11px; }
+    .hero-stamp {
+      position: absolute;
+      right: -20px;
+      bottom: -22px;
+      display: grid;
+      place-items: center;
+      width: 90px;
+      height: 90px;
+      border: 7px solid var(--ink);
+      border-radius: 50%;
+      background: var(--lime);
+      color: var(--ink);
+      text-align: center;
+      transform: rotate(8deg);
+    }
+    .hero-stamp span { font: 700 10px/1.3 var(--mono); }
+
+    .signal-band {
+      position: relative;
+      z-index: 1;
+      background: var(--lime);
+      color: var(--ink);
+    }
+    .signal-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      min-height: 83px;
+    }
+    .signal-intro { font-size: 13px; font-weight: 740; }
+    .signal-items { display: flex; flex-wrap: wrap; gap: 9px; }
+    .signal-items span {
+      padding: 8px 11px;
+      border: 1px solid rgba(18,22,29,.22);
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 680;
+    }
+
+    section { scroll-margin-top: 30px; }
+    .section { padding: 112px 0; }
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 42px;
+      margin-bottom: 43px;
+    }
+    .section-head-copy { max-width: 690px; }
+    .section h2 {
+      margin: 15px 0 0;
+      font: 700 clamp(32px, 4.5vw, 52px)/1.08 var(--display);
+      letter-spacing: .015em;
+    }
+    .section-intro {
+      max-width: 430px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .proof-section { padding-top: 108px; }
+    .proof-board {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background: var(--ink);
+      color: var(--white);
+      box-shadow: var(--shadow);
+    }
+    .proof-story {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 425px;
+      padding: 38px;
+      background:
+        radial-gradient(circle at 15% 93%, rgba(130,187,168,.2), transparent 36%),
+        #17213d;
+    }
+    .proof-story .eyebrow { color: #aab2bc; }
+    .proof-story h3 {
+      max-width: 380px;
+      margin: 24px 0 14px;
+      font: 700 34px/1.1 var(--display);
+      letter-spacing: .015em;
+    }
+    .proof-story p { max-width: 360px; margin: 0; color: #b2bac4; font-size: 14px; }
+    .proof-quote {
+      margin-top: 38px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.15);
+      color: #e8ebef;
+      font-size: 13px;
+    }
+    .proof-quote cite {
+      display: block;
+      margin-top: 9px;
+      color: #8e98a5;
+      font-size: 11px;
+      font-style: normal;
+    }
+    .proof-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(255,255,255,.14);
+    }
+    .metric {
+      min-height: 212px;
+      padding: 27px;
+      background: #202c49;
+    }
+    .metric-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: #b6bec8;
+      font-size: 11px;
+    }
+    .metric-label span:last-child { color: #828d9a; font: 10px var(--mono); }
+    .metric-value {
+      margin: 17px 0 10px;
+      color: var(--white);
+      font: 700 clamp(24px, 3vw, 38px)/1 var(--display);
+      letter-spacing: .015em;
+    }
+    .metric-value em { color: var(--lime); font-style: normal; }
+    .bar-pair { display: grid; gap: 7px; margin-top: 17px; }
+    .bar-row { display: grid; grid-template-columns: 50px 1fr 43px; align-items: center; gap: 8px; }
+    .bar-row span { color: #8f99a6; font: 9px var(--mono); }
+    .bar-track { height: 7px; overflow: hidden; border-radius: 99px; background: rgba(255,255,255,.1); }
+    .bar-fill { height: 100%; border-radius: inherit; background: var(--cyan); }
+    .bar-fill--lime { background: var(--lime); }
+    .bar-row strong { color: #dfe3e8; font: 10px var(--mono); text-align: right; }
+    .metric-note {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 14px;
+      color: #96a0ac;
+      font-size: 10px;
+    }
+    .metric-note::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--lime);
+    }
+    .metric-direct {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 25px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,.12);
+    }
+    .metric-direct span { color: #aab3be; font-size: 10px; }
+    .metric-direct svg { width: 92px; height: 24px; color: var(--lime); }
+    .proof-footnote {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 11px;
+    }
+    .proof-footnote a { color: #246476; font-weight: 700; text-underline-offset: 3px; }
+
+    .roles-section { background: var(--white); }
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+    .role-card {
+      min-height: 250px;
+      padding: 23px 19px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: var(--paper);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .role-card:hover { transform: translateY(-4px); box-shadow: 0 15px 32px rgba(18,22,29,.08); }
+    .role-icon {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 24px;
+      border-radius: 14px;
+      background: var(--ink);
+      color: var(--lime);
+    }
+    .role-icon svg { width: 21px; height: 21px; }
+    .role-card h3 { margin: 0 0 9px; font-size: 15px; letter-spacing: .015em; }
+    .role-card p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.65; }
+    .role-card .role-tag {
+      display: inline-block;
+      margin-top: 17px;
+      color: #7e8792;
+      font: 9px var(--mono);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .role-note {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 20px;
+      padding: 15px 18px;
+      border-radius: 13px;
+      background: #eef6f2;
+      color: #4f5c65;
+      font-size: 12px;
+    }
+    .role-note svg { width: 17px; height: 17px; flex: none; color: #338268; }
+
+    .method-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: 70px; align-items: start; }
+    .method-aside { position: sticky; top: 35px; }
+    .method-aside p { max-width: 360px; margin: 20px 0 27px; color: var(--muted); }
+    .method-aside .button { min-height: 46px; }
+    .method-list { border-top: 1px solid var(--line); }
+    .method-step {
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 18px;
+      padding: 26px 0;
       border-bottom: 1px solid var(--line);
     }
-    .nav-inner {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 16px; min-height: 66px;
+    .method-index { color: #87909a; font: 12px var(--mono); }
+    .method-step h3 { margin: 0 0 7px; font-size: 18px; letter-spacing: .015em; }
+    .method-step p { max-width: 560px; margin: 0; color: var(--muted); font-size: 13px; }
+    .method-output {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 13px;
+      color: #565f6a;
+      font-size: 11px;
+      font-weight: 700;
     }
-    .brand { display: flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 700; }
-    .brand .who { letter-spacing: -0.01em; }
-    .nav-cta {
-      display: inline-flex; align-items: center; min-height: 42px;
-      padding: 0 18px; border-radius: 999px;
-      background: var(--lime); color: var(--ink);
-      font-size: 13px; font-weight: 800;
+    .method-output::before { content: "↳"; color: #338268; font: 18px var(--mono); }
+
+    .programs-section { background: #e2eaf1; }
+    .program-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .program-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 520px;
+      padding: 32px;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background: var(--white);
+    }
+    .program-card--dark { background: var(--ink); color: var(--white); }
+    .program-card--astrolab { background: #dcece5; }
+    .program-card--dark::after {
+      content: "";
+      position: absolute;
+      right: -78px;
+      bottom: -108px;
+      width: 260px;
+      height: 260px;
+      border: 1px solid rgba(244,212,71,.34);
+      border-radius: 50%;
+      box-shadow: 0 0 0 30px rgba(244,212,71,.04), 0 0 0 60px rgba(244,212,71,.03);
+      pointer-events: none;
+    }
+    .program-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+    }
+    .program-duration {
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--muted);
+      font: 10px var(--mono);
+    }
+    .program-card--dark .program-duration { border-color: rgba(255,255,255,.22); color: #bbc3cc; }
+    .program-card h3 {
+      max-width: 410px;
+      margin: 26px 0 12px;
+      font: 700 32px/1.08 var(--display);
+      letter-spacing: .015em;
+    }
+    .program-card > p { max-width: 470px; margin: 0; color: var(--muted); font-size: 14px; }
+    .program-card--dark > p { color: #b1bac4; }
+    .program-outcome {
+      margin: 22px 0 26px;
+      padding: 18px;
+      border: 1px solid rgba(23,33,61,.13);
+      border-left: 4px solid var(--lime);
+      border-radius: 12px;
+      background: rgba(255,255,255,.72);
+    }
+    .program-outcome-label {
+      display: block;
+      color: #596579;
+      font-size: 11px;
+      font-weight: 750;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .program-outcome strong {
+      display: block;
+      margin-top: 9px;
+      color: var(--ink);
+      font-size: 21px;
+      font-weight: 780;
+      line-height: 1.2;
+      letter-spacing: .01em;
+    }
+    .program-outcome p { margin-top: 9px; color: #4f5965; font-size: 14px; line-height: 1.5; }
+    .program-card--dark .program-outcome { border-color: rgba(255,255,255,.16); background: rgba(255,255,255,.08); }
+    .program-card--dark .program-outcome-label { color: #c3cbd5; }
+    .program-card--dark .program-outcome strong { color: #fff; }
+    .program-card--dark .program-outcome p { color: #d2d7dd; }
+    .program-card--astrolab .program-outcome { background: rgba(255,255,255,.64); }
+    .program-card-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; margin-top: auto; position: relative; z-index: 1; }
+    .program-card .button { align-self: start; margin-top: 0; }
+    .program-card button.button { font-family: var(--body); cursor: pointer; }
+    .text-link { display: inline-flex; align-items: center; gap: 8px; border: 0; padding: 0; background: transparent; color: inherit; font: inherit; font-size: 12px; font-weight: 750; text-decoration: none; white-space: nowrap; cursor: pointer; }
+    .text-link:hover { color: #338268; }
+    .text-link span { font-size: 17px; }
+
+    .company-section { padding: 76px 0; background: var(--white); }
+    .company-card {
+      display: grid;
+      grid-template-columns: .7fr 1.3fr;
+      gap: 38px;
+      align-items: center;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: var(--paper);
+    }
+    .company-panel {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 225px;
+      padding: 24px;
+      overflow: hidden;
+      border-radius: 20px;
+      background: var(--ink);
+      color: var(--white);
+    }
+    .company-panel::after {
+      content: "";
+      position: absolute;
+      right: -65px;
+      bottom: -115px;
+      width: 235px;
+      height: 235px;
+      border: 1px solid rgba(130,187,168,.55);
+      border-radius: 50%;
+      box-shadow: 0 0 0 28px rgba(130,187,168,.05), 0 0 0 56px rgba(130,187,168,.04);
+    }
+    .company-panel .panel-label { color: #a2abb5; font: 10px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .company-panel strong {
+      position: relative;
+      z-index: 1;
+      align-self: flex-start;
+    }
+    .company-panel .logo-pill { padding: 12px 18px; border-color: rgba(255,255,255,.26); font-size: 24px; }
+    .company-panel span:last-child { position: relative; z-index: 1; color: #d0d5dc; font-size: 12px; }
+    .company-copy .eyebrow { margin-bottom: 11px; }
+    .company-copy h2 { margin: 0 0 12px; font: 700 31px/1.08 var(--display); letter-spacing: .015em; }
+    .company-copy p { max-width: 570px; margin: 0; color: var(--muted); font-size: 14px; }
+    .company-facts { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 20px; }
+    .company-copy .button { margin-top: 22px; }
+    .company-community { margin-top: 19px; padding: 13px 15px; border-left: 3px solid var(--cyan); border-radius: 0 8px 8px 0; background: rgba(255,255,255,.74); }
+    .company-community .eyebrow { color: #526276; font-size: 10px; }
+    .company-community p { margin-top: 5px; font-size: 12px; line-height: 1.5; }
+    .company-facts span {
+      padding: 8px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--white);
+      color: #4d5661;
+      font-size: 10px;
+      font-weight: 700;
     }
 
-    /* BUTTONS */
-    .btn, .btn-accent, .btn-ghost, .btn-light {
-      display: inline-flex; align-items: center; justify-content: center;
-      min-height: 52px; padding: 0 26px; border-radius: 999px;
-      font-size: 15px; font-weight: 800;
-      transition: transform .16s ease, box-shadow .16s ease, background .16s ease, border-color .16s ease;
+    .guardrail-section { padding: 84px 0; background: var(--lime); }
+    .guardrail-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 70px; align-items: center; }
+    .guardrail-section h2 { margin: 14px 0 0; max-width: 430px; font: 700 38px/1.08 var(--display); letter-spacing: .015em; }
+    .guardrail-section .eyebrow { color: #414839; }
+    .guardrail-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .guardrail-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px;
+      border: 1px solid rgba(18,22,29,.19);
+      border-radius: 14px;
+      background: rgba(255,255,255,.4);
+      font-size: 12px;
+      font-weight: 650;
     }
-    .btn { background: var(--ink); color: #fff; }
-    .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(10,10,10,0.22); }
-    .btn-accent { background: var(--lime); color: var(--ink); }
-    .btn-accent:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(122,150,20,0.28); }
-    .btn-ghost { background: transparent; border: 1px solid var(--line-strong); color: var(--ink); }
-    .btn-ghost:hover { transform: translateY(-2px); border-color: var(--ink); }
-    .btn-light { background: #fff; color: var(--ink); border: 1px solid rgba(10,10,10,0.16); }
-    .btn-light:hover { transform: translateY(-2px); }
-    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+    .guardrail-item svg { width: 17px; height: 17px; flex: none; }
 
-    /* TYPE */
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: 9px;
-      padding: 7px 15px; border-radius: 999px;
-      border: 1px solid rgba(10,10,10,0.18);
-      color: var(--ink); font-size: 12px; font-weight: 800;
-      text-transform: uppercase; letter-spacing: 0.06em;
-    }
-    .eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--lime); }
-    .kicker {
-      font-size: 12px; font-weight: 800; text-transform: uppercase;
-      letter-spacing: 0.1em; color: var(--ink);
-      display: inline-flex; align-items: center; gap: 8px;
-    }
-    .kicker::before { content: ""; width: 22px; height: 3px; border-radius: 2px; background: var(--lime); }
-    h1 {
-      margin: 22px 0 0;
-      font-size: clamp(40px, 6.4vw, 68px);
-      line-height: 1.0; letter-spacing: -0.035em; font-weight: 800; text-wrap: balance;
-    }
-    h2 {
-      margin: 14px 0 0;
-      font-size: clamp(28px, 3.8vw, 40px);
-      line-height: 1.06; letter-spacing: -0.025em; font-weight: 800; text-wrap: balance;
-    }
-    h3 { margin: 0; font-size: 20px; line-height: 1.2; letter-spacing: -0.01em; font-weight: 800; }
-    .lead {
-      margin-top: 20px; max-width: 640px;
-      font-size: clamp(17px, 2vw, 20px); line-height: 1.6; color: var(--muted);
-    }
-    .section-head { max-width: 740px; margin-bottom: 36px; }
-    .section-head h2 { margin-top: 16px; }
-    .section-head p { margin-top: 16px; font-size: 18px; line-height: 1.6; color: var(--muted); }
+    .blog-section { background: #ffffff; }
+    .blog-head { display: flex; align-items: end; justify-content: space-between; gap: 36px; margin-bottom: 34px; }
+    .blog-head .section-intro { max-width: 400px; margin: 0 0 5px; }
+    .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .blog-card { position: relative; display: flex; min-height: 280px; flex-direction: column; overflow: hidden; padding: 24px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--paper); text-decoration: none; transition: transform .2s ease, box-shadow .2s ease; }
+    .blog-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .blog-card::before { content: attr(data-number); position: absolute; top: 22px; right: 22px; color: #d9dedf; font: 700 32px/1 var(--display); letter-spacing: -.08em; }
+    .blog-topic { color: #68717c; font: 700 10px/1.3 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .blog-card h3 { max-width: 300px; margin: auto 0 12px; font: 700 24px/1.13 var(--display); letter-spacing: .015em; }
+    .blog-card p { max-width: 330px; margin: 0; color: var(--muted); font-size: 14px; }
+    .blog-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; font-size: 12px; font-weight: 700; }
+    .blog-note { margin: 18px 0 0; color: var(--muted); font-size: 12px; }
 
-    /* HERO */
-    .hero { background: var(--lime); color: var(--ink); }
-    .hero-grid {
-      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center;
-      padding: 60px 0 56px;
+    .product-overlay { position: fixed; z-index: 100; inset: 0; display: none; padding: 22px; background: rgba(7, 10, 15, .78); backdrop-filter: blur(8px); }
+    .product-overlay.is-open { display: grid; place-items: center; }
+    .product-panel { display: flex; width: min(1320px, 100%); height: min(900px, 100%); flex-direction: column; overflow: hidden; border: 1px solid rgba(255,255,255,.22); border-radius: 22px; background: var(--paper); box-shadow: 0 32px 100px rgba(0,0,0,.38); }
+    .product-panel-head { display: flex; min-height: 58px; align-items: center; justify-content: space-between; gap: 16px; padding: 8px 15px 8px 22px; background: var(--ink); color: var(--white); }
+    .product-panel-head strong { font-size: 13px; }
+    .product-panel-actions { display: flex; align-items: center; gap: 14px; }
+    .product-open-full { color: var(--lime); font-size: 12px; font-weight: 700; text-decoration: none; }
+    .product-open-full:hover { text-decoration: underline; }
+    .product-close { width: 40px; height: 40px; border: 1px solid rgba(255,255,255,.22); border-radius: 50%; background: transparent; color: white; font-size: 24px; line-height: 1; cursor: pointer; }
+    .product-close:hover { background: rgba(255,255,255,.12); }
+    .product-frame { width: 100%; flex: 1; border: 0; background: #fff; }
+
+    .faq-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: 70px; }
+    .faq-list { border-top: 1px solid var(--line); }
+    details { border-bottom: 1px solid var(--line); }
+    summary {
+      position: relative;
+      padding: 21px 34px 21px 0;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 700;
+      list-style: none;
     }
-    .hero h1 { max-width: 640px; }
-    .hero .lead { color: rgba(10,10,10,0.74); max-width: 560px; }
-    .hero .eyebrow { border-color: rgba(10,10,10,0.28); }
-    .hero .eyebrow::before { background: var(--ink); }
-    .hero-fruit { border-radius: var(--radius); overflow: hidden; }
-    .hero-fruit img { width: 100%; height: 100%; object-fit: cover; }
-    .author-chip { display: flex; align-items: center; gap: 12px; margin-top: 26px; }
-    .hero-avatar {
-      width: 44px; height: 44px; border-radius: 50%; object-fit: cover;
-      border: 2px solid var(--ink); flex-shrink: 0;
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "+";
+      position: absolute;
+      top: 17px;
+      right: 3px;
+      color: #78828d;
+      font: 25px var(--body);
     }
-    .author-chip .txt { font-size: 14px; color: rgba(10,10,10,0.72); line-height: 1.35; }
-    .author-chip .txt b { color: var(--ink); font-weight: 800; }
+    details[open] summary::after { content: "−"; }
+    details p { max-width: 640px; margin: -4px 0 21px; color: var(--muted); font-size: 13px; }
 
-    /* PROBLEM → SOLUTION */
-    .ps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .ps-card { padding: 32px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--line); }
-    .ps-card.solution { background: var(--lime); border-color: var(--lime); }
-    .ps-card .tag { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted-soft); }
-    .ps-card.solution .tag { color: rgba(10,10,10,0.6); }
-    .ps-card p { margin: 14px 0 0; font-size: 17px; line-height: 1.62; color: var(--muted); }
-    .ps-card.solution p { color: rgba(10,10,10,0.82); }
-
-    /* CARDS GRID */
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .card {
-      padding: 30px; border-radius: var(--radius); background: var(--card);
-      border: 1px solid var(--line); transition: transform .16s ease, box-shadow .16s ease;
+    .final-cta {
+      position: relative;
+      overflow: hidden;
+      padding: 88px 0;
+      background: var(--ink);
+      color: var(--white);
     }
-    .card:hover { transform: translateY(-3px); box-shadow: 0 18px 40px rgba(10,10,10,0.07); }
-    .card .cap { display: inline-block; font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted-soft); }
-    .card h3 { margin-top: 12px; }
-    .card p { margin: 12px 0 0; font-size: 16px; line-height: 1.6; color: var(--muted); }
-    .card .bar { height: 4px; width: 40px; border-radius: 2px; background: var(--lime); margin-bottom: 4px; }
-
-    /* STEPS */
-    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-    .step { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 24px; }
-    .step .num {
-      width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center;
-      background: var(--ink); color: #fff; font-size: 16px; font-weight: 800; margin-bottom: 16px;
+    .final-cta::after {
+      content: "";
+      position: absolute;
+      top: -240px;
+      right: -100px;
+      width: 560px;
+      height: 560px;
+      border: 1px solid rgba(130,187,168,.32);
+      border-radius: 50%;
+      box-shadow: 0 0 0 45px rgba(130,187,168,.045), 0 0 0 90px rgba(130,187,168,.035), 0 0 0 135px rgba(130,187,168,.025);
+      pointer-events: none;
     }
-    .step .num.accent { background: var(--lime); color: var(--ink); }
-    .step h3 { font-size: 17px; }
-    .step p { margin: 10px 0 0; font-size: 15px; line-height: 1.55; color: var(--muted); }
-
-    /* KSENIA anchor (dark) */
-    .anchor { background: var(--ink); color: #fff; border-radius: 28px; padding: 48px; }
-    .anchor .kicker { color: #fff; }
-    .anchor h2 { color: #fff; }
-    .anchor .lead { color: rgba(255,255,255,0.74); max-width: 680px; }
-    .anchor-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 32px; }
-    .anchor-box { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-sm); padding: 24px; }
-    .anchor-box strong { display: flex; align-items: center; gap: 10px; font-size: 15px; }
-    .anchor-box strong::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--lime); flex-shrink: 0; }
-    .anchor-box p { margin: 12px 0 0; font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.72); }
-    .quote-inline {
-      margin-top: 20px; padding: 18px 22px;
-      border-left: 3px solid var(--lime); background: rgba(255,255,255,0.04);
-      border-radius: 0 12px 12px 0; font-size: 16px; line-height: 1.55;
-      color: rgba(255,255,255,0.92);
+    .final-cta-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 40px;
     }
-    .quote-inline cite { display: block; margin-top: 10px; font-size: 13px; font-style: normal; color: rgba(255,255,255,0.55); }
-
-    /* METRICS */
-    .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin: 34px 0; }
-    .metric { padding: 24px; border-radius: var(--radius-sm); background: var(--card); border: 1px solid var(--line); }
-    .metric .val { font-size: 36px; font-weight: 800; letter-spacing: -0.03em; color: var(--ink); }
-    .metric .val .u { font-size: 20px; color: var(--muted-soft); }
-    .metric .desc { margin-top: 8px; font-size: 14px; line-height: 1.45; color: var(--muted); }
-
-    /* TESTIMONIALS */
-    .logo-lockup {
-      display: inline-flex; align-items: center; gap: 14px; padding: 12px 18px;
-      border: 1px solid var(--line); border-radius: 14px; background: var(--card); margin-bottom: 30px;
+    .final-cta h2 {
+      max-width: 690px;
+      margin: 17px 0 14px;
+      font: 700 clamp(34px, 4.5vw, 54px)/1.06 var(--display);
+      letter-spacing: .015em;
     }
-    .logo-lockup img { height: 30px; width: auto; }
-    .logo-lockup .cap { font-size: 13px; color: var(--muted); line-height: 1.3; }
-    .tgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .tcard { display: flex; flex-direction: column; padding: 28px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--line); }
-    .tcard .metric-badge {
-      align-self: flex-start; padding: 6px 13px; border-radius: 999px;
-      background: var(--lime); color: var(--ink); font-size: 12px; font-weight: 800; margin-bottom: 18px;
+    .final-cta p { max-width: 560px; margin: 0; color: #b9c0c9; font-size: 15px; }
+    .final-cta .eyebrow { color: #c3c9d0; }
+    .final-cta .button { flex: none; }
+    .site-footer { padding: 24px 0; background: #17213d; color: #929ba6; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 11px; }
+    .footer-inner .wordmark { color: #dfe3e7; font-size: 12px; }
+    .footer-inner .logo-pill { padding: 7px 11px; font-size: 12px; }
+
+    @media (max-width: 980px) {
+      .hero { min-height: auto; }
+      .hero-grid { grid-template-columns: 1fr; gap: 42px; }
+      .hero-copy { max-width: 760px; }
+      .workflow-card { max-width: 650px; min-height: auto; }
+      .signal-inner { align-items: flex-start; flex-direction: column; justify-content: center; padding-block: 18px; }
+      .role-grid { grid-template-columns: repeat(3, 1fr); }
+      .method-grid, .faq-grid { grid-template-columns: 1fr 1.2fr; gap: 36px; }
+      .program-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .guardrail-grid { grid-template-columns: 1fr; gap: 32px; }
     }
-    .tcard blockquote { margin: 0; font-size: 16px; line-height: 1.58; color: var(--ink); }
-    .tcard blockquote + blockquote { margin-top: 12px; }
-    .tcard .person { display: flex; align-items: center; gap: 12px; margin-top: auto; padding-top: 18px; border-top: 1px solid var(--line); }
-    .tcard blockquote:last-of-type { margin-bottom: 4px; }
-    .tcard .person .role { min-height: 34px; display: flex; align-items: flex-end; }
-    .tcard .ava { width: 42px; height: 42px; border-radius: 12px; flex-shrink: 0; display: grid; place-items: center; background: var(--ink); color: #fff; font-size: 14px; font-weight: 800; }
-    .tcard .person .name { font-size: 15px; font-weight: 800; }
-    .tcard .person .role { font-size: 13px; color: var(--muted-soft); }
-    .tcard.add { justify-content: center; background: transparent; border-style: dashed; border-color: var(--line-strong); }
-    .tcard.add .plus { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--lime); color: var(--ink); font-size: 24px; font-weight: 800; margin-bottom: 16px; }
-    .tcard.add p { margin: 10px 0 0; font-size: 15px; color: var(--muted); line-height: 1.55; }
-    .company-note { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; font-size: 14px; color: var(--muted); }
-    .company-note b { color: var(--ink); }
-
-    /* DANIL */
-    .danil-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 40px; align-items: start; }
-    .danil-quote {
-      margin: 22px 0 0; padding: 20px 22px; border-radius: var(--radius-sm);
-      background: var(--lime); color: var(--ink); font-size: 18px; line-height: 1.5; font-weight: 700;
+    @media (max-width: 720px) {
+      .wrap { width: min(100% - 34px, 560px); }
+      .nav { min-height: 70px; }
+      .nav-links { gap: 9px; }
+      .language-toggle { min-width: 48px; min-height: 36px; padding: 0 8px; }
+      .nav-links a:not(.button) { display: none; }
+      .nav-links a[href="#programs"] { display: inline-flex; font-size: 11px; white-space: nowrap; }
+      .nav .button { min-height: 39px; padding-inline: 12px; font-size: 11px; }
+      .hero { padding: 116px 0 56px; }
+      .hero-grid { gap: 34px; }
+      .hero h1 { margin-top: 20px; font-size: clamp(40px, 11vw, 59px); }
+      .hero-lede { font-size: 16px; }
+      .hero-actions { align-items: stretch; flex-direction: column; }
+      .hero-actions .button { width: 100%; }
+      .workflow-card { padding: 20px 16px; border-radius: 22px; }
+      .flow-step { grid-template-columns: 40px 1fr; gap: 11px; min-height: 70px; }
+      .flow-number { width: 38px; height: 38px; }
+      .flow-line { left: 19px; }
+      .flow-tag { display: none; }
+      .hero-stamp { right: -4px; bottom: -30px; width: 75px; height: 75px; border-width: 5px; }
+      .hero-stamp span { font-size: 9px; }
+      .signal-inner { gap: 10px; }
+      .signal-items { gap: 7px; }
+      .signal-items span { padding: 7px 9px; font-size: 10px; }
+      .section { padding: 78px 0; }
+      .section-head { align-items: flex-start; flex-direction: column; gap: 14px; margin-bottom: 28px; }
+      .section h2 { font-size: 36px; }
+      .proof-section { padding-top: 74px; }
+      .proof-board { grid-template-columns: 1fr; }
+      .proof-story { min-height: auto; padding: 27px; }
+      .proof-story h3 { font-size: 30px; }
+      .proof-quote { margin-top: 26px; }
+      .proof-metrics { grid-template-columns: 1fr 1fr; }
+      .metric { min-height: 185px; padding: 17px 14px; }
+      .metric-label { flex-direction: column; gap: 4px; }
+      .metric-value { font-size: 25px; }
+      .bar-row { grid-template-columns: 42px 1fr 38px; gap: 6px; }
+      .role-grid { grid-template-columns: 1fr 1fr; gap: 9px; }
+      .role-card { min-height: 225px; padding: 17px 14px; }
+      .role-icon { width: 38px; height: 38px; margin-bottom: 18px; }
+      .role-card h3 { font-size: 14px; }
+      .role-card p { font-size: 11px; }
+      .role-note { align-items: flex-start; }
+      .method-grid, .faq-grid { grid-template-columns: 1fr; gap: 28px; }
+      .method-aside { position: static; }
+      .method-aside p { margin-block: 16px 20px; }
+      .method-step { grid-template-columns: 38px 1fr; gap: 10px; padding: 22px 0; }
+      .method-step h3 { font-size: 16px; }
+      .program-grid { grid-template-columns: 1fr; }
+      .program-card { min-height: 0; padding: 24px; }
+      .program-card h3 { font-size: 30px; }
+      .company-card { grid-template-columns: 1fr; gap: 24px; padding: 17px; }
+      .company-panel { min-height: 195px; }
+      .company-copy h2 { font-size: 28px; }
+      .guardrail-section { padding: 68px 0; }
+      .guardrail-section h2 { font-size: 34px; }
+      .guardrail-list { grid-template-columns: 1fr; }
+      .final-cta { padding: 72px 0; }
+      .final-cta-inner { align-items: flex-start; flex-direction: column; }
+      .final-cta .button { width: 100%; }
+      .blog-head { display: block; }
+      .blog-head .section-intro { margin-top: 14px; }
+      .blog-grid { grid-template-columns: 1fr; }
+      .blog-card { min-height: 245px; }
+      .product-overlay { padding: 8px; }
+      .product-panel { height: 100%; border-radius: 14px; }
+      .product-panel-head { padding-left: 15px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
     }
-    .danil-quote cite { display: block; margin-top: 10px; font-size: 13px; font-style: normal; font-weight: 700; color: rgba(10,10,10,0.6); }
-    .danil-badge-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
-    .pill { padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line-strong); background: var(--card); font-size: 13px; font-weight: 700; }
-    .danil-visual { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; }
-    .danil-photo { width: 100%; max-width: 300px; height: auto; border-radius: var(--radius-sm); border: 1px solid var(--line); margin-bottom: 20px; }
-    .danil-visual .row { display: flex; gap: 14px; align-items: flex-start; padding: 16px 0; border-bottom: 1px solid var(--line); }
-    .danil-visual .row:last-child { border-bottom: 0; padding-bottom: 0; }
-    .danil-visual .row:first-of-type { padding-top: 0; }
-    .danil-visual .dot { flex-shrink: 0; width: 32px; height: 32px; border-radius: 9px; display: grid; place-items: center; background: var(--lime); color: var(--ink); font-size: 15px; }
-    .danil-visual .row strong { display: block; font-size: 15px; }
-    .danil-visual .row span { font-size: 14px; color: var(--muted); }
-
-    /* SHOWCASE */
-    .showcase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .work-card { display: flex; flex-direction: column; padding: 24px; border-radius: var(--radius-sm); background: var(--card); border: 1px solid var(--line); transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease; }
-    .work-card:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(10,10,10,0.07); border-color: var(--lime-line); }
-    .work-card .tag { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted-soft); }
-    .work-card .wt { margin-top: 8px; font-size: 16px; font-weight: 800; line-height: 1.25; }
-    .work-card .wd { margin-top: 6px; font-size: 14px; color: var(--muted); line-height: 1.5; flex-grow: 1; }
-    .work-card .links { display: flex; gap: 14px; margin-top: 18px; }
-    .work-card .links a, .work-card .links span { font-size: 14px; font-weight: 800; color: var(--ink); }
-    .work-card .links a:hover { color: var(--muted); }
-    .showcase-foot { margin-top: 26px; display: flex; gap: 14px; flex-wrap: wrap; }
-
-    /* PRICING */
-    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .price-card { display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; }
-    .price-card.feature { background: var(--lime); border-color: var(--lime); }
-    .price-card .badge-hit { align-self: flex-start; margin-bottom: 14px; padding: 5px 12px; border-radius: 999px; background: var(--ink); color: #fff; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; }
-    .price-card .pname { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted-soft); }
-    .price-card.feature .pname { color: rgba(10,10,10,0.6); }
-    .price-card .pprice { margin-top: 12px; font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
-    .price-card .pprice.small { font-size: 26px; }
-    .price-card .pprice s { font-size: 20px; color: var(--muted-soft); font-weight: 700; margin-right: 8px; }
-    .price-card.feature .pprice s { color: rgba(10,10,10,0.5); }
-    .price-card .pfeat { margin-top: 10px; font-size: 13px; font-weight: 700; color: var(--muted-soft); }
-    .price-card.feature .pfeat { color: rgba(10,10,10,0.6); }
-    .price-card .pdesc { margin-top: 14px; font-size: 15px; line-height: 1.55; color: var(--muted); flex-grow: 1; }
-    .price-card.feature .pdesc { color: rgba(10,10,10,0.82); }
-    .price-card .pbtn { margin-top: 22px; display: inline-flex; align-items: center; justify-content: center; min-height: 46px; border-radius: 999px; font-weight: 800; font-size: 14px; }
-    .price-card .pbtn.dark { background: var(--ink); color: #fff; }
-    .price-card .pbtn.outline { background: transparent; border: 1px solid var(--line-strong); color: var(--ink); }
-    .price-card .pbtn:hover { transform: translateY(-1px); }
-
-    /* ZAYAVKA (lime) */
-    .zayavka { background: var(--lime); color: var(--ink); border-radius: 28px; padding: 54px 46px; text-align: center; }
-    .zayavka .eyebrow { border-color: rgba(10,10,10,0.28); }
-    .zayavka .eyebrow::before { background: var(--ink); }
-    .zayavka h2 { margin-top: 20px; }
-    .zayavka p { max-width: 600px; margin: 18px auto 0; font-size: 18px; line-height: 1.6; color: rgba(10,10,10,0.78); }
-    .zayavka .price-note { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; padding: 9px 16px; border-radius: 999px; background: rgba(10,10,10,0.08); font-size: 14px; color: rgba(10,10,10,0.8); }
-    .zayavka .cta-row { justify-content: center; }
-
-    /* FOOTER */
-    .footer { padding: 42px 0; border-top: 1px solid var(--line); }
-    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-    .footer .muted { font-size: 13px; color: var(--muted-soft); }
-    .footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
-    .footer a.f-link { font-size: 14px; font-weight: 700; }
-    .footer a.f-link:hover { color: var(--muted); }
-
-    /* RESPONSIVE */
-    @media (max-width: 960px) {
-      .hero-grid, .danil-grid { grid-template-columns: 1fr; gap: 30px; }
-      .hero-fruit { order: -1; max-height: 300px; }
-      .grid-3, .steps, .metrics, .tgrid, .showcase-grid, .pricing-grid { grid-template-columns: repeat(2, 1fr); }
-      .anchor-cols { grid-template-columns: 1fr; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
     }
-    @media (max-width: 640px) {
-      .section { padding: 48px 0; }
-      .hero-grid { padding: 40px 0 38px; }
-      .grid-3, .ps-grid, .steps, .metrics, .tgrid, .showcase-grid, .pricing-grid { grid-template-columns: 1fr; }
-      .anchor, .zayavka { padding: 34px 24px; }
-      .nav-cta { display: none; }
+
+    /* Practical AI x Astrolab: one sans-serif family, shared ink, yellow and mint. */
+    .site-header { color: var(--ink); }
+    .nav { border-bottom-color: rgba(23,33,61,.18); }
+    .wordmark { color: var(--ink); }
+    .site-header .logo-pill { background: #fff; border-color: #fff; color: var(--ink); }
+    .nav-links a { color: rgba(23,33,61,.76); }
+    .nav-links a:hover { color: var(--ink); }
+    .language-toggle { border-color: rgba(23,33,61,.3); color: var(--ink); }
+    .language-toggle:hover { border-color: var(--ink); color: var(--ink); background: var(--lime); }
+    .hero {
+      background:
+        radial-gradient(ellipse at 82% 34%, rgba(130,187,168,.22), transparent 33%),
+        radial-gradient(ellipse at 5% 100%, rgba(244,212,71,.16), transparent 30%),
+        var(--paper);
+      color: var(--ink);
     }
+    .hero::before {
+      background-image: linear-gradient(rgba(23,33,61,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(23,33,61,.035) 1px, transparent 1px);
+    }
+    .hero .eyebrow { color: var(--muted); }
+    .hero h1 .highlight { color: var(--ink); background: var(--lime); padding-inline: .08em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+    .hero-lede { color: #46536a; }
+    .hero-note { color: var(--muted); }
+    .workflow-card {
+      border-color: var(--line);
+      background: var(--white);
+      color: var(--ink);
+      box-shadow: 0 22px 54px rgba(23,33,61,.12);
+      backdrop-filter: none;
+    }
+    .workflow-top { color: var(--muted); border-bottom-color: var(--line); }
+    .live-dot { color: #338268; }
+    .flow-number { border-color: var(--line); background: var(--paper); color: var(--ink); }
+    .flow-step:nth-of-type(3) .flow-number { border-color: var(--cyan); color: #338268; }
+    .flow-step:nth-of-type(4) .flow-number { border-color: var(--lime); color: var(--ink); }
+    .flow-label { color: var(--muted); }
+    .flow-title { color: var(--ink); }
+    .flow-tag { border-color: var(--line); color: var(--muted); }
+    .workflow-footer { border-color: rgba(130,187,168,.75); background: #eff7f3; }
+    .workflow-footer svg { color: #338268; }
+    .workflow-footer strong { color: var(--ink); }
+    .workflow-footer span { color: var(--muted); }
+    .hero-stamp { border-color: var(--white); }
+    .signal-band { background: var(--lime); }
+    .proof-board { background: var(--ink); }
+    .metric { background: #202c49; }
+    .roles-section, .blog-section { background: var(--white); }
+    .role-note { background: #eef6f2; }
+    .programs-section { background: #dfe8ef; }
+    .company-section { background: var(--white); }
+    .guardrail-section { background: #d9ece3; }
+    .site-footer { background: var(--ink); }
+    .site-footer .wordmark { color: var(--white); }
+    .site-footer .logo-pill { background: #0a0a0a; border-color: rgba(255,255,255,.45); color: #fff; }
+    .site-footer .footer-inner { color: #ccd3de; }
+    .scene-section { background: var(--paper); }
+    .scene-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 16px; }
+    .scene-card { position: relative; min-height: 360px; margin: 0; overflow: hidden; border-radius: var(--radius-md); background: var(--ink); }
+    .scene-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .scene-card figcaption { position: absolute; inset: auto 0 0; display: grid; gap: 4px; padding: 24px; background: linear-gradient(transparent, rgba(23,33,61,.88)); color: #fff; }
+    .scene-card figcaption strong { font-size: 21px; line-height: 1.2; }
+    .scene-card figcaption span { color: #e1e7ef; font-size: 13px; }
+    .company-panel-image { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .company-panel::before { content: ""; position: absolute; z-index: 1; inset: 0; background: linear-gradient(145deg, rgba(23,33,61,.82), rgba(23,33,61,.36)); }
+    .company-panel::after { z-index: 1; }
+    .company-panel > span, .company-panel > strong { position: relative; z-index: 2; }
+    .blog-card { padding: 0; }
+    .blog-card-image { display: block; width: 100%; height: 155px; object-fit: cover; }
+    .blog-card-copy { display: flex; flex: 1; flex-direction: column; padding: 19px 20px 20px; }
+    .blog-card h3 { margin: 22px 0 12px; }
+    .blog-card::before { z-index: 1; color: white; text-shadow: 0 1px 8px rgba(23,33,61,.75); }
+    @media (max-width: 700px) {
+      .scene-grid { grid-template-columns: 1fr; }
+      .scene-card { min-height: 300px; }
+    }
+
   </style>
 </head>
 <body>
-  <nav class="nav">
-    <div class="wrap nav-inner">
-      <a class="brand" href="./" aria-label="Данил Усик — Practical AI">
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="wordmark" href="#top" aria-label="Practical AI home">
         <span class="logo-pill">Practical AI</span>
-        <span class="who">Данил&nbsp;Усик</span>
       </a>
-      <a class="nav-cta" href="#ceny">Цены</a>
-    </div>
-  </nav>
-
-  <!-- 1. HERO -->
-  <header class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <div class="eyebrow">Индивидуальное обучение AI</div>
-        <h1>Капитализируй свои знания прямо сейчас.</h1>
-        <p class="lead">Собираем твой опыт в личного AI-агента: он усиливает поиск работы, приносит доход на фрилансе и делает тебя дороже как специалиста. Ты упаковываешь себя как продукт — понятный рынку, готовый к найму, с рабочим инструментом на руках.</p>
-        <div class="cta-row">
-          <a class="btn" href="#zayavka">Написать Данилу →</a>
-          <a class="btn-light" href="#kak">Как это работает</a>
-        </div>
-        <div class="author-chip">
-          <img class="hero-avatar" src="./assets/img/danil-usik-square.png" alt="Данил Усик" width="44" height="44" loading="lazy" />
-          <span class="txt"><b>Данил Усик</b> — обучаю индивидуально, под твой опыт и цель.</span>
-        </div>
-      </div>
-      <div class="hero-fruit">
-        <img src="./assets/community/lime-fruit.png" alt="Practical AI" width="640" height="640" loading="eager" />
-      </div>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#approach">Approach</a>
+        <a href="#programs">Programs</a>
+        <a href="#case">Case study</a>
+        <a href="#blog">Blog</a>
+        <button class="language-toggle" type="button" data-language-toggle aria-label="Switch language to Russian" aria-pressed="false">RU</button>
+        <a class="button" data-tg="team" aria-label="Discuss a company program" href="https://t.me/Danil_alto" target="_blank" rel="noreferrer">
+          Talk to us
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </nav>
     </div>
   </header>
 
-  <!-- 2. PROBLEM → SOLUTION -->
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="kicker">Почему именно сейчас</span>
-        <h2>Поиск работы — самый ресурсоёмкий период. Разверни его в свою пользу.</h2>
-      </div>
-      <div class="ps-grid">
-        <article class="ps-card">
-          <div class="tag">Как обычно</div>
-          <p>Поиск работы забирает максимум энергии и оставляет минимум контроля, отправка сотен резюме без ответа высасывает силы и деморализует.</p>
-        </article>
-        <article class="ps-card solution">
-          <div class="tag">Как иначе</div>
-          <p>Ты используешь период поиска, чтобы вырасти в ценности и стоимости. За время поиска собираешь личного AI-агента из собственной экспертизы — и он сразу работает на тебя: в найме, во фрилансе и в новых источниках дохода.</p>
-        </article>
-      </div>
-    </div>
-  </section>
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">AI capability for the whole company</span>
+          <h1>Turn AI access into <span class="highlight">team capability.</span></h1>
+          <p class="hero-lede">For business leaders, L&amp;D and functional teams: practical AI learning built around company tools, real workflows and priorities. Product, project, sales, finance, HR and operations teams practise with the workflows they already own.</p>
+          <div class="hero-actions">
+            <a class="button" data-tg="team" href="https://t.me/Danil_alto" target="_blank" rel="noreferrer">
+              Discuss a company program
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="button button--ghost" href="#programs">Explore the programs</a>
+          </div>
+          <div class="hero-note">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 20 7v5.2c0 4.3-3.1 7.4-8 9.3-4.9-1.9-8-5-8-9.3V7l8-3.5Z" stroke="currentColor" stroke-width="1.6"/><path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Designed around agreed tools and data practices
+          </div>
+        </div>
 
-  <!-- 3. THREE EFFECTS -->
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="kicker">Твой результат</span>
-        <h2>Одна система — три эффекта</h2>
-        <p>Ты собираешь личного AI-агента из своего же опыта. Он даёт три результата одновременно.</p>
+        <div class="workflow-card">
+          <div class="workflow-top">
+            <span>From priority to practice</span>
+            <span class="live-dot">Team practice</span>
+          </div>
+          <div class="workflow-map" role="img" aria-label="Four steps: a team task, an AI workflow, expert review and repeatable team practice">
+            <div class="flow-line" aria-hidden="true"></div>
+            <div class="flow-step">
+              <span class="flow-number">01</span>
+              <div><div class="flow-label">start here</div><div class="flow-title">Business priority</div></div>
+              <span class="flow-tag">context</span>
+            </div>
+            <div class="flow-step">
+              <span class="flow-number">02</span>
+              <div><div class="flow-label">workflow</div><div class="flow-title">AI in the workflow</div></div>
+              <span class="flow-tag">practice</span>
+            </div>
+            <div class="flow-step">
+              <span class="flow-number">03</span>
+              <div><div class="flow-label">quality and review</div><div class="flow-title">Human review</div></div>
+              <span class="flow-tag">criteria</span>
+            </div>
+            <div class="flow-step">
+              <span class="flow-number">04</span>
+              <div><div class="flow-label">next step</div><div class="flow-title">Team practice</div></div>
+              <span class="flow-tag">repeat</span>
+            </div>
+          </div>
+          <div class="workflow-footer">
+            <svg viewBox="0 0 28 28" fill="none" role="img" aria-labelledby="workflow-icon-title">
+              <title id="workflow-icon-title">Workplace resource</title>
+              <path d="M7 4.5h9l5 5V23H7V4.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M16 4.5v5h5M10 14h8M10 18h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+            <div><strong>A practical team capability</strong><span>with a clear path for wider adoption</span></div>
+          </div>
+          <div class="hero-stamp" aria-hidden="true"><span>REAL<br>WORK<br>→ AI</span></div>
+        </div>
       </div>
-      <div class="grid-3">
-        <article class="card">
-          <div class="bar"></div>
-          <span class="cap">Найм</span>
-          <h3>Помощник в поиске работы</h3>
-          <p>Твой бадди в поиске лучшего оффера. Он собирает резюме и сопроводительные письма под конкретную вакансию, готовит к собеседованию и разбирает компанию ещё до звонка.</p>
-        </article>
-        <article class="card">
-          <div class="bar"></div>
-          <span class="cap">Фриланс</span>
-          <h3>Доход уже сейчас</h3>
-          <p>Агент берёт на себя часть работы, и ты выходишь на фриланс-биржи уже в процессе поиска. Первые заказы приносят доход и дают опору помимо будущего оффера.</p>
-        </article>
-        <article class="card">
-          <div class="bar"></div>
-          <span class="cap">Диверсификация</span>
-          <h3>Больше опор под ногами</h3>
-          <p>Ты разбираешься как делать агентов и искать новые способы заработка, подключаешь их прямо сейчас, в лучший для этого момент. Чем больше опор, тем свободнее ты чувствуешь себя в поиске.</p>
-        </article>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- 4. HOW IT WORKS -->
-  <section class="section" id="kak">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="kicker">Как это работает</span>
-        <h2>Собираем личного агента из твоей экспертизы</h2>
-        <p>Ты собираешь вокруг AI рабочую систему под свой опыт и свою цель. Это контур из агентов, который работает на тебя каждый день.</p>
-      </div>
-      <div class="steps">
-        <div class="step">
-          <div class="num accent">1</div>
-          <h3>Разбираем твой опыт</h3>
-          <p>Смотрим, что ты умеешь и где твоя экспертиза стоит денег — это сырьё для агента.</p>
-        </div>
-        <div class="step">
-          <div class="num">2</div>
-          <h3>Ставим окружение</h3>
-          <p>Разворачиваем инструменты и превращаем AI из «умного чатика» в рабочую систему прямо у тебя дома.</p>
-        </div>
-        <div class="step">
-          <div class="num">3</div>
-          <h3>Собираем агента</h3>
-          <p>Каждая крупная задача — отдельный агент под найм, фриланс и твою профессию.</p>
-        </div>
-        <div class="step">
-          <div class="num">4</div>
-          <h3>Фокусируемся на доходе</h3>
-          <p>Агенты помогают искать работу и одновременно приносят первые заказы уже в процессе.</p>
+    <div class="signal-band" aria-label="For teams across the business">
+      <div class="wrap signal-inner">
+        <div class="signal-intro">A company-wide path from priorities to practice</div>
+        <div class="signal-items">
+          <span>Leadership priorities</span><span>Role-based learning</span><span>Shared practices</span><span>Next-step roadmap</span>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- 5. KSENIA anchor story -->
-  <section class="section">
-    <div class="wrap">
-      <div class="anchor">
-        <span class="kicker">Как это было в реальности</span>
-        <h2>Ксения: искала работу и превращала свою экспертизу в актив — одновременно</h2>
-        <p class="lead">Её запрос: освоить нейросети во время поиска работы и стоить на рынке дороже. За четыре индивидуальных урока она собрала сразу две вещи — агента под поиск вакансий и AI-инструмент из своей профессии.</p>
-        <div class="anchor-cols">
-          <div class="anchor-box">
-            <strong>Агент под поиск работы</strong>
-            <p>Персональный Telegram-агент ежедневно просматривает чаты с вакансиями и отбирает релевантные под её резюме и критерии. Поиск работы усилен AI и идёт на автомате.</p>
+    <section class="section proof-section" id="case">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-head-copy">
+            <span class="eyebrow">Team experience</span>
+            <h2>Build AI capability around the work your teams already do.</h2>
           </div>
-          <div class="anchor-box">
-            <strong>Экспертиза, упакованная в инструмент</strong>
-            <p>Агент-аналитик конкурентов и интерактивный квиз по типу кожи для собственного магазина косметики — косметологический опыт Ксении превращён в работающий AI-инструмент и воронку для клиентов.</p>
-          </div>
+          <p class="section-intro">The ShildPanel team developed AI practices around everyday tasks in management, HR, marketing and operations.</p>
         </div>
-        <blockquote class="quote-inline">
-          «У меня прямо в голове чуть прояснилось, я поняла, как это работает, вы дали инструменты, которые я буду применять уже и тестить.»
-          <cite>— Ксения, индивидуальное обучение</cite>
-        </blockquote>
-        <blockquote class="quote-inline">
-          «Мне это удобнее в телефоне… Загружаю вакансии с канала. И он всё, пошёл, пошёл работать.»
-          <cite>— Ксения, о поиске работы через агента</cite>
-        </blockquote>
-      </div>
-    </div>
-  </section>
 
-  <!-- 6. TESTIMONIALS -->
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="kicker">Отзывы</span>
-        <h2>Команда топ-менеджеров «ШильдПанель» прошла групповое обучение</h2>
-        <p>Пять руководителей — операционка, развитие, HR, маркетинг и собственник — освоили AI и внедрили его в ежедневную работу. Вот их результаты в цифрах и их собственные слова.</p>
-      </div>
-
-      <div class="logo-lockup">
-        <img src="./assets/img/shildpanel-logo.svg" alt="ШильдПанель" />
-        <span class="cap">Управленческая команда компании</span>
-      </div>
-
-      <div class="metrics">
-        <div class="metric">
-          <div class="val">−80<span class="u">%</span></div>
-          <div class="desc">время на отчёты и презентации (с 1 часа до 12 минут)</div>
-        </div>
-        <div class="metric">
-          <div class="val">−70<span class="u">%</span></div>
-          <div class="desc">время на анализ рынка и конкурентов</div>
-        </div>
-        <div class="metric">
-          <div class="val">9ч<span class="u"> → 15 мин</span></div>
-          <div class="desc">отладка формул в ERP</div>
-        </div>
-        <div class="metric">
-          <div class="val">−30<span class="u"> мин/день</span></div>
-          <div class="desc">рутины в HR за счёт голосового ввода</div>
-        </div>
-      </div>
-
-      <!-- CARDS: единый паттерн — чтобы добавить отзыв, скопируй один <article class="tcard">…</article> -->
-      <div class="tgrid">
-
-        <article class="tcard">
-          <span class="metric-badge">Отчёты −80%</span>
-          <blockquote>«Можно очень и очень упростить и улучшить качество получаемой информации и анализа.»</blockquote>
-          <blockquote>«Практика, практика… Набивайте руку, ребята.»</blockquote>
-          <div class="person">
-            <div class="ava">А</div>
+        <div class="proof-board">
+          <div class="proof-story">
             <div>
-              <div class="name">Александр</div>
-              <div class="role">Операционный директор · «ШильдПанель»</div>
+              <span class="eyebrow">Team case study · 5 participants</span>
+              <h3>AI for the work the team handles every day.</h3>
+              <p>The team practised with reports, competitor research, ERP formulas and HR routines.</p>
+            </div>
+            <div class="proof-quote">
+              “Practice, practice… Keep building your skills, everyone.”
+              <cite>Alexander · Operations Director</cite>
             </div>
           </div>
-        </article>
-
-        <article class="tcard">
-          <span class="metric-badge">Анализ конкурентов −70%</span>
-          <blockquote>«Для меня то, что мы создали, инструмент, который я теперь смогу делегировать.»</blockquote>
-          <div class="person">
-            <div class="ava">И</div>
-            <div>
-              <div class="name">Илья</div>
-              <div class="role">Маркетинг / Аналитика · «ШильдПанель»</div>
-            </div>
+          <div class="proof-metrics" aria-label="Results from one team, published by Practical AI">
+            <article class="metric">
+              <div class="metric-label"><span>Report and presentation</span><span>01 / 04</span></div>
+              <div class="metric-value">60 <em>→</em> 12 min</div>
+              <div class="bar-pair" role="img" aria-label="Report preparation time went from 60 to 12 minutes in the published case study">
+                <div class="bar-row"><span>BEFORE</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><strong>60 min</strong></div>
+                <div class="bar-row"><span>AFTER</span><div class="bar-track"><div class="bar-fill bar-fill--lime" style="width:20%"></div></div><strong>12 min</strong></div>
+              </div>
+              <div class="metric-note">from the published team case study</div>
+            </article>
+            <article class="metric">
+              <div class="metric-label"><span>Market and competitor research</span><span>02 / 04</span></div>
+              <div class="metric-value"><em>−70%</em></div>
+              <div class="bar-pair" role="img" aria-label="The case study reports 70 percent less time spent on market and competitor research">
+                <div class="bar-row"><span>BEFORE</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><strong>100</strong></div>
+                <div class="bar-row"><span>AFTER</span><div class="bar-track"><div class="bar-fill bar-fill--lime" style="width:30%"></div></div><strong>30</strong></div>
+              </div>
+              <div class="metric-note">research time</div>
+            </article>
+            <article class="metric">
+              <div class="metric-label"><span>ERP formulas</span><span>03 / 04</span></div>
+              <div class="metric-value">9 hr <em>→</em> 15 min</div>
+              <div class="bar-pair" role="img" aria-label="An ERP formula task took 15 minutes instead of nine hours in the published case study">
+                <div class="bar-row"><span>BEFORE</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><strong>9 hours</strong></div>
+                <div class="bar-row"><span>AFTER</span><div class="bar-track"><div class="bar-fill bar-fill--lime" style="width:3%"></div></div><strong>15 min</strong></div>
+              </div>
+              <div class="metric-note">business development team task</div>
+            </article>
+            <article class="metric">
+              <div class="metric-label"><span>HR routine</span><span>04 / 04</span></div>
+              <div class="metric-value"><em>−30</em> min/day</div>
+              <div class="metric-direct" role="img" aria-label="The HR case reports 30 minutes saved per day through voice input">
+                <span>Voice input at work</span>
+                <svg viewBox="0 0 92 24" fill="none" aria-hidden="true"><path d="M2 12h7l4-7 7 14 6-12 6 10 6-13 7 15 7-9 5 6 6-11 6 8 5-5 6 4h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="metric-note">from the published team case study</div>
+            </article>
           </div>
-        </article>
-
-        <article class="tcard">
-          <span class="metric-badge">ERP: 9 часов → минуты</span>
-          <blockquote>«Клод меня удивил тем, что делает реально неплохие дизайны по лендингам и презентационным страничкам. Вплоть до буклетов.»</blockquote>
-          <blockquote>«Когда ты получаешь результат лучше, чем был, или точнее, или проще для заполнения — кайфуешь.»</blockquote>
-          <div class="person">
-            <div class="ava">В</div>
-            <div>
-              <div class="name">Владислав</div>
-              <div class="role">Руководитель отдела развития · «ШильдПанель»</div>
-            </div>
-          </div>
-        </article>
-
-        <article class="tcard">
-          <span class="metric-badge">HR −30 мин/день</span>
-          <blockquote>«Whisper — это точно то, что я использую почти ежедневно, это круто.»</blockquote>
-          <blockquote>«Это капец как облегчает жизнь. Я всё время такая: „смотри, как можно!“ — открываю и показываю, как делаю я.»</blockquote>
-          <div class="person">
-            <div class="ava">Е</div>
-            <div>
-              <div class="name">Елизавета</div>
-              <div class="role">Руководитель отдела персонала (HR) · «ШильдПанель»</div>
-            </div>
-          </div>
-        </article>
-
-        <article class="tcard">
-          <span class="metric-badge">Ресёрч и стратегия</span>
-          <blockquote>«Perplexity я наконец-то попробовал, увидел, на каком уровне можно делать поиск и ресёрч конкурентов.»</blockquote>
-          <blockquote>«NotebookLM — можно большие объёмы информации загружать и командно с ними работать.»</blockquote>
-          <div class="person">
-            <div class="ava">В</div>
-            <div>
-              <div class="name">Валентин</div>
-              <div class="role">Собственник / Менеджер · «ШильдПанель»</div>
-            </div>
-          </div>
-        </article>
-
-        <article class="tcard add">
-          <div class="plus">＋</div>
-          <h3>Здесь появятся новые отзывы</h3>
-        </article>
-
+        </div>
+        <p class="proof-footnote">All figures come from the published ShildPanel case study. <a href="https://practical-ai.pro/cases/" target="_blank" rel="noreferrer">Source: Practical AI case page ↗</a></p>
       </div>
+    </section>
 
-      <div class="company-note">
-        <span><b>Не нужно быть техническим специалистом,</b> чтобы настроить агентов под себя.</span>
+    <section class="section roles-section" id="roles">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-head-copy">
+            <span class="eyebrow">AI by role</span>
+            <h2>One company. Different workflows.</h2>
+          </div>
+          <p class="section-intro">Designed for L&amp;D, transformation and functional leaders shaping company-wide AI adoption. Each team practises on tasks that match its roles, experience and company tools.</p>
+        </div>
+        <div class="role-grid">
+          <article class="role-card">
+            <div class="role-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5h16v12H4zM8 20h8M12 17.5V20M8 9h8M8 12.5h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <h3>Product &amp; Project</h3>
+            <p>Synthesize interviews, review feedback and prepare decisions and project materials.</p>
+            <span class="role-tag">Workplace example</span>
+          </article>
+          <article class="role-card">
+            <div class="role-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 18.5V6l7 5 9-6v13.5H4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 15.5h8M8 12.5h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <h3>Sales</h3>
+            <p>Prepare for client conversations, capture meeting notes and draft follow-up actions.</p>
+            <span class="role-tag">Workplace example</span>
+          </article>
+          <article class="role-card">
+            <div class="role-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4.5 6.5h15v12h-15zM8 10h8M8 13h8M8 16h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 4.5v2M16 4.5v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <h3>Finance and accounting</h3>
+            <p>Draft report explanations, prepare formulas and summarize variances for review.</p>
+            <span class="role-tag">Workplace example</span>
+          </article>
+          <article class="role-card">
+            <div class="role-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 19.5v-1.2a4 4 0 0 1 4-4h0a4 4 0 0 1 4 4v1.2M12 11.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7ZM4.5 10v5M19.5 10v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <h3>HR</h3>
+            <p>Structure interviews, draft communications and organize internal notes and questions.</p>
+            <span class="role-tag">Workplace example</span>
+          </article>
+          <article class="role-card">
+            <div class="role-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4.5 6h6v6h-6zM13.5 6h6v6h-6zM4.5 15h6v3h-6zM13.5 15h6v3h-6zM10.5 9h3M7.5 12v3M16.5 12v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <h3>Operations</h3>
+            <p>Summarize meetings, write work instructions and create step-by-step checklists.</p>
+            <span class="role-tag">Workplace example</span>
+          </article>
+        </div>
+        <div class="role-note">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 20 7v5.2c0 4.3-3.1 7.4-8 9.3-4.9-1.9-8-5-8-9.3V7l8-3.5Z" stroke="currentColor" stroke-width="1.6"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          Before practice, we agree on tools, access and sample data. Every workflow includes a clear human review step.
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- 7. DANIL as case -->
-  <section class="section">
-    <div class="wrap">
-      <div class="danil-grid">
+    <section class="section scene-section" aria-labelledby="scenes-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-head-copy">
+            <span class="eyebrow">Everyday work</span>
+            <h2 id="scenes-title">From individual tasks to shared workflows.</h2>
+          </div>
+          <p class="section-intro">Practice starts with a familiar task, then grows into a repeatable way of working together.</p>
+        </div>
+        <div class="scene-grid">
+          <figure class="scene-card">
+            <img src="assets/corporate/individual-recurring-task.jpg" alt="An employee working through a recurring task on a laptop" loading="lazy" decoding="async">
+            <figcaption><strong>One task from a team member’s role</strong><span>Focused practice with familiar work</span></figcaption>
+          </figure>
+          <figure class="scene-card">
+            <img src="assets/corporate/cross-functional-workflow-review.jpg" alt="Colleagues reviewing a shared workflow together" loading="lazy" decoding="async">
+            <figcaption><strong>One workflow, shared across the team</strong><span>Build shared practices across the team</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="approach">
+      <div class="wrap method-grid">
+        <div class="method-aside">
+          <span class="eyebrow">The team journey</span>
+          <h2>A clear path from a team task to everyday practice.</h2>
+          <p>Leaders connect capability building to business priorities. Teams practise through the workflows and tools they use every day.</p>
+          <a class="button button--dark" href="#programs">Choose a program <span aria-hidden="true">↘</span></a>
+        </div>
+        <div class="method-list">
+          <article class="method-step">
+            <div class="method-index">01 / FRAME</div>
+            <div><h3>Choose a repeatable task</h3><p>Map who owns the process, where time goes and what result the team needs.</p><span class="method-output">A map of one workflow</span></div>
+          </article>
+          <article class="method-step">
+            <div class="method-index">02 / DESIGN</div>
+            <div><h3>Map the AI workflow</h3><p>Set the context, inputs, steps, expected output and quality criteria.</p><span class="method-output">A clear workflow and review checklist</span></div>
+          </article>
+          <article class="method-step">
+            <div class="method-index">03 / PRACTICE</div>
+            <div><h3>Try it on a team member’s task</h3><p>Build a version of the workflow with approved tools and practise reviewing the result.</p><span class="method-output">Workplace practice with human review</span></div>
+          </article>
+          <article class="method-step">
+            <div class="method-index">04 / CONTINUE</div>
+            <div><h3>Define the next step</h3><p>Capture useful team practices and choose the next test for the coming work week.</p><span class="method-output">A team playbook and next-step plan</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section programs-section" id="programs">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-head-copy">
+            <span class="eyebrow">Training programs</span>
+            <h2>Choose a pace that fits your team.</h2>
+          </div>
+          <p class="section-intro">One task in a day. One recurring workflow in a week. Shared AI practice across functions in four weeks.</p>
+        </div>
+        <div class="program-grid">
+          <article class="program-card program-card--astrolab">
+            <div class="program-meta"><span class="eyebrow">One everyday task</span><span class="program-duration">1 DAY</span></div>
+            <h3>Astrolab · One-Day AI Lab</h3>
+            <p>A focused team session to explore one familiar task and try a first AI-supported step with approved example data.</p>
+            <div class="program-outcome">
+              <span class="program-outcome-label">What your team takes away</span>
+              <strong>One tested workflow step</strong>
+              <p>A workflow card, review checklist and team workflow diagram showing where AI helps, who checks the result and what to test next.</p>
+            </div>
+            <div class="program-card-actions">
+              <button class="button button--dark" id="open-astrolab" type="button" aria-haspopup="dialog" aria-controls="astrolab-modal">Explore Astrolab <span aria-hidden="true">↗</span></button>
+            </div>
+          </article>
+          <article class="program-card">
+            <div class="program-meta"><span class="eyebrow">One recurring workflow</span><span class="program-duration">1 WEEK</span></div>
+            <h3>One-Week AI Workflow Sprint</h3>
+            <p>A short, guided sprint for a team ready to improve one repeatable process from start to finish.</p>
+            <div class="program-outcome">
+              <span class="program-outcome-label">What your team takes away</span>
+              <strong>One workflow, tested and mapped</strong>
+              <p>A process map, tested AI step, quality checklist, named process owner and a clear next-step decision.</p>
+            </div>
+            <div class="program-card-actions">
+              <a class="button button--dark" data-tg="sprint" href="https://t.me/Danil_alto" target="_blank" rel="noreferrer">Discuss the one-week sprint <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+          <article class="program-card program-card--dark">
+            <div class="program-meta"><span class="eyebrow">Several functions</span><span class="program-duration">4 WEEKS</span></div>
+            <h3>Four-Week Team Practice Program</h3>
+            <p>A month of guided practice that connects role-based workflows into a shared approach for the company.</p>
+            <div class="program-outcome">
+              <span class="program-outcome-label">What your team takes away</span>
+              <strong>A shared team playbook</strong>
+              <p>Role-based workflow cards, a shared review standard and a prioritized list for the next pilot.</p>
+            </div>
+            <div class="program-card-actions">
+              <a class="button" data-tg="teamlab" href="https://t.me/Danil_alto" target="_blank" rel="noreferrer">Plan the four-week program <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="company-section" aria-labelledby="company-title">
+      <div class="wrap company-card">
+        <div class="company-panel">
+          <img class="company-panel-image" src="assets/corporate/hero-team-workflow.jpg" alt="A cross-functional team mapping a shared workflow" loading="lazy" decoding="async">
+          <span class="panel-label">PRACTICAL AI · FOR TEAMS</span>
+          <strong><span class="logo-pill">Practical AI</span></strong>
+          <span>AI practice for business teams</span>
+        </div>
+        <div class="company-copy">
+          <span class="eyebrow">Built around your company</span>
+          <h2 id="company-title">Connect business priorities with team capability.</h2>
+          <p>We start with the workflows your organization wants to improve, then shape practice around each role, existing tools and responsible-use guidelines. Leaders get a clear view of learning outputs and a practical next step for wider adoption.</p>
+          <div class="company-facts">
+            <span>Leadership priorities</span><span>Role-specific practice</span><span>Company playbook</span>
+          </div>
+          <div class="company-community">
+            <span class="eyebrow">Community partner · Tech Connect VLC</span>
+            <p>Practical AI collaborates with Tech Connect VLC on local meetups focused on practical AI use cases.</p>
+          </div>
+          <a class="button button--dark" data-tg="team" href="https://t.me/Danil_alto" target="_blank" rel="noreferrer">Plan a company program <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="guardrail-section">
+      <div class="wrap guardrail-grid">
         <div>
-          <span class="kicker">Данил как кейс</span>
-          <h2>Я — доказательство своего метода</h2>
-          <p class="lead" style="color:var(--muted);">Мой домен — продажи, отношения с клиентами и построение маркетинговых воронок.<br><br>Я собрал личную операционную систему на AI: она анализирует рынок, разбирает мои встречи, знает мои сильные и слабые стороны, ведёт учёт общения и делает работу точнее.<br><br>Я упаковал свой опыт как продукт — научу и тебя.</p>
-          <blockquote class="danil-quote">
-            «Упаковал свой опыт так, чтобы меня было легко и понятно взять на конкретную роль. Продуктизируй себя.»
-            <cite>— Данил Усик</cite>
-          </blockquote>
-          <div class="danil-badge-row">
-            <span class="pill">10+ лет в B2B продажах и маркетинге</span>
-            <span class="pill">Переговоры и диагностика</span>
-            <span class="pill">Личная AI-операционка</span>
-            <span class="pill">Испания</span>
-          </div>
+          <span class="eyebrow">Responsible AI practice</span>
+          <h2>Confident practice starts with clear guidelines.</h2>
         </div>
-        <div class="danil-visual">
-          <img class="danil-photo" src="./assets/img/danil-usik.png" alt="Данил Усик" width="300" height="316" loading="lazy" />
-          <div class="row">
-            <span class="dot">🎙️</span>
-            <span><strong>Анализ встреч</strong><span>система разбирает мои созвоны и вытаскивает суть, задачи и следующие шаги.</span></span>
-          </div>
-          <div class="row">
-            <span class="dot">🧠</span>
-            <span><strong>Учёт паттернов личности</strong><span>агент знает мои сильные стороны и слабые места — и подстраивает работу под них.</span></span>
-          </div>
-          <div class="row">
-            <span class="dot">⚙️</span>
-            <span><strong>Рабочая система вместо чата</strong><span>отдельные агенты под продажи, аналитику и ведение клиентов — как единый контур.</span></span>
-          </div>
+        <div class="guardrail-list">
+          <div class="guardrail-item"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m4 10 4 4 8-9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Approved tools and access</span></div>
+          <div class="guardrail-item"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m4 10 4 4 8-9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Clear boundaries for work data</span></div>
+          <div class="guardrail-item"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m4 10 4 4 8-9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Criteria for reviewing AI output</span></div>
+          <div class="guardrail-item"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m4 10 4 4 8-9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>The expert makes the final decision</span></div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- 8. AGENTS SHOWCASE -->
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="kicker">Что я собрал</span>
-        <h2>Агенты и системы, которые я построил</h2>
-        <p>Часть — для клиентов, часть — для себя. Это живые примеры того, что мы соберём под твою задачу.</p>
+    <section class="section blog-section" id="blog">
+      <div class="wrap">
+        <div class="blog-head">
+          <div>
+            <span class="eyebrow">Practical AI blog</span>
+            <h2>Corporate AI learning: practical guides for business teams.</h2>
+          </div>
+          <p class="section-intro">Guides for leaders and teams building AI capability across business functions.</p>
+        </div>
+        <div class="blog-grid">
+          <article class="blog-card" data-number="01">
+            <img class="blog-card-image" src="assets/corporate/blog-team-ai-practice.jpg" alt="A team building practical AI habits around everyday business tasks" loading="lazy" decoding="async">
+            <div class="blog-card-copy">
+            <span class="blog-topic">Team training · Guide</span>
+            <h3>Corporate AI training: how to prepare your team</h3>
+            <p>A practical guide to role-based learning, company priorities and responsible AI practice.</p>
+            <a class="blog-link" data-article="corporate-ai-training" href="blog/corporate-ai-training/">Read the guide <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+          <article class="blog-card" data-number="02">
+            <img class="blog-card-image" src="assets/corporate/blog-workflow-sprint.jpg" alt="A team mapping a workflow during a planning session" loading="lazy" decoding="async">
+            <div class="blog-card-copy">
+            <span class="blog-topic">One-Week AI Workflow Sprint · Program</span>
+            <h3>AI for project managers: planning and delivery workflows</h3>
+            <p>Practical ways to apply AI to project updates, meeting notes, risk reviews and planning.</p>
+            <a class="blog-link" data-article="ai-for-project-managers" href="blog/ai-for-project-managers/">Read the guide <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+          <article class="blog-card" data-number="03">
+            <img class="blog-card-image" src="assets/corporate/blog-finance-accounting-workflow.jpg" alt="Finance colleagues reviewing an accounting workflow together" loading="lazy" decoding="async">
+            <div class="blog-card-copy">
+            <span class="blog-topic">Finance and accounting · Examples</span>
+            <h3>AI for finance and accounting teams: practical use cases</h3>
+            <p>Examples for reporting, formulas and variance summaries, with clear human review.</p>
+            <a class="blog-link" data-article="ai-for-finance-teams" href="blog/ai-for-finance-teams/">Read the guide <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+        </div>
+        <p class="blog-note"><a data-blog-index href="blog/">Browse the Practical AI guides ↗</a></p>
       </div>
-      <div class="showcase-grid">
+    </section>
 
-        <article class="work-card">
-          <div class="tag">Найм</div>
-          <div class="wt">Скрининг резюме под вакансию</div>
-          <div class="wd">Агент читает сотни резюме и ранжирует их под конкретную вакансию — на уровне эксперта, до 100 резюме в час.</div>
-        </article>
-
-        <article class="work-card">
-          <div class="tag">Найм</div>
-          <div class="wt">Агенты под поиск работы</div>
-          <div class="wd">Стратег и аналитик вакансий: разбирают рынок, подбирают релевантные позиции и готовят под них резюме и отклик.</div>
-        </article>
-
-        <article class="work-card">
-          <div class="tag">Решения</div>
-          <div class="wt">Консилиум из четырёх агентов</div>
-          <div class="wd">Команда советников — маркетинг, продукт, рост и критик. Спорят между собой и помогают увидеть решение со всех сторон.</div>
-        </article>
-
-        <article class="work-card">
-          <div class="tag">Маркетинг</div>
-          <div class="wt">Агент «второй мозг»: мышление и контент</div>
-          <div class="wd">Партнёр, который думает вместе со мной, структурирует идеи и превращает их в контент и следующий шаг.</div>
-        </article>
-
-        <article class="work-card">
-          <div class="tag">Контент</div>
-          <div class="wt">Агенты, которые пишут в моём стиле</div>
-          <div class="wd">Контур агентов собирает картинки, пишет посты и сообщения для LinkedIn и Telegram моим стилем — по слепку моего голоса.</div>
-        </article>
-
-        <article class="work-card">
-          <div class="tag">Прототипы</div>
-          <div class="wt">Агенты, которые собирают прототипы</div>
-          <div class="wd">Из идеи собирают рабочий прототип — лендинг, квиз, бот или мини-приложение. Ровно это мы делаем на серии уроков за четыре занятия.</div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- 8b. PRICING -->
-  <section class="section" id="ceny">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="kicker">Форматы и цены</span>
-        <h2>Выбери формат под свою задачу</h2>
-        <p>От разовой консультации до серии, за которую мы вместе собираем готовый прототип твоих агентов.</p>
-      </div>
-      <div class="pricing-grid">
-
-        <article class="price-card">
-          <span class="pname">Разовая консультация</span>
-          <div class="pprice">150&nbsp;€</div>
-          <div class="pfeat">1,5 часа · вживую</div>
-          <p class="pdesc">Живой интенсив про агентов один-на-один: отдаю всё, что знаю, и отвечаю на твои вопросы по ходу.</p>
-          <a class="pbtn outline" href="https://t.me/Danil_alto?text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D1%83%D1%8E%20%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D0%B8%D1%8E%20%28150%E2%82%AC%29" target="_blank" rel="noopener noreferrer">Написать</a>
-        </article>
-
-        <article class="price-card feature">
-          <span class="badge-hit">Хит</span>
-          <span class="pname">Серия уроков</span>
-          <div class="pprice">650&nbsp;€</div>
-          <div class="pfeat">4 занятия · вживую · готовый прототип</div>
-          <p class="pdesc">Четыре занятия, за которые мы вместе собираем полноценный прототип твоего личного агента.</p>
-          <a class="pbtn dark" href="https://t.me/Danil_alto?text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%A1%D0%B5%D1%80%D0%B8%D1%8E%20%D1%83%D1%80%D0%BE%D0%BA%D0%BE%D0%B2%20%28650%E2%82%AC%20%D0%B2%D0%B6%D0%B8%D0%B2%D1%83%D1%8E%29" target="_blank" rel="noopener noreferrer">Записаться</a>
-        </article>
-
-        <article class="price-card">
-          <span class="pname">Корпоративное обучение</span>
-          <div class="pprice small">по запросу</div>
-          <div class="pfeat">для команды · внедрение</div>
-          <p class="pdesc">Обучаем команду целиком и внедряем AI в рабочие процессы.</p>
-          <a class="pbtn outline" href="https://t.me/Danil_alto?text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%BA%D0%BE%D1%80%D0%BF%D0%BE%D1%80%D0%B0%D1%82%D0%B8%D0%B2%D0%BD%D0%BE%D0%B5%20%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D1%8B" target="_blank" rel="noopener noreferrer">Обсудить</a>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- 9. ZAYAVKA CTA -->
-  <section class="section" id="zayavka">
-    <div class="wrap">
-      <div class="zayavka">
-        <span class="eyebrow">Индивидуальное обучение</span>
-        <h2>Выйди из поиска работы более ценным и продуктивным</h2>
-        <p>Напиши мне в Telegram — за 15 минут обсудим твою задачу и подберём формат. Вместе соберём личного агента, который усиливает поиск и приносит доход уже в процессе.</p>
-        <div class="price-note">💬 Консультация 150 € · серия уроков 650 € (вживую) · корпоратив — по запросу</div>
-        <div class="cta-row">
-          <a class="btn" href="https://t.me/Danil_alto?text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%B8%D0%BD%D0%B4%D0%B8%D0%B2%D0%B8%D0%B4%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B5%20%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5" target="_blank" rel="noopener noreferrer">Написать Данилу в Telegram →</a>
+    <section class="section" id="faq">
+      <div class="wrap faq-grid">
+        <div>
+          <span class="eyebrow">Frequently asked questions</span>
+          <h2>Start with your team’s work.</h2>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>Who is the program for?</summary>
+            <p>Team leads, HR and L&amp;D, and people in product, sales, finance and operations. Participants bring tasks they know well.</p>
+          </details>
+          <details>
+            <summary>Which tools will the team use?</summary>
+            <p>The choice depends on your company’s tools and policies. Before practice, we agree on suitable tools, access and sample materials.</p>
+          </details>
+          <details>
+            <summary>What does the team take away?</summary>
+            <p>Practical workflows, review criteria, a team practice library and a plan for the next step.</p>
+          </details>
+          <details>
+            <summary>How do we choose between the one-week sprint and four-week program?</summary>
+            <p>Choose the sprint to test one workflow with a focused team. Choose the four-week program to build AI practice across several roles with guided follow-up.</p>
+          </details>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- 10. FOOTER -->
-  <footer class="footer">
+    <section class="final-cta" id="contact">
+      <div class="wrap final-cta-inner">
+        <div>
+          <span class="eyebrow">Start with one task</span>
+          <h2>Which workflow would your team like to improve with AI?</h2>
+          <p>Tell us about the team, a repeatable task and the number of people involved. We can map out a suitable program together.</p>
+        </div>
+        <a class="button" data-tg="team" href="https://t.me/Danil_alto" target="_blank" rel="noreferrer">
+          Message us on Telegram
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
     <div class="wrap footer-inner">
-      <div class="muted">© 2026 Данил Усик · Practical AI · Испания-Аргентина</div>
-      <div class="footer-links">
-        <a class="f-link" href="./cases/">Кейсы</a>
-        <a class="f-link" href="./offers/">КП</a>
-        <a class="f-link" href="#ceny">Цены</a>
-        <a class="f-link" href="#zayavka">Написать мне</a>
-        <a class="f-link" href="https://t.me/Danil_alto" target="_blank" rel="noopener noreferrer">Telegram ↗</a>
-      </div>
+      <a class="wordmark" href="#top">
+        <span class="logo-pill">Practical AI</span>
+      </a>
+      <span>Practical AI for people and teams · 2026</span>
+      <a href="https://practical-ai.pro/" target="_blank" rel="noreferrer">practical-ai.pro ↗</a>
     </div>
   </footer>
-</body>
+  <div class="product-overlay" id="astrolab-modal" role="dialog" aria-modal="true" aria-labelledby="astrolab-title" aria-hidden="true">
+    <div class="product-panel">
+      <div class="product-panel-head">
+        <strong id="astrolab-title">Astrolab · Practical AI</strong>
+        <div class="product-panel-actions">
+          <button class="product-close" type="button" id="close-astrolab" aria-label="Close Astrolab and return to the main page">×</button>
+        </div>
+      </div>
+      <iframe class="product-frame" id="astrolab-frame" title="Astrolab product page" data-src="https://haicora2024.github.io/astrolab-landing/" loading="eager"></iframe>
+    </div>
+  </div>
+  <script>
+    const astrolab = document.getElementById('astrolab-modal');
+    const astrolabFrame = document.getElementById('astrolab-frame');
+    const openAstrolab = document.getElementById('open-astrolab');
+    const closeAstrolab = document.getElementById('close-astrolab');
+    let previousFocus = null;
+    function showAstrolab() {
+      previousFocus = document.activeElement;
+      astrolab.classList.add('is-open');
+      astrolab.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      if (!astrolabFrame.dataset.loaded) {
+        astrolabFrame.src = astrolabFrame.dataset.src;
+        astrolabFrame.dataset.loaded = 'true';
+      }
+      closeAstrolab.focus();
+    }
+    function hideAstrolab() {
+      astrolab.classList.remove('is-open');
+      astrolab.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (previousFocus) previousFocus.focus();
+    }
+    openAstrolab.addEventListener('click', showAstrolab);
+    closeAstrolab.addEventListener('click', hideAstrolab);
+    astrolab.addEventListener('click', event => { if (event.target === astrolab) hideAstrolab(); });
+    document.addEventListener('keydown', event => { if (event.key === 'Escape' && astrolab.classList.contains('is-open')) hideAstrolab(); });
+  </script>
+<script>
+    const russianCopy = {"Approach": "Подход", "Programs": "Программы", "Case study": "Кейсы", "Blog": "Блог", "Talk to us": "Обсудить", "Practical AI training for teams": "Практическое AI-обучение для команд", "AI becomes part of the way": "AI становится частью", "your team works.": "рабочего процесса.", "For business leaders, L&amp;D and functional teams: practical AI learning built around company tools, real workflows and priorities. Product, project, sales, finance, HR and operations teams practise with the workflows they already own.": "Помогаем командам освоить AI на задачах своей функции — от продукта и продаж до финансов, HR и операций. Каждый участник работает со знакомым процессом и собирает применимый сценарий.", "Discuss a company program": "Обсудить задачу команды", "Explore the programs": "Посмотреть форматы", "Designed around agreed tools and data practices": "Практика в согласованном с компанией рабочем контуре", "From priority to practice": "Карта обучения", "Team practice": "Командная практика", "start here": "исходная точка", "Business priority": "Задача команды", "context": "контекст", "workflow": "рабочий сценарий", "AI in the workflow": "AI в процессе", "practice": "практика", "quality and review": "качество и проверка", "Human review": "Проверка человеком", "criteria": "критерии", "next step": "следующий шаг", "repeat": "повторение", "Workplace resource": "Рабочий материал", "A practical team capability": "Результат — понятный рабочий артефакт", "with a clear path for wider adoption": "и ясный шаг для команды после обучения", "A company-wide path from priorities to practice": "Одна методика · задачи разных функций", "Sales": "Продажи", "Finance": "Финансы", "Team experience": "Опыт команды", "Build AI capability around the work your teams already do.": "Изучение AI через привычную работу уже приносило измеримый результат.", "The ShildPanel team developed AI practices around everyday tasks in management, HR, marketing and operations.": "Команда «ШильдПанель» выстроила AI-практики вокруг ежедневных задач руководителей, HR, маркетинга и операционного блока.", "Team case study · 5 participants": "Командный кейс · 5 участников", "AI for the work the team handles every day.": "AI в задачах, которые команда решает каждый день.", "The team practised with reports, competitor research, ERP formulas and HR routines.": "Команда практиковалась на отчётах, исследовании конкурентов, ERP-формулах и регулярных HR-задачах.", "“Practice, practice… Keep building your skills, everyone.”": "«Практика, практика… Набивайте руку, ребята.»", "Alexander · Operations Director": "Александр · операционный директор", "Report and presentation": "Отчёт и презентация", "BEFORE": "БЫЛО", "AFTER": "СТАЛО", "from the published team case study": "по опубликованному кейсу команды", "Market and competitor research": "Анализ рынка и конкурентов", "research time": "время на исследование", "ERP formulas": "Формулы в ERP", "business development team task": "задача команды развития", "HR routine": "HR-рутина", "min/day": "мин/день", "Voice input at work": "Голосовой ввод в работе", "All figures come from the published ShildPanel case study.": "Все значения относятся к одному опубликованному кейсу «ШильдПанель».", "Source: Practical AI case page ↗": "Источник: страница Practical AI ↗", "AI by role": "AI по ролям", "One company. Different workflows.": "Начинаем с работы, которую команда уже знает.", "Designed for L&amp;D, transformation and functional leaders shaping company-wide AI adoption. Each team practises on tasks that match its roles, experience and company tools.": "Содержание подстраивается под функцию, уровень практики и инструменты компании. Каждый пример помогает увидеть следующий применимый сценарий.", "Synthesize interviews, review feedback and prepare decisions and project materials.": "Синтез интервью, разбор обратной связи, подготовка решений и проектных материалов.", "Workplace example": "Практический пример", "Prepare for client conversations, capture meeting notes and draft follow-up actions.": "Подготовка к разговору с клиентом, фиксация сути встречи, черновик следующего шага.", "Finance and accounting": "Финансы и бухгалтерия", "Draft report explanations, prepare formulas and summarize variances for review.": "Черновики пояснений к отчётам, подготовка формул, сводка отклонений для проверки.", "Structure interviews, draft communications and organize internal notes and questions.": "Структура интервью, черновики коммуникаций, обработка внутренних заметок и вопросов.", "Summarize meetings, write work instructions and create step-by-step checklists.": "Сводки встреч, рабочие инструкции, последовательность действий и контрольные списки.", "Before practice, we agree on tools, access and sample data. Every workflow includes a clear human review step.": "Перед практикой согласуем инструменты, доступы и примеры данных; для каждого сценария определяем этап проверки специалистом.", "The team journey": "Путь команды", "A clear path from a team task to everyday practice.": "Понятный маршрут от задачи к рабочей практике.", "Leaders connect capability building to business priorities. Teams practise through the workflows and tools they use every day.": "Участники учатся на процессах своей функции. Руководитель видит общий ход работы и следующий шаг после программы.", "Choose a program": "Выбрать формат", "Choose a repeatable task": "Выбираем повторяемую задачу", "Map who owns the process, where time goes and what result the team needs.": "Фиксируем, кто отвечает за процесс, на что уходит время и какой результат нужен команде.", "A map of one workflow": "Карта одного рабочего процесса", "Map the AI workflow": "Размечаем AI-сценарий", "Set the context, inputs, steps, expected output and quality criteria.": "Определяем контекст, входные материалы, шаги, ожидаемый формат ответа и критерии качества.", "A clear workflow and review checklist": "Понятный сценарий и чек-лист проверки", "Try it on a team member’s task": "Пробуем на задаче участника", "Build a version of the workflow with approved tools and practise reviewing the result.": "Собираем версию сценария в согласованных инструментах и отрабатываем проверку результата.", "Workplace practice with human review": "Рабочая практика с проверкой специалистом", "Define the next step": "Определяем следующий шаг", "Capture useful team practices and choose the next test for the coming work week.": "Сохраняем полезные практики команды и выбираем следующий тест на предстоящую рабочую неделю.", "A team playbook and next-step plan": "Набор командных практик и план следующего шага", "Training programs": "Форматы обучения", "Choose a pace that fits your team.": "Выберите ритм, подходящий команде.", "A one-week sprint starts with one clear workflow. The month-long program builds practice across several tasks and roles.": "Один рабочий спринт помогает начать с конкретного процесса. Месячная программа поддерживает практику по нескольким задачам и ролям.", "A practical start": "Практический старт", "1 WEEK": "1 НЕДЕЛЯ", "For one team with a repeatable task and a clear process owner.": "Для одной команды с понятной повторяемой задачей и владельцем процесса.", "A map of the selected process and improvement points": "Карта выбранного процесса и его точек улучшения", "AI practice on a team member’s task": "Практика AI на задаче участника", "Quality criteria, a checklist and the next test": "Критерии качества, чек-лист и следующий тест", "Discuss the sprint": "Обсудить спринт", "Team program": "Командная программа", "4 WEEKS": "4 НЕДЕЛИ", "For a company building practical AI skills across several functions.": "Для компании, которая развивает практические AI-навыки сразу в нескольких функциях.", "Live sessions and practice between meetings": "Живые сессии и работа между встречами", "Practice built around real team workflows": "Практика на реальных процессах команд", "A team playbook and ongoing experiments": "База командных сценариев и дальнейшие эксперименты", "Discuss Team Lab": "Обсудить Team Lab", "Astrolab · a Practical AI program": "Astrolab · отдельная программа Practical AI", "Explore the product format and its curriculum.": "Познакомьтесь с форматом и программой Astrolab.", "Explore Astrolab": "Смотреть Astrolab", "Workflows": "Рабочие процессы", "Result review": "Проверка результата", "Responsible AI practice": "Ответственное применение", "Confident practice starts with clear guidelines.": "Уверенная практика начинается с понятных правил.", "Approved tools and access": "Согласованные инструменты и доступы", "Clear boundaries for work data": "Понятные правила работы с корпоративными данными", "Criteria for reviewing AI output": "Критерии оценки AI-ответа", "The expert makes the final decision": "Окончательное решение принимает специалист", "Practical AI blog": "Блог Practical AI", "Corporate AI learning: practical guides for business teams.": "AI в работе команды: идеи и практические руководства.", "Guides for leaders and teams building AI capability across business functions.": "Разбираем рабочие задачи, которые помогают командам перейти от знакомства с AI к понятной ежедневной практике.", "Team training · Guide": "Командное обучение · Руководство", "A practical guide to role-based learning, company priorities and responsible AI practice.": "Как выбрать повторяемую задачу, определить критерии результата и выстроить практику для разных функций.", "Practical guide": "Практическое руководство", "AI Workflow Sprint · Program": "AI Workflow Sprint · Формат", "AI for project managers: planning and delivery workflows": "Как за неделю улучшить один процесс с AI", "Practical ways to apply AI to project updates, meeting notes, risk reviews and planning.": "Маршрут короткого спринта: от задачи команды к проверенному рабочему сценарию и следующему тесту.", "Program overview": "Разбор формата", "Finance and accounting · Examples": "Финансы и бухгалтерия · Примеры", "AI for finance and accounting teams: practical use cases": "Где финансовой команде помогает AI", "Examples for reporting, formulas and variance summaries, with clear human review.": "Подготовка пояснений, работа с формулами и сводка отклонений с понятной проверкой специалистом.", "Use case examples": "Примеры применения", "Upcoming guides. Each published guide will have its own page, defined search intent and reviewed sources.": "Темы и формулировки — редакционная основа для будущего блога; перед публикацией статьи получат отдельные страницы и источники.", "Frequently asked questions": "Частые вопросы", "Start with your team’s work.": "Первый разговор — о вашей работе.", "Who is the program for?": "Кому подходит обучение?", "Team leads, HR and L&D, and people in product, sales, finance and operations. Participants bring tasks they know well.": "Руководителям команд, HR/L&D и специалистам из продукта, продаж, финансов и операций. Участники приносят задачи, в которых уже хорошо ориентируются.", "Which tools will the team use?": "Какие инструменты использует команда?", "The choice depends on your company’s tools and policies. Before practice, we agree on suitable tools, access and sample materials.": "Выбор зависит от стека и правил компании. До практики согласуем подходящие инструменты, доступы и типы материалов для упражнений.", "What does the team take away?": "Что остаётся после программы?", "Practical workflows, review criteria, a team practice library and a plan for the next step.": "Рабочие сценарии, критерии проверки, библиотека практик команды и план следующего шага по выбранным процессам.", "How do we choose between the sprint and month-long program?": "Как выбрать спринт или месячную программу?", "The sprint is designed for one workflow and a small team. Team Lab suits several roles and a month of supported practice.": "Спринт подходит для одного процесса и небольшой команды. Team Lab подходит нескольким ролям и включает поддержку практики в течение месяца.", "Start with one task": "Начинаем с одной задачи", "Which workflow would your team like to improve with AI?": "Какой рабочий процесс команда хотела бы улучшить с AI?", "Tell us about the team, a repeatable task and the number of people involved. We can map out a suitable program together.": "Расскажите о функции, повторяющейся задаче и размере команды. Вместе наметим подходящий формат обучения.", "Message us on Telegram": "Написать в Telegram", "Practical AI for people and teams · 2026": "Практика AI в работе людей и команд · 2026", "×": "×", "For a full-page view,": "Если встроенная страница недоступна,", "open Astrolab in a new tab": "откройте Astrolab в новой вкладке", "Main navigation": "Основная навигация", "Practical AI home": "Practical AI — на главную", "Results from one team, published by Practical AI": "Результаты одной команды, опубликованные Practical AI", "Switch language to Russian": "Switch language to English", "Close Astrolab and return to the main page": "Close Astrolab and return to the main page", "Astrolab product page": "Astrolab product page", "↗": "↗", "Practical AI · team learning": "Practical AI · обучение команд", "Peer exchange": "Обмен опытом", "Everyday workflows": "Ежедневные процессы", "Corporate AI training: how to prepare your team": "AI для бизнес-команд: с чего начать", "Open the full Astrolab page in a new tab:": "Откройте полную страницу Astrolab в новой вкладке:", "open Astrolab": "откройте Astrolab", "PRACTICAL AI · FOR TEAMS": "PRACTICAL AI · ДЛЯ КОМАНД", "AI practice for business teams": "AI-практика для бизнес-команд", "Built around your company": "С учётом задач вашей компании", "Connect business priorities with team capability.": "AI-практика на основе процессов вашей команды.", "We start with the workflows your organization wants to improve, then shape practice around each role, existing tools and responsible-use guidelines. Leaders get a clear view of learning outputs and a practical next step for wider adoption.": "Мы строим программы вокруг инструментов, процессов и целей компании. Участники отрабатывают AI на знакомых задачах, а команда формирует общий подход к ответственному применению.", "Leadership priorities": "Практика по ролям", "Role-specific practice": "Инструменты компании", "Company playbook": "База командных сценариев", "Plan a company program": "Обсудить программу для команды", "One task in a day. One recurring workflow in a week. Shared AI practice across functions in four weeks.": "Одна задача за день. Один повторяющийся процесс за неделю. Общая AI-практика для функций за четыре недели.", "One recurring workflow": "Один повторяющийся процесс", "Astrolab · One-Day AI Lab": "Astrolab · однодневная AI-практика", "A focused team session to explore one familiar task and try a first AI-supported step with approved example data.": "Командная сессия вокруг знакомой задачи: участники изучают один процесс и пробуют первый AI-шаг на согласованных примерах данных.", "What your team gets": "Что получит команда", "One tested AI step": "Проверенный AI-шаг", "A workflow card and shared storyboard showing where AI helps, where a colleague checks the result, and what to try next.": "Карточка рабочего процесса и общая схема: где помогает AI, где коллега проверяет результат и какой тест провести дальше.", "A short, guided sprint for a team ready to improve one repeatable process from start to finish.": "Короткий спринт с поддержкой команды, чтобы улучшить один повторяющийся процесс от начала до конца.", "One pilot-ready workflow": "Один процесс, готовый к пилоту", "A mapped process, an AI step tried against agreed quality checks, and a clear plan for the next experiment.": "Карта процесса, проверенный по согласованным критериям AI-шаг и понятный план следующего теста.", "Four-Week Team Practice Program": "Командная программа AI-практики на четыре недели", "A month of guided practice that connects role-based workflows into a shared approach for the company.": "Месяц практики с поддержкой: рабочие процессы разных ролей складываются в общий подход компании.", "A playbook teams can reuse": "База практик для повторного использования", "Practical workflows from several functions, shared review habits, and a roadmap for the next stage of adoption.": "Рабочие сценарии нескольких функций, общие привычки проверки и план следующего этапа внедрения.", "Discuss the one-week sprint": "Обсудить недельный спринт", "Plan the four-week program": "Обсудить программу на четыре недели", "Read the guide": "Читать руководство", "Browse the Practical AI guides ↗": "Все руководства Practical AI ↗"};
+    Object.assign(russianCopy, {
+      '12 min': '12 мин', '15 min': '15 мин', '60 min': '60 мин', '9 hr': '9 ч', '9 hours': '9 часов',
+      'Product & project': 'Продукт и проекты', 'Product & Project': 'Продукт и проекты', 'Operations': 'Операции', 'REAL': 'РЕАЛЬНАЯ', 'WORK': 'РАБОТА',
+      'Practical AI · team learning': 'Practical AI · обучение команд',
+      'Explore Astrolab': 'Открыть Astrolab',
+      'View full page': 'Открыть страницу',
+      'View full page ↗': 'Открыть страницу ↗'
+    });
+    Object.assign(russianCopy, {
+      'Choose the format that fits your goal: a one-day team lab, a one-week workflow sprint, or a four-week guided practice program for several functions.': 'Выберите формат под вашу задачу: однодневную командную практику, недельный спринт по одному процессу или четырёхнедельную программу для нескольких функций.',
+      'One workflow': 'Один процесс', 'Several functions': 'Несколько функций', 'One everyday task': 'Одна повседневная задача',
+      '1 WEEK': '1 НЕДЕЛЯ', '4 WEEKS': '4 НЕДЕЛИ', '1 DAY': '1 ДЕНЬ',
+      'One-Week AI Workflow Sprint': 'Недельный AI-спринт по одному процессу',
+      'Four-Week AI Team Program': 'Четырёхнедельная AI-программа для команды',
+      'Astrolab: One-Day AI Lab': 'Astrolab: AI-практика за один день',
+      'Map and test a recurring workflow with a focused team in one week.': 'За неделю команда опишет один повторяющийся процесс, проверит AI-сценарий и определит следующий шаг.',
+      'Map one selected process and its friction points': 'Карта одного процесса и точек, где уходит время',
+      'Test an AI step against agreed quality criteria': 'Проверка AI-сценария по согласованным критериям качества',
+      'Leave with a checklist and a clear next experiment': 'Чек-лист и следующий тест для команды',
+      'Build repeatable AI practices across several functions and create a shared playbook through four weeks of guided practice.': 'За четыре недели сотрудники из нескольких функций отработают AI-сценарии на своих задачах и соберут общую базу практик при поддержке команды программы.',
+      'Guided sessions with practice between meetings': 'Занятия с практикой между встречами',
+      'Work on tasks from different team roles': 'Практика на задачах сотрудников из нескольких функций',
+      'Create a shared playbook and next-step plan': 'База командных сценариев и план дальнейших шагов',
+      'Bring one everyday team task, test an AI step, and shape a first shared workflow in a focused one-day session.': 'За один день команда возьмёт одну повседневную задачу, проверит AI-сценарий и соберёт первую версию общего рабочего процесса.',
+      'Start with one routine team task': 'Одна повседневная задача команды',
+      'Try an AI step with approved example data': 'Практика AI на согласованных примерах данных',
+      'Take away a workflow card and team storyboard': 'Карточка рабочего процесса и схема общего командного сценария',
+      'Discuss the sprint': 'Обсудить спринт',
+      'Discuss the four-week program': 'Обсудить программу на четыре недели',
+      'One-Week AI Workflow Sprint · Program': 'Однонедельный AI Workflow Sprint · Формат',
+      'How do we choose between the one-week sprint and four-week program?': 'Как выбрать между недельным спринтом и четырёхнедельной программой?',
+      'Choose the sprint to test one workflow with a focused team. Choose the four-week program to build AI practice across several roles with guided follow-up.': 'Спринт помогает проверить один процесс с фокусной командой. Четырёхнедельная программа развивает AI-практику в нескольких ролях и включает сопровождение между встречами.'
+    });
+    Object.assign(russianCopy, {
+      'Community partner · Tech Connect VLC': 'Партнёр сообщества · Tech Connect VLC',
+      'Practical AI collaborates with Tech Connect VLC on local meetups focused on practical AI use cases.': 'Practical AI вместе с Tech Connect VLC проводит локальные встречи о практическом применении AI.',
+      'What your team takes away': 'Что команда забирает в работу',
+      'One tested workflow step': 'Один проверенный AI-шаг в процессе',
+      'A workflow card, review checklist and team workflow diagram showing where AI helps, who checks the result and what to test next.': 'Карточка процесса, чек-лист проверки и схема процесса: где помогает AI, кто проверяет результат и какой тест провести дальше.',
+      'One workflow, tested and mapped': 'Один процесс: карта и проверенный AI-сценарий',
+      'A process map, tested AI step, quality checklist, named process owner and a clear next-step decision.': 'Карта процесса, проверенный AI-шаг, чек-лист качества, ответственный за процесс и решение о следующем шаге.',
+      'A shared team playbook': 'Общий набор практик команды',
+      'Role-based workflow cards, a shared review standard and a prioritized list for the next pilot.': 'Карточки процессов по ролям, общий стандарт проверки и список приоритетов для следующего пилота.'
+    });
+    Object.assign(russianCopy, {
+      'AI capability for the whole company': 'Развитие AI-компетенций во всей компании',
+      'Everyday work': 'Ежедневная работа',
+      'From individual tasks to shared workflows.': 'От индивидуальных задач к общим процессам.',
+      'Practice starts with a familiar task, then grows into a repeatable way of working together.': 'Практика начинается со знакомой задачи и постепенно становится общим, воспроизводимым способом работы.',
+      'One task from a team member’s role': 'Задача из работы участника команды',
+      'Focused practice with familiar work': 'Практика на знакомых задачах',
+      'One workflow, shared across the team': 'Общий процесс для всей команды',
+      'Build shared practices across the team': 'Формируйте общие практики команды',
+      'Product & Project': 'Продукт и проекты',
+      'Operations': 'Операции',
+      'HR': 'HR',
+      'Turn AI access into': 'Превратите доступ к AI в',
+      'team capability.': 'рабочую практику команды.',
+      'For business leaders, L&D and functional teams: practical AI learning built around company tools, real workflows and priorities. Product, project, sales, finance, HR and operations teams practise with the workflows they already own.': 'Для руководителей бизнеса, L&D и функциональных команд: практическое обучение AI на основе инструментов, процессов и приоритетов компании. Продуктовые и проектные команды, а также команды продаж, финансов, HR и операций практикуются на знакомых рабочих процессах.',
+      'Discuss a company program': 'Обсудить корпоративную программу',
+      'Designed around agreed tools and data practices': 'С учётом согласованных инструментов и правил работы с данными',
+      'From priority to practice': 'От приоритетов к практике',
+      'Business priority': 'Приоритет бизнеса',
+      'A practical team capability': 'Практическая компетенция команды',
+      'with a clear path for wider adoption': 'и понятный путь для масштабирования практики',
+      'A company-wide path from priorities to practice': 'Общий путь компании от приоритетов к практике',
+      'Leadership priorities': 'Приоритеты руководства',
+      'Role-specific practice': 'Практика по ролям',
+      'Company playbook': 'Общий набор командных практик',
+      'Role-based learning': 'Обучение по ролям',
+      'Shared practices': 'Общие практики',
+      'Next-step roadmap': 'План следующих шагов',
+      'Build AI capability around the work your teams already do.': 'Развивайте AI-компетенции на основе реальной работы команд.',
+      'Designed for L&D, transformation and functional leaders shaping company-wide AI adoption. Each team practises on tasks that match its roles, experience and company tools.': 'Для L&D, команд трансформации и руководителей функций, развивающих применение AI в компании. Каждая команда практикуется на задачах, соответствующих ролям участников, их опыту и инструментам компании.',
+      'One company. Different workflows.': 'Одна компания. Разные процессы.',
+      'Leaders connect capability building to business priorities. Teams practise through the workflows and tools they use every day.': 'Руководители связывают развитие компетенций с приоритетами бизнеса. Команды практикуются на ежедневных процессах и в привычных инструментах.',
+      'Connect business priorities with team capability.': 'Свяжите приоритеты бизнеса с компетенциями команды.',
+      'We start with the workflows your organization wants to improve, then shape practice around each role, existing tools and responsible-use guidelines. Leaders get a clear view of learning outputs and a practical next step for wider adoption.': 'Начинаем с процессов, которые компания хочет улучшить, и строим практику вокруг ролей, текущих инструментов и правил ответственного применения. Руководители видят результаты обучения и следующий шаг для развития практики.',
+      'Plan a company program': 'Спланировать корпоративную программу',
+      'Corporate AI learning: practical guides for business teams.': 'Корпоративное обучение AI: практические материалы для команд.',
+      'Guides for leaders and teams building AI capability across business functions.': 'Материалы для руководителей и команд, развивающих AI-компетенции в разных функциях.',
+      'Corporate AI training: how to prepare your team': 'Обучение AI в компании: как подготовить команду',
+      'A practical guide to role-based learning, company priorities and responsible AI practice.': 'Практическое руководство по обучению по ролям, приоритетам компании и ответственному применению AI.',
+      'AI for project managers: planning and delivery workflows': 'AI для менеджеров проектов: планирование и ведение проектов',
+      'Practical ways to apply AI to project updates, meeting notes, risk reviews and planning.': 'Практические сценарии для статусов, заметок встреч, оценки рисков и планирования.',
+      'AI for finance and accounting teams: practical use cases': 'AI для финансов и бухгалтерии: практические сценарии',
+      'Examples for reporting, formulas and variance summaries, with clear human review.': 'Примеры для отчётности, формул и сводки отклонений с проверкой специалистом.',
+      'Upcoming guides. Each published guide will have its own page, defined search intent and reviewed sources.': 'Будущие руководства. Каждое опубликованное руководство получит отдельную страницу, поисковый интент и проверенные источники.'
+    });
+    Object.assign(russianCopy, {
+      '01 / FRAME': '01 / КОНТЕКСТ',
+      '02 / DESIGN': '02 / ПРОЕКТИРОВАНИЕ',
+      '03 / PRACTICE': '03 / ПРАКТИКА',
+      '04 / CONTINUE': '04 / СЛЕДУЮЩИЙ ШАГ',
+      'REAL': 'РЕАЛЬНАЯ',
+      'WORK': 'РАБОТА',
+      '→ AI': '→ AI'
+    });
+    const russianAriaCopy = {
+      'Four steps: a team task, an AI workflow, expert review and repeatable team practice': 'Четыре шага: задача команды, AI-сценарий, проверка специалистом и повторяемая практика команды',
+      'For teams across the business': 'Для команд разных функций',
+      'Practical AI company training': 'Корпоративное обучение Practical AI',
+      'Report preparation time went from 60 to 12 minutes in the published case study': 'В опубликованном кейсе подготовка отчёта сократилась с 60 до 12 минут',
+      'The case study reports 70 percent less time spent on market and competitor research': 'В кейсе отмечено сокращение времени на анализ рынка и конкурентов на 70 процентов',
+      'An ERP formula task took 15 minutes instead of nine hours in the published case study': 'По опубликованному кейсу задача с ERP-формулами заняла 15 минут вместо девяти часов',
+      'The HR case reports 30 minutes saved per day through voice input': 'В HR-кейсе благодаря голосовому вводу отмечено высвобождение 30 минут в день',
+      'Main navigation': 'Основная навигация',
+      'Practical AI home': 'Practical AI — на главную',
+      'Discuss a company program': 'Обсудить корпоративную программу',
+      'Astrolab product page': 'Страница продукта Astrolab',
+      'Switch language to Russian': 'Переключить язык на русский',
+      'Close Astrolab and return to the main page': 'Закрыть Astrolab и вернуться на главную',
+      'Results from one team, published by Practical AI': 'Результаты одной команды, опубликованные Practical AI',
+      'An employee working through a recurring task on a laptop': 'Сотрудник выполняет повторяющуюся задачу за ноутбуком',
+      'Colleagues reviewing a shared workflow together': 'Коллеги вместе разбирают общий рабочий процесс',
+      'A cross-functional team mapping a shared workflow': 'Команда из разных функций размечает общий процесс',
+      'A team building practical AI habits around everyday business tasks': 'Команда развивает практику AI на ежедневных рабочих задачах',
+      'A team mapping a workflow during a planning session': 'Команда разбирает рабочий процесс во время планирования',
+      'Finance colleagues reviewing an accounting workflow together': 'Коллеги из финансовой команды вместе разбирают бухгалтерский процесс',
+    };
+    const pageAttributeNodes = [...document.querySelectorAll('[aria-label], [alt], [title]')].flatMap(element => ['aria-label', 'alt', 'title'].filter(attribute => element.hasAttribute(attribute)).map(attribute => ({element, attribute, source: element.getAttribute(attribute)})));
+    const pageTextNodes = [];
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    let textNode;
+    while ((textNode = walker.nextNode())) {
+      if (textNode.parentElement && ['SCRIPT','STYLE'].includes(textNode.parentElement.tagName)) continue;
+      if (textNode.nodeValue.trim()) pageTextNodes.push({ node: textNode, source: textNode.nodeValue });
+    }
+    const pageMetadata = {
+      en: { title: 'Practical AI — Build AI capability across your business', description: 'Practical AI capability programs for business teams. Role-based training built around company tools, workflows and priorities.' },
+      ru: { title: 'Practical AI — развитие AI-компетенций команд', description: 'Корпоративные программы Practical AI: обучение по ролям на основе инструментов, процессов и приоритетов компании.' }
+    };
+    const contactMessages = {
+      en: { team: 'Hello! I’d like to discuss an AI workflow for my team.', sprint: 'Hello! I’d like to discuss the one-week AI Workflow Sprint for my team.', teamlab: 'Hello! I’d like to discuss the four-week Team Practice Program for my company.' },
+      ru: { team: 'Привет! Хочу обсудить AI-сценарий для моей команды.', sprint: 'Привет! Хочу обсудить недельный AI Workflow Sprint для команды.', teamlab: 'Привет! Хочу обсудить четырёхнедельную программу командной AI-практики.' }
+    };
+    const languageToggle = document.querySelector('[data-language-toggle]');
+    function setLanguage(language, updateUrl = true) {
+      const selected = language === 'ru' ? 'ru' : 'en';
+      document.documentElement.lang = selected;
+      pageTextNodes.forEach(({node, source}) => {
+        const leading = source.match(/^\s*/)[0];
+        const trailing = source.match(/\s*$/)[0];
+        const english = source.trim();
+        const translated = selected === 'ru' ? (russianCopy[english] || english) : english;
+        node.nodeValue = leading + translated + trailing;
+      });
+      pageAttributeNodes.forEach(({element, attribute, source}) => element.setAttribute(attribute, selected === 'ru' ? (russianAriaCopy[source] || source) : source));
+      document.title = pageMetadata[selected].title;
+      document.querySelector('meta[name="description"]').content = pageMetadata[selected].description;
+      document.querySelector('meta[property="og:title"]').content = pageMetadata[selected].title;
+      document.querySelector('meta[property="og:description"]').content = pageMetadata[selected].description;
+      const pageUrl = new URL('https://practical-ai.pro/');
+      if (selected === 'ru') pageUrl.searchParams.set('lang', 'ru');
+      document.querySelector('link[rel="canonical"]').href = pageUrl.href;
+      document.querySelector('meta[property="og:url"]').content = pageUrl.href;
+      languageToggle.textContent = selected === 'en' ? 'RU' : 'EN';
+      languageToggle.setAttribute('aria-label', selected === 'en' ? 'Switch language to Russian' : 'Переключить язык на английский');
+      languageToggle.setAttribute('aria-pressed', String(selected === 'ru'));
+      document.querySelector('.site-header nav').setAttribute('aria-label', selected === 'en' ? 'Main navigation' : 'Основная навигация');
+      document.querySelectorAll('[data-tg]').forEach(link => {
+        const key = link.dataset.tg;
+        link.href = 'https://t.me/Danil_alto?text=' + encodeURIComponent(contactMessages[selected][key]);
+      });
+      document.querySelectorAll('[data-article]').forEach(link => {
+        link.href = (selected === 'ru' ? 'ru/blog/' : 'blog/') + link.dataset.article + '/';
+      });
+      const blogIndexLink = document.querySelector('[data-blog-index]');
+      if (blogIndexLink) blogIndexLink.href = selected === 'ru' ? 'ru/blog/' : 'blog/';
+      document.getElementById('astrolab-frame').title = selected === 'en' ? 'Astrolab product page' : 'Страница продукта Astrolab';
+      document.getElementById('close-astrolab').setAttribute('aria-label', selected === 'en' ? 'Close Astrolab and return to the main page' : 'Закрыть Astrolab и вернуться на главную');
+      if (updateUrl) {
+        const url = new URL(window.location.href);
+        if (selected === 'en') url.searchParams.delete('lang'); else url.searchParams.set('lang', 'ru');
+        try { window.history.replaceState({}, '', url); } catch (_) { /* The language toggle still works in file previews. */ }
+      }
+    }
+    languageToggle.addEventListener('click', () => setLanguage(document.documentElement.lang === 'en' ? 'ru' : 'en'));
+    const initialLanguage = new URLSearchParams(window.location.search).get('lang') === 'ru' ? 'ru' : 'en';
+    setLanguage(initialLanguage, false);
+  </script>
+  </body>
 </html>
