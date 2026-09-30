@@ -4,17 +4,23 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#17213d">
-  <meta name="description" content="Practical AI capability programs for business teams. Role-based training built around company tools, workflows and priorities.">
+  <meta name="description" content="Практическое AI-обучение для команд: однодневная практика, недельный спринт и четырёхнедельная программа на задачах компании.">
   <link rel="canonical" href="https://practical-ai.pro/">
   <link rel="alternate" hreflang="en" href="https://practical-ai.pro/">
   <link rel="alternate" hreflang="ru" href="https://practical-ai.pro/?lang=ru">
   <link rel="alternate" hreflang="x-default" href="https://practical-ai.pro/">
-  <meta property="og:title" content="Practical AI — Build AI capability across your business">
-  <meta property="og:description" content="Practical AI capability programs for business teams. Role-based training built around company tools, workflows and priorities.">
+  <meta property="og:title" content="Practical AI — AI-обучение для бизнес-команд">
+  <meta property="og:description" content="Практическое AI-обучение для команд: однодневная практика, недельный спринт и четырёхнедельная программа на задачах компании.">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:locale:alternate" content="en_US">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://practical-ai.pro/">
   <meta property="og:image" content="https://practical-ai.pro/assets/corporate/hero-team-workflow.jpg">
-  <title>Practical AI — Build AI capability across your business</title>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Practical AI — AI-обучение для бизнес-команд">
+  <meta name="twitter:description" content="Практическое AI-обучение для команд: однодневная практика, недельный спринт и четырёхнедельная программа на задачах компании.">
+  <meta name="twitter:image" content="https://practical-ai.pro/assets/corporate/hero-team-workflow.jpg">
+  <title>Practical AI — AI-обучение для бизнес-команд</title>
   <style>
     :root {
       color-scheme: light;
@@ -455,12 +461,45 @@
     }
     .metric-direct span { color: #aab3be; font-size: 10px; }
     .metric-direct svg { width: 92px; height: 24px; color: var(--lime); }
-    .proof-footnote {
-      margin: 14px 0 0;
-      color: var(--muted);
-      font-size: 11px;
+
+    .testimonial-section { background: #f4f7fa; }
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
     }
-    .proof-footnote a { color: #246476; font-weight: 700; text-underline-offset: 3px; }
+    .testimonial-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 250px;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: var(--white);
+      box-shadow: 0 8px 24px rgba(23,33,61,.045);
+    }
+    .testimonial-card blockquote {
+      margin: 0;
+      color: var(--ink);
+      font-size: 17px;
+      font-weight: 560;
+      line-height: 1.5;
+      letter-spacing: 0;
+    }
+    .testimonial-card cite {
+      display: block;
+      margin-top: auto;
+      padding-top: 26px;
+      color: var(--muted);
+      font-size: 12px;
+      font-style: normal;
+      line-height: 1.5;
+    }
+    .testimonial-card cite strong, .testimonial-card cite span { display: block; }
+    .testimonial-card cite strong { color: var(--ink); font-size: 13px; }
+    .testimonial-card--featured { background: var(--ink); border-color: var(--ink); }
+    .testimonial-card--featured blockquote, .testimonial-card--featured cite strong { color: var(--white); }
+    .testimonial-card--featured cite { color: #b7c0cd; }
 
     .roles-section { background: var(--white); }
     .role-grid {
@@ -800,6 +839,7 @@
       .method-grid, .faq-grid { grid-template-columns: 1fr 1.2fr; gap: 36px; }
       .program-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .guardrail-grid { grid-template-columns: 1fr; gap: 32px; }
+      .testimonial-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 720px) {
       .wrap { width: min(100% - 34px, 560px); }
@@ -818,6 +858,8 @@
       .workflow-card { padding: 20px 16px; border-radius: 22px; }
       .flow-step { grid-template-columns: 40px 1fr; gap: 11px; min-height: 70px; }
       .flow-number { width: 38px; height: 38px; }
+      .testimonial-grid { grid-template-columns: 1fr; }
+      .testimonial-card { min-height: 0; }
       .flow-line { left: 19px; }
       .flow-tag { display: none; }
       .hero-stamp { right: -4px; bottom: -30px; width: 75px; height: 75px; border-width: 5px; }
@@ -963,6 +1005,7 @@
         <a href="#approach">Approach</a>
         <a href="#programs">Programs</a>
         <a href="#case">Case study</a>
+        <a href="#reviews">Reviews</a>
         <a href="#blog">Blog</a>
         <button class="language-toggle" type="button" data-language-toggle aria-label="Switch language to Russian" aria-pressed="false">RU</button>
         <a class="button" data-tg="team" aria-label="Discuss a company program" href="https://t.me/Danil_alto" target="_blank" rel="noreferrer">
@@ -1060,10 +1103,6 @@
               <h3>AI for the work the team handles every day.</h3>
               <p>The team practised with reports, competitor research, ERP formulas and HR routines.</p>
             </div>
-            <div class="proof-quote">
-              “Practice, practice… Keep building your skills, everyone.”
-              <cite>Alexander · Operations Director</cite>
-            </div>
           </div>
           <div class="proof-metrics" aria-label="Results from one team, published by Practical AI">
             <article class="metric">
@@ -1073,7 +1112,6 @@
                 <div class="bar-row"><span>BEFORE</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><strong>60 min</strong></div>
                 <div class="bar-row"><span>AFTER</span><div class="bar-track"><div class="bar-fill bar-fill--lime" style="width:20%"></div></div><strong>12 min</strong></div>
               </div>
-              <div class="metric-note">from the published team case study</div>
             </article>
             <article class="metric">
               <div class="metric-label"><span>Market and competitor research</span><span>02 / 04</span></div>
@@ -1100,11 +1138,47 @@
                 <span>Voice input at work</span>
                 <svg viewBox="0 0 92 24" fill="none" aria-hidden="true"><path d="M2 12h7l4-7 7 14 6-12 6 10 6-13 7 15 7-9 5 6 6-11 6 8 5-5 6 4h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
-              <div class="metric-note">from the published team case study</div>
             </article>
           </div>
         </div>
-        <p class="proof-footnote">All figures come from the published ShildPanel case study. <a href="https://practical-ai.pro/cases/" target="_blank" rel="noreferrer">Source: Practical AI case page ↗</a></p>
+      </div>
+    </section>
+
+    <section class="section testimonial-section" id="reviews">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-head-copy">
+            <span class="eyebrow">What participants say</span>
+            <h2>People remember the moment AI helped with real work.</h2>
+          </div>
+          <p class="section-intro">Feedback from business team programmes and individual practice with Practical AI.</p>
+        </div>
+        <div class="testimonial-grid">
+          <article class="testimonial-card testimonial-card--featured">
+            <blockquote>“Now I have a playbook I can pass on to my team.”</blockquote>
+            <cite><strong>Alexander</strong><span>Operations Director</span></cite>
+          </article>
+          <article class="testimonial-card">
+            <blockquote>“I brought my agent to life. It completed my task the next day.”</blockquote>
+            <cite><strong>Ksenia</strong><span>Marketing Director</span></cite>
+          </article>
+          <article class="testimonial-card">
+            <blockquote>“The course surprised me: I managed to create some genuinely good landing-page designs. When you get a result that is better or simpler than before, it feels great.”</blockquote>
+            <cite><strong>Svetlana</strong><span>Marketer</span></cite>
+          </article>
+          <article class="testimonial-card">
+            <blockquote>“I use prompting techniques, and even those save me two hours a day on analytics.”</blockquote>
+            <cite><strong>Alexander</strong><span>Production lead</span></cite>
+          </article>
+          <article class="testimonial-card">
+            <blockquote>“I finally solved a long-standing problem with visualising overdue deadlines and created a tool I can now delegate.”</blockquote>
+            <cite><strong>Ilya</strong><span>Commercial director</span></cite>
+          </article>
+          <article class="testimonial-card">
+            <blockquote>“I created a ChatGPT bot that makes cadastral plans from my coordinates and immediately prepares the application.”</blockquote>
+            <cite><strong>Vladislav</strong><span>Development lead</span></cite>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -1531,6 +1605,29 @@
       'WORK': 'РАБОТА',
       '→ AI': '→ AI'
     });
+    Object.assign(russianCopy, {
+      'Reviews': 'Отзывы',
+      'What participants say': 'Отзывы участников',
+      'Alexander': 'Александр',
+      'Ksenia': 'Ксения',
+      'Svetlana': 'Светлана',
+      'Ilya': 'Илья',
+      'Vladislav': 'Владислав',
+      'People remember the moment AI helped with real work.': 'Участники запоминают момент, когда AI помог в настоящей работе.',
+      'Feedback from business team programmes and individual practice with Practical AI.': 'Отзывы по итогам корпоративных программ и индивидуальной практики с Practical AI.',
+      '“Now I have a playbook I can pass on to my team.”': '«Теперь у меня есть плейбук, который я могу передать моей команде.»',
+      'Operations Director': 'Операционный директор',
+      '“I brought my agent to life. It completed my task the next day.”': '«Я этого товарища оживила. Вчера он мне уже выполнил моё задание.»',
+      'Marketing Director': 'Директор по маркетингу',
+      '“The course surprised me: I managed to create some genuinely good landing-page designs. When you get a result that is better or simpler than before, it feels great.”': '«Курс удивил тем, что получилось сделать реально неплохие дизайны для лендингов. Когда получаешь результат лучше или проще, чем был, — кайфуешь.»',
+      'Marketer': 'Маркетолог',
+      '“I use prompting techniques, and even those save me two hours a day on analytics.”': '«Я использую только техники промтинга, но даже с ними экономлю 2 часа в день на аналитике.»',
+      'Production lead': 'Руководитель производства',
+      '“I finally solved a long-standing problem with visualising overdue deadlines and created a tool I can now delegate.”': '«Я наконец-то закрыл свой давний вопрос с визуализацией просроченных дедлайнов и создал инструмент, который теперь смогу делегировать.»',
+      'Commercial director': 'Коммерческий директор',
+      '“I created a ChatGPT bot that makes cadastral plans from my coordinates and immediately prepares the application.”': '«Я создал себе бота в ChatGPT, который делает кадастровые схемы по моим координатам и сразу же формирует заявление.»',
+      'Development lead': 'Руководитель отдела развития'
+    });
     const russianAriaCopy = {
       'Four steps: a team task, an AI workflow, expert review and repeatable team practice': 'Четыре шага: задача команды, AI-сценарий, проверка специалистом и повторяемая практика команды',
       'For teams across the business': 'Для команд разных функций',
@@ -1562,8 +1659,8 @@
       if (textNode.nodeValue.trim()) pageTextNodes.push({ node: textNode, source: textNode.nodeValue });
     }
     const pageMetadata = {
-      en: { title: 'Practical AI — Build AI capability across your business', description: 'Practical AI capability programs for business teams. Role-based training built around company tools, workflows and priorities.' },
-      ru: { title: 'Practical AI — развитие AI-компетенций команд', description: 'Корпоративные программы Practical AI: обучение по ролям на основе инструментов, процессов и приоритетов компании.' }
+      en: { title: 'Practical AI — practical AI training for business teams', description: 'Hands-on AI training for teams: one-day labs, one-week sprints and four-week programmes built around your company workflows.' },
+      ru: { title: 'Practical AI — AI-обучение для бизнес-команд', description: 'Практическое AI-обучение для команд: однодневная практика, недельный спринт и четырёхнедельная программа на задачах компании.' }
     };
     const contactMessages = {
       en: { team: 'Hello! I’d like to discuss an AI workflow for my team.', sprint: 'Hello! I’d like to discuss the one-week AI Workflow Sprint for my team.', teamlab: 'Hello! I’d like to discuss the four-week Team Practice Program for my company.' },
@@ -1585,6 +1682,9 @@
       document.querySelector('meta[name="description"]').content = pageMetadata[selected].description;
       document.querySelector('meta[property="og:title"]').content = pageMetadata[selected].title;
       document.querySelector('meta[property="og:description"]').content = pageMetadata[selected].description;
+      document.querySelector('meta[property="og:locale"]').content = selected === 'ru' ? 'ru_RU' : 'en_US';
+      document.querySelector('meta[name="twitter:title"]').content = pageMetadata[selected].title;
+      document.querySelector('meta[name="twitter:description"]').content = pageMetadata[selected].description;
       const pageUrl = new URL('https://practical-ai.pro/');
       if (selected === 'ru') pageUrl.searchParams.set('lang', 'ru');
       document.querySelector('link[rel="canonical"]').href = pageUrl.href;
