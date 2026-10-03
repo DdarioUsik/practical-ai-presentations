@@ -10,6 +10,7 @@ from urllib.parse import quote
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 BASE = "https://practical-ai.pro"
+PROGRAM_IMAGES = ["program-team-lab.jpg", "program-workflow-sprint.jpg", "program-team-practice.jpg"]
 
 COPY = {
     "en": {
@@ -27,6 +28,7 @@ COPY = {
         "flow_output": "Visible output", "flow_output_text": "a team workflow, review checklist and next test",
         "programs_eyebrow": "Educational programs · second step", "programs_h2": "Choose the right starting pace for your team.",
         "programs_intro": "One day to explore, one week to test a workflow, or four weeks to build regular practice. We shape the work around your team's task and agreed tools.",
+        "illustration": "Illustration", "program_image_alts": ["Team mapping a task with process cards during an AI lab", "Two colleagues checking an AI workflow against a process checklist", "Business team reviewing a shared AI workflow"],
         "programs": [
             ("01 · One day", "AI Team Lab", "A practical workshop to explore real tasks and choose one useful AI workflow.", ["Bring representative team tasks", "Try an AI step with human review", "Leave with a task map and next test"], "Discuss a team lab"),
             ("02 · One week · recommended start", "AI Workflow Sprint", "A guided sprint to map and test one repeatable process with your team.", ["Map the process and its owner", "Practise one AI-supported step", "Take away a workflow card and review checklist"], "Discuss a one-week sprint"),
@@ -37,11 +39,12 @@ COPY = {
         "proof_tag": "Team case · 5 participants", "proof_title": "A shared method across different roles.",
         "proof_facts": [("Report and presentation", "60 → 12 min"), ("Market research", "−70%"), ("ERP formulas", "9 h → 15 min"), ("HR routine", "−30 min/day")],
         "proof_note": "Figures reported in the published ShildPanel team case; they describe those tasks, not a typical program outcome.",
-        "proof_photo": "Illustrative image of a team reviewing an AI workflow", "proof_visual_note": "Workflow illustration · client results shown separately",
+        "proof_roles": "Operations · Business development · Marketing · HR · Management", "proof_case_h3": "Five leaders. Different daily work.", "proof_case_link": "Read what participants said", "proof_count_unit": "participants",
         "quotes_eyebrow": "In their own words", "quotes_h2": "What the team said after putting AI to work.", "quotes_intro": "Selected remarks from the ShildPanel team case. English translations of the original Russian comments.",
         "quotes": [("Practice, practice… Keep building your skills, everyone.", "Alexander", "Operations Director · ShildPanel"), ("What we created is a tool I can now delegate.", "Ilya", "Marketing and Analytics · ShildPanel"), ("Whisper is something I use almost every day. It’s great.", "Elizaveta", "Head of HR · ShildPanel")],
         "method_eyebrow": "How the learning works", "method_h2": "From a team task to a reviewed way of working.",
         "method_intro": "Every program connects a business task, an AI step, human judgment and a practical next action.",
+        "method_visual_alt": "Illustrated sequence from a team task through an AI step and human review to shared practice", "method_visual_caption": "Illustrated workflow · the steps above describe the program method",
         "method_steps": [("01", "Choose a task", "Name the process owner and the result the team needs."), ("02", "Design a workflow", "Define inputs, approved tools and the expected output."), ("03", "Review the result", "Use clear quality criteria and human judgment."), ("04", "Keep what works", "Document the pattern and choose the next test.")],
         "team_eyebrow": "The team behind the training", "team_h2": "The right expertise for the work in front of you.", "team_p": "Practical AI brings learning design, hands-on AI practice and review together around your team's task. We shape each program with the people who own the work, so participants can try a useful step and judge its output together.", "team_link": "See how we work →", "team_facets": ["Learning design", "Hands-on practice", "Human review"],
         "guides_eyebrow": "Practical guides", "guides_h2": "Answers for the people choosing AI training.",
@@ -76,6 +79,7 @@ COPY = {
         "flow_output": "Осязаемый результат", "flow_output_text": "сценарий команды, чек-лист проверки и следующий тест",
         "programs_eyebrow": "Образовательные программы · второй экран", "programs_h2": "Выберите подходящий старт для команды.",
         "programs_intro": "Один день для знакомства с задачами, неделя для проверки процесса или четыре недели для регулярной практики. Работаем на задачах команды и согласованных инструментах.",
+        "illustration": "Иллюстрация", "program_image_alts": ["Команда разбирает задачу с карточками процессов на AI-лаборатории", "Два участника проверяют AI-сценарий по чек-листу процесса", "Бизнес-команда обсуждает общий AI-сценарий"],
         "programs": [
             ("01 · Один день", "AI-лаборатория", "Практический воркшоп: разбираем реальные задачи и выбираем один полезный AI-сценарий.", ["Задачи участников", "Пробный AI-шаг с проверкой", "Карта задач и следующий тест"], "Обсудить лабораторию"),
             ("02 · Одна неделя · рекомендуемый старт", "AI-спринт по процессу", "С поддержкой разбираем и проверяем один повторяющийся процесс команды.", ["Карта процесса и ответственный", "Практика одного AI-шага", "Карточка сценария и чек-лист проверки"], "Обсудить недельный спринт"),
@@ -86,11 +90,12 @@ COPY = {
         "proof_tag": "Командный кейс · 5 участников", "proof_title": "Общий подход для разных ролей.",
         "proof_facts": [("Отчёт и презентация", "60 → 12 мин"), ("Анализ рынка", "−70%"), ("Формулы в ERP", "9 ч → 15 мин"), ("HR-рутина", "−30 мин/день")],
         "proof_note": "Данные опубликованного кейса команды «ШильдПанель» относятся к конкретным задачам участников.",
-        "proof_photo": "Иллюстрация совместной работы над AI-сценарием", "proof_visual_note": "Иллюстрация процесса · результаты клиента показаны отдельно",
+        "proof_roles": "Операционный блок · Развитие · Маркетинг · HR · Управление", "proof_case_h3": "Пять руководителей. Разные рабочие задачи.", "proof_case_link": "Прочитать слова участников", "proof_count_unit": "участников",
         "quotes_eyebrow": "Слова участников", "quotes_h2": "Что говорила команда после практики с AI.", "quotes_intro": "Фрагменты отзывов участников группового обучения «ШильдПанель».",
         "quotes": [("Практика, практика… Набивайте руку, ребята.", "Александр", "Операционный директор · «ШильдПанель»"), ("Для меня то, что мы создали, инструмент, который я теперь смогу делегировать.", "Илья", "Маркетинг и аналитика · «ШильдПанель»"), ("Whisper — это точно то, что я использую почти ежедневно, это круто.", "Елизавета", "Руководитель HR · «ШильдПанель»")],
         "method_eyebrow": "Как устроена практика", "method_h2": "От задачи команды к проверенному способу работы.",
         "method_intro": "В каждой программе соединяем рабочую задачу, AI-шаг, оценку специалиста и следующий тест.",
+        "method_visual_alt": "Иллюстрированный маршрут от задачи команды через AI-шаг и проверку человеком к общей практике", "method_visual_caption": "Иллюстрация процесса · шаги выше описывают метод программы",
         "method_steps": [("01", "Выбираем задачу", "Фиксируем ответственного и нужный результат."), ("02", "Собираем сценарий", "Определяем материалы, инструменты и формат ответа."), ("03", "Проверяем результат", "Используем критерии качества и оценку специалиста."), ("04", "Сохраняем практику", "Документируем сценарий и выбираем следующий тест.")],
         "team_eyebrow": "Команда Practical AI", "team_h2": "Собираем экспертизу под задачу вашей команды.", "team_p": "В Practical AI соединяем разработку программы, практику с AI и проверку результата вокруг работы вашей команды. Вместе с людьми, которые отвечают за процесс, выстраиваем обучение так, чтобы участники попробовали полезный шаг и оценили его результат.", "team_link": "Как мы работаем →", "team_facets": ["Программа обучения", "Практика на задачах", "Проверка результата"],
         "guides_eyebrow": "Практические руководства", "guides_h2": "Ответы для тех, кто выбирает AI-обучение.",
@@ -173,9 +178,14 @@ def program_cards(lang: str) -> str:
     c = COPY[lang]
     topics = ["lab", "sprint", "program"]
     return '<div class="program-grid">' + "".join(
-        f'<article class="program-card' + (' program-card--lead' if i == 1 else '') + f'" id="{topics[i]}"><span class="program-tag">{esc(tag)}</span><h3>{esc(name)}</h3><p>{esc(description)}</p><ul>' + "".join(f'<li>{esc(item)}</li>' for item in bullets) + f'</ul><a class="card-link" href="{contact(lang,topics[i])}" target="_blank" rel="noopener noreferrer">{esc(cta)} ↗</a></article>'
+        f'<article class="program-card' + (' program-card--lead' if i == 1 else '') + f'" id="{topics[i]}"><figure class="program-visual"><img src="/assets/corporate/{PROGRAM_IMAGES[i]}" alt="{esc(c["program_image_alts"][i])}" width="1200" height="800" loading="lazy" decoding="async"><figcaption>{esc(c["illustration"])}</figcaption></figure><div class="program-card-body"><span class="program-tag">{esc(tag)}</span><h3>{esc(name)}</h3><p>{esc(description)}</p><ul>' + "".join(f'<li>{esc(item)}</li>' for item in bullets) + f'</ul><a class="card-link" href="{contact(lang,topics[i])}" target="_blank" rel="noopener noreferrer">{esc(cta)} ↗</a></div></article>'
         for i, (tag, name, description, bullets, cta) in enumerate(c["programs"])
     ) + '</div>'
+
+
+def method_visual(lang: str) -> str:
+    c = COPY[lang]
+    return f'<figure class="method-visual"><img src="/assets/brand/workflow-method-{lang}.svg" alt="{esc(c["method_visual_alt"])}" width="1536" height="1024" loading="lazy" decoding="async"><figcaption>{esc(c["method_visual_caption"])}</figcaption></figure>'
 
 
 def closing(lang: str) -> str:
@@ -200,9 +210,9 @@ def home(lang: str) -> str:
     facets = "".join(f'<li><span>0{i}</span>{esc(facet)}</li>' for i, facet in enumerate(c["team_facets"], 1))
     return f'''<section class="hero"><div class="wrap hero-grid"><div><span class="eyebrow">{esc(c['hero_eyebrow'])}</span><h1>{c['hero_h1']}</h1><p class="hero-lede">{esc(c['hero_lede'])}</p><div class="hero-actions"><a class="button" href="{contact(lang)}" target="_blank" rel="noopener noreferrer">{esc(c['hero_cta'])} ↗</a><a class="button button--ghost" href="#programs">{esc(c['hero_secondary'])} ↓</a></div><p class="hero-note">{esc(c['hero_note'])}</p></div><div class="flow-card"><div class="flow-top"><span>{esc(c['flow_top'])}</span><span>● {esc(c['flow_status'])}</span></div>{steps}<div class="flow-output"><b>{esc(c['flow_output'])}</b> · {esc(c['flow_output_text'])}</div></div></div></section>
 <section class="section programs" id="programs"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c['programs_eyebrow'])}</span><h2>{esc(c['programs_h2'])}</h2></div><p>{esc(c['programs_intro'])}</p></div>{program_cards(lang)}</div></section>
-<section class="section proof" id="case"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c['proof_eyebrow'])}</span><h2>{esc(c['proof_h2'])}</h2></div><p>{esc(c['proof_p'])}</p></div><div class="case-layout"><figure class="case-image"><img src="/assets/corporate/cross-functional-workflow-review.jpg" alt="{esc(c['proof_photo'])}" width="1448" height="1086" loading="lazy"><figcaption>{esc(c['proof_visual_note'])}</figcaption></figure><div class="proof-panel"><div class="case-panel-head"><img src="/assets/img/shildpanel-logo.svg" alt="ШильдПанель" loading="lazy"><span class="case-tag">{esc(c['proof_tag'])}</span></div><h3>{esc(c['proof_title'])}</h3><div class="proof-facts">{proof_facts}</div><p class="proof-note">{esc(c['proof_note'])}</p></div></div></div></section>
+<section class="section proof" id="case"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c['proof_eyebrow'])}</span><h2>{esc(c['proof_h2'])}</h2></div><p>{esc(c['proof_p'])}</p></div><div class="case-layout"><div class="case-story"><img src="/assets/img/shildpanel-logo.svg" alt="ШильдПанель" loading="lazy"><span class="case-story-number">05<span> / {esc(c['proof_count_unit'])}</span></span><h3>{esc(c['proof_case_h3'])}</h3><p>{esc(c['proof_roles'])}</p><a class="card-link" href="#reviews">{esc(c['proof_case_link'])} →</a></div><div class="proof-panel"><span class="case-tag">{esc(c['proof_tag'])}</span><h3>{esc(c['proof_title'])}</h3><div class="proof-facts">{proof_facts}</div><p class="proof-note">{esc(c['proof_note'])}</p></div></div></div></section>
 <section class="section quotes" id="reviews"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c['quotes_eyebrow'])}</span><h2>{esc(c['quotes_h2'])}</h2></div><p>{esc(c['quotes_intro'])}</p></div><div class="quote-grid">{quotes}</div></div></section>
-<section class="section method"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c['method_eyebrow'])}</span><h2>{esc(c['method_h2'])}</h2></div><p>{esc(c['method_intro'])}</p></div><div class="method-grid">{method}</div></div></section>
+<section class="section method"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c['method_eyebrow'])}</span><h2>{esc(c['method_h2'])}</h2></div><p>{esc(c['method_intro'])}</p></div><div class="method-grid">{method}</div>{method_visual(lang)}</div></section>
 <section class="section team-section"><div class="wrap team-grid"><div class="team-panel"><img src="/assets/brand/symbol-reverse.svg" alt="" width="128" height="128" loading="lazy"><ol>{facets}</ol></div><div><span class="eyebrow">{esc(c['team_eyebrow'])}</span><h2>{esc(c['team_h2'])}</h2><p>{esc(c['team_p'])}</p><a class="card-link" href="{u(lang,'about')}">{esc(c['team_link'])}</a></div></div></section>
 <section class="section"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c['guides_eyebrow'])}</span><h2>{esc(c['guides_h2'])}</h2></div></div><div class="guide-grid">{guides}</div></div></section>{closing(lang)}'''
 
@@ -220,13 +230,13 @@ def hr(lang: str) -> str:
 def programs(lang: str) -> str:
     c = COPY[lang]
     method = "".join(f'<article class="method-card"><span class="step">{number}</span><h3>{esc(title)}</h3><p>{esc(detail)}</p></article>' for number, title, detail in c["method_steps"])
-    return page_hero(lang,c["program_page_eyebrow"],c["program_page_h1"],c["program_page_intro"]) + f'<section class="section programs"><div class="wrap">{program_cards(lang)}</div></section><section class="section method"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c["method_eyebrow"])}</span><h2>{esc(c["method_h2"])}</h2></div><p>{esc(c["method_intro"])}</p></div><div class="method-grid">{method}</div></div></section>{evidence_teaser(lang)}{closing(lang)}'
+    return page_hero(lang,c["program_page_eyebrow"],c["program_page_h1"],c["program_page_intro"]) + f'<section class="section programs"><div class="wrap">{program_cards(lang)}</div></section><section class="section method"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c["method_eyebrow"])}</span><h2>{esc(c["method_h2"])}</h2></div><p>{esc(c["method_intro"])}</p></div><div class="method-grid">{method}</div>{method_visual(lang)}</div></section>{evidence_teaser(lang)}{closing(lang)}'
 
 
 def about(lang: str) -> str:
     c = COPY[lang]
     method = "".join(f'<article class="method-card"><span class="step">{number}</span><h3>{esc(title)}</h3><p>{esc(detail)}</p></article>' for number, title, detail in c["method_steps"])
-    return f'<section class="section editorial"><div class="wrap"><span class="eyebrow">{esc(c["about_eyebrow"])}</span><h1>{esc(c["about_h1"])}</h1><p class="lead">{esc(c["about_lead"])}</p><div class="content-grid"><div><h2>{esc(c["about_method_h2"])}</h2><p>{esc(c["about_method_p"])}</p></div><div><h2>{esc(c["about_background_h2"])}</h2><p>{esc(c["about_background_p"])}</p></div></div></div></section><section class="section method"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c["method_eyebrow"])}</span><h2>{esc(c["method_h2"])}</h2></div><p>{esc(c["method_intro"])}</p></div><div class="method-grid">{method}</div></div></section>{evidence_teaser(lang)}<section class="section programs"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c["programs_eyebrow"])}</span><h2>{esc(c["programs_h2"])}</h2></div></div>{program_cards(lang)}</div></section>{closing(lang)}'
+    return f'<section class="section editorial"><div class="wrap"><span class="eyebrow">{esc(c["about_eyebrow"])}</span><h1>{esc(c["about_h1"])}</h1><p class="lead">{esc(c["about_lead"])}</p><div class="content-grid"><div><h2>{esc(c["about_method_h2"])}</h2><p>{esc(c["about_method_p"])}</p></div><div><h2>{esc(c["about_background_h2"])}</h2><p>{esc(c["about_background_p"])}</p></div></div></div></section><section class="section method"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c["method_eyebrow"])}</span><h2>{esc(c["method_h2"])}</h2></div><p>{esc(c["method_intro"])}</p></div><div class="method-grid">{method}</div>{method_visual(lang)}</div></section>{evidence_teaser(lang)}<section class="section programs"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c["programs_eyebrow"])}</span><h2>{esc(c["programs_h2"])}</h2></div></div>{program_cards(lang)}</div></section>{closing(lang)}'
 
 
 def main() -> None:

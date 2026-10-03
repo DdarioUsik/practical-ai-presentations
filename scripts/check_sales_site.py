@@ -77,6 +77,12 @@ def check() -> None:
                 errors.append(f"{url_path}: founder-centric content remains")
             if route == "" and ("class=\"quote-grid\"" not in html or "class=\"proof-facts\"" not in html):
                 errors.append(f"{url_path}: case metrics or participant quotes missing")
+            if html.count('class="program-visual"') != 3 or html.count(f'<figcaption>{"Illustration" if lang == "en" else "Иллюстрация"}</figcaption>') != 3:
+                errors.append(f"{url_path}: program illustrations or disclosure missing")
+            if route in ("", "programs", "about") and f'/assets/brand/workflow-method-{lang}.svg' not in html:
+                errors.append(f"{url_path}: localized method visual missing")
+            if route == "" and 'class="case-image"' in html:
+                errors.append(f"{url_path}: synthetic image remains in the evidence block")
             for ref in parser.refs:
                 parsed = urlsplit(ref)
                 if parsed.scheme or parsed.netloc or not parsed.path or ref.startswith("#"):

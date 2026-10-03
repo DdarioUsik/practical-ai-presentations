@@ -58,23 +58,28 @@ h3 { font-size:clamp(22px,2vw,28px); }
 .section .eyebrow::before { background:linear-gradient(115deg,var(--navy) 0 42%,transparent 42% 55%,var(--yellow) 55%); }
 .programs { background:#e9eff6; }
 .program-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-.program-card { display:flex; flex-direction:column; min-height:365px; padding:27px; background:#fff; border:1px solid var(--line); border-radius:16px; }
+.program-card { display:flex; flex-direction:column; min-height:515px; overflow:hidden; background:#fff; border:1px solid var(--line); border-radius:16px; }
 .program-card--lead { border:2px solid var(--yellow); box-shadow:0 14px 45px rgba(23,33,61,.09); }
+.program-visual { position:relative; margin:0; background:#cbd5e1; }
+.program-visual img { display:block; width:100%; aspect-ratio:3/2; object-fit:cover; }
+.program-visual figcaption { position:absolute; right:12px; bottom:12px; padding:5px 9px; border-radius:20px; background:rgba(17,26,49,.84); color:#fff; font-size:10px; font-weight:700; letter-spacing:.04em; }
+.program-card-body { display:flex; flex:1; flex-direction:column; padding:24px 27px 27px; }
 .program-tag { color:#60728c; text-transform:uppercase; letter-spacing:.12em; font-size:10px; font-weight:800; }
 .program-card--lead .program-tag { color:#806b07; }
-.program-card h3 { margin:27px 0 13px; }
+.program-card h3 { margin:20px 0 13px; }
 .program-card p { color:#59677d; font-size:14px; }
 .program-card ul { margin:4px 0 25px; padding-left:18px; color:#59677d; font-size:13px; }
 .program-card li { margin:5px 0; }
 .card-link { margin-top:auto; font-size:13px; font-weight:800; text-underline-offset:4px; }
 .proof { background:#fff; }
 .case-layout { display:grid; grid-template-columns:.82fr 1.18fr; gap:18px; align-items:stretch; }
-.case-image { position:relative; overflow:hidden; min-height:430px; margin:0; border-radius:16px; background:#dbe3eb; }
-.case-image img { width:100%; height:100%; object-fit:cover; display:block; }
-.case-image figcaption { position:absolute; bottom:0; left:0; right:0; padding:32px 19px 15px; color:#fff; font-size:11px; background:linear-gradient(transparent,rgba(17,26,49,.8)); }
+.case-story { display:flex; flex-direction:column; min-height:430px; padding:30px; border-radius:16px; background:#e9eff6; }
+.case-story img { display:block; width:min(230px,100%); height:65px; object-fit:contain; object-position:left center; }
+.case-story-number { margin-top:auto; color:var(--navy); font-size:clamp(62px,8vw,105px); font-weight:800; letter-spacing:-.09em; line-height:1; }
+.case-story-number span { margin-left:13px; color:#5d6f89; font-size:11px; letter-spacing:.08em; text-transform:uppercase; vertical-align:middle; }
+.case-story h3 { margin:15px 0 9px; }
+.case-story p { color:var(--muted); font-size:13px; }
 .proof-panel { padding:30px; background:var(--navy); color:#fff; border-radius:16px; }
-.case-panel-head { display:flex; justify-content:space-between; align-items:center; gap:15px; }
-.case-panel-head img { max-width:150px; max-height:52px; object-fit:contain; background:#fff; border-radius:7px; padding:8px; }
 .proof-panel .case-tag { color:var(--yellow); text-transform:uppercase; letter-spacing:.12em; font-size:10px; font-weight:800; }
 .proof-panel h3 { margin:23px 0; }
 .proof-panel p { color:#cbd5e3; font-size:14px; }
@@ -104,6 +109,9 @@ h3 { font-size:clamp(22px,2vw,28px); }
 .method-card .step { color:var(--yellow); font-size:11px; font-weight:800; }
 .method-card h3 { margin:35px 0 10px; font-size:19px; }
 .method-card p { color:#bbc9db; font-size:13px; }
+.method-visual { max-width:1024px; margin:38px auto 0; }
+.method-visual img { display:block; width:100%; height:auto; border-radius:18px; }
+.method-visual figcaption { margin-top:9px; color:#b7c6d8; font-size:11px; text-align:right; }
 .team-section { background:#fff; }
 .team-grid { display:grid; grid-template-columns:.72fr 1.28fr; gap:54px; align-items:center; }
 .team-panel { min-height:300px; padding:27px; border-radius:16px; background:var(--navy); color:#fff; }
@@ -166,7 +174,7 @@ h3 { font-size:clamp(22px,2vw,28px); }
   .program-card,.method-card,.guide-card { min-height:0; }
   .program-card h3 { margin-top:21px; }
   .case-layout,.team-grid { gap:26px; }
-  .case-image { min-height:260px; }
+  .case-story { min-height:300px; }
   .quote-card { min-height:0; }
   .closing-inner,.footer-inner { flex-direction:column; align-items:flex-start; }
   .closing .button { width:100%; }
