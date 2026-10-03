@@ -16,7 +16,7 @@ COPY = {
     "en": {
         "nav": ["For HR & L&D", "Programs", "How we work", "Guides"],
         "discuss": "Discuss training for your team",
-        "language": "Русский",
+        "language": "RU",
         "hero_eyebrow": "Practical AI · for business teams",
         "hero_h1": "Corporate AI training built around <em>your team’s real work.</em>",
         "hero_lede": "We train business teams to use AI in the work they already do. Bring a recurring task; your team practises an AI-supported step, reviews the result and leaves with a clear next test.",
@@ -27,12 +27,14 @@ COPY = {
         "flow_steps": [("Choose a real team task", "Start with a repeatable workflow"), ("Map the AI step", "Inputs, output and quality criteria"), ("Practise and review", "Use agreed tools; a person checks the result"), ("Take a next step", "Keep a workflow card and a plan to test it")],
         "flow_output": "Visible output", "flow_output_text": "a team workflow, review checklist and next test",
         "programs_eyebrow": "Educational programs · second step", "programs_h2": "Choose the right starting pace for your team.",
-        "programs_intro": "One day to explore, one week to test a workflow, or four weeks to build regular practice. We shape the work around your team's task and agreed tools.",
-        "illustration": "Illustration", "program_image_alts": ["Team mapping a task with process cards during an AI lab", "Two colleagues checking an AI workflow against a process checklist", "Business team reviewing a shared AI workflow"],
+        "programs_intro": "A company-wide day for up to 150 people, a focused week for a small leadership group, or four weeks of practice for around 15 middle managers.",
+        "program_image_alts": ["Large company AI learning session in an auditorium", "Small leadership group reviewing a management workflow", "Middle managers working together in an AI practice workshop"],
+        "program_audiences": ["Company-wide teams", "CEO & leadership team", "Middle managers"],
+        "program_sizes": ["Up to 150 people", "Small group", "Around 15 people"],
         "programs": [
-            ("01 · One day", "AI Team Lab", "A practical workshop to explore real tasks and choose one useful AI workflow.", ["Bring representative team tasks", "Try an AI step with human review", "Leave with a task map and next test"], "Discuss a team lab"),
-            ("02 · One week · recommended start", "AI Workflow Sprint", "A guided sprint to map and test one repeatable process with your team.", ["Map the process and its owner", "Practise one AI-supported step", "Take away a workflow card and review checklist"], "Discuss a one-week sprint"),
-            ("03 · Four weeks", "Team Practice Program", "Supported practice across several roles and work weeks.", ["Work on real tasks between sessions", "Review outputs together", "Create a shared team playbook"], "Discuss a team program"),
+            ("01 · One day", "Company AI Lab", "A company-wide introduction to practical AI through tasks from different teams.", ["Examples from several functions", "Guided practice on familiar tasks", "A shortlist of use cases to take forward"], "Discuss a company lab"),
+            ("02 · One week", "AI Leadership Sprint", "A focused sprint for the CEO and leadership team around one management workflow.", ["Choose a leadership priority", "Test one AI-supported process", "Leave with a pilot plan and review criteria"], "Discuss a leadership sprint"),
+            ("03 · Four weeks", "Middle Management Program", "Applied AI practice for managers across functions and working weeks.", ["Work on recurring tasks between sessions", "Review results across teams", "Build a shared management playbook"], "Discuss the manager program"),
         ],
         "proof_eyebrow": "Real team work", "proof_h2": "Training starts with work people recognize.",
         "proof_p": "In one published Practical AI team case, five ShildPanel leaders practised with reports, competitor research, ERP formulas and HR routines. The example shows the kind of tasks a team can bring into training; the scope and results of a new program are agreed separately.",
@@ -41,10 +43,10 @@ COPY = {
         "proof_note": "Figures reported in the published ShildPanel team case; they describe those tasks, not a typical program outcome.",
         "proof_roles": "Operations · Business development · Marketing · HR · Management", "proof_case_h3": "Five leaders. Different daily work.", "proof_case_link": "Read what participants said", "proof_count_unit": "participants",
         "quotes_eyebrow": "In their own words", "quotes_h2": "What the team said after putting AI to work.", "quotes_intro": "Selected remarks from the ShildPanel team case. English translations of the original Russian comments.",
-        "quotes": [("Practice, practice… Keep building your skills, everyone.", "Alexander", "Operations Director · ShildPanel"), ("What we created is a tool I can now delegate.", "Ilya", "Marketing and Analytics · ShildPanel"), ("Whisper is something I use almost every day. It’s great.", "Elizaveta", "Head of HR · ShildPanel")],
+        "quotes": [("Now I have a playbook I can hand to my team to put into practice.", "Alexander", "Operations Director · ShildPanel"), ("What we created is a tool I can now delegate.", "Ilya", "Marketing and Analytics · ShildPanel"), ("Whisper is something I use almost every day. It’s great.", "Elizaveta", "Head of HR · ShildPanel")],
         "method_eyebrow": "How the learning works", "method_h2": "From a team task to a reviewed way of working.",
         "method_intro": "Every program connects a business task, an AI step, human judgment and a practical next action.",
-        "method_visual_alt": "Illustrated sequence from a team task through an AI step and human review to shared practice", "method_visual_caption": "Illustrated workflow · the steps above describe the program method",
+        "method_visual_alt": "Illustrated sequence from a team task through an AI step and human review to shared practice",
         "method_steps": [("01", "Choose a task", "Name the process owner and the result the team needs."), ("02", "Design a workflow", "Define inputs, approved tools and the expected output."), ("03", "Review the result", "Use clear quality criteria and human judgment."), ("04", "Keep what works", "Document the pattern and choose the next test.")],
         "team_eyebrow": "The team behind the training", "team_h2": "The right expertise for the work in front of you.", "team_p": "Practical AI brings learning design, hands-on AI practice and review together around your team's task. We shape each program with the people who own the work, so participants can try a useful step and judge its output together.", "team_link": "See how we work →", "team_facets": ["Learning design", "Hands-on practice", "Human review"],
         "guides_eyebrow": "Practical guides", "guides_h2": "Answers for the people choosing AI training.",
@@ -57,18 +59,18 @@ COPY = {
         "hr_questions": [("Who is learning?", "Name the team, roles and process owner."), ("What work will they bring?", "Choose a recurring task with a visible output."), ("How will they check it?", "Agree on tools, data boundaries and human review."), ("What happens afterward?", "Define a small test for the next working week.")],
         "hr_next_h2": "A clear first brief makes the training useful.", "hr_next_p": "Tell us the team, one repeatable task and the result you want to see. We can then choose a lab, sprint or longer program together.",
         "program_page_eyebrow": "Corporate AI learning", "program_page_h1": "Practical AI training programs for business teams.",
-        "program_page_intro": "Three ways to practise on real work. Start with the team task and choose a duration that gives people enough time to try, review and reuse a useful AI step.",
+        "program_page_intro": "Choose a company-wide lab, a small leadership sprint or four weeks of practice for middle managers. Each format starts with real work and a clear next step.",
         "about_eyebrow": "How Practical AI works", "about_h1": "A team approach to practical AI learning.", "about_lead": "We bring learning, business and AI practice together around your team's work. The task defines the format and the mix of expertise involved.",
         "about_method_h2": "One shared method", "about_method_p": "We start with a recurring task and the people responsible for it. Together we map an AI step, practise on a representative example, review the output and document a next test for normal work.",
         "about_background_h2": "A team around the task", "about_background_p": "Program roles follow the team's needs, tools and workflow. Practical AI coordinates the learning design, working sessions and review so each group has a clear path from its first task to a practical next step.",
         "meta_home": ("Corporate AI Training for Business Teams | Practical AI", "Hands-on corporate AI training for business teams. One-day labs, one-week workflow sprints and four-week programs built around real work."),
         "meta_hr": ("AI Training for HR and L&D Teams | Practical AI", "Plan practical AI training for employees around real workflows, agreed tools, human review and a clear next step."),
-        "meta_programs": ("Corporate AI Training Programs | Practical AI", "Compare Practical AI's one-day team lab, one-week AI workflow sprint and four-week team practice program."),
+        "meta_programs": ("Corporate AI Training Programs | Practical AI", "Compare a company-wide AI lab for up to 150 people, a small leadership sprint and a four-week program for around 15 middle managers."),
         "meta_about": ("How Practical AI Works | Team Approach to AI Training", "Meet the Practical AI team approach to corporate AI training: learning design, real workflows, hands-on practice and human review."),
     },
     "ru": {
         "nav": ["Для HR и L&D", "Программы", "Как мы работаем", "Руководства"],
-        "discuss": "Обсудить обучение команды", "language": "English",
+        "discuss": "Обсудить обучение команды", "language": "EN",
         "hero_eyebrow": "Practical AI · для бизнес-команд",
         "hero_h1": "Корпоративное AI-обучение <em>на задачах вашей команды.</em>",
         "hero_lede": "Обучаем команды применять AI в привычной работе. Берём повторяющуюся задачу, отрабатываем AI-шаг, проверяем результат и определяем следующий тест.",
@@ -78,12 +80,14 @@ COPY = {
         "flow_steps": [("Выбираем задачу команды", "Начинаем с повторяющегося процесса"), ("Размечаем AI-шаг", "Входные данные, результат и критерии качества"), ("Практикуемся и проверяем", "Согласованные инструменты и оценка специалиста"), ("Определяем следующий шаг", "Сохраняем сценарий и план его проверки")],
         "flow_output": "Осязаемый результат", "flow_output_text": "сценарий команды, чек-лист проверки и следующий тест",
         "programs_eyebrow": "Образовательные программы · второй экран", "programs_h2": "Выберите подходящий старт для команды.",
-        "programs_intro": "Один день для знакомства с задачами, неделя для проверки процесса или четыре недели для регулярной практики. Работаем на задачах команды и согласованных инструментах.",
-        "illustration": "Иллюстрация", "program_image_alts": ["Команда разбирает задачу с карточками процессов на AI-лаборатории", "Два участника проверяют AI-сценарий по чек-листу процесса", "Бизнес-команда обсуждает общий AI-сценарий"],
+        "programs_intro": "Один день для всей компании до 150 человек, недельный спринт для небольшой группы руководителей или четыре недели практики для примерно 15 руководителей среднего звена.",
+        "program_image_alts": ["Большая группа сотрудников на AI-обучении в зале", "Небольшая группа руководителей разбирает управленческий процесс", "Руководители среднего звена работают вместе на AI-практикуме"],
+        "program_audiences": ["Вся компания", "CEO и руководство", "Руководители среднего звена"],
+        "program_sizes": ["До 150 человек", "Небольшая группа", "Около 15 человек"],
         "programs": [
-            ("01 · Один день", "AI-лаборатория", "Практический воркшоп: разбираем реальные задачи и выбираем один полезный AI-сценарий.", ["Задачи участников", "Пробный AI-шаг с проверкой", "Карта задач и следующий тест"], "Обсудить лабораторию"),
-            ("02 · Одна неделя · рекомендуемый старт", "AI-спринт по процессу", "С поддержкой разбираем и проверяем один повторяющийся процесс команды.", ["Карта процесса и ответственный", "Практика одного AI-шага", "Карточка сценария и чек-лист проверки"], "Обсудить недельный спринт"),
-            ("03 · Четыре недели", "Программа командной практики", "Практика для нескольких ролей на протяжении рабочих недель.", ["Задачи между занятиями", "Совместная проверка результатов", "Общая база практик команды"], "Обсудить программу"),
+            ("01 · Один день", "AI-лаборатория для компании", "Однодневное знакомство с прикладным AI на задачах разных команд.", ["Примеры из разных функций", "Практика на знакомых задачах", "Список сценариев для продолжения"], "Обсудить лабораторию"),
+            ("02 · Одна неделя", "AI-спринт для руководства", "Короткий спринт для CEO и команды руководителей вокруг одного управленческого процесса.", ["Выбор управленческой задачи", "Проверка одного AI-сценария", "План пилота и критерии оценки"], "Обсудить спринт"),
+            ("03 · Четыре недели", "Программа для среднего звена", "Прикладная AI-практика для руководителей разных функций на протяжении четырёх недель.", ["Повторяющиеся задачи между занятиями", "Совместная проверка результатов", "Общий плейбук для руководителей"], "Обсудить программу"),
         ],
         "proof_eyebrow": "Реальная работа команды", "proof_h2": "Учимся на задачах, которые люди узнают.",
         "proof_p": "В опубликованном кейсе Practical AI пять руководителей «ШильдПанель» работали с отчётами, анализом конкурентов, ERP-формулами и HR-рутиной. Это пример задач для обучения; объём и ожидаемый результат новой программы согласуем отдельно.",
@@ -92,10 +96,10 @@ COPY = {
         "proof_note": "Данные опубликованного кейса команды «ШильдПанель» относятся к конкретным задачам участников.",
         "proof_roles": "Операционный блок · Развитие · Маркетинг · HR · Управление", "proof_case_h3": "Пять руководителей. Разные рабочие задачи.", "proof_case_link": "Прочитать слова участников", "proof_count_unit": "участников",
         "quotes_eyebrow": "Слова участников", "quotes_h2": "Что говорила команда после практики с AI.", "quotes_intro": "Фрагменты отзывов участников группового обучения «ШильдПанель».",
-        "quotes": [("Практика, практика… Набивайте руку, ребята.", "Александр", "Операционный директор · «ШильдПанель»"), ("Для меня то, что мы создали, инструмент, который я теперь смогу делегировать.", "Илья", "Маркетинг и аналитика · «ШильдПанель»"), ("Whisper — это точно то, что я использую почти ежедневно, это круто.", "Елизавета", "Руководитель HR · «ШильдПанель»")],
+        "quotes": [("Теперь у меня есть плейбук, который я могу передать команде, чтобы она могла всё реализовать.", "Александр", "Операционный директор · «ШильдПанель»"), ("Для меня то, что мы создали, инструмент, который я теперь смогу делегировать.", "Илья", "Маркетинг и аналитика · «ШильдПанель»"), ("Whisper — это точно то, что я использую почти ежедневно, это круто.", "Елизавета", "Руководитель HR · «ШильдПанель»")],
         "method_eyebrow": "Как устроена практика", "method_h2": "От задачи команды к проверенному способу работы.",
         "method_intro": "В каждой программе соединяем рабочую задачу, AI-шаг, оценку специалиста и следующий тест.",
-        "method_visual_alt": "Иллюстрированный маршрут от задачи команды через AI-шаг и проверку человеком к общей практике", "method_visual_caption": "Иллюстрация процесса · шаги выше описывают метод программы",
+        "method_visual_alt": "Иллюстрированный маршрут от задачи команды через AI-шаг и проверку человеком к общей практике",
         "method_steps": [("01", "Выбираем задачу", "Фиксируем ответственного и нужный результат."), ("02", "Собираем сценарий", "Определяем материалы, инструменты и формат ответа."), ("03", "Проверяем результат", "Используем критерии качества и оценку специалиста."), ("04", "Сохраняем практику", "Документируем сценарий и выбираем следующий тест.")],
         "team_eyebrow": "Команда Practical AI", "team_h2": "Собираем экспертизу под задачу вашей команды.", "team_p": "В Practical AI соединяем разработку программы, практику с AI и проверку результата вокруг работы вашей команды. Вместе с людьми, которые отвечают за процесс, выстраиваем обучение так, чтобы участники попробовали полезный шаг и оценили его результат.", "team_link": "Как мы работаем →", "team_facets": ["Программа обучения", "Практика на задачах", "Проверка результата"],
         "guides_eyebrow": "Практические руководства", "guides_h2": "Ответы для тех, кто выбирает AI-обучение.",
@@ -108,13 +112,13 @@ COPY = {
         "hr_questions": [("Кто учится?", "Команда, роли и ответственный за процесс."), ("С чем работают?", "Повторяющаяся задача с видимым результатом."), ("Как проверяют?", "Инструменты, границы данных и оценка специалиста."), ("Что делают после?", "Небольшой тест на следующей рабочей неделе.")],
         "hr_next_h2": "Ясный первый бриф делает обучение полезным.", "hr_next_p": "Расскажите о команде, одной повторяющейся задаче и результате, который хотите увидеть. Вместе выберем лабораторию, спринт или более длительную программу.",
         "program_page_eyebrow": "Корпоративное AI-обучение", "program_page_h1": "Практические AI-программы для бизнес-команд.",
-        "program_page_intro": "Три формата практики на реальной работе. Начинаем с задачи команды и выбираем длительность, достаточную для пробы, проверки и повторного применения AI-шага.",
+        "program_page_intro": "Выберите лабораторию для всей компании, короткий спринт для руководства или четырёхнедельную практику для среднего звена. Каждый формат строится вокруг реальной работы.",
         "about_eyebrow": "Как работает Practical AI", "about_h1": "Командный подход к практическому AI-обучению.", "about_lead": "Объединяем разработку образовательных программ, понимание бизнес-процессов и практику с AI вокруг работы вашей команды. Задача определяет формат и состав специалистов.",
         "about_method_h2": "Общий метод", "about_method_p": "Начинаем с повторяющейся задачи и людей, которые за неё отвечают. Вместе размечаем AI-шаг, практикуемся на понятном примере, проверяем результат и документируем следующий тест для повседневной работы.",
         "about_background_h2": "Команда под задачу", "about_background_p": "Роли в программе зависят от команды, её инструментов и процесса. Practical AI координирует разработку программы, рабочие встречи и проверку результата, чтобы группа прошла понятный путь от первой задачи к следующему практическому шагу.",
         "meta_home": ("Корпоративное AI-обучение для команд | Practical AI", "Практическое AI-обучение для бизнес-команд на реальных задачах: однодневная лаборатория, недельный спринт и четырёхнедельная программа."),
         "meta_hr": ("AI-обучение для HR и L&D | Practical AI", "Как организовать AI-обучение сотрудников на рабочих процессах: задачи, согласованные инструменты, проверка и следующий шаг."),
-        "meta_programs": ("Программы корпоративного AI-обучения | Practical AI", "Сравните однодневную AI-лабораторию, недельный спринт и четырёхнедельную программу командной практики."),
+        "meta_programs": ("Программы корпоративного AI-обучения | Practical AI", "Сравните AI-лабораторию до 150 человек, спринт для небольшой группы руководителей и четырёхнедельную программу для примерно 15 руководителей среднего звена."),
         "meta_about": ("Как работает Practical AI | Командное AI-обучение", "Командный подход Practical AI к корпоративному AI-обучению: программа под рабочие задачи, практика и проверка результата."),
     },
 }
@@ -126,8 +130,8 @@ def u(lang: str, route: str = "") -> str:
 
 def contact(lang: str, topic: str = "team") -> str:
     messages = {
-        "en": {"team": "Hello! I’d like to discuss AI training for my team.", "lab": "Hello! I’d like to discuss an AI team lab.", "sprint": "Hello! I’d like to discuss a one-week AI workflow sprint.", "program": "Hello! I’d like to discuss a four-week team practice program."},
-        "ru": {"team": "Здравствуйте! Хочу обсудить AI-обучение для моей команды.", "lab": "Здравствуйте! Хочу обсудить AI-лабораторию для команды.", "sprint": "Здравствуйте! Хочу обсудить недельный AI-спринт по процессу.", "program": "Здравствуйте! Хочу обсудить четырёхнедельную программу практики для команды."},
+        "en": {"team": "Hello! I’d like to discuss AI training for my team.", "lab": "Hello! I’d like to discuss a company-wide AI lab.", "sprint": "Hello! I’d like to discuss a one-week AI leadership sprint.", "program": "Hello! I’d like to discuss a four-week middle management program."},
+        "ru": {"team": "Здравствуйте! Хочу обсудить AI-обучение для моей команды.", "lab": "Здравствуйте! Хочу обсудить AI-лабораторию для всей компании.", "sprint": "Здравствуйте! Хочу обсудить недельный AI-спринт для руководства.", "program": "Здравствуйте! Хочу обсудить четырёхнедельную программу для руководителей среднего звена."},
     }
     return "https://t.me/Danil_alto?text=" + quote(messages[lang][topic])
 
@@ -178,14 +182,14 @@ def program_cards(lang: str) -> str:
     c = COPY[lang]
     topics = ["lab", "sprint", "program"]
     return '<div class="program-grid">' + "".join(
-        f'<article class="program-card' + (' program-card--lead' if i == 1 else '') + f'" id="{topics[i]}"><figure class="program-visual"><img src="/assets/corporate/{PROGRAM_IMAGES[i]}" alt="{esc(c["program_image_alts"][i])}" width="1200" height="800" loading="lazy" decoding="async"><figcaption>{esc(c["illustration"])}</figcaption></figure><div class="program-card-body"><span class="program-tag">{esc(tag)}</span><h3>{esc(name)}</h3><p>{esc(description)}</p><ul>' + "".join(f'<li>{esc(item)}</li>' for item in bullets) + f'</ul><a class="card-link" href="{contact(lang,topics[i])}" target="_blank" rel="noopener noreferrer">{esc(cta)} ↗</a></div></article>'
+        f'<article class="program-card' + (' program-card--lead' if i == 1 else '') + f'" id="{topics[i]}"><div class="program-card-body"><div class="program-card-header"><figure class="program-visual"><img src="/assets/corporate/{PROGRAM_IMAGES[i]}" alt="{esc(c["program_image_alts"][i])}" width="384" height="384" loading="lazy" decoding="async"></figure><div><span class="program-tag">{esc(tag)}</span><h3>{esc(name)}</h3></div></div><div class="program-fit"><span>{esc(c["program_audiences"][i])}</span><b>{esc(c["program_sizes"][i])}</b></div><p>{esc(description)}</p><ul>' + "".join(f'<li>{esc(item)}</li>' for item in bullets) + f'</ul><a class="card-link" href="{contact(lang,topics[i])}" target="_blank" rel="noopener noreferrer">{esc(cta)} ↗</a></div></article>'
         for i, (tag, name, description, bullets, cta) in enumerate(c["programs"])
     ) + '</div>'
 
 
 def method_visual(lang: str) -> str:
     c = COPY[lang]
-    return f'<figure class="method-visual"><img src="/assets/brand/workflow-method-{lang}.svg" alt="{esc(c["method_visual_alt"])}" width="1536" height="1024" loading="lazy" decoding="async"><figcaption>{esc(c["method_visual_caption"])}</figcaption></figure>'
+    return f'<figure class="method-visual"><img src="/assets/brand/workflow-method-{lang}.svg" alt="{esc(c["method_visual_alt"])}" width="1536" height="1024" loading="lazy" decoding="async"></figure>'
 
 
 def closing(lang: str) -> str:

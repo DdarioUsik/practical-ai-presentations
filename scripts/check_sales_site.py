@@ -77,8 +77,13 @@ def check() -> None:
                 errors.append(f"{url_path}: founder-centric content remains")
             if route == "" and ("class=\"quote-grid\"" not in html or "class=\"proof-facts\"" not in html):
                 errors.append(f"{url_path}: case metrics or participant quotes missing")
-            if html.count('class="program-visual"') != 3 or html.count(f'<figcaption>{"Illustration" if lang == "en" else "Иллюстрация"}</figcaption>') != 3:
-                errors.append(f"{url_path}: program illustrations or disclosure missing")
+            if html.count('class="program-visual"') != 3 or html.count('class="program-fit"') != 3:
+                errors.append(f"{url_path}: program thumbnails or audience details missing")
+            if '<figcaption>Illustration</figcaption>' in html or '<figcaption>Иллюстрация</figcaption>' in html:
+                errors.append(f"{url_path}: obsolete illustration label")
+            language_label = "RU" if lang == "en" else "EN"
+            if f'class="lang-switch"' not in html or f'>{language_label}</a>' not in html:
+                errors.append(f"{url_path}: language switch label missing")
             if route in ("", "programs", "about") and f'/assets/brand/workflow-method-{lang}.svg' not in html:
                 errors.append(f"{url_path}: localized method visual missing")
             if route == "" and 'class="case-image"' in html:

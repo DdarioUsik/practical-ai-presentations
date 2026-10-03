@@ -6,7 +6,7 @@ Practical AI provides corporate AI training for business teams. Its team builds 
 
 - [Corporate AI training](https://practical-ai.pro/): service overview and ways to start.
 - [AI training for HR and L&D](https://practical-ai.pro/for-hr/): how to frame a useful first program.
-- [Programs](https://practical-ai.pro/programs/): one-day team lab, one-week AI workflow sprint and four-week team practice.
+- [Programs](https://practical-ai.pro/programs/): one-day company-wide AI lab for up to 150 people, one-week sprint for a small leadership group and four-week program for around 15 middle managers.
 - [How Practical AI works](https://practical-ai.pro/about/): team approach and learning method.
 - [Guides](https://practical-ai.pro/blog/): practical articles for business teams.
 
