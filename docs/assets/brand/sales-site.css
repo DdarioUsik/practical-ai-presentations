@@ -74,7 +74,7 @@ h3 { font-size:clamp(22px,2vw,28px); }
 .program-card li { margin:5px 0; }
 .card-link { margin-top:auto; font-size:13px; font-weight:800; text-underline-offset:4px; }
 .proof { background:#fff; }
-.case-layout { display:grid; grid-template-columns:.82fr 1.18fr; gap:18px; align-items:stretch; }
+.case-layout { display:grid; grid-template-columns:.66fr 1.34fr; gap:18px; align-items:stretch; }
 .case-story { display:flex; flex-direction:column; min-height:430px; padding:30px; border-radius:16px; background:#e9eff6; }
 .case-story img { display:block; width:min(230px,100%); height:65px; object-fit:contain; object-position:left center; }
 .case-story-number { margin-top:auto; color:var(--navy); font-size:clamp(62px,8vw,105px); font-weight:800; letter-spacing:-.09em; line-height:1; }
@@ -86,9 +86,17 @@ h3 { font-size:clamp(22px,2vw,28px); }
 .proof-panel h3 { margin:23px 0; }
 .proof-panel p { color:#cbd5e3; font-size:14px; }
 .proof-facts { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
-.proof-metric { padding:19px; border:1px solid rgba(255,255,255,.18); border-radius:9px; }
-.proof-metric b { display:block; color:var(--yellow); font-size:clamp(24px,3vw,37px); letter-spacing:-.05em; line-height:1.1; }
-.proof-metric span { display:block; margin-top:8px; color:#d0dae7; font-size:12px; }
+.proof-metric { min-width:0; padding:19px; border:1px solid rgba(255,255,255,.22); border-radius:11px; background:rgba(255,255,255,.035); }
+.proof-index { display:block; color:var(--yellow); font-size:11px; font-weight:800; letter-spacing:.12em; }
+.proof-metric h4 { margin:9px 0 3px; color:#fff; font-size:17px; line-height:1.2; }
+.proof-metric .proof-task { min-height:38px; margin:0 0 15px; color:#b9c8db; font-size:12px; line-height:1.4; }
+.proof-comparison { display:flex; align-items:end; gap:9px; }
+.proof-comparison div { min-width:0; flex:1; }
+.proof-comparison span,.proof-single span { display:block; margin-bottom:4px; color:#aabbd1; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.07em; }
+.proof-comparison strong,.proof-single strong { display:block; color:var(--yellow); font-size:clamp(22px,2.6vw,32px); line-height:1.1; letter-spacing:-.04em; }
+.proof-comparison .proof-arrow { flex:0 0 auto; margin:0 0 5px; color:var(--yellow); font-size:23px; }
+.proof-single strong { font-size:clamp(21px,2.3vw,29px); }
+.proof-metric .proof-explanation { margin:14px 0 0; padding-top:11px; border-top:1px solid rgba(255,255,255,.17); color:#dbe3ed; font-size:11px; line-height:1.42; }
 .proof-panel .proof-note { margin:19px 0 0; font-size:11px; color:#aabbd1; }
 .quotes { background:#f7f6f1; }
 .quote-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
@@ -176,7 +184,12 @@ h3 { font-size:clamp(22px,2vw,28px); }
   .program-card,.method-card,.guide-card { min-height:0; }
   .program-card h3 { margin-top:7px; }
   .case-layout,.team-grid { gap:26px; }
-  .case-story { min-height:300px; }
+  .case-story { min-height:0; }
+  .case-story-number { margin-top:24px; font-size:66px; }
+  .case-story .card-link { margin-top:24px; }
+  .proof-panel { padding:22px; }
+  .proof-facts { grid-template-columns:1fr; }
+  .proof-metric .proof-task { min-height:0; }
   .quote-card { min-height:0; }
   .closing-inner,.footer-inner { flex-direction:column; align-items:flex-start; }
   .closing .button { width:100%; }

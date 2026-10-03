@@ -1,82 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1024" viewBox="0 0 1536 1024" role="img" aria-labelledby="title desc">
-<title id="title">От задачи команды к проверенному AI-сценарию</title>
-<desc id="desc">Векторная иллюстрация трёх этапов: задача команды, AI-черновик и проверка человеком. Это пример процесса, а не результат клиента.</desc>
-<defs>
-  <linearGradient id="board" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#17213D"/><stop offset="1" stop-color="#283C5D"/></linearGradient>
-  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE77A"/><stop offset="1" stop-color="#F4D447"/></linearGradient>
-  <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#070D1E" flood-opacity=".22"/></filter>
-  <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#FFFFFF" stroke-opacity=".045" stroke-width="1"/></pattern>
-</defs>
-<rect x="0" y="0" width="1536" height="1024" rx="0" fill="#E9EFF6" stroke="none" stroke-width="1" opacity="1"/>
-<rect x="42" y="42" width="1452" height="940" rx="34" fill="url(#board)" stroke="none" stroke-width="1" opacity="1"/>
-<rect x="42" y="42" width="1452" height="940" rx="34" fill="url(#grid)" stroke="none" stroke-width="1" opacity="1"/>
-<path d="M95 123 L118 74 H133 L110 123 Z" fill="#FFFFFF" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
-<path d="M132 123 L155 74 H170 L147 123 Z" fill="#F4D447" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
-<text x="197" y="111" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="800" letter-spacing="1.2" text-anchor="start">PRACTICAL AI</text>
-<text x="1440" y="110" fill="#AABBD0" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" letter-spacing="2" text-anchor="end">ПРОЦЕСС / 01</text>
-<path d="M94 151 H1442" fill="none" stroke="#6E819F" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.42"/>
-<text x="95" y="215" fill="#F4D447" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="800" letter-spacing="2.8" text-anchor="start">ОБЩИЙ МЕТОД</text>
-<text x="95" y="264" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="700" letter-spacing="-0.8" text-anchor="start">AI-практика начинается с задач команды.</text>
-<rect x="97" y="330" width="395" height="510" rx="20" fill="#FFFFFF" stroke="none" stroke-width="1" opacity="1"/>
-<rect x="570" y="330" width="395" height="510" rx="20" fill="#314666" stroke="#617899" stroke-width="2" opacity="1"/>
-<rect x="1044" y="330" width="395" height="510" rx="20" fill="#FFFFFF" stroke="none" stroke-width="1" opacity="1"/>
-<rect x="125" y="357" width="88" height="31" rx="15" fill="#E9EFF6" stroke="none" stroke-width="1" opacity="1"/>
-<text x="169" y="378" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="800" letter-spacing="1.1" text-anchor="middle">01 / ЗАДАЧА</text>
-<text x="125" y="432" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" letter-spacing="-0.6" text-anchor="start">Начинаем с задачи</text>
-<text x="125" y="460" fill="#607089" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" letter-spacing="0" text-anchor="start">Одна задача · один ответственный</text>
-<rect x="130" y="506" width="51" height="51" rx="15" fill="#F4D447" stroke="none" stroke-width="1" opacity="1"/>
-<text x="155.5" y="540" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="800" letter-spacing="0" text-anchor="middle">S</text>
-<rect x="192" y="506" width="51" height="51" rx="15" fill="#B9D9CE" stroke="none" stroke-width="1" opacity="1"/>
-<text x="217.5" y="540" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="800" letter-spacing="0" text-anchor="middle">H</text>
-<rect x="254" y="506" width="51" height="51" rx="15" fill="#C8D4E7" stroke="none" stroke-width="1" opacity="1"/>
-<text x="279.5" y="540" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="800" letter-spacing="0" text-anchor="middle">O</text>
-<rect x="316" y="506" width="51" height="51" rx="15" fill="#E8BEAC" stroke="none" stroke-width="1" opacity="1"/>
-<text x="341.5" y="540" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="800" letter-spacing="0" text-anchor="middle">F</text>
-<text x="126" y="596" fill="#65758C" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="800" letter-spacing="1.8" text-anchor="start">ДАННЫЕ</text>
-<rect x="126" y="622" width="286" height="12" rx="6" fill="#D8E1EC" stroke="none" stroke-width="1" opacity="1"/>
-<rect x="126" y="656" width="210" height="12" rx="6" fill="#D8E1EC" stroke="none" stroke-width="1" opacity="1"/>
-<rect x="126" y="690" width="255" height="12" rx="6" fill="#D8E1EC" stroke="none" stroke-width="1" opacity="1"/>
-<rect x="126" y="754" width="333" height="55" rx="12" fill="#E9EFF6" stroke="none" stroke-width="1" opacity="1"/>
-<text x="143" y="789" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="800" letter-spacing="1.1" text-anchor="start">ЗАДАЧА + КРИТЕРИИ КАЧЕСТВА</text>
-<path d="M502 584 H558" fill="none" stroke="#F4D447" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
-<path d="M541 570 L559 584 L541 598" fill="none" stroke="#F4D447" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
-<path d="M975 584 H1031" fill="none" stroke="#F4D447" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
-<path d="M1014 570 L1032 584 L1014 598" fill="none" stroke="#F4D447" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
-<rect x="598" y="357" width="101" height="31" rx="15" fill="#F4D447" stroke="none" stroke-width="1" opacity="1"/>
-<text x="648" y="378" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="800" letter-spacing="1.1" text-anchor="middle">02 / AI</text>
-<text x="598" y="432" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" letter-spacing="-0.6" text-anchor="start">Пробуем AI-шаг</text>
-<text x="598" y="460" fill="#C8D5E6" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" letter-spacing="0" text-anchor="start">Вход → черновик → проверка</text>
-<rect x="598" y="495" width="339" height="220" rx="16" fill="#1B2A46" stroke="#5E7492" stroke-width="1" opacity="1"/>
-<rect x="621" y="517" width="293" height="22" rx="5" fill="#314666" stroke="none" stroke-width="1" opacity="1"/>
-<rect x="621" y="560" width="145" height="11" rx="5" fill="#647996" stroke="none" stroke-width="1" opacity="1"/>
-<rect x="621" y="597" width="209" height="11" rx="5" fill="#647996" stroke="none" stroke-width="1" opacity="1"/>
-<rect x="621" y="634" width="174" height="11" rx="5" fill="#647996" stroke="none" stroke-width="1" opacity="1"/>
-<path d="M782 670 L832 560 H857 L807 670 Z" fill="#FFFFFF" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
-<path d="M837 670 L887 560 H912 L862 670 Z" fill="url(#gold)" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
-<rect x="598" y="754" width="339" height="55" rx="12" fill="#405878" stroke="none" stroke-width="1" opacity="1"/>
-<text x="617" y="789" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="800" letter-spacing="1.1" text-anchor="start">ЧЕРНОВИК ДЛЯ ПРОВЕРКИ</text>
-<rect x="1072" y="357" width="109" height="31" rx="15" fill="#E9EFF6" stroke="none" stroke-width="1" opacity="1"/>
-<text x="1126" y="378" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="800" letter-spacing="1.1" text-anchor="middle">03 / ПРОВЕРКА</text>
-<text x="1072" y="432" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" letter-spacing="-0.6" text-anchor="start">Проверяем вместе</text>
-<text x="1072" y="460" fill="#607089" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" letter-spacing="0" text-anchor="start">Результат оценивает человек</text>
-<rect x="1072" y="502" width="339" height="215" rx="14" fill="#F2F5F9" stroke="none" stroke-width="1" opacity="1"/>
-<rect x="1094" y="520" width="30" height="30" rx="9" fill="#F4D447" stroke="none" stroke-width="1" opacity="1"/>
-<path d="M1102 535 L1109 542 L1118 529" fill="none" stroke="#17213D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
-<rect x="1143" y="530" width="218" height="10" rx="5" fill="#B6C5D7" stroke="none" stroke-width="1" opacity="1"/>
-<rect x="1094" y="573" width="30" height="30" rx="9" fill="#F4D447" stroke="none" stroke-width="1" opacity="1"/>
-<path d="M1102 588 L1109 595 L1118 582" fill="none" stroke="#17213D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
-<rect x="1143" y="583" width="184" height="10" rx="5" fill="#B6C5D7" stroke="none" stroke-width="1" opacity="1"/>
-<rect x="1094" y="626" width="30" height="30" rx="9" fill="#F4D447" stroke="none" stroke-width="1" opacity="1"/>
-<path d="M1102 641 L1109 648 L1118 635" fill="none" stroke="#17213D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
-<rect x="1143" y="636" width="235" height="10" rx="5" fill="#B6C5D7" stroke="none" stroke-width="1" opacity="1"/>
-<rect x="1072" y="754" width="339" height="55" rx="12" fill="#E9EFF6" stroke="none" stroke-width="1" opacity="1"/>
-<text x="1090" y="789" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="800" letter-spacing="1.1" text-anchor="start">СЦЕНАРИЙ ДЛЯ КОМАНДЫ</text>
-<path d="M95 890 H1440" fill="none" stroke="#6E819F" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.42"/>
-<text x="96" y="931" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="800" letter-spacing="1.2" text-anchor="start">ЗАДАЧА</text>
-<text x="374" y="931" fill="#F4D447" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="800" letter-spacing="0" text-anchor="start">→</text>
-<text x="452" y="931" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="800" letter-spacing="1.2" text-anchor="start">AI-ШАГ</text>
-<text x="686" y="931" fill="#F4D447" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="800" letter-spacing="0" text-anchor="start">→</text>
-<text x="767" y="931" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="800" letter-spacing="1.2" text-anchor="start">ПРОВЕРКА</text>
-<text x="1082" y="931" fill="#F4D447" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="800" letter-spacing="0" text-anchor="start">→</text>
-<text x="1163" y="931" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="800" letter-spacing="1.2" text-anchor="start">ОБЩАЯ ПРАКТИКА</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+<title id="title">Понятный пример командного AI-сценария Practical AI</title>
+<desc id="desc">Еженедельный статус команды: заметки со встреч, открытые задачи и данные CRM становятся AI-черновиком; руководитель проверяет цифры, контекст и ответственных перед отправкой.</desc>
+<rect width="1200" height="650" rx="24" fill="#F6F8FB"/>
+<path d="M52 49 L70 49 L52 87 L34 87 Z" fill="#17213D"/>
+<path d="M78 49 L96 49 L78 87 L60 87 Z" fill="#F4D447"/>
+<text x="118" y="76" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="800" letter-spacing="1">ПРИМЕР / ЕЖЕНЕДЕЛЬНЫЙ СТАТУС</text>
+<text x="50" y="146" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700" letter-spacing="0">От разрозненных заметок</text>
+<text x="50" y="195" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700" letter-spacing="0">к проверенному отчёту</text>
+<path d="M50 240 H1150" stroke="#CBD6E4" stroke-width="2"/>
+<text x="52" y="282" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="800" letter-spacing="1">01 / МАТЕРИАЛЫ</text>
+<text x="52" y="325" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" letter-spacing="0">Что приносит команда</text>
+<circle cx="59" cy="366" r="5" fill="#F4D447"/>
+<text x="74" y="373" fill="#5B6B82" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" letter-spacing="0">Заметки со встреч</text>
+<circle cx="59" cy="404" r="5" fill="#F4D447"/>
+<text x="74" y="411" fill="#5B6B82" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" letter-spacing="0">Открытые задачи</text>
+<circle cx="59" cy="442" r="5" fill="#F4D447"/>
+<text x="74" y="449" fill="#5B6B82" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" letter-spacing="0">Данные из CRM</text>
+<path d="M414 275 V510" stroke="#CBD6E4" stroke-width="2"/>
+<text x="440" y="282" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="800" letter-spacing="1">02 / AI-ЧЕРНОВИК</text>
+<text x="440" y="325" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" letter-spacing="0">Что готовит AI</text>
+<circle cx="447" cy="366" r="5" fill="#F4D447"/>
+<text x="462" y="373" fill="#5B6B82" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" letter-spacing="0">Что изменилось</text>
+<circle cx="447" cy="404" r="5" fill="#F4D447"/>
+<text x="462" y="411" fill="#5B6B82" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" letter-spacing="0">Какие решения нужны</text>
+<circle cx="447" cy="442" r="5" fill="#F4D447"/>
+<text x="462" y="449" fill="#5B6B82" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" letter-spacing="0">Кто отвечает за шаг</text>
+<path d="M800 275 V510" stroke="#CBD6E4" stroke-width="2"/>
+<text x="825" y="282" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="800" letter-spacing="1">03 / ПРОВЕРКА</text>
+<text x="825" y="325" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" letter-spacing="0">Что проверяет руководитель</text>
+<circle cx="832" cy="366" r="5" fill="#F4D447"/>
+<text x="847" y="373" fill="#5B6B82" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" letter-spacing="0">Цифры по источнику</text>
+<circle cx="832" cy="404" r="5" fill="#F4D447"/>
+<text x="847" y="411" fill="#5B6B82" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" letter-spacing="0">Недостающий контекст</text>
+<circle cx="832" cy="442" r="5" fill="#F4D447"/>
+<text x="847" y="449" fill="#5B6B82" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" letter-spacing="0">Ответственных и сроки</text>
+<rect x="50" y="562" width="1100" height="57" rx="9" fill="#F4D447"/>
+<text x="68" y="599" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800" letter-spacing="0">РЕЗУЛЬТАТ  /  Проверенный статус + чек-лист для команды</text>
 </svg>

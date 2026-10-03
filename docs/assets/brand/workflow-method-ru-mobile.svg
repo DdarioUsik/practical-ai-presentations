@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="1310" viewBox="0 0 720 1310" role="img" aria-labelledby="title desc">
+<title id="title">Понятный пример командного AI-сценария Practical AI</title>
+<desc id="desc">Еженедельный статус команды: заметки со встреч, открытые задачи и данные CRM становятся AI-черновиком; руководитель проверяет цифры, контекст и ответственных перед отправкой.</desc>
+<rect width="720" height="1310" rx="24" fill="#F6F8FB"/>
+<path d="M52 49 L70 49 L52 87 L34 87 Z" fill="#17213D"/>
+<path d="M78 49 L96 49 L78 87 L60 87 Z" fill="#F4D447"/>
+<text x="118" y="76" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="800" letter-spacing="1">ПРИМЕР / ЕЖЕНЕДЕЛЬНЫЙ СТАТУС</text>
+<text x="48" y="151" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="700" letter-spacing="0">От разрозненных заметок</text>
+<text x="48" y="202" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="700" letter-spacing="0">к проверенному отчёту</text>
+<path d="M48 248 H672" stroke="#CBD6E4" stroke-width="2"/>
+<text x="53" y="283" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="800" letter-spacing="1">01 / МАТЕРИАЛЫ</text>
+<text x="53" y="328" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700" letter-spacing="0">Что приносит команда</text>
+<circle cx="60" cy="367" r="5" fill="#F4D447"/>
+<text x="75" y="374" fill="#5B6B82" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="400" letter-spacing="0">Заметки со встреч</text>
+<circle cx="60" cy="410" r="5" fill="#F4D447"/>
+<text x="75" y="417" fill="#5B6B82" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="400" letter-spacing="0">Открытые задачи</text>
+<circle cx="60" cy="453" r="5" fill="#F4D447"/>
+<text x="75" y="460" fill="#5B6B82" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="400" letter-spacing="0">Данные из CRM</text>
+<text x="623" y="546" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="37" font-weight="700" letter-spacing="0">↓</text>
+<path d="M48 568 H672" stroke="#CBD6E4" stroke-width="2"/>
+<text x="53" y="603" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="800" letter-spacing="1">02 / AI-ЧЕРНОВИК</text>
+<text x="53" y="648" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700" letter-spacing="0">Что готовит AI</text>
+<circle cx="60" cy="687" r="5" fill="#F4D447"/>
+<text x="75" y="694" fill="#5B6B82" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="400" letter-spacing="0">Что изменилось</text>
+<circle cx="60" cy="730" r="5" fill="#F4D447"/>
+<text x="75" y="737" fill="#5B6B82" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="400" letter-spacing="0">Какие решения нужны</text>
+<circle cx="60" cy="773" r="5" fill="#F4D447"/>
+<text x="75" y="780" fill="#5B6B82" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="400" letter-spacing="0">Кто отвечает за шаг</text>
+<text x="623" y="866" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="37" font-weight="700" letter-spacing="0">↓</text>
+<path d="M48 888 H672" stroke="#CBD6E4" stroke-width="2"/>
+<text x="53" y="923" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="800" letter-spacing="1">03 / ПРОВЕРКА</text>
+<text x="53" y="968" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700" letter-spacing="0">Что проверяет руководитель</text>
+<circle cx="60" cy="1007" r="5" fill="#F4D447"/>
+<text x="75" y="1014" fill="#5B6B82" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="400" letter-spacing="0">Цифры по источнику</text>
+<circle cx="60" cy="1050" r="5" fill="#F4D447"/>
+<text x="75" y="1057" fill="#5B6B82" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="400" letter-spacing="0">Недостающий контекст</text>
+<circle cx="60" cy="1093" r="5" fill="#F4D447"/>
+<text x="75" y="1100" fill="#5B6B82" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="400" letter-spacing="0">Ответственных и сроки</text>
+<rect x="48" y="1207" width="624" height="78" rx="8" fill="#F4D447"/>
+<text x="63" y="1240" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="800" letter-spacing="0">РЕЗУЛЬТАТ / Проверенный статус</text>
+<text x="63" y="1270" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="800" letter-spacing="0">+ чек-лист для команды</text>
+</svg>

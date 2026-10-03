@@ -36,17 +36,23 @@ COPY = {
             ("02 · One week", "AI Leadership Sprint", "A focused sprint for the CEO and leadership team around one management workflow.", ["Choose a leadership priority", "Test one AI-supported process", "Leave with a pilot plan and review criteria"], "Discuss a leadership sprint"),
             ("03 · Four weeks", "Middle Management Program", "Applied AI practice for managers across functions and working weeks.", ["Work on recurring tasks between sessions", "Review results across teams", "Build a shared management playbook"], "Discuss the manager program"),
         ],
-        "proof_eyebrow": "Real team work", "proof_h2": "Training starts with work people recognize.",
-        "proof_p": "In one published Practical AI team case, five ShildPanel leaders practised with reports, competitor research, ERP formulas and HR routines. The example shows the kind of tasks a team can bring into training; the scope and results of a new program are agreed separately.",
-        "proof_tag": "Team case · 5 participants", "proof_title": "A shared method across different roles.",
-        "proof_facts": [("Report and presentation", "60 → 12 min"), ("Market research", "−70%"), ("ERP formulas", "9 h → 15 min"), ("HR routine", "−30 min/day")],
-        "proof_note": "Figures reported in the published ShildPanel team case; they describe those tasks, not a typical program outcome.",
+        "proof_eyebrow": "Published team case", "proof_h2": "What changed in one team’s daily work.",
+        "proof_p": "Five ShildPanel leaders applied AI to four different work tasks. Each figure below describes a reported change in task time in that case.",
+        "proof_tag": "ShildPanel · 5 participants", "proof_title": "Four tasks. Four specific results.",
+        "proof_before": "Before", "proof_after": "With AI", "proof_result": "Reported result",
+        "proof_results": [
+            {"task": "Reports and presentations", "detail": "Time to prepare a report and presentation", "before": "60 min", "after": "12 min", "note": "Preparation time fell from one hour to twelve minutes."},
+            {"task": "Market and competitor research", "detail": "Time spent researching markets and competitors", "value": "70% less time", "note": "The case reports a 70% reduction in research time."},
+            {"task": "ERP formula debugging", "detail": "Time to debug formulas in the ERP system", "before": "9 hours", "after": "15 min", "note": "One formula task took fifteen minutes instead of nine hours."},
+            {"task": "HR routine with voice input", "detail": "Time spent on a daily HR routine", "value": "30 min saved / day", "note": "Voice input freed about thirty minutes each day."},
+        ],
+        "proof_note": "Source: published Practical AI case with ShildPanel. These are results for the tasks above, not an average or a promise for a new team.",
         "proof_roles": "Operations · Business development · Marketing · HR · Management", "proof_case_h3": "Five leaders. Different daily work.", "proof_case_link": "Read what participants said", "proof_count_unit": "participants",
         "quotes_eyebrow": "In their own words", "quotes_h2": "What the team said after putting AI to work.", "quotes_intro": "Selected remarks from the ShildPanel team case. English translations of the original Russian comments.",
         "quotes": [("Now I have a playbook I can hand to my team to put into practice.", "Alexander", "Operations Director · ShildPanel"), ("What we created is a tool I can now delegate.", "Ilya", "Marketing and Analytics · ShildPanel"), ("Whisper is something I use almost every day. It’s great.", "Elizaveta", "Head of HR · ShildPanel")],
         "method_eyebrow": "How the learning works", "method_h2": "From a team task to a reviewed way of working.",
         "method_intro": "Every program connects a business task, an AI step, human judgment and a practical next action.",
-        "method_visual_alt": "Illustrated sequence from a team task through an AI step and human review to shared practice",
+        "method_visual_alt": "Example weekly team update: meeting notes, action items and CRM status become an AI draft; a manager checks figures, context and owners before sharing it.",
         "method_steps": [("01", "Choose a task", "Name the process owner and the result the team needs."), ("02", "Design a workflow", "Define inputs, approved tools and the expected output."), ("03", "Review the result", "Use clear quality criteria and human judgment."), ("04", "Keep what works", "Document the pattern and choose the next test.")],
         "team_eyebrow": "The team behind the training", "team_h2": "The right expertise for the work in front of you.", "team_p": "Practical AI brings learning design, hands-on AI practice and review together around your team's task. We shape each program with the people who own the work, so participants can try a useful step and judge its output together.", "team_link": "See how we work →", "team_facets": ["Learning design", "Hands-on practice", "Human review"],
         "guides_eyebrow": "Practical guides", "guides_h2": "Answers for the people choosing AI training.",
@@ -89,17 +95,23 @@ COPY = {
             ("02 · Одна неделя", "AI-спринт для руководства", "Короткий спринт для CEO и команды руководителей вокруг одного управленческого процесса.", ["Выбор управленческой задачи", "Проверка одного AI-сценария", "План пилота и критерии оценки"], "Обсудить спринт"),
             ("03 · Четыре недели", "Программа для среднего звена", "Прикладная AI-практика для руководителей разных функций на протяжении четырёх недель.", ["Повторяющиеся задачи между занятиями", "Совместная проверка результатов", "Общий плейбук для руководителей"], "Обсудить программу"),
         ],
-        "proof_eyebrow": "Реальная работа команды", "proof_h2": "Учимся на задачах, которые люди узнают.",
-        "proof_p": "В опубликованном кейсе Practical AI пять руководителей «ШильдПанель» работали с отчётами, анализом конкурентов, ERP-формулами и HR-рутиной. Это пример задач для обучения; объём и ожидаемый результат новой программы согласуем отдельно.",
-        "proof_tag": "Командный кейс · 5 участников", "proof_title": "Общий подход для разных ролей.",
-        "proof_facts": [("Отчёт и презентация", "60 → 12 мин"), ("Анализ рынка", "−70%"), ("Формулы в ERP", "9 ч → 15 мин"), ("HR-рутина", "−30 мин/день")],
-        "proof_note": "Данные опубликованного кейса команды «ШильдПанель» относятся к конкретным задачам участников.",
+        "proof_eyebrow": "Опубликованный кейс", "proof_h2": "Что изменилось в работе одной команды.",
+        "proof_p": "Пять руководителей «ШильдПанель» применили AI к четырём разным рабочим задачам. Каждая цифра ниже показывает изменение времени на конкретную задачу в этом кейсе.",
+        "proof_tag": "ШильдПанель · 5 участников", "proof_title": "Четыре задачи. Четыре результата.",
+        "proof_before": "Было", "proof_after": "С AI", "proof_result": "Результат в кейсе",
+        "proof_results": [
+            {"task": "Отчёты и презентации", "detail": "Время подготовки отчёта и презентации", "before": "60 мин", "after": "12 мин", "note": "Подготовка заняла 12 минут вместо одного часа."},
+            {"task": "Анализ рынка и конкурентов", "detail": "Время на исследование рынка и конкурентов", "value": "на 70% меньше времени", "note": "В кейсе отмечено сокращение времени на анализ на 70%."},
+            {"task": "Отладка формул в ERP", "detail": "Время на отладку формул в ERP-системе", "before": "9 часов", "after": "15 мин", "note": "Одна задача с формулами заняла 15 минут вместо 9 часов."},
+            {"task": "HR-рутина с голосовым вводом", "detail": "Время на ежедневную HR-рутину", "value": "30 мин в день свободнее", "note": "Голосовой ввод высвободил около 30 минут в день."},
+        ],
+        "proof_note": "Источник: опубликованный кейс Practical AI с командой «ШильдПанель». Это результаты конкретных задач, а не средний показатель или обещание новой команде.",
         "proof_roles": "Операционный блок · Развитие · Маркетинг · HR · Управление", "proof_case_h3": "Пять руководителей. Разные рабочие задачи.", "proof_case_link": "Прочитать слова участников", "proof_count_unit": "участников",
         "quotes_eyebrow": "Слова участников", "quotes_h2": "Что говорила команда после практики с AI.", "quotes_intro": "Фрагменты отзывов участников группового обучения «ШильдПанель».",
         "quotes": [("Теперь у меня есть плейбук, который я могу передать команде, чтобы она могла всё реализовать.", "Александр", "Операционный директор · «ШильдПанель»"), ("Для меня то, что мы создали, инструмент, который я теперь смогу делегировать.", "Илья", "Маркетинг и аналитика · «ШильдПанель»"), ("Whisper — это точно то, что я использую почти ежедневно, это круто.", "Елизавета", "Руководитель HR · «ШильдПанель»")],
         "method_eyebrow": "Как устроена практика", "method_h2": "От задачи команды к проверенному способу работы.",
         "method_intro": "В каждой программе соединяем рабочую задачу, AI-шаг, оценку специалиста и следующий тест.",
-        "method_visual_alt": "Иллюстрированный маршрут от задачи команды через AI-шаг и проверку человеком к общей практике",
+        "method_visual_alt": "Пример еженедельного статуса: заметки, задачи и данные CRM становятся AI-черновиком; руководитель проверяет цифры, контекст и ответственных.",
         "method_steps": [("01", "Выбираем задачу", "Фиксируем ответственного и нужный результат."), ("02", "Собираем сценарий", "Определяем материалы, инструменты и формат ответа."), ("03", "Проверяем результат", "Используем критерии качества и оценку специалиста."), ("04", "Сохраняем практику", "Документируем сценарий и выбираем следующий тест.")],
         "team_eyebrow": "Команда Practical AI", "team_h2": "Собираем экспертизу под задачу вашей команды.", "team_p": "В Practical AI соединяем разработку программы, практику с AI и проверку результата вокруг работы вашей команды. Вместе с людьми, которые отвечают за процесс, выстраиваем обучение так, чтобы участники попробовали полезный шаг и оценили его результат.", "team_link": "Как мы работаем →", "team_facets": ["Программа обучения", "Практика на задачах", "Проверка результата"],
         "guides_eyebrow": "Практические руководства", "guides_h2": "Ответы для тех, кто выбирает AI-обучение.",
@@ -189,7 +201,7 @@ def program_cards(lang: str) -> str:
 
 def method_visual(lang: str) -> str:
     c = COPY[lang]
-    return f'<figure class="method-visual"><img src="/assets/brand/workflow-method-{lang}.svg" alt="{esc(c["method_visual_alt"])}" width="1536" height="1024" loading="lazy" decoding="async"></figure>'
+    return f'<figure class="method-visual"><picture><source media="(max-width: 600px)" srcset="/assets/brand/workflow-method-{lang}-mobile.svg"><img src="/assets/brand/workflow-method-{lang}.svg" alt="{esc(c["method_visual_alt"])}" width="1200" height="650" loading="lazy" decoding="async"></picture></figure>'
 
 
 def closing(lang: str) -> str:
@@ -204,17 +216,35 @@ def evidence_teaser(lang: str) -> str:
     return f'<section class="section evidence-teaser"><div class="wrap evidence-teaser-grid"><div><span class="eyebrow">{esc(c["proof_tag"])}</span><h2>{esc(c["proof_h2"])}</h2><p>{esc(c["proof_p"])}</p><a class="card-link" href="{u(lang)}#case">{esc(label)} →</a></div><figure><blockquote>“{esc(quote_text)}”</blockquote><figcaption>{esc(quote_name)} · {esc(quote_role)}</figcaption></figure></div></section>'
 
 
+def proof_cards(lang: str) -> str:
+    c = COPY[lang]
+    cards = []
+    for number, result in enumerate(c["proof_results"], 1):
+        if "before" in result:
+            measure = (
+                f'<div class="proof-comparison"><div><span>{esc(c["proof_before"])}</span><strong>{esc(result["before"])}</strong></div>'
+                f'<span class="proof-arrow" aria-hidden="true">→</span><div><span>{esc(c["proof_after"])}</span><strong>{esc(result["after"])}</strong></div></div>'
+            )
+        else:
+            measure = f'<div class="proof-single"><span>{esc(c["proof_result"])}</span><strong>{esc(result["value"])}</strong></div>'
+        cards.append(
+            f'<article class="proof-metric"><span class="proof-index">{number:02}</span><h4>{esc(result["task"])}</h4>'
+            f'<p class="proof-task">{esc(result["detail"])}</p>{measure}<p class="proof-explanation">{esc(result["note"])}</p></article>'
+        )
+    return "".join(cards)
+
+
 def home(lang: str) -> str:
     c = COPY[lang]
     steps = "".join(f'<div class="flow-step"><span class="num">{i:02}</span><div><b>{esc(title)}</b><small>{esc(detail)}</small></div></div>' for i, (title, detail) in enumerate(c["flow_steps"], 1))
     method = "".join(f'<article class="method-card"><span class="step">{number}</span><h3>{esc(title)}</h3><p>{esc(detail)}</p></article>' for number, title, detail in c["method_steps"])
     guides = "".join(f'<a class="guide-card" href="{url}"><span>{esc(tag)}</span><h3>{esc(title)}</h3><p>{esc(detail)}</p><b>{"Read guide" if lang == "en" else "Читать руководство"} ↗</b></a>' for tag, title, detail, url in c["guides"])
-    proof_facts = "".join(f'<div class="proof-metric"><b>{esc(value)}</b><span>{esc(label)}</span></div>' for label, value in c["proof_facts"])
+    proof_facts = proof_cards(lang)
     quotes = "".join(f'<figure class="quote-card"><blockquote>“{esc(words)}”</blockquote><figcaption><b>{esc(name)}</b><span>{esc(role)}</span></figcaption></figure>' for words, name, role in c["quotes"])
     facets = "".join(f'<li><span>0{i}</span>{esc(facet)}</li>' for i, facet in enumerate(c["team_facets"], 1))
     return f'''<section class="hero"><div class="wrap hero-grid"><div><span class="eyebrow">{esc(c['hero_eyebrow'])}</span><h1>{c['hero_h1']}</h1><p class="hero-lede">{esc(c['hero_lede'])}</p><div class="hero-actions"><a class="button" href="{contact(lang)}" target="_blank" rel="noopener noreferrer">{esc(c['hero_cta'])} ↗</a><a class="button button--ghost" href="#programs">{esc(c['hero_secondary'])} ↓</a></div><p class="hero-note">{esc(c['hero_note'])}</p></div><div class="flow-card"><div class="flow-top"><span>{esc(c['flow_top'])}</span><span>● {esc(c['flow_status'])}</span></div>{steps}<div class="flow-output"><b>{esc(c['flow_output'])}</b> · {esc(c['flow_output_text'])}</div></div></div></section>
 <section class="section programs" id="programs"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c['programs_eyebrow'])}</span><h2>{esc(c['programs_h2'])}</h2></div><p>{esc(c['programs_intro'])}</p></div>{program_cards(lang)}</div></section>
-<section class="section proof" id="case"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c['proof_eyebrow'])}</span><h2>{esc(c['proof_h2'])}</h2></div><p>{esc(c['proof_p'])}</p></div><div class="case-layout"><div class="case-story"><img src="/assets/img/shildpanel-logo.svg" alt="ШильдПанель" loading="lazy"><span class="case-story-number">05<span> / {esc(c['proof_count_unit'])}</span></span><h3>{esc(c['proof_case_h3'])}</h3><p>{esc(c['proof_roles'])}</p><a class="card-link" href="#reviews">{esc(c['proof_case_link'])} →</a></div><div class="proof-panel"><span class="case-tag">{esc(c['proof_tag'])}</span><h3>{esc(c['proof_title'])}</h3><div class="proof-facts">{proof_facts}</div><p class="proof-note">{esc(c['proof_note'])}</p></div></div></div></section>
+<section class="section proof" id="case"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c['proof_eyebrow'])}</span><h2>{esc(c['proof_h2'])}</h2></div><p>{esc(c['proof_p'])}</p></div><div class="case-layout"><div class="case-story"><img src="/assets/img/shildpanel-logo.svg" alt="ШильдПанель" loading="lazy"><span class="case-story-number">5<span> / {esc(c['proof_count_unit'])}</span></span><h3>{esc(c['proof_case_h3'])}</h3><p>{esc(c['proof_roles'])}</p><a class="card-link" href="#reviews">{esc(c['proof_case_link'])} →</a></div><div class="proof-panel"><span class="case-tag">{esc(c['proof_tag'])}</span><h3>{esc(c['proof_title'])}</h3><div class="proof-facts">{proof_facts}</div><p class="proof-note">{esc(c['proof_note'])}</p></div></div></div></section>
 <section class="section quotes" id="reviews"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c['quotes_eyebrow'])}</span><h2>{esc(c['quotes_h2'])}</h2></div><p>{esc(c['quotes_intro'])}</p></div><div class="quote-grid">{quotes}</div></div></section>
 <section class="section method"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c['method_eyebrow'])}</span><h2>{esc(c['method_h2'])}</h2></div><p>{esc(c['method_intro'])}</p></div><div class="method-grid">{method}</div>{method_visual(lang)}</div></section>
 <section class="section team-section"><div class="wrap team-grid"><div class="team-panel"><img src="/assets/brand/symbol-reverse.svg" alt="" width="128" height="128" loading="lazy"><ol>{facets}</ol></div><div><span class="eyebrow">{esc(c['team_eyebrow'])}</span><h2>{esc(c['team_h2'])}</h2><p>{esc(c['team_p'])}</p><a class="card-link" href="{u(lang,'about')}">{esc(c['team_link'])}</a></div></div></section>

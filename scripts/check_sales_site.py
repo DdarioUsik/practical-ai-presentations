@@ -77,6 +77,10 @@ def check() -> None:
                 errors.append(f"{url_path}: founder-centric content remains")
             if route == "" and ("class=\"quote-grid\"" not in html or "class=\"proof-facts\"" not in html):
                 errors.append(f"{url_path}: case metrics or participant quotes missing")
+            if route == "":
+                proof_terms = ("Reports and presentations", "Market and competitor research", "ERP formula debugging", "HR routine with voice input") if lang == "en" else ("Отчёты и презентации", "Анализ рынка и конкурентов", "Отладка формул в ERP", "HR-рутина с голосовым вводом")
+                if html.count('class="proof-metric"') != 4 or any(term not in html for term in proof_terms):
+                    errors.append(f"{url_path}: four explained case results missing")
             if html.count('class="program-visual"') != 3 or html.count('class="program-fit"') != 3:
                 errors.append(f"{url_path}: program thumbnails or audience details missing")
             if '<figcaption>Illustration</figcaption>' in html or '<figcaption>Иллюстрация</figcaption>' in html:
@@ -86,6 +90,8 @@ def check() -> None:
                 errors.append(f"{url_path}: language switch label missing")
             if route in ("", "programs", "about") and f'/assets/brand/workflow-method-{lang}.svg' not in html:
                 errors.append(f"{url_path}: localized method visual missing")
+            if route in ("", "programs", "about") and f'/assets/brand/workflow-method-{lang}-mobile.svg' not in html:
+                errors.append(f"{url_path}: readable mobile method visual missing")
             if route == "" and 'class="case-image"' in html:
                 errors.append(f"{url_path}: synthetic image remains in the evidence block")
             for ref in parser.refs:
