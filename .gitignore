@@ -5,3 +5,4 @@
 *.xlsx
 *.pptx
 .playwright-cli/
+__pycache__/

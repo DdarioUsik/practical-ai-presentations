@@ -1,0 +1,19 @@
+# Practical AI
+
+Practical AI provides corporate AI training for business teams. Programs are built around real team workflows, approved tools, practical exercises and human review. Founder: Danil Usik, based in Valencia, Spain.
+
+## Official pages
+
+- [Corporate AI training](https://practical-ai.pro/): service overview and ways to start.
+- [AI training for HR and L&D](https://practical-ai.pro/for-hr/): how to frame a useful first program.
+- [Programs](https://practical-ai.pro/programs/): one-day team lab, one-week AI workflow sprint and four-week team practice.
+- [Danil Usik](https://practical-ai.pro/about/): founder and working approach.
+- [Guides](https://practical-ai.pro/blog/): practical articles for business teams.
+
+## Russian pages
+
+- [Корпоративное AI-обучение](https://practical-ai.pro/ru/)
+- [Для HR и L&D](https://practical-ai.pro/ru/for-hr/)
+- [Программы](https://practical-ai.pro/ru/programs/)
+- [Данил Усик](https://practical-ai.pro/ru/about/)
+- [Руководства](https://practical-ai.pro/ru/blog/)

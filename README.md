@@ -5,9 +5,13 @@ Practical AI site and client presentations. The public site is published from
 
 ## Corporate site
 
-- Edit `site-source/home.en.html` for the English homepage and its content.
-- Run `python3 scripts/build_site.py` to generate `docs/index.html`, the static
-  Russian `docs/ru/index.html`, shared corporate blog branding, and sitemap.
+- Edit the EN/RU copy in `scripts/build_sales_site.py` and the shared layout in
+  `docs/assets/brand/sales-site.css`.
+- Run `python3 scripts/build_site.py` to generate the static home, HR, programs,
+  and founder pages in both languages, plus the sitemap. Each page has its own
+  URL, title, description, canonical, hreflang and JSON-LD.
+- Run `python3 scripts/check_sales_site.py` before publishing; it checks the
+  eight sales pages, local links, language alternates and section order.
 - Brand assets and design tokens are in `docs/assets/brand/`. The approved `//`
   marks are outlined SVG files; the web font is self hosted and includes its
   SIL Open Font License.
@@ -16,4 +20,5 @@ Practical AI site and client presentations. The public site is published from
 - Preview locally with `python3 -m http.server 8768 --directory docs`.
 
 The legacy AIHUB case studies and client presentations have their own visual
-identity and remain separate from the corporate site pages.
+identity and remain separate from the corporate site pages. The earlier homepage
+can be recovered from Git history at commit `92221d8`.

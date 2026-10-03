@@ -79,6 +79,11 @@ body.personal-article .brand-lockup { width: 183px; }
 body.personal-article article p { color: #293550; }
 body.personal-article article a { color: #284d83; }
 
+.blog-nav { background: #111a31; border-bottom-color: rgba(255,255,255,.15); }
+.blog-nav-links a { color: #dce4ee; }
+.blog-nav-links a:hover { color: #f4d447; text-decoration-color: #f4d447; }
+.blog-nav .language-link { border-color: rgba(255,255,255,.4); }
+
 @media (max-width: 700px) {
   .site-header .brand-lockup, .blog-nav .brand-lockup { width: 155px; }
   .hero::after { width: 260px; opacity: .55; }
