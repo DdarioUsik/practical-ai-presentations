@@ -59,7 +59,8 @@ def check() -> None:
             url_path = ("/ru" if lang == "ru" else "") + "/" + (route + "/" if route else "")
             path = DOCS / url_path.lstrip("/") / "index.html"
             parser = Page()
-            parser.feed(path.read_text(encoding="utf-8"))
+            html = path.read_text(encoding="utf-8")
+            parser.feed(html)
             checked += 1
             expected = BASE + url_path
             if parser.lang != lang: errors.append(f"{url_path}: lang {parser.lang}")
@@ -72,6 +73,10 @@ def check() -> None:
                 if parser.hreflang.get(other) != alternate: errors.append(f"{url_path}: {other} alternate mismatch")
             if route == "" and parser.sections[:2] != ["", "programs"]:
                 errors.append(f"{url_path}: programs must be the second section")
+            if any(term in html.lower() for term in ("danil usik", "данил усик", "founder", "основател", "founder-section", "hello danil", "данил, привет")):
+                errors.append(f"{url_path}: founder-centric content remains")
+            if route == "" and ("class=\"quote-grid\"" not in html or "class=\"proof-facts\"" not in html):
+                errors.append(f"{url_path}: case metrics or participant quotes missing")
             for ref in parser.refs:
                 parsed = urlsplit(ref)
                 if parsed.scheme or parsed.netloc or not parsed.path or ref.startswith("#"):

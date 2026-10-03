@@ -13,7 +13,7 @@ BASE = "https://practical-ai.pro"
 
 COPY = {
     "en": {
-        "nav": ["For HR & L&D", "Programs", "Danil Usik", "Guides"],
+        "nav": ["For HR & L&D", "Programs", "How we work", "Guides"],
         "discuss": "Discuss training for your team",
         "language": "Русский",
         "hero_eyebrow": "Practical AI · for business teams",
@@ -35,11 +35,15 @@ COPY = {
         "proof_eyebrow": "Real team work", "proof_h2": "Training starts with work people recognize.",
         "proof_p": "In one published Practical AI team case, five ShildPanel leaders practised with reports, competitor research, ERP formulas and HR routines. The example shows the kind of tasks a team can bring into training; the scope and results of a new program are agreed separately.",
         "proof_tag": "Team case · 5 participants", "proof_title": "A shared method across different roles.",
-        "proof_facts": ["Reports and presentations", "Market research", "ERP formulas", "HR routines"],
+        "proof_facts": [("Report and presentation", "60 → 12 min"), ("Market research", "−70%"), ("ERP formulas", "9 h → 15 min"), ("HR routine", "−30 min/day")],
+        "proof_note": "Figures reported in the published ShildPanel team case; they describe those tasks, not a typical program outcome.",
+        "proof_photo": "Illustrative image of a team reviewing an AI workflow", "proof_visual_note": "Workflow illustration · client results shown separately",
+        "quotes_eyebrow": "In their own words", "quotes_h2": "What the team said after putting AI to work.", "quotes_intro": "Selected remarks from the ShildPanel team case. English translations of the original Russian comments.",
+        "quotes": [("Practice, practice… Keep building your skills, everyone.", "Alexander", "Operations Director · ShildPanel"), ("What we created is a tool I can now delegate.", "Ilya", "Marketing and Analytics · ShildPanel"), ("Whisper is something I use almost every day. It’s great.", "Elizaveta", "Head of HR · ShildPanel")],
         "method_eyebrow": "How the learning works", "method_h2": "From a team task to a reviewed way of working.",
         "method_intro": "Every program connects a business task, an AI step, human judgment and a practical next action.",
         "method_steps": [("01", "Choose a task", "Name the process owner and the result the team needs."), ("02", "Design a workflow", "Define inputs, approved tools and the expected output."), ("03", "Review the result", "Use clear quality criteria and human judgment."), ("04", "Keep what works", "Document the pattern and choose the next test.")],
-        "founder_eyebrow": "Founder and lead", "founder_h2": "Danil Usik", "founder_p": "Danil leads Practical AI and works with teams on applied AI learning. His background in B2B growth and customer work keeps the training close to the decisions and processes people face at work.", "founder_link": "Meet Danil and his approach →",
+        "team_eyebrow": "The team behind the training", "team_h2": "The right expertise for the work in front of you.", "team_p": "Practical AI brings learning design, hands-on AI practice and review together around your team's task. We shape each program with the people who own the work, so participants can try a useful step and judge its output together.", "team_link": "See how we work →", "team_facets": ["Learning design", "Hands-on practice", "Human review"],
         "guides_eyebrow": "Practical guides", "guides_h2": "Answers for the people choosing AI training.",
         "guides": [("Corporate learning", "How to prepare a team for AI training", "Start with roles, workflows and review standards.", "/blog/corporate-ai-training/"), ("Project teams", "AI workflows for project managers", "Meetings, updates, risk reviews and human ownership.", "/blog/ai-for-project-managers/"), ("Finance teams", "AI in finance work", "Reporting, formulas and variance summaries with review.", "/blog/ai-for-finance-teams/")],
         "closing_h2": "Which team task would you like to improve with AI?", "closing_cta": "Discuss a first step",
@@ -51,16 +55,16 @@ COPY = {
         "hr_next_h2": "A clear first brief makes the training useful.", "hr_next_p": "Tell us the team, one repeatable task and the result you want to see. We can then choose a lab, sprint or longer program together.",
         "program_page_eyebrow": "Corporate AI learning", "program_page_h1": "Practical AI training programs for business teams.",
         "program_page_intro": "Three ways to practise on real work. Start with the team task and choose a duration that gives people enough time to try, review and reuse a useful AI step.",
-        "about_eyebrow": "Founder · Practical AI", "about_h1": "Danil Usik", "about_lead": "I work with teams where AI meets their actual work: a task, a decision, a review and a next step people can try.",
-        "about_method_h2": "How I work", "about_method_p": "We start with a recurring task and the people responsible for it. Together we map an AI step, practise on a representative example and review the output. The team leaves with a small working pattern to test in its normal week.",
-        "about_background_h2": "My background", "about_background_p": "I lead Practical AI from Valencia, Spain. My work combines more than ten years in B2B sales and business development with practical AI education and workflow diagnostics. I focus on the point where a team can apply a tool, inspect the result and make a better next decision.",
+        "about_eyebrow": "How Practical AI works", "about_h1": "A team approach to practical AI learning.", "about_lead": "We bring learning, business and AI practice together around your team's work. The task defines the format and the mix of expertise involved.",
+        "about_method_h2": "One shared method", "about_method_p": "We start with a recurring task and the people responsible for it. Together we map an AI step, practise on a representative example, review the output and document a next test for normal work.",
+        "about_background_h2": "A team around the task", "about_background_p": "Program roles follow the team's needs, tools and workflow. Practical AI coordinates the learning design, working sessions and review so each group has a clear path from its first task to a practical next step.",
         "meta_home": ("Corporate AI Training for Business Teams | Practical AI", "Hands-on corporate AI training for business teams. One-day labs, one-week workflow sprints and four-week programs built around real work."),
         "meta_hr": ("AI Training for HR and L&D Teams | Practical AI", "Plan practical AI training for employees around real workflows, agreed tools, human review and a clear next step."),
         "meta_programs": ("Corporate AI Training Programs | Practical AI", "Compare Practical AI's one-day team lab, one-week AI workflow sprint and four-week team practice program."),
-        "meta_about": ("Danil Usik — Founder of Practical AI", "Meet Danil Usik, founder of Practical AI in Valencia, and learn how he trains business teams to apply AI to real work."),
+        "meta_about": ("How Practical AI Works | Team Approach to AI Training", "Meet the Practical AI team approach to corporate AI training: learning design, real workflows, hands-on practice and human review."),
     },
     "ru": {
-        "nav": ["Для HR и L&D", "Программы", "Данил Усик", "Руководства"],
+        "nav": ["Для HR и L&D", "Программы", "Как мы работаем", "Руководства"],
         "discuss": "Обсудить обучение команды", "language": "English",
         "hero_eyebrow": "Practical AI · для бизнес-команд",
         "hero_h1": "Корпоративное AI-обучение <em>на задачах вашей команды.</em>",
@@ -80,11 +84,15 @@ COPY = {
         "proof_eyebrow": "Реальная работа команды", "proof_h2": "Учимся на задачах, которые люди узнают.",
         "proof_p": "В опубликованном кейсе Practical AI пять руководителей «ШильдПанель» работали с отчётами, анализом конкурентов, ERP-формулами и HR-рутиной. Это пример задач для обучения; объём и ожидаемый результат новой программы согласуем отдельно.",
         "proof_tag": "Командный кейс · 5 участников", "proof_title": "Общий подход для разных ролей.",
-        "proof_facts": ["Отчёты и презентации", "Анализ рынка", "Формулы в ERP", "HR-рутина"],
+        "proof_facts": [("Отчёт и презентация", "60 → 12 мин"), ("Анализ рынка", "−70%"), ("Формулы в ERP", "9 ч → 15 мин"), ("HR-рутина", "−30 мин/день")],
+        "proof_note": "Данные опубликованного кейса команды «ШильдПанель» относятся к конкретным задачам участников.",
+        "proof_photo": "Иллюстрация совместной работы над AI-сценарием", "proof_visual_note": "Иллюстрация процесса · результаты клиента показаны отдельно",
+        "quotes_eyebrow": "Слова участников", "quotes_h2": "Что говорила команда после практики с AI.", "quotes_intro": "Фрагменты отзывов участников группового обучения «ШильдПанель».",
+        "quotes": [("Практика, практика… Набивайте руку, ребята.", "Александр", "Операционный директор · «ШильдПанель»"), ("Для меня то, что мы создали, инструмент, который я теперь смогу делегировать.", "Илья", "Маркетинг и аналитика · «ШильдПанель»"), ("Whisper — это точно то, что я использую почти ежедневно, это круто.", "Елизавета", "Руководитель HR · «ШильдПанель»")],
         "method_eyebrow": "Как устроена практика", "method_h2": "От задачи команды к проверенному способу работы.",
         "method_intro": "В каждой программе соединяем рабочую задачу, AI-шаг, оценку специалиста и следующий тест.",
         "method_steps": [("01", "Выбираем задачу", "Фиксируем ответственного и нужный результат."), ("02", "Собираем сценарий", "Определяем материалы, инструменты и формат ответа."), ("03", "Проверяем результат", "Используем критерии качества и оценку специалиста."), ("04", "Сохраняем практику", "Документируем сценарий и выбираем следующий тест.")],
-        "founder_eyebrow": "Основатель и ведущий", "founder_h2": "Данил Усик", "founder_p": "Данил развивает Practical AI и ведёт прикладное обучение команд. Опыт B2B-продаж и работы с клиентами помогает строить обучение вокруг реальных решений и процессов сотрудников.", "founder_link": "Узнать о подходе Данила →",
+        "team_eyebrow": "Команда Practical AI", "team_h2": "Собираем экспертизу под задачу вашей команды.", "team_p": "В Practical AI соединяем разработку программы, практику с AI и проверку результата вокруг работы вашей команды. Вместе с людьми, которые отвечают за процесс, выстраиваем обучение так, чтобы участники попробовали полезный шаг и оценили его результат.", "team_link": "Как мы работаем →", "team_facets": ["Программа обучения", "Практика на задачах", "Проверка результата"],
         "guides_eyebrow": "Практические руководства", "guides_h2": "Ответы для тех, кто выбирает AI-обучение.",
         "guides": [("Обучение команд", "Как подготовить команду к AI-обучению", "Роли, процессы и критерии проверки.", "/ru/blog/corporate-ai-training/"), ("Проектные команды", "AI-сценарии для менеджеров проектов", "Встречи, статусы, риски и ответственность человека.", "/ru/blog/ai-for-project-managers/"), ("Финансовые команды", "AI в работе финансовой команды", "Отчёты, формулы и проверка результата.", "/ru/blog/ai-for-finance-teams/")],
         "closing_h2": "Какую задачу вашей команды стоит улучшить с AI?", "closing_cta": "Обсудить первый шаг",
@@ -96,13 +104,13 @@ COPY = {
         "hr_next_h2": "Ясный первый бриф делает обучение полезным.", "hr_next_p": "Расскажите о команде, одной повторяющейся задаче и результате, который хотите увидеть. Вместе выберем лабораторию, спринт или более длительную программу.",
         "program_page_eyebrow": "Корпоративное AI-обучение", "program_page_h1": "Практические AI-программы для бизнес-команд.",
         "program_page_intro": "Три формата практики на реальной работе. Начинаем с задачи команды и выбираем длительность, достаточную для пробы, проверки и повторного применения AI-шага.",
-        "about_eyebrow": "Основатель · Practical AI", "about_h1": "Данил Усик", "about_lead": "Я работаю с командами там, где AI встречается с их реальной задачей: решением, проверкой и следующим шагом, который можно попробовать в работе.",
-        "about_method_h2": "Как я работаю", "about_method_p": "Начинаем с повторяющейся задачи и людей, которые за неё отвечают. Вместе размечаем AI-шаг, практикуемся на понятном примере и проверяем результат. У команды остаётся рабочий сценарий для следующей недели.",
-        "about_background_h2": "Мой опыт", "about_background_p": "Я развиваю Practical AI из Валенсии. Соединяю более десяти лет опыта в B2B-продажах и развитии бизнеса с прикладным AI-обучением и диагностикой процессов. Помогаю команде понять, где инструмент полезен, как проверить ответ и какое решение принять дальше.",
+        "about_eyebrow": "Как работает Practical AI", "about_h1": "Командный подход к практическому AI-обучению.", "about_lead": "Объединяем разработку образовательных программ, понимание бизнес-процессов и практику с AI вокруг работы вашей команды. Задача определяет формат и состав специалистов.",
+        "about_method_h2": "Общий метод", "about_method_p": "Начинаем с повторяющейся задачи и людей, которые за неё отвечают. Вместе размечаем AI-шаг, практикуемся на понятном примере, проверяем результат и документируем следующий тест для повседневной работы.",
+        "about_background_h2": "Команда под задачу", "about_background_p": "Роли в программе зависят от команды, её инструментов и процесса. Practical AI координирует разработку программы, рабочие встречи и проверку результата, чтобы группа прошла понятный путь от первой задачи к следующему практическому шагу.",
         "meta_home": ("Корпоративное AI-обучение для команд | Practical AI", "Практическое AI-обучение для бизнес-команд на реальных задачах: однодневная лаборатория, недельный спринт и четырёхнедельная программа."),
         "meta_hr": ("AI-обучение для HR и L&D | Practical AI", "Как организовать AI-обучение сотрудников на рабочих процессах: задачи, согласованные инструменты, проверка и следующий шаг."),
         "meta_programs": ("Программы корпоративного AI-обучения | Practical AI", "Сравните однодневную AI-лабораторию, недельный спринт и четырёхнедельную программу командной практики."),
-        "meta_about": ("Данил Усик — основатель Practical AI", "Данил Усик, основатель Practical AI в Валенсии: прикладное AI-обучение бизнес-команд на реальных рабочих задачах."),
+        "meta_about": ("Как работает Practical AI | Командное AI-обучение", "Командный подход Practical AI к корпоративному AI-обучению: программа под рабочие задачи, практика и проверка результата."),
     },
 }
 
@@ -113,8 +121,8 @@ def u(lang: str, route: str = "") -> str:
 
 def contact(lang: str, topic: str = "team") -> str:
     messages = {
-        "en": {"team": "Hello Danil! I’d like to discuss AI training for my team.", "lab": "Hello Danil! I’d like to discuss an AI team lab.", "sprint": "Hello Danil! I’d like to discuss a one-week AI workflow sprint.", "program": "Hello Danil! I’d like to discuss a four-week team practice program."},
-        "ru": {"team": "Данил, привет! Хочу обсудить AI-обучение для моей команды.", "lab": "Данил, привет! Хочу обсудить AI-лабораторию для команды.", "sprint": "Данил, привет! Хочу обсудить недельный AI-спринт по процессу.", "program": "Данил, привет! Хочу обсудить четырёхнедельную программу практики для команды."},
+        "en": {"team": "Hello! I’d like to discuss AI training for my team.", "lab": "Hello! I’d like to discuss an AI team lab.", "sprint": "Hello! I’d like to discuss a one-week AI workflow sprint.", "program": "Hello! I’d like to discuss a four-week team practice program."},
+        "ru": {"team": "Здравствуйте! Хочу обсудить AI-обучение для моей команды.", "lab": "Здравствуйте! Хочу обсудить AI-лабораторию для команды.", "sprint": "Здравствуйте! Хочу обсудить недельный AI-спринт по процессу.", "program": "Здравствуйте! Хочу обсудить четырёхнедельную программу практики для команды."},
     }
     return "https://t.me/Danil_alto?text=" + quote(messages[lang][topic])
 
@@ -124,10 +132,9 @@ def esc(value: str) -> str:
 
 
 def schema(lang: str, route: str) -> dict:
-    org = {"@type": "Organization", "@id": BASE + "/#organization", "name": "Practical AI", "url": BASE + "/", "logo": BASE + "/assets/brand/logo-primary.svg", "founder": {"@id": BASE + "/about/#person"}}
-    person = {"@type": "Person", "@id": BASE + "/about/#person", "name": "Danil Usik", "url": BASE + "/about/", "jobTitle": "Founder of Practical AI", "worksFor": {"@id": BASE + "/#organization"}}
+    org = {"@type": "Organization", "@id": BASE + "/#organization", "name": "Practical AI", "url": BASE + "/", "logo": BASE + "/assets/brand/logo-primary.svg"}
     webpage = {"@type": "WebPage", "@id": BASE + u(lang, route) + "#webpage", "url": BASE + u(lang, route), "inLanguage": lang, "isPartOf": {"@id": BASE + "/#website"}}
-    graph = [org, person, {"@type": "WebSite", "@id": BASE + "/#website", "name": "Practical AI", "url": BASE + "/", "publisher": {"@id": BASE + "/#organization"}}, webpage]
+    graph = [org, {"@type": "WebSite", "@id": BASE + "/#website", "name": "Practical AI", "url": BASE + "/", "publisher": {"@id": BASE + "/#organization"}}, webpage]
     if route != "about":
         graph.append({"@type": "Service", "name": "Corporate AI training" if lang == "en" else "Корпоративное AI-обучение", "serviceType": "Corporate AI training", "provider": {"@id": BASE + "/#organization"}, "url": BASE + u(lang, route)})
     return {"@context": "https://schema.org", "@graph": graph}
@@ -176,17 +183,27 @@ def closing(lang: str) -> str:
     return f'<section class="closing"><div class="wrap closing-inner"><h2>{esc(c["closing_h2"])}</h2><a class="button button--dark" href="{contact(lang)}" target="_blank" rel="noopener noreferrer">{esc(c["closing_cta"])} ↗</a></div></section>'
 
 
+def evidence_teaser(lang: str) -> str:
+    c = COPY[lang]
+    label = "Explore the team case and participant quotes" if lang == "en" else "Посмотреть результаты кейса и слова участников"
+    quote_text, quote_name, quote_role = c["quotes"][0]
+    return f'<section class="section evidence-teaser"><div class="wrap evidence-teaser-grid"><div><span class="eyebrow">{esc(c["proof_tag"])}</span><h2>{esc(c["proof_h2"])}</h2><p>{esc(c["proof_p"])}</p><a class="card-link" href="{u(lang)}#case">{esc(label)} →</a></div><figure><blockquote>“{esc(quote_text)}”</blockquote><figcaption>{esc(quote_name)} · {esc(quote_role)}</figcaption></figure></div></section>'
+
+
 def home(lang: str) -> str:
     c = COPY[lang]
     steps = "".join(f'<div class="flow-step"><span class="num">{i:02}</span><div><b>{esc(title)}</b><small>{esc(detail)}</small></div></div>' for i, (title, detail) in enumerate(c["flow_steps"], 1))
     method = "".join(f'<article class="method-card"><span class="step">{number}</span><h3>{esc(title)}</h3><p>{esc(detail)}</p></article>' for number, title, detail in c["method_steps"])
     guides = "".join(f'<a class="guide-card" href="{url}"><span>{esc(tag)}</span><h3>{esc(title)}</h3><p>{esc(detail)}</p><b>{"Read guide" if lang == "en" else "Читать руководство"} ↗</b></a>' for tag, title, detail, url in c["guides"])
-    proof_facts = "".join(f'<span>{esc(item)}</span>' for item in c["proof_facts"])
+    proof_facts = "".join(f'<div class="proof-metric"><b>{esc(value)}</b><span>{esc(label)}</span></div>' for label, value in c["proof_facts"])
+    quotes = "".join(f'<figure class="quote-card"><blockquote>“{esc(words)}”</blockquote><figcaption><b>{esc(name)}</b><span>{esc(role)}</span></figcaption></figure>' for words, name, role in c["quotes"])
+    facets = "".join(f'<li><span>0{i}</span>{esc(facet)}</li>' for i, facet in enumerate(c["team_facets"], 1))
     return f'''<section class="hero"><div class="wrap hero-grid"><div><span class="eyebrow">{esc(c['hero_eyebrow'])}</span><h1>{c['hero_h1']}</h1><p class="hero-lede">{esc(c['hero_lede'])}</p><div class="hero-actions"><a class="button" href="{contact(lang)}" target="_blank" rel="noopener noreferrer">{esc(c['hero_cta'])} ↗</a><a class="button button--ghost" href="#programs">{esc(c['hero_secondary'])} ↓</a></div><p class="hero-note">{esc(c['hero_note'])}</p></div><div class="flow-card"><div class="flow-top"><span>{esc(c['flow_top'])}</span><span>● {esc(c['flow_status'])}</span></div>{steps}<div class="flow-output"><b>{esc(c['flow_output'])}</b> · {esc(c['flow_output_text'])}</div></div></div></section>
 <section class="section programs" id="programs"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c['programs_eyebrow'])}</span><h2>{esc(c['programs_h2'])}</h2></div><p>{esc(c['programs_intro'])}</p></div>{program_cards(lang)}</div></section>
-<section class="section proof"><div class="wrap proof-grid"><div class="proof-copy"><span class="eyebrow">{esc(c['proof_eyebrow'])}</span><h2>{esc(c['proof_h2'])}</h2><p>{esc(c['proof_p'])}</p></div><div class="proof-panel"><span class="case-tag">{esc(c['proof_tag'])}</span><h3>{esc(c['proof_title'])}</h3><p>{'Examples from the published team work:' if lang == 'en' else 'Примеры задач из опубликованного кейса:'}</p><div class="proof-facts">{proof_facts}</div></div></div></section>
+<section class="section proof" id="case"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c['proof_eyebrow'])}</span><h2>{esc(c['proof_h2'])}</h2></div><p>{esc(c['proof_p'])}</p></div><div class="case-layout"><figure class="case-image"><img src="/assets/corporate/cross-functional-workflow-review.jpg" alt="{esc(c['proof_photo'])}" width="1448" height="1086" loading="lazy"><figcaption>{esc(c['proof_visual_note'])}</figcaption></figure><div class="proof-panel"><div class="case-panel-head"><img src="/assets/img/shildpanel-logo.svg" alt="ШильдПанель" loading="lazy"><span class="case-tag">{esc(c['proof_tag'])}</span></div><h3>{esc(c['proof_title'])}</h3><div class="proof-facts">{proof_facts}</div><p class="proof-note">{esc(c['proof_note'])}</p></div></div></div></section>
+<section class="section quotes" id="reviews"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c['quotes_eyebrow'])}</span><h2>{esc(c['quotes_h2'])}</h2></div><p>{esc(c['quotes_intro'])}</p></div><div class="quote-grid">{quotes}</div></div></section>
 <section class="section method"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c['method_eyebrow'])}</span><h2>{esc(c['method_h2'])}</h2></div><p>{esc(c['method_intro'])}</p></div><div class="method-grid">{method}</div></div></section>
-<section class="section founder-section"><div class="wrap founder-grid"><div class="founder-mark" aria-hidden="true">DU.</div><div><span class="eyebrow">{esc(c['founder_eyebrow'])}</span><h2>{esc(c['founder_h2'])}</h2><p>{esc(c['founder_p'])}</p><a class="card-link" href="{u(lang,'about')}">{esc(c['founder_link'])}</a></div></div></section>
+<section class="section team-section"><div class="wrap team-grid"><div class="team-panel"><img src="/assets/brand/symbol-reverse.svg" alt="" width="128" height="128" loading="lazy"><ol>{facets}</ol></div><div><span class="eyebrow">{esc(c['team_eyebrow'])}</span><h2>{esc(c['team_h2'])}</h2><p>{esc(c['team_p'])}</p><a class="card-link" href="{u(lang,'about')}">{esc(c['team_link'])}</a></div></div></section>
 <section class="section"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c['guides_eyebrow'])}</span><h2>{esc(c['guides_h2'])}</h2></div></div><div class="guide-grid">{guides}</div></div></section>{closing(lang)}'''
 
 
@@ -197,18 +214,19 @@ def page_hero(lang: str, eyebrow: str, h1: str, intro: str) -> str:
 def hr(lang: str) -> str:
     c = COPY[lang]
     questions = "".join(f'<div class="question"><b>{esc(title)}</b><span>{esc(detail)}</span></div>' for title, detail in c["hr_questions"])
-    return page_hero(lang,c["hr_eyebrow"],c["hr_h1"],c["hr_intro"]) + f'<section class="section"><div class="wrap content-grid"><div><span class="eyebrow">{esc(c["hr_eyebrow"])}</span><h2>{esc(c["hr_questions_h2"])}</h2><p>{esc(c["hr_questions_p"])}</p></div><div class="question-list">{questions}</div></div></section><section class="section programs"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c["programs_eyebrow"])}</span><h2>{esc(c["programs_h2"])}</h2></div></div>{program_cards(lang)}</div></section><section class="section proof"><div class="wrap content-grid"><h2>{esc(c["hr_next_h2"])}</h2><div><p>{esc(c["hr_next_p"])}</p><a class="button button--dark" href="{contact(lang)}" target="_blank" rel="noopener noreferrer">{esc(c["closing_cta"])} ↗</a></div></div></section>{closing(lang)}'
+    return page_hero(lang,c["hr_eyebrow"],c["hr_h1"],c["hr_intro"]) + f'<section class="section"><div class="wrap content-grid"><div><span class="eyebrow">{esc(c["hr_eyebrow"])}</span><h2>{esc(c["hr_questions_h2"])}</h2><p>{esc(c["hr_questions_p"])}</p></div><div class="question-list">{questions}</div></div></section><section class="section programs"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c["programs_eyebrow"])}</span><h2>{esc(c["programs_h2"])}</h2></div></div>{program_cards(lang)}</div></section>{evidence_teaser(lang)}<section class="section proof"><div class="wrap content-grid"><h2>{esc(c["hr_next_h2"])}</h2><div><p>{esc(c["hr_next_p"])}</p><a class="button button--dark" href="{contact(lang)}" target="_blank" rel="noopener noreferrer">{esc(c["closing_cta"])} ↗</a></div></div></section>{closing(lang)}'
 
 
 def programs(lang: str) -> str:
     c = COPY[lang]
     method = "".join(f'<article class="method-card"><span class="step">{number}</span><h3>{esc(title)}</h3><p>{esc(detail)}</p></article>' for number, title, detail in c["method_steps"])
-    return page_hero(lang,c["program_page_eyebrow"],c["program_page_h1"],c["program_page_intro"]) + f'<section class="section programs"><div class="wrap">{program_cards(lang)}</div></section><section class="section method"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c["method_eyebrow"])}</span><h2>{esc(c["method_h2"])}</h2></div><p>{esc(c["method_intro"])}</p></div><div class="method-grid">{method}</div></div></section>{closing(lang)}'
+    return page_hero(lang,c["program_page_eyebrow"],c["program_page_h1"],c["program_page_intro"]) + f'<section class="section programs"><div class="wrap">{program_cards(lang)}</div></section><section class="section method"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c["method_eyebrow"])}</span><h2>{esc(c["method_h2"])}</h2></div><p>{esc(c["method_intro"])}</p></div><div class="method-grid">{method}</div></div></section>{evidence_teaser(lang)}{closing(lang)}'
 
 
 def about(lang: str) -> str:
     c = COPY[lang]
-    return f'<section class="section editorial"><div class="wrap"><span class="eyebrow">{esc(c["about_eyebrow"])}</span><h1>{esc(c["about_h1"])}</h1><p class="lead">{esc(c["about_lead"])}</p><div class="content-grid"><div><h2>{esc(c["about_method_h2"])}</h2><p>{esc(c["about_method_p"])}</p></div><div><h2>{esc(c["about_background_h2"])}</h2><p>{esc(c["about_background_p"])}</p></div></div></div></section><section class="section programs"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c["programs_eyebrow"])}</span><h2>{esc(c["programs_h2"])}</h2></div></div>{program_cards(lang)}</div></section>{closing(lang)}'
+    method = "".join(f'<article class="method-card"><span class="step">{number}</span><h3>{esc(title)}</h3><p>{esc(detail)}</p></article>' for number, title, detail in c["method_steps"])
+    return f'<section class="section editorial"><div class="wrap"><span class="eyebrow">{esc(c["about_eyebrow"])}</span><h1>{esc(c["about_h1"])}</h1><p class="lead">{esc(c["about_lead"])}</p><div class="content-grid"><div><h2>{esc(c["about_method_h2"])}</h2><p>{esc(c["about_method_p"])}</p></div><div><h2>{esc(c["about_background_h2"])}</h2><p>{esc(c["about_background_p"])}</p></div></div></div></section><section class="section method"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c["method_eyebrow"])}</span><h2>{esc(c["method_h2"])}</h2></div><p>{esc(c["method_intro"])}</p></div><div class="method-grid">{method}</div></div></section>{evidence_teaser(lang)}<section class="section programs"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c["programs_eyebrow"])}</span><h2>{esc(c["programs_h2"])}</h2></div></div>{program_cards(lang)}</div></section>{closing(lang)}'
 
 
 def main() -> None:

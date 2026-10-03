@@ -8,7 +8,7 @@ Practical AI site and client presentations. The public site is published from
 - Edit the EN/RU copy in `scripts/build_sales_site.py` and the shared layout in
   `docs/assets/brand/sales-site.css`.
 - Run `python3 scripts/build_site.py` to generate the static home, HR, programs,
-  and founder pages in both languages, plus the sitemap. Each page has its own
+  and team approach pages in both languages, plus the sitemap. Each page has its own
   URL, title, description, canonical, hreflang and JSON-LD.
 - Run `python3 scripts/check_sales_site.py` before publishing; it checks the
   eight sales pages, local links, language alternates and section order.
