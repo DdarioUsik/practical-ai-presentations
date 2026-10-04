@@ -161,17 +161,28 @@ def schema(lang: str, route: str) -> dict:
     return {"@context": "https://schema.org", "@graph": graph}
 
 
+def site_header(lang: str, route: str, switch_route: str | None = None) -> str:
+    c = COPY[lang]
+    other = "ru" if lang == "en" else "en"
+    nav_routes = ["for-hr", "programs", "about", "blog"]
+    nav = "".join(f'<a href="{u(lang, route_name)}"' + (' aria-current="page"' if route == route_name else '') + f'>{esc(label)}</a>' for route_name, label in zip(nav_routes, c["nav"]))
+    lang_label = "Переключить язык на русский" if lang == "en" else "Switch language to English"
+    home_label = "Practical AI home" if lang == "en" else "Practical AI — на главную"
+    return f'<header class="site-header"><div class="wrap nav"><a href="{u(lang)}" aria-label="{home_label}"><img class="brand-lockup" src="/assets/brand/logo-reverse.svg" alt="Practical AI" width="760" height="152"></a><nav class="nav-links" aria-label="{"Main navigation" if lang == "en" else "Основная навигация"}">{nav}</nav><div class="nav-end"><a class="lang-switch" href="{u(other,switch_route if switch_route is not None else route)}" lang="{other}" aria-label="{lang_label}">{esc(c["language"])}</a><a class="button button--small" href="{contact(lang)}" target="_blank" rel="noopener noreferrer">{esc(c["discuss"])} ↗</a></div></div></header>'
+
+
+def site_footer(lang: str, route: str = "") -> str:
+    c = COPY[lang]
+    nav = "".join(f'<a href="{u(lang, route_name)}"' + (' aria-current="page"' if route == route_name else '') + f'>{esc(label)}</a>' for route_name, label in zip(["for-hr", "programs", "about", "blog"], c["nav"]))
+    return f'<footer class="site-footer"><div class="wrap footer-inner"><a href="{u(lang)}"><img class="brand-lockup" src="/assets/brand/logo-reverse.svg" alt="Practical AI" width="760" height="152"></a><p>{esc(c["footer_p"])}</p><nav class="footer-links" aria-label="Footer">{nav}</nav></div></footer>'
+
+
 def shell(lang: str, route: str, body: str) -> str:
     c = COPY[lang]
     key = "home" if not route else route.replace("for-hr", "hr")
     title, description = c["meta_" + key]
     title, description = esc(title), esc(description)
     canonical = BASE + u(lang, route)
-    other = "ru" if lang == "en" else "en"
-    nav_routes = ["for-hr", "programs", "about", "blog"]
-    nav = "".join(f'<a href="{u(lang, route_name)}"' + (' aria-current="page"' if route == route_name else '') + f'>{esc(label)}</a>' for route_name, label in zip(nav_routes, c["nav"]))
-    lang_label = "Переключить язык на русский" if lang == "en" else "Switch language to English"
-    home_label = "Practical AI home" if lang == "en" else "Practical AI — на главную"
     site_name = "Practical AI"
     return f'''<!doctype html>
 <html lang="{lang}"><head>
@@ -184,9 +195,9 @@ def shell(lang: str, route: str, body: str) -> str:
 <link rel="icon" type="image/svg+xml" href="/assets/brand/symbol-primary.svg"><link rel="stylesheet" href="/assets/brand/sales-site.css">
 <script type="application/ld+json">{json.dumps(schema(lang,route),ensure_ascii=False,separators=(',',':'))}</script>
 </head><body>
-<header class="site-header"><div class="wrap nav"><a href="{u(lang)}" aria-label="{home_label}"><img class="brand-lockup" src="/assets/brand/logo-reverse.svg" alt="Practical AI" width="760" height="152"></a><nav class="nav-links" aria-label="{'Main navigation' if lang == 'en' else 'Основная навигация'}">{nav}</nav><div class="nav-end"><a class="lang-switch" href="{u(other,route)}" lang="{other}" aria-label="{lang_label}">{esc(c['language'])}</a><a class="button button--small" href="{contact(lang)}" target="_blank" rel="noopener noreferrer">{esc(c['discuss'])} ↗</a></div></div></header>
+{site_header(lang,route)}
 <main>{body}</main>
-<footer class="site-footer"><div class="wrap footer-inner"><a href="{u(lang)}"><img class="brand-lockup" src="/assets/brand/logo-reverse.svg" alt="Practical AI" width="760" height="152"></a><p>{esc(c['footer_p'])}</p><nav class="footer-links" aria-label="Footer">{nav}</nav></div></footer>
+{site_footer(lang,route)}
 </body></html>'''
 
 
@@ -288,16 +299,6 @@ def main() -> None:
             if f"<loc>{url}</loc>" not in text:
                 text = text.replace("</urlset>", f"  <url><loc>{url}</loc></url>\n</urlset>")
     sitemap.write_text(text, encoding="utf-8")
-    blog_pages = [DOCS / "blog/index.html", *sorted((DOCS / "blog").glob("*/index.html")), DOCS / "ru/blog/index.html", *sorted((DOCS / "ru/blog").glob("*/index.html"))]
-    for path in blog_pages:
-        if path.parent.name == "ai-my-voice":
-            continue
-        html = path.read_text(encoding="utf-8")
-        header, marker, rest = html.partition("</header>")
-        if marker:
-            updated = header.replace("logo-primary.svg", "logo-reverse.svg", 1) + marker + rest
-            if updated != html:
-                path.write_text(updated, encoding="utf-8")
     print("Built eight sales-led static pages and updated sitemap")
 
 
