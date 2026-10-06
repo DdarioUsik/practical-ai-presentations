@@ -1,0 +1,29 @@
+[
+  {
+    "file": "docs/assets/team/danil-usik.jpg",
+    "source_page": "https://www.linkedin.com/posts/danielusik_professional-head-of-academics-just-launched-activity-7192588458073243649-svPx",
+    "image_url": "https://media.licdn.com/dms/image/v2/D4D03AQGhh9vZMaf5Sg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1714847483055?e=2147483647&v=beta&t=3CdFgLT6oarkZXHO8O-zRAc_JpRhMZw-v6UvYvqZlx0",
+    "sha256": "6b3d821e82e798922bf7078f36df1b598390ed299c9c8fef1f78cbe581c24ab1",
+    "retrieved": "2026-10-06",
+    "authorization": "User requested LinkedIn portraits for the core-team cards",
+    "transform": "Original JPEG; visual crop uses CSS object-fit only"
+  },
+  {
+    "file": "docs/assets/team/svetlana-galakhova.jpg",
+    "source_page": "https://www.linkedin.com/company/aihubworks",
+    "image_url": "https://media.licdn.com/dms/image/v2/D4D03AQG8n95yab4mow/profile-displayphoto-shrink_400_400/B4DZZ7lTIJH4Ak-/0/1745830098227?e=2147483647&v=beta&t=O40vLdH0bfQFN3IMdLNRDhnrVVQ8hpAGThVV5tVzovw",
+    "sha256": "c87f99597836dfbaff9245c2867d080b2906d2956e7d252858250c6d3d9b3be7",
+    "retrieved": "2026-10-06",
+    "authorization": "User requested LinkedIn portraits for the core-team cards",
+    "transform": "Original JPEG; visual crop uses CSS object-fit only"
+  },
+  {
+    "file": "docs/assets/team/julia-krylova.jpg",
+    "source_page": "https://www.linkedin.com/company/hyperfocustech",
+    "image_url": "https://media.licdn.com/dms/image/v2/D4D03AQE0Gs6dTvvswQ/profile-displayphoto-scale_400_400/B4DZvgpA.yHgAk-/0/1769000412836?e=2147483647&v=beta&t=e1u1fH7qBopAp6X5FqsYu1RPoOSr08jCyNPAgGBhbA4",
+    "sha256": "b092cdd09a5d082bc25f08e8b334c65c0a03f7c7bb26bb52eb85457a4fcbb48a",
+    "retrieved": "2026-10-06",
+    "authorization": "User requested LinkedIn portraits for the core-team cards",
+    "transform": "Original JPEG; visual crop uses CSS object-fit only"
+  }
+]

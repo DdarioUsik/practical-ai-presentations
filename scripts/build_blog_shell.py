@@ -5,7 +5,7 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-from build_sales_site import DOCS, site_footer, site_header
+from build_sales_site import DOCS, WHATSAPP_NUMBER, site_footer, site_header, style_ref
 
 
 def replace_once(html: str, pattern: str, replacement: str, path: Path) -> str:
@@ -15,8 +15,17 @@ def replace_once(html: str, pattern: str, replacement: str, path: Path) -> str:
     return updated
 
 
+def main_target(html: str, path: Path) -> str:
+    match = re.search(r'<main\b([^>]*)>', html)
+    if match is None:
+        raise ValueError(f"Missing main content in {path}")
+    attrs = re.sub(r'\s(?:id|tabindex)="[^"]*"', '', match[1])
+    return html[:match.start()] + f'<main{attrs} id="main-content" tabindex="-1">' + html[match.end():]
+
+
 def build_page(path: Path, lang: str, slug: str) -> None:
     html = path.read_text(encoding="utf-8")
+    html = html.replace("https://t.me/Danil_alto?text=", f"https://wa.me/{WHATSAPP_NUMBER}?text=")
     route = f"blog/{slug}" if slug else "blog"
     html = replace_once(
         html,
@@ -32,14 +41,14 @@ def build_page(path: Path, lang: str, slug: str) -> None:
     )
     html = replace_once(
         html,
-        r'<link rel="stylesheet" href="[^"]*/assets/brand/(?:brand|sales-site)\.css">(?:<link rel="stylesheet" href="/assets/brand/blog-bridge\.css">)?',
-        '<link rel="stylesheet" href="/assets/brand/sales-site.css"><link rel="stylesheet" href="/assets/brand/blog-bridge.css">',
+        r'<link rel="stylesheet" href="[^"]*/assets/brand/(?:brand|sales-site)\.css(?:\?v=[a-f0-9]+)?">(?:<link rel="stylesheet" href="/assets/brand/blog-bridge\.css(?:\?v=[a-f0-9]+)?">)?',
+        f'<link rel="stylesheet" href="{style_ref()}"><link rel="stylesheet" href="{style_ref("blog-bridge.css")}">',
         path,
     )
     html = replace_once(html, r'<body(?: class="site-blog")?>', '<body class="site-blog">', path)
     old_label, new_label = ("Blog", "Guides") if lang == "en" else ("Блог", "Руководства")
     html = html.replace(f'>{old_label}</a>', f'>{new_label}</a>').replace(f'>{old_label}</span>', f'>{new_label}</span>')
-    path.write_text(html, encoding="utf-8")
+    path.write_text(main_target(html, path), encoding="utf-8")
 
 
 def build_legacy_article(path: Path) -> None:
@@ -47,7 +56,8 @@ def build_legacy_article(path: Path) -> None:
     html = replace_once(html, r'<header class="(?:nav|site-header)">.*?</header>', site_header("ru", "blog", "blog"), path)
     html = replace_once(html, r'<body class="(?:personal-article|personal-article site-blog)">', '<body class="personal-article site-blog">', path)
     html = html.replace('  <link rel="stylesheet" href="../../assets/brand/brand.css" />\n', '')
-    styles = '<link rel="stylesheet" href="/assets/brand/sales-site.css"><link rel="stylesheet" href="/assets/brand/blog-bridge.css">'
+    html = re.sub(r'<link rel="stylesheet" href="/assets/brand/(?:sales-site|blog-bridge)\.css(?:\?v=[a-f0-9]+)?">', '', html)
+    styles = f'<link rel="stylesheet" href="{style_ref()}"><link rel="stylesheet" href="{style_ref("blog-bridge.css")}">'
     if styles not in html:
         html = html.replace('</head>', f'{styles}\n</head>', 1)
     footer = site_footer("ru", "blog")
@@ -56,7 +66,7 @@ def build_legacy_article(path: Path) -> None:
     else:
         html = html.replace('</body>', footer + '\n</body>', 1)
     html = html.replace('href="../">← Blog', 'href="/ru/blog/">← Руководства')
-    path.write_text(html, encoding="utf-8")
+    path.write_text(main_target(html, path), encoding="utf-8")
 
 
 def main() -> None:

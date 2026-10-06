@@ -1,0 +1,116 @@
+{
+  "checks": 87,
+  "problems": [
+    {
+      "route": "/",
+      "width": 768,
+      "status": 200,
+      "overflow": true,
+      "brokenImages": [],
+      "visibleHeaderContact": true,
+      "headerHeight": 78,
+      "teamPortraits": 3,
+      "pageErrors": []
+    },
+    {
+      "route": "/ru/",
+      "width": 768,
+      "status": 200,
+      "overflow": true,
+      "brokenImages": [],
+      "visibleHeaderContact": true,
+      "headerHeight": 78,
+      "teamPortraits": 3,
+      "pageErrors": []
+    },
+    {
+      "route": "/about/",
+      "width": 768,
+      "status": 200,
+      "overflow": true,
+      "brokenImages": [],
+      "visibleHeaderContact": true,
+      "headerHeight": 78,
+      "teamPortraits": 3,
+      "pageErrors": []
+    },
+    {
+      "route": "/ru/about/",
+      "width": 768,
+      "status": 200,
+      "overflow": true,
+      "brokenImages": [],
+      "visibleHeaderContact": true,
+      "headerHeight": 78,
+      "teamPortraits": 3,
+      "pageErrors": []
+    },
+    {
+      "route": "/programs/",
+      "width": 768,
+      "status": 200,
+      "overflow": true,
+      "brokenImages": [],
+      "visibleHeaderContact": true,
+      "headerHeight": 78,
+      "teamPortraits": 0,
+      "pageErrors": []
+    },
+    {
+      "route": "/ru/programs/",
+      "width": 768,
+      "status": 200,
+      "overflow": true,
+      "brokenImages": [],
+      "visibleHeaderContact": true,
+      "headerHeight": 78,
+      "teamPortraits": 0,
+      "pageErrors": []
+    },
+    {
+      "route": "/for-hr/",
+      "width": 768,
+      "status": 200,
+      "overflow": true,
+      "brokenImages": [],
+      "visibleHeaderContact": true,
+      "headerHeight": 78,
+      "teamPortraits": 0,
+      "pageErrors": []
+    },
+    {
+      "route": "/ru/for-hr/",
+      "width": 768,
+      "status": 200,
+      "overflow": true,
+      "brokenImages": [],
+      "visibleHeaderContact": true,
+      "headerHeight": 78,
+      "teamPortraits": 0,
+      "pageErrors": []
+    }
+  ],
+  "keyboardSkip": {
+    "skipFocused": true,
+    "skipWorks": true
+  },
+  "headerHeights": [
+    {
+      "width": 320,
+      "height": 141.390625
+    },
+    {
+      "width": 375,
+      "height": 111
+    },
+    {
+      "width": 768,
+      "height": 78
+    },
+    {
+      "width": 1440,
+      "height": 78
+    }
+  ],
+  "allTeamPortraitsLoaded": true
+}

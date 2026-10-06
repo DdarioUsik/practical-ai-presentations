@@ -1,0 +1,15 @@
+{
+  "checks": 17,
+  "problems": [],
+  "keyboardSkip": {
+    "skipFocused": true,
+    "skipWorks": true
+  },
+  "headerHeights": [
+    {
+      "width": 768,
+      "height": 78
+    }
+  ],
+  "allTeamPortraitsLoaded": true
+}
