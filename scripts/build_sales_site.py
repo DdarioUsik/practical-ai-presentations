@@ -31,7 +31,7 @@ COPY = {
         "hero_secondary": "Explore the programs",
         "hero_note": "Start with your team size and one task you want to improve.",
         "hero_team": "Meet your core team",
-        "telegram_alt": "Or message on Telegram",
+        "linkedin_alt": "Or connect on LinkedIn",
         "flow_top": "What your team works through", "flow_status": "Working model",
         "flow_steps": [("Choose a real team task", "Start with a repeatable workflow"), ("Map the AI step", "Inputs, output and quality criteria"), ("Practise and review", "Use agreed tools; a person checks the result"), ("Take a next step", "Keep a workflow card and a plan to test it")],
         "flow_output": "Visible output", "flow_output_text": "a team workflow, review checklist and next test",
@@ -100,7 +100,7 @@ COPY = {
         "hero_cta": "Написать Данилу в WhatsApp", "hero_secondary": "Посмотреть программы",
         "hero_note": "Начните с размера команды и одной задачи, которую хотите улучшить.",
         "hero_team": "Познакомиться с командой",
-        "telegram_alt": "Или написать в Telegram",
+        "linkedin_alt": "Или написать в LinkedIn",
         "flow_top": "Как работает команда", "flow_status": "Рабочая модель",
         "flow_steps": [("Выбираем задачу команды", "Начинаем с повторяющегося процесса"), ("Размечаем AI-шаг", "Входные данные, результат и критерии качества"), ("Практикуемся и проверяем", "Согласованные инструменты и оценка специалиста"), ("Определяем следующий шаг", "Сохраняем сценарий и план его проверки")],
         "flow_output": "Осязаемый результат", "flow_output_text": "сценарий команды, чек-лист проверки и следующий тест",
@@ -168,11 +168,13 @@ def u(lang: str, route: str = "") -> str:
 
 
 def contact(lang: str, topic: str = "team", channel: str = "whatsapp") -> str:
+    if channel == "linkedin":
+        return TEAM_PROFILES[0]["linkedin"]
     messages = {
         "en": {"team": "Hello! I’d like to discuss AI training for my team.", "lab": "Hello! I’d like to discuss a company-wide AI lab.", "sprint": "Hello! I’d like to discuss a one-week AI leadership sprint.", "program": "Hello! I’d like to discuss a four-week middle management program."},
         "ru": {"team": "Здравствуйте! Хочу обсудить AI-обучение для моей команды.", "lab": "Здравствуйте! Хочу обсудить AI-лабораторию для всей компании.", "sprint": "Здравствуйте! Хочу обсудить недельный AI-спринт для руководства.", "program": "Здравствуйте! Хочу обсудить четырёхнедельную программу для руководителей среднего звена."},
     }
-    destination = f"https://wa.me/{WHATSAPP_NUMBER}?text=" if channel == "whatsapp" else "https://t.me/Danil_alto?text="
+    destination = f"https://wa.me/{WHATSAPP_NUMBER}?text="
     return destination + quote(messages[lang][topic], safe="")
 
 
@@ -186,7 +188,7 @@ def style_ref(name: str = "sales-site.css") -> str:
 
 
 def schema(lang: str, route: str) -> dict:
-    org = {"@type": "Organization", "@id": BASE + "/#organization", "name": "Practical AI", "url": BASE + "/", "logo": BASE + "/assets/brand/logo-primary.svg", "telephone": "+34627184000", "founder": {"@type": "Person", "name": "Danil Usik", "sameAs": TEAM_PROFILES[0]["linkedin"]}}
+    org = {"@type": "Organization", "@id": BASE + "/#organization", "name": "Practical AI", "url": BASE + "/", "logo": BASE + "/assets/brand/logo-primary.svg", "founder": {"@type": "Person", "name": "Danil Usik", "sameAs": TEAM_PROFILES[0]["linkedin"]}}
     webpage = {"@type": "WebPage", "@id": BASE + u(lang, route) + "#webpage", "url": BASE + u(lang, route), "inLanguage": lang, "isPartOf": {"@id": BASE + "/#website"}}
     graph = [org, {"@type": "WebSite", "@id": BASE + "/#website", "name": "Practical AI", "url": BASE + "/", "publisher": {"@id": BASE + "/#organization"}}, webpage]
     if route != "about":
@@ -210,7 +212,7 @@ def site_footer(lang: str, route: str = "") -> str:
     c = COPY[lang]
     nav = "".join(f'<a href="{u(lang, route_name)}"' + (' aria-current="page"' if route == route_name else '') + f'>{esc(label)}</a>' for route_name, label in zip(["for-hr", "programs", "about", "blog"], c["nav"]))
     footer_label = "Footer navigation" if lang == "en" else "Навигация в подвале"
-    return f'<footer class="site-footer"><div class="wrap footer-inner"><div class="footer-brand"><a href="{u(lang)}"><img class="brand-lockup" src="/assets/brand/logo-reverse.svg" alt="Practical AI" width="760" height="152"></a><p>{esc(c["footer_p"])}</p></div><div class="footer-column"><nav class="footer-links" aria-label="{footer_label}">{nav}</nav><div class="footer-contact"><a href="{contact(lang)}" target="_blank" rel="noopener noreferrer">WhatsApp · +34 627 184 000 ↗</a><a href="{contact(lang,channel='telegram')}" target="_blank" rel="noopener noreferrer">Telegram ↗</a></div></div></div></footer>'
+    return f'<footer class="site-footer"><div class="wrap footer-inner"><div class="footer-brand"><a href="{u(lang)}"><img class="brand-lockup" src="/assets/brand/logo-reverse.svg" alt="Practical AI" width="760" height="152"></a><p>{esc(c["footer_p"])}</p></div><div class="footer-column"><nav class="footer-links" aria-label="{footer_label}">{nav}</nav><div class="footer-contact"><a href="{contact(lang)}" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a><a href="{contact(lang,channel='linkedin')}" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div></div></div></footer>'
 
 
 def shell(lang: str, route: str, body: str) -> str:
@@ -254,7 +256,7 @@ def method_visual(lang: str) -> str:
 def closing(lang: str) -> str:
     c = COPY[lang]
     name = "Danil Usik" if lang == "en" else "Данил Усик"
-    return f'<section class="closing" id="contact"><div class="wrap closing-inner"><div class="closing-copy"><span class="eyebrow">{esc(c["closing_eyebrow"])}</span><h2>{esc(c["closing_h2"])}</h2><p>{esc(c["closing_p"])}</p></div><div class="contact-card"><div class="contact-person"><img src="/assets/team/danil-usik.jpg" alt="{name}" width="64" height="64" loading="lazy"><div><strong>{name}</strong><span>{esc(c["contact_role"])}</span></div></div><a class="button button--dark" href="{contact(lang)}" target="_blank" rel="noopener noreferrer">{esc(c["closing_cta"])} ↗</a><div class="contact-alternatives"><span>+34 627 184 000</span><a href="{contact(lang,channel='telegram')}" target="_blank" rel="noopener noreferrer">Telegram ↗</a></div></div></div></section>'
+    return f'<section class="closing" id="contact"><div class="wrap closing-inner"><div class="closing-copy"><span class="eyebrow">{esc(c["closing_eyebrow"])}</span><h2>{esc(c["closing_h2"])}</h2><p>{esc(c["closing_p"])}</p></div><div class="contact-card"><div class="contact-person"><img src="/assets/team/danil-usik.jpg" alt="{name}" width="64" height="64" loading="lazy"><div><strong>{name}</strong><span>{esc(c["contact_role"])}</span></div></div><a class="button button--dark" href="{contact(lang)}" target="_blank" rel="noopener noreferrer">{esc(c["closing_cta"])} ↗</a><div class="contact-alternatives"><a href="{contact(lang,channel='linkedin')}" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div></div></div></section>'
 
 
 def team_section(lang: str) -> str:
@@ -263,7 +265,7 @@ def team_section(lang: str) -> str:
     for index, member in enumerate(TEAM_PROFILES):
         name = member["name"] if lang == "en" else member["ru_name"]
         linkedin_label = f"View {name} on LinkedIn" if lang == "en" else f"Профиль {name} в LinkedIn"
-        cards.append(f'<article class="team-card"><div class="team-portrait"><img src="/assets/team/{member["photo"]}" alt="{name}" width="400" height="400" loading="lazy" decoding="async"></div><div class="team-card-body"><span class="team-role">{esc(c["team_roles"][index])}</span><h3>{name}</h3><p>{esc(c["team_bios"][index])}</p><a class="card-link" href="{member["linkedin"]}" aria-label="{linkedin_label}" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a></div></article>')
+        cards.append(f'<article class="team-card"><div class="team-card-header"><div class="team-portrait"><img src="/assets/team/{member["photo"]}" alt="{name}" width="64" height="64" loading="lazy" decoding="async"></div><div class="team-card-heading"><span class="team-role">{esc(c["team_roles"][index])}</span><h3>{name}</h3></div></div><div class="team-card-body"><p>{esc(c["team_bios"][index])}</p><a class="card-link" href="{member["linkedin"]}" aria-label="{linkedin_label}" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a></div></article>')
     return f'<section class="section team-section" id="team"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c["team_eyebrow"])}</span><h2>{esc(c["team_h2"])}</h2></div><p>{esc(c["team_p"])}</p></div><div class="team-cards">{"".join(cards)}</div><div class="team-next"><a class="card-link" href="{contact(lang)}" target="_blank" rel="noopener noreferrer">{esc(c["team_link"])} ↗</a></div></div></section>'
 
 
@@ -299,7 +301,7 @@ def home(lang: str) -> str:
     guides = "".join(f'<a class="guide-card" href="{url}"><span>{esc(tag)}</span><h3>{esc(title)}</h3><p>{esc(detail)}</p><b>{"Read guide" if lang == "en" else "Читать руководство"} ↗</b></a>' for tag, title, detail, url in c["guides"])
     proof_facts = proof_cards(lang)
     quotes = "".join(f'<figure class="quote-card"><blockquote>“{esc(words)}”</blockquote><figcaption><b>{esc(name)}</b><span>{esc(role)}</span></figcaption></figure>' for words, name, role in c["quotes"])
-    return f'''<section class="hero"><div class="wrap hero-grid"><div><span class="eyebrow">{esc(c['hero_eyebrow'])}</span><h1>{c['hero_h1']}</h1><p class="hero-lede">{esc(c['hero_lede'])}</p><div class="hero-actions"><a class="button" href="{contact(lang)}" target="_blank" rel="noopener noreferrer">{esc(c['hero_cta'])} ↗</a><a class="button button--ghost" href="#programs">{esc(c['hero_secondary'])} ↓</a></div><p class="hero-note">{esc(c['hero_note'])}</p><div class="hero-contact-options"><a href="{contact(lang,channel='telegram')}" target="_blank" rel="noopener noreferrer">{esc(c['telegram_alt'])} ↗</a><a href="#team">{esc(c['hero_team'])} ↓</a></div></div><div class="flow-card"><div class="flow-top"><span>{esc(c['flow_top'])}</span><span>● {esc(c['flow_status'])}</span></div>{steps}<div class="flow-output"><b>{esc(c['flow_output'])}</b> · {esc(c['flow_output_text'])}</div></div></div></section>
+    return f'''<section class="hero"><div class="wrap hero-grid"><div><span class="eyebrow">{esc(c['hero_eyebrow'])}</span><h1>{c['hero_h1']}</h1><p class="hero-lede">{esc(c['hero_lede'])}</p><div class="hero-actions"><a class="button" href="{contact(lang)}" target="_blank" rel="noopener noreferrer">{esc(c['hero_cta'])} ↗</a><a class="button button--ghost" href="#programs">{esc(c['hero_secondary'])} ↓</a></div><p class="hero-note">{esc(c['hero_note'])}</p><div class="hero-contact-options"><a href="{contact(lang,channel='linkedin')}" target="_blank" rel="noopener noreferrer">{esc(c['linkedin_alt'])} ↗</a><a href="#team">{esc(c['hero_team'])} ↓</a></div></div><div class="flow-card"><div class="flow-top"><span>{esc(c['flow_top'])}</span><span>● {esc(c['flow_status'])}</span></div>{steps}<div class="flow-output"><b>{esc(c['flow_output'])}</b> · {esc(c['flow_output_text'])}</div></div></div></section>
 <section class="section programs" id="programs"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c['programs_eyebrow'])}</span><h2>{esc(c['programs_h2'])}</h2></div><p>{esc(c['programs_intro'])}</p></div>{program_cards(lang)}</div></section>
 <section class="section proof" id="case"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c['proof_eyebrow'])}</span><h2>{esc(c['proof_h2'])}</h2></div><p>{esc(c['proof_p'])}</p></div><div class="case-layout"><div class="case-story"><div class="case-company"><img src="/assets/img/shildpanel-mark.svg" alt="" width="70" height="76" loading="lazy"><div><strong>ShildPanel</strong><span>Production Company</span></div></div><span class="case-story-number">5<span> / {esc(c['proof_count_unit'])}</span></span><h3>{esc(c['proof_case_h3'])}</h3><p>{esc(c['proof_roles'])}</p><a class="card-link" href="#reviews">{esc(c['proof_case_link'])} →</a></div><div class="proof-panel"><span class="case-tag">{esc(c['proof_tag'])}</span><h3>{esc(c['proof_title'])}</h3><div class="proof-facts">{proof_facts}</div></div></div></div></section>
 <section class="section quotes" id="reviews"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c['quotes_eyebrow'])}</span><h2>{esc(c['quotes_h2'])}</h2></div><p>{esc(c['quotes_intro'])}</p></div><div class="quote-grid">{quotes}</div></div></section>
@@ -309,7 +311,7 @@ def home(lang: str) -> str:
 
 
 def page_hero(lang: str, eyebrow: str, h1: str, intro: str) -> str:
-    return f'<section class="page-hero"><div class="wrap"><span class="eyebrow">{esc(eyebrow)}</span><h1>{esc(h1)}</h1><p>{esc(intro)}</p><a class="button" href="{contact(lang)}" target="_blank" rel="noopener noreferrer">{esc(COPY[lang]["discuss"])} ↗</a><div class="page-contact-options"><a href="{contact(lang,channel='telegram')}" target="_blank" rel="noopener noreferrer">{esc(COPY[lang]["telegram_alt"])} ↗</a></div></div></section>'
+    return f'<section class="page-hero"><div class="wrap"><span class="eyebrow">{esc(eyebrow)}</span><h1>{esc(h1)}</h1><p>{esc(intro)}</p><a class="button" href="{contact(lang)}" target="_blank" rel="noopener noreferrer">{esc(COPY[lang]["discuss"])} ↗</a><div class="page-contact-options"><a href="{contact(lang,channel='linkedin')}" target="_blank" rel="noopener noreferrer">{esc(COPY[lang]["linkedin_alt"])} ↗</a></div></div></section>'
 
 
 def hr(lang: str) -> str:

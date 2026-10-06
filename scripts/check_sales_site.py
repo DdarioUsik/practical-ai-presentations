@@ -75,13 +75,13 @@ def check() -> None:
                 errors.append(f"{url_path}: programs must be the second section")
             if 'href="#main-content"' not in html or 'id="main-content"' not in html:
                 errors.append(f"{url_path}: keyboard skip target missing")
-            if 'https://wa.me/34627184000?text=' not in html or 'https://t.me/Danil_alto?text=' not in html:
-                errors.append(f"{url_path}: WhatsApp primary or Telegram alternative missing")
+            if 'https://wa.me/34627184000?text=' not in html or 'https://www.linkedin.com/in/danielusik/' not in html:
+                errors.append(f"{url_path}: WhatsApp primary or LinkedIn alternative missing")
             if route in ("", "about"):
                 names = ("Danil Usik", "Svetlana Galakhova", "Julia Krylova") if lang == "en" else ("Данил Усик", "Светлана Галахова", "Юлия Крылова")
                 if html.count('class="team-card"') != 3 or any(name not in html for name in names):
                     errors.append(f"{url_path}: three named core-team profiles missing")
-                if html.count('href="https://www.linkedin.com/in/') != 3:
+                if any(profile not in html for profile in ('https://www.linkedin.com/in/danielusik/', 'https://www.linkedin.com/in/svetlana-galakhova/', 'https://www.linkedin.com/in/juliakrl/')):
                     errors.append(f"{url_path}: core-team profile links missing")
             if route == "" and ("class=\"quote-grid\"" not in html or "class=\"proof-facts\"" not in html):
                 errors.append(f"{url_path}: case metrics or participant quotes missing")
@@ -129,8 +129,8 @@ def check() -> None:
                 errors.append(f"{url_path}: shared header/footer missing")
             if 'href="#main-content"' not in html or 'id="main-content"' not in html:
                 errors.append(f"{url_path}: keyboard skip target missing")
-            if 'https://wa.me/34627184000?text=' not in html or 'https://t.me/Danil_alto?text=' not in html:
-                errors.append(f"{url_path}: WhatsApp primary or Telegram alternative missing")
+            if 'https://wa.me/34627184000?text=' not in html or 'https://www.linkedin.com/in/danielusik/' not in html:
+                errors.append(f"{url_path}: WhatsApp primary or LinkedIn alternative missing")
             for nav_path in ("for-hr", "programs", "about", "blog"):
                 if f'href="{("/ru" if lang == "ru" else "")}/{nav_path}/"' not in html:
                     errors.append(f"{url_path}: {nav_path} navigation missing")
