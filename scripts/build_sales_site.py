@@ -159,6 +159,7 @@ COPY = {
         "meta_hr": ("AI-обучение для HR и L&D | Practical AI", "Как организовать AI-обучение сотрудников на рабочих процессах: задачи, согласованные инструменты, проверка и следующий шаг."),
         "meta_programs": ("Программы корпоративного AI-обучения | Practical AI", "Сравните AI-лабораторию до 150 человек, спринт для небольшой группы руководителей и четырёхнедельную программу для примерно 15 руководителей среднего звена."),
         "meta_about": ("Команда | Данил Усик, Светлана Галахова и Юлия Крылова | Practical AI", "Познакомьтесь с основной командой Practical AI и обсудите корпоративное AI-обучение с Данилом Усиком."),
+        "meta_for-schools": ("AI-обучение для учителей и руководителей школ | Practical AI", "Практические учебные сценарии AI для учителей и руководителей школ: подготовка материалов, черновик обратной связи и проверка человеком."),
     },
 }
 
@@ -172,7 +173,7 @@ def contact(lang: str, topic: str = "team", channel: str = "whatsapp") -> str:
         return TEAM_PROFILES[0]["linkedin"]
     messages = {
         "en": {"team": "Hello! I’d like to discuss AI training for my team.", "lab": "Hello! I’d like to discuss a company-wide AI lab.", "sprint": "Hello! I’d like to discuss a one-week AI leadership sprint.", "program": "Hello! I’d like to discuss a four-week middle management program."},
-        "ru": {"team": "Здравствуйте! Хочу обсудить AI-обучение для моей команды.", "lab": "Здравствуйте! Хочу обсудить AI-лабораторию для всей компании.", "sprint": "Здравствуйте! Хочу обсудить недельный AI-спринт для руководства.", "program": "Здравствуйте! Хочу обсудить четырёхнедельную программу для руководителей среднего звена."},
+        "ru": {"team": "Здравствуйте! Хочу обсудить AI-обучение для моей команды.", "lab": "Здравствуйте! Хочу обсудить AI-лабораторию для всей компании.", "sprint": "Здравствуйте! Хочу обсудить недельный AI-спринт для руководства.", "program": "Здравствуйте! Хочу обсудить четырёхнедельную программу для руководителей среднего звена.", "school": "Здравствуйте! Хочу обсудить практическое AI-обучение для команды школы."},
     }
     destination = f"https://wa.me/{WHATSAPP_NUMBER}?text="
     return destination + quote(messages[lang][topic], safe="")
@@ -192,7 +193,10 @@ def schema(lang: str, route: str) -> dict:
     webpage = {"@type": "WebPage", "@id": BASE + u(lang, route) + "#webpage", "url": BASE + u(lang, route), "inLanguage": lang, "isPartOf": {"@id": BASE + "/#website"}}
     graph = [org, {"@type": "WebSite", "@id": BASE + "/#website", "name": "Practical AI", "url": BASE + "/", "publisher": {"@id": BASE + "/#organization"}}, webpage]
     if route != "about":
-        graph.append({"@type": "Service", "name": "Corporate AI training" if lang == "en" else "Корпоративное AI-обучение", "serviceType": "Corporate AI training", "provider": {"@id": BASE + "/#organization"}, "url": BASE + u(lang, route)})
+        if lang == "ru" and route == "for-schools":
+            graph.append({"@type": "Service", "name": "AI-обучение для школьных команд", "serviceType": "AI training for adult school staff", "provider": {"@id": BASE + "/#organization"}, "url": BASE + u(lang, route)})
+        else:
+            graph.append({"@type": "Service", "name": "Corporate AI training" if lang == "en" else "Корпоративное AI-обучение", "serviceType": "Corporate AI training", "provider": {"@id": BASE + "/#organization"}, "url": BASE + u(lang, route)})
     return {"@context": "https://schema.org", "@graph": graph}
 
 
@@ -200,19 +204,33 @@ def site_header(lang: str, route: str, switch_route: str | None = None) -> str:
     c = COPY[lang]
     other = "ru" if lang == "en" else "en"
     nav_routes = ["for-hr", "programs", "about", "blog"]
-    nav = "".join(f'<a href="{u(lang, route_name)}"' + (' aria-current="page"' if route == route_name else '') + f'>{esc(label)}</a>' for route_name, label in zip(nav_routes, c["nav"]))
+    nav_items = list(zip(nav_routes, c["nav"]))
+    if lang == "ru":
+        nav_items.append(("for-schools", "Для школ"))
+    nav = "".join(f'<a href="{u(lang, route_name)}"' + (' aria-current="page"' if route == route_name else '') + f'>{esc(label)}</a>' for route_name, label in nav_items)
     lang_label = "Переключить язык на русский" if lang == "en" else "Switch language to English"
     home_label = "Practical AI home" if lang == "en" else "Practical AI — на главную"
     skip_label = "Skip to main content" if lang == "en" else "Перейти к содержанию"
     contact_label = "Message Danil on WhatsApp" if lang == "en" else "Написать Данилу в WhatsApp"
-    return f'<header class="site-header"><a class="skip-link" href="#main-content">{skip_label}</a><div class="wrap nav"><a href="{u(lang)}" aria-label="{home_label}"><img class="brand-lockup" src="/assets/brand/logo-reverse.svg" alt="Practical AI" width="760" height="152"></a><nav class="nav-links" aria-label="{"Main navigation" if lang == "en" else "Основная навигация"}">{nav}</nav><div class="nav-end"><a class="lang-switch" href="{u(other,switch_route if switch_route is not None else route)}" lang="{other}" aria-label="{lang_label}">{esc(c["language"])}</a><a class="button button--small" aria-label="{contact_label}" href="{contact(lang)}" target="_blank" rel="noopener noreferrer"><span class="contact-label">{esc(c["discuss"])}</span><span class="contact-short" aria-hidden="true">WhatsApp</span><span aria-hidden="true">↗</span></a></div></div></header>'
+    contact_url = contact(lang, "school") if lang == "ru" and route == "for-schools" else contact(lang)
+    header_contact = f'<a class="button button--small" aria-label="{contact_label}" href="{contact_url}" target="_blank" rel="noopener noreferrer"><span class="contact-label">{esc(c["discuss"])}</span><span class="contact-short" aria-hidden="true">WhatsApp</span><span aria-hidden="true">↗</span></a>'
+    return f'<header class="site-header"><a class="skip-link" href="#main-content">{skip_label}</a><div class="wrap nav"><a href="{u(lang)}" aria-label="{home_label}"><img class="brand-lockup" src="/assets/brand/logo-reverse.svg" alt="Practical AI" width="760" height="152"></a><nav class="nav-links" aria-label="{"Main navigation" if lang == "en" else "Основная навигация"}">{nav}</nav><div class="nav-end"><a class="lang-switch" href="{u(other,switch_route if switch_route is not None else route)}" lang="{other}" aria-label="{lang_label}">{esc(c["language"])}</a>{header_contact}</div></div></header>'
 
 
 def site_footer(lang: str, route: str = "") -> str:
     c = COPY[lang]
-    nav = "".join(f'<a href="{u(lang, route_name)}"' + (' aria-current="page"' if route == route_name else '') + f'>{esc(label)}</a>' for route_name, label in zip(["for-hr", "programs", "about", "blog"], c["nav"]))
+    nav_items = list(zip(["for-hr", "programs", "about", "blog"], c["nav"]))
+    if lang == "ru":
+        nav_items.append(("for-schools", "Для школ"))
+    nav = "".join(f'<a href="{u(lang, route_name)}"' + (' aria-current="page"' if route == route_name else '') + f'>{esc(label)}</a>' for route_name, label in nav_items)
     footer_label = "Footer navigation" if lang == "en" else "Навигация в подвале"
-    return f'<footer class="site-footer"><div class="wrap footer-inner"><div class="footer-brand"><a href="{u(lang)}"><img class="brand-lockup" src="/assets/brand/logo-reverse.svg" alt="Practical AI" width="760" height="152"></a><p>{esc(c["footer_p"])}</p></div><div class="footer-column"><nav class="footer-links" aria-label="{footer_label}">{nav}</nav><div class="footer-contact"><a href="{contact(lang)}" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a><a href="{contact(lang,channel='linkedin')}" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div></div></div></footer>'
+    if lang == "ru" and route == "for-schools":
+        whatsapp_contact = contact(lang, "school")
+    else:
+        whatsapp_contact = contact(lang)
+    linkedin_contact = contact(lang, channel="linkedin")
+    contacts = f'<div class="footer-contact"><a href="{whatsapp_contact}" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a><a href="{linkedin_contact}" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div>'
+    return f'<footer class="site-footer"><div class="wrap footer-inner"><div class="footer-brand"><a href="{u(lang)}"><img class="brand-lockup" src="/assets/brand/logo-reverse.svg" alt="Practical AI" width="760" height="152"></a><p>{esc(c["footer_p"])}</p></div><div class="footer-column"><nav class="footer-links" aria-label="{footer_label}">{nav}</nav>{contacts}</div></div></footer>'
 
 
 def shell(lang: str, route: str, body: str) -> str:
@@ -222,21 +240,42 @@ def shell(lang: str, route: str, body: str) -> str:
     title, description = esc(title), esc(description)
     canonical = BASE + u(lang, route)
     site_name = "Practical AI"
+    if lang == "ru" and route == "for-schools":
+        alternates = f'<link rel="alternate" hreflang="ru" href="{canonical}"><link rel="alternate" hreflang="x-default" href="{canonical}">'
+        body_class = ' class="school-page"'
+    else:
+        alternates = f'<link rel="alternate" hreflang="en" href="{BASE + u("en",route)}"><link rel="alternate" hreflang="ru" href="{BASE + u("ru",route)}"><link rel="alternate" hreflang="x-default" href="{BASE + u("en",route)}">'
+        body_class = ""
     return f'''<!doctype html>
 <html lang="{lang}"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#17213d"><meta name="robots" content="index,follow,max-image-preview:large">
 <title>{title}</title><meta name="description" content="{description}">
-<link rel="canonical" href="{canonical}"><link rel="alternate" hreflang="en" href="{BASE + u('en',route)}"><link rel="alternate" hreflang="ru" href="{BASE + u('ru',route)}"><link rel="alternate" hreflang="x-default" href="{BASE + u('en',route)}">
+<link rel="canonical" href="{canonical}">{alternates}
 <meta property="og:type" content="website"><meta property="og:site_name" content="{site_name}"><meta property="og:title" content="{title}"><meta property="og:description" content="{description}"><meta property="og:url" content="{canonical}"><meta property="og:locale" content="{'en_US' if lang == 'en' else 'ru_RU'}"><meta property="og:image" content="{BASE}/assets/brand/social-card.png">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{title}"><meta name="twitter:description" content="{description}"><meta name="twitter:image" content="{BASE}/assets/brand/social-card.png">
 <link rel="icon" type="image/svg+xml" href="/assets/brand/symbol-primary.svg"><link rel="stylesheet" href="{style_ref()}">
 <script type="application/ld+json">{json.dumps(schema(lang,route),ensure_ascii=False,separators=(',',':'))}</script>
-</head><body>
-{site_header(lang,route)}
+</head><body{body_class}>
+{site_header(lang,route,switch_route="" if lang == "ru" and route == "for-schools" else None)}
 <main id="main-content" tabindex="-1">{body}</main>
 {site_footer(lang,route)}
 </body></html>'''
+
+
+def school_page() -> str:
+    contact_message = "Здравствуйте! Хочу обсудить практическое AI-обучение для команды школы."
+    school_contact_url = contact("ru", "school")
+    linkedin_contact_url = contact("ru", channel="linkedin")
+    return f'''<section class="hero school-hero"><div class="wrap hero-grid"><div><span class="eyebrow">Practical AI · обучение для школьных команд</span><h1>AI-обучение <em>для школьной команды.</em></h1><p class="hero-lede">Для учителей и руководителей школ: разбираем, где AI может быть полезен в подготовке материалов, обратной связи и школьной коммуникации. Участники тренируются на синтетических примерах, проверяют ответы и сами принимают решения.</p><div class="hero-actions"><a class="button" href="{school_contact_url}" target="_blank" rel="noopener noreferrer">Обсудить обучение для школы ↗</a><a class="button button--ghost" href="#formats">Посмотреть форматы ↓</a></div><p class="hero-note">Обучение рассчитано на сотрудников школы. Содержание и режим обсуждаем с командой.</p><div class="hero-contact-options"><a href="{linkedin_contact_url}" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="#practice">Посмотреть учебный пример ↓</a></div></div><div class="flow-card school-flow-card"><div class="flow-top"><span>Пример упражнения</span><span>● Решение за учителем</span></div><div class="flow-step"><span class="num">01</span><div><b>Синтетическая работа</b><small>Критерии и учебный пример без данных ученика</small></div></div><div class="flow-step"><span class="num">02</span><div><b>Черновик AI</b><small>Комментарий или вопрос для проверки</small></div></div><div class="flow-step"><span class="num">03</span><div><b>Проверка учителем</b><small>Каждое предложение сверяется с работой и критериями</small></div></div><div class="flow-output"><b>Итог</b> · педагогическое и оценочное решение принимает учитель</div></div></div></section>
+<section class="section school-audience" id="audience"><div class="wrap"><div class="section-head"><div><span class="eyebrow">Для кого</span><h2>Практика вокруг задач школьной команды.</h2></div><p>Содержание упражнения зависит от роли участника, правил школы и доступных инструментов. В примерах используются синтетические материалы.</p></div><div class="school-audience-grid"><article class="school-info-card"><span class="school-card-index">01 · Учителю</span><h3>Подготовка к занятиям</h3><ul><li>Собрать черновик плана, объяснения темы или упражнения.</li><li>Адаптировать материал по уровню сложности или языку группы.</li><li>Подготовить вопросы и критерии проверки задания.</li></ul></article><article class="school-info-card"><span class="school-card-index">02 · Руководителю</span><h3>Коммуникация и организация</h3><ul><li>Подготовить черновик повестки, внутреннего сообщения или памятки.</li><li>Структурировать заметки на данных, разрешённых правилами школы.</li><li>Сформулировать критерии проверки AI-ответов в команде.</li></ul></article><article class="school-info-card school-info-card--accent"><span class="school-card-index">03 · Команде</span><h3>Проверяемый учебный сценарий</h3><ul><li>Выбрать конкретную задачу и ожидаемый результат.</li><li>Задать контекст, ограничения и критерии качества.</li><li>Проверить ответ на синтетическом примере и обсудить доработки.</li></ul></article></div></div></section>
+<section class="section school-practice" id="practice"><div class="wrap"><div class="section-head"><div><span class="eyebrow">Учебный пример</span><h2>AI предлагает черновик. Учитель проверяет и решает.</h2></div><p>Показываем ход работы на вымышленном примере домашнего задания. AI не выставляет оценку и не принимает педагогическое решение.</p></div><div class="school-practice-grid"><article><span>01</span><h3>Задать критерии</h3><p>Учитель выбирает рубрику и синтетический пример работы.</p></article><article><span>02</span><h3>Получить черновик</h3><p>AI сопоставляет работу с критериями и предлагает комментарий или уточняющий вопрос.</p></article><article><span>03</span><h3>Проверить исходник</h3><p>Учитель сверяет каждое предложение с работой и рубрикой, редактирует ответ и самостоятельно принимает итоговое решение.</p></article></div><p class="school-safety-note"><strong>Данные учеников не загружаются в учебную демонстрацию.</strong> Любые материалы сверх синтетического примера допустимы только после проверки правил школы и условий выбранного инструмента.</p></div></section>
+<section class="section school-assistant"><div class="wrap"><div class="section-head"><div><span class="eyebrow">Навык участника</span><h2>Настроить AI-помощника как учебное упражнение.</h2></div><p>Участник задаёт инструкцию и разрешённый контекст внутри выбранного школой инструмента, затем проверяет ответы на тестовых примерах.</p></div><div class="school-assistant-steps"><div><b>Выбрать задачу</b><span>Один понятный учебный или организационный сценарий.</span></div><div><b>Описать рамки</b><span>Контекст и критерии, разрешённые правилами школы.</span></div><div><b>Проверить ответ</b><span>Синтетический пример и оценка участника.</span></div><div><b>Решить, что дальше</b><span>Зафиксировать ограничения и следующий учебный шаг.</span></div></div><p class="school-boundary"><strong>Это упражнение на навык участника.</strong> Оно не включает заказную разработку помощника, интеграцию со школьными системами или внедрение в процессы школы.</p></div></section>
+<section class="section programs school-formats" id="formats"><div class="wrap"><div class="section-head"><div><span class="eyebrow">Форматы обучения</span><h2>Выберите удобную продолжительность.</h2></div><p>Для школьных команд доступны однодневный тренинг и программы на 2 дня, 1 или 4 недели. Содержание, режим и нагрузку обсуждаем с командой.</p></div><div class="school-format-grid"><article class="school-format-card school-format-card--lead"><p class="school-format-duration">1 день</p><h3>Погружение</h3><p>Вводная практика: основы AI, выбор задачи и работа с одним-двумя учебными примерами.</p></article><article class="school-format-card"><p class="school-format-duration">2 дня подряд</p><h3>Интенсив</h3><p>Последовательная практика учебных и управленческих сценариев с упражнением на помощника.</p></article><article class="school-format-card"><p class="school-format-duration">1 неделя</p><h3>AI-спринт</h3><p>Короткая программа с практикой между встречами на синтетическом учебном примере.</p></article><article class="school-format-card"><p class="school-format-duration">4 недели</p><h3>Практическая программа</h3><p>Последовательные упражнения, проверка качества ответов и план дальнейшего обучения команды.</p></article></div><div class="school-pricing" aria-labelledby="school-pricing-heading"><div class="school-pricing-head"><div><span class="eyebrow">Однодневный тренинг</span><h3 id="school-pricing-heading">Стоимость для группы.</h3></div><p class="school-pricing-intro">Для групп другого размера и программ дольше одного дня стоимость обсуждаем отдельно.</p></div><div class="school-pricing-grid"><article class="school-price-card"><div class="school-price">$1,500</div><p class="school-price-audience">Группа до 15 участников</p><p class="school-price-term">за один день</p></article><article class="school-price-card"><div class="school-price">$9,000</div><p class="school-price-audience">Группа 200 участников</p><p class="school-price-term">за один день</p></article></div><p class="school-pricing-note">Площадку и выезд согласуем отдельно.</p></div></div></section>
+<section class="section school-onsite"><div class="wrap school-onsite-grid"><div><span class="eyebrow">Очный формат</span><h2>Обсудить задачу школы и условия проведения.</h2><p>В запросе можно указать страну или город, роль, предполагаемый состав группы и желаемые даты. Возможность проведения, программа и условия подтверждаются индивидуально.</p></div><div class="school-onsite-card"><span>Индивидуальный запрос</span><strong>Географию, площадку и условия выезда согласуем отдельно.</strong><a class="button" href="{school_contact_url}" target="_blank" rel="noopener noreferrer">Обсудить очный формат ↗</a></div></div></section>
+<section class="section school-responsibility"><div class="wrap school-responsibility-grid"><div><span class="eyebrow">Ответственная практика</span><h2>Сначала правила школы и инструмента.</h2></div><ul><li>Для демонстрации по умолчанию используются синтетические данные.</li><li>Персональные данные учеников не вводятся в AI-инструменты.</li><li>Учитель проверяет каждый AI-ответ и принимает итоговое решение.</li><li>Названия инструментов и условия их использования обсуждаются только после проверки доступности и правил школы.</li></ul></div></section>
+<section class="section school-lead"><div class="wrap school-lead-grid"><div><span class="eyebrow">Первый контакт</span><h2>Практическое обучение применению AI.</h2><p>Первую задачу вы обсуждаете с Данилом Усиком, основателем Practical AI. Расскажите, какие роли будут участвовать и какие учебные задачи вы хотите разобрать.</p></div><a class="school-lead-link" href="{linkedin_contact_url}" target="_blank" rel="noopener noreferrer">Связаться через LinkedIn ↗</a></div></section>
+<section class="closing school-closing" id="contact"><div class="wrap closing-inner"><div class="closing-copy"><span class="eyebrow">Обсудим школьное обучение</span><h2>С чего начнёт ваша команда?</h2><p>Напишите страну или город, вашу роль, предполагаемый размер группы, одну-две задачи и желаемый формат. Не отправляйте данные учащихся или другие персональные сведения.</p></div><div class="contact-card"><div class="contact-person"><img src="/assets/team/danil-usik.jpg" alt="Данил Усик" width="64" height="64" loading="lazy"><div><strong>Данил Усик</strong><span>Основатель Practical AI · первый контакт</span></div></div><a class="button button--dark" href="{school_contact_url}" target="_blank" rel="noopener noreferrer">Обсудить обучение для школы ↗</a><p class="school-cta-status">Откроется WhatsApp с готовым текстом сообщения. Не отправляйте данные учащихся.</p><div class="contact-alternatives"><a href="{linkedin_contact_url}" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div></div></div></section>'''
 
 
 def program_cards(lang: str) -> str:
@@ -339,6 +378,9 @@ def main() -> None:
             target = DOCS / ("ru" if lang == "ru" else "") / route / "index.html"
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_text(shell(lang,route,maker(lang)) + "\n", encoding="utf-8")
+    school_target = DOCS / "ru" / "for-schools" / "index.html"
+    school_target.parent.mkdir(parents=True, exist_ok=True)
+    school_target.write_text(shell("ru", "for-schools", school_page()) + "\n", encoding="utf-8")
     sitemap = DOCS / "sitemap.xml"
     text = sitemap.read_text(encoding="utf-8")
     for lang in ("en", "ru"):
@@ -346,8 +388,11 @@ def main() -> None:
             url = BASE + u(lang,route)
             if f"<loc>{url}</loc>" not in text:
                 text = text.replace("</urlset>", f"  <url><loc>{url}</loc></url>\n</urlset>")
+    school_url = BASE + u("ru", "for-schools")
+    if f"<loc>{school_url}</loc>" not in text:
+        text = text.replace("</urlset>", f"  <url><loc>{school_url}</loc></url>\n</urlset>")
     sitemap.write_text(text, encoding="utf-8")
-    print("Built eight sales-led static pages and updated sitemap")
+    print("Built nine sales-led static pages and updated sitemap")
 
 
 if __name__ == "__main__":

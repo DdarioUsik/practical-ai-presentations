@@ -8,10 +8,12 @@ Practical AI site and client presentations. The public site is published from
 - Edit the EN/RU copy in `scripts/build_sales_site.py` and the shared layout in
   `docs/assets/brand/sales-site.css`.
 - Run `python3 scripts/build_site.py` to generate the static home, HR, programs,
-  and team approach pages in both languages, the localized workflow SVGs, and the sitemap. Each page has its own
+  team approach pages in both languages, the Russian schools page, the localized workflow SVGs, and the sitemap. Each page has its own
   URL, title, description, canonical, hreflang and JSON-LD.
 - Run `python3 scripts/check_sales_site.py` before publishing; it checks the
-  eight sales pages, local links, language alternates and section order.
+  nine sales pages, local links, language alternates and section order. The
+  Russian school page is published at `/ru/for-schools/`; other sizes, longer
+  programs, delivery mode, venue and travel conditions are discussed individually.
 - Brand assets and design tokens are in `docs/assets/brand/`. The approved `//`
   marks are outlined SVG files; the web font is self hosted and includes its
   SIL Open Font License.
