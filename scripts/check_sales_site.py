@@ -103,15 +103,42 @@ def check() -> None:
             if route == "for-schools":
                 school_requirements = (
                     'class="school-format-card"',
-                    'class="school-practice-grid"',
-                    'Сравнить дроби · 5-й класс',
-                    'Что больше: 3/8 пирога или половина пирога?',
-                    'Автоматизируете один бизнес-процесс',
-                    'Работы и личные данные учеников остаются внутри школы',
-                    'Обсудить программу',
+                    'class="school-roadmap-steps"',
+                    '<b>Выбрать задачу:</b>',
+                    '<b>Собрать сценарий:</b>',
+                    '<b>Создать и проверить:</b>',
+                    '<b>Определить следующий шаг:</b>',
+                    '<span>Условия проведения:</span>',
+                    'class="school-info-card school-example-card"',
+                    'Сценарий для учителя',
+                    'Сценарий для директора',
+                    'Подготовка карточек к уроку',
+                    'Учёт обращений родителей',
+                    'Сравнение дробей · 5-й класс',
+                    '2/7 и 5/7',
+                    '3/4 и 5/8',
+                    'Дорожная карта создания ИИ-помощника под конкретную задачу.',
+                    'На учебном наборе обращений помощник кратко зафиксирует суть',
+                    'CRM или общую таблицу',
+                    'Автоматизируете один школьный процесс: подготовку ответов на типовые вопросы родителей по общим материалам школы.',
+                    'Работы и личные данные учащихся остаются внутри школы',
+                    'Проводим очное обучение у вас в школе.',
+                    'Разберётесь, как пользоваться инструментами ИИ.',
+                    'Связаться с командой Practical AI ↗',
+                    'Обсудим обучение?',
                 )
                 if any(requirement not in html for requirement in school_requirements):
                     errors.append(f"{url_path}: school offer, active contact, learning example, or privacy copy missing")
+                if html.count('<details class="school-info-card school-example-card">') != 2:
+                    errors.append(f"{url_path}: teacher and director expandable examples are missing")
+                if 'school-practice' in html or 'school-flow-card' in html:
+                    errors.append(f"{url_path}: a standalone lesson example duplicates the two role cards")
+                closing = html.split('<section class="closing school-closing" id="contact">', 1)[1].split('</section>', 1)[0]
+                if 'Данил Усик' in closing or 'linkedin.com' in closing:
+                    errors.append(f"{url_path}: school contact CTA is still tied to an individual profile")
+                onsite = html.split('<section class="section school-onsite">', 1)[1].split('</section>', 1)[0]
+                if 'class="button' in onsite:
+                    errors.append(f"{url_path}: duplicate contact CTA remains in the onsite block")
                 if any(term in html for term in ('school-draft-notice', 'school-cta-pending', 'school-contact-pending', 'Требует подтверждения', 'локальный черновик')):
                     errors.append(f"{url_path}: internal draft-only release note remains on the public school page")
                 if not any(ref.startswith("https://wa.me/") for ref in parser.refs) or not any(ref.startswith("https://www.linkedin.com/in/") for ref in parser.refs):
