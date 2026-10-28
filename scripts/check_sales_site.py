@@ -104,9 +104,9 @@ def check() -> None:
                 school_requirements = (
                     'class="school-format-card"',
                     'class="school-practice-grid"',
-                    'Персональные данные учеников не вводятся',
-                    'самостоятельно принимает итоговое решение',
-                    'Обсудить обучение для школы',
+                    'Работы и личные данные учеников остаются внутри школы',
+                    'сам принимает решение об оценке',
+                    'Обсудить программу',
                 )
                 if any(requirement not in html for requirement in school_requirements):
                     errors.append(f"{url_path}: school offer, active contact, learning example, or privacy copy missing")
@@ -116,9 +116,9 @@ def check() -> None:
                     errors.append(f"{url_path}: active WhatsApp and LinkedIn school contact links missing")
                 if html.count('class="school-format-card') != 4:
                     errors.append(f"{url_path}: four school program duration cards missing")
-                school_prices = ('class="school-price">$1,500</div>', 'class="school-price">$9,000</div>', 'Группа до 15 участников', 'Группа 200 участников', 'Площадку и выезд согласуем отдельно.')
-                if any(price not in html for price in school_prices) or html.count('class="school-price-card"') != 2:
-                    errors.append(f"{url_path}: approved one-day USD group pricing missing or incomplete")
+                school_prices = ('$1,500', '$3,000', '$4,500', '$9,000', 'за группу до 15 человек', 'для 200 человек стоит $9,000', 'Отдельно обсудим стоимость для групп другого размера, место проведения и расходы на выезд')
+                if any(price not in html for price in school_prices) or html.count('class="school-format-card') != 4:
+                    errors.append(f"{url_path}: approved school format pricing missing or incomplete")
                 if 'Без публичной цены' in html:
                     errors.append(f"{url_path}: outdated no-public-price copy remains")
                 if 'href="/"' not in html or 'hreflang="en"' in html:
