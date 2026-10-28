@@ -104,8 +104,10 @@ def check() -> None:
                 school_requirements = (
                     'class="school-format-card"',
                     'class="school-practice-grid"',
+                    'Сравнить дроби · 5-й класс',
+                    'Что больше: 3/8 пирога или половина пирога?',
+                    'Автоматизируете один бизнес-процесс',
                     'Работы и личные данные учеников остаются внутри школы',
-                    'сам принимает решение об оценке',
                     'Обсудить программу',
                 )
                 if any(requirement not in html for requirement in school_requirements):
