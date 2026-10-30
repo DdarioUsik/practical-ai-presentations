@@ -37,12 +37,6 @@ COPY = {
         "flow_output": "Visible output", "flow_output_text": "a team workflow, review checklist and next test",
         "programs_eyebrow": "Program formats", "programs_h2": "Choose the right starting pace for your team.",
         "programs_intro": "A company-wide day for up to 150 people, a focused week for a small leadership group, or four weeks of practice for around 15 middle managers.",
-        "school_teaser_eyebrow": "For private schools · program in Russian",
-        "school_teaser_h2": "Build practical AI skills across your school team in four weeks.",
-        "school_teaser_p": "Teachers, school leaders and administrative staff work on everyday tasks, create AI assistants and learn to review their outputs. The program includes 8 hours of online sessions and about 10 hours of practice. Full details are available in Russian.",
-        "school_teaser_stat": "4 weeks",
-        "school_teaser_stat_detail": "8 hours online · about 10 hours of practice",
-        "school_teaser_cta": "Explore the program in Russian",
         "program_image_alts": ["Large company AI learning session in an auditorium", "Small leadership group reviewing a management workflow", "Middle managers working together in an AI practice workshop"],
         "program_audiences": ["Company-wide teams", "CEO & leadership team", "Middle managers"],
         "program_sizes": ["Up to 150 people", "Small group", "Around 15 people"],
@@ -112,12 +106,6 @@ COPY = {
         "flow_output": "Осязаемый результат", "flow_output_text": "сценарий команды, чек-лист проверки и следующий тест",
         "programs_eyebrow": "Форматы программ", "programs_h2": "Выберите подходящий старт для команды.",
         "programs_intro": "Один день для всей компании до 150 человек, недельный спринт для небольшой группы руководителей или четыре недели практики для примерно 15 руководителей среднего звена.",
-        "school_teaser_eyebrow": "Для частных школ",
-        "school_teaser_h2": "Команда школы осваивает ИИ за четыре недели.",
-        "school_teaser_p": "Учителя, руководители и сотрудники администрации разбирают задачи из своей работы, создают ИИ-помощников и учатся проверять их ответы. В программу входят 8 часов онлайн-занятий и около 10 часов практики.",
-        "school_teaser_stat": "4 недели",
-        "school_teaser_stat_detail": "8 часов онлайн · около 10 часов практики",
-        "school_teaser_cta": "Посмотреть программу для школ",
         "program_image_alts": ["Большая группа сотрудников на AI-обучении в зале", "Небольшая группа руководителей разбирает управленческий процесс", "Руководители среднего звена работают вместе на AI-практикуме"],
         "program_audiences": ["Вся компания", "CEO и руководство", "Руководители среднего звена"],
         "program_sizes": ["До 150 человек", "Небольшая группа", "Около 15 человек"],
@@ -390,12 +378,6 @@ def evidence_teaser(lang: str) -> str:
     return f'<section class="section evidence-teaser"><div class="wrap evidence-teaser-grid"><div><span class="eyebrow">{esc(c["proof_tag"])}</span><h2>{esc(c["proof_h2"])}</h2><p>{esc(c["proof_p"])}</p><a class="card-link" href="{u(lang)}#case">{esc(label)} →</a></div><figure><blockquote>“{esc(quote_text)}”</blockquote><figcaption>{esc(quote_name)} · {esc(quote_role)}</figcaption></figure></div></section>'
 
 
-def school_home_teaser(lang: str) -> str:
-    c = COPY[lang]
-    link_attributes = ' lang="ru" hreflang="ru"' if lang == "en" else ""
-    return f'<section class="section school-home-teaser" id="school-program"><div class="wrap school-home-teaser-grid"><div><span class="eyebrow">{esc(c["school_teaser_eyebrow"])}</span><h2>{esc(c["school_teaser_h2"])}</h2><p>{esc(c["school_teaser_p"])}</p></div><aside class="school-home-teaser-card"><strong>{esc(c["school_teaser_stat"])}</strong><span>{esc(c["school_teaser_stat_detail"])}</span><a class="button button--dark" href="/ru/for-schools/"{link_attributes}>{esc(c["school_teaser_cta"])} ↗</a></aside></div></section>'
-
-
 def proof_cards(lang: str) -> str:
     c = COPY[lang]
     cards = []
@@ -423,7 +405,6 @@ def home(lang: str) -> str:
     quotes = "".join(f'<figure class="quote-card"><blockquote>“{esc(words)}”</blockquote><figcaption><b>{esc(name)}</b><span>{esc(role)}</span></figcaption></figure>' for words, name, role in c["quotes"])
     return f'''<section class="hero"><div class="wrap hero-grid"><div><span class="eyebrow">{esc(c['hero_eyebrow'])}</span><h1>{c['hero_h1']}</h1><p class="hero-lede">{esc(c['hero_lede'])}</p><div class="hero-actions"><a class="button" href="{contact(lang)}" target="_blank" rel="noopener noreferrer">{esc(c['hero_cta'])} ↗</a><a class="button button--ghost" href="#programs">{esc(c['hero_secondary'])} ↓</a></div><p class="hero-note">{esc(c['hero_note'])}</p><div class="hero-contact-options"><a href="{contact(lang,channel='linkedin')}" target="_blank" rel="noopener noreferrer">{esc(c['linkedin_alt'])} ↗</a><a href="#team">{esc(c['hero_team'])} ↓</a></div></div><div class="flow-card"><div class="flow-top"><span>{esc(c['flow_top'])}</span><span>● {esc(c['flow_status'])}</span></div>{steps}<div class="flow-output"><b>{esc(c['flow_output'])}</b> · {esc(c['flow_output_text'])}</div></div></div></section>
 <section class="section programs" id="programs"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c['programs_eyebrow'])}</span><h2>{esc(c['programs_h2'])}</h2></div><p>{esc(c['programs_intro'])}</p></div>{program_cards(lang)}</div></section>
-{school_home_teaser(lang)}
 <section class="section proof" id="case"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c['proof_eyebrow'])}</span><h2>{esc(c['proof_h2'])}</h2></div><p>{esc(c['proof_p'])}</p></div><div class="case-layout"><div class="case-story"><div class="case-company"><img src="/assets/img/shildpanel-mark.svg" alt="" width="70" height="76" loading="lazy"><div><strong>ShildPanel</strong><span>Production Company</span></div></div><span class="case-story-number">5<span> / {esc(c['proof_count_unit'])}</span></span><h3>{esc(c['proof_case_h3'])}</h3><p>{esc(c['proof_roles'])}</p><a class="card-link" href="#reviews">{esc(c['proof_case_link'])} →</a></div><div class="proof-panel"><span class="case-tag">{esc(c['proof_tag'])}</span><h3>{esc(c['proof_title'])}</h3><div class="proof-facts">{proof_facts}</div></div></div></div></section>
 <section class="section quotes" id="reviews"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c['quotes_eyebrow'])}</span><h2>{esc(c['quotes_h2'])}</h2></div><p>{esc(c['quotes_intro'])}</p></div><div class="quote-grid">{quotes}</div></div></section>
 {team_section(lang)}
