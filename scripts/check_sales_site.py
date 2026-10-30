@@ -78,6 +78,15 @@ def check() -> None:
                     if parser.hreflang.get(other) != alternate: errors.append(f"{url_path}: {other} alternate mismatch")
             if route == "" and parser.sections[:2] != ["", "programs"]:
                 errors.append(f"{url_path}: programs must be the second section")
+            if route == "":
+                teaser_terms = (
+                    'class="section school-home-teaser"',
+                    'href="/ru/for-schools/"',
+                    'lang="ru" hreflang="ru"' if lang == "en" else 'Посмотреть программу для школ',
+                    '8 hours of online sessions' if lang == "en" else '8 часов онлайн-занятий',
+                )
+                if any(term not in html for term in teaser_terms):
+                    errors.append(f"{url_path}: school program teaser or language label missing")
             if 'href="#main-content"' not in html or 'id="main-content"' not in html:
                 errors.append(f"{url_path}: keyboard skip target missing")
             if route != "for-schools" and ('https://wa.me/34627184000?text=' not in html or 'https://www.linkedin.com/in/danielusik/' not in html):
@@ -102,8 +111,8 @@ def check() -> None:
                 errors.append(f"{url_path}: program thumbnails or audience details missing")
             if route == "for-schools":
                 school_requirements = (
-                    'За 4 недели команда школы повышает квалификацию в работе с ИИ.',
-                    'class="school-offer-card"',
+                    'За четыре недели каждый участник создаёт и проверяет ИИ-помощника для своей задачи.',
+                    'class="school-offer-card school-result-card"',
                     'class="school-role-grid"',
                     'class="school-demo-grid"',
                     '<h2>Примеры рабочих задач с ИИ</h2>',
@@ -118,6 +127,7 @@ def check() -> None:
                     'Занятия проходят онлайн.',
                     'Очное обучение в вашей школе обсуждаем отдельно.',
                     'Обсуждаем программу повышения квалификации для вашей школы.',
+                    '<summary>Как вы работаете с данными школы?</summary>',
                     'https://wa.me/',
                     'class="school-intake-form"',
                     'WhatsApp откроет черновик сообщения с вашими ответами. Вы сможете проверить его и отправить.',
@@ -129,28 +139,51 @@ def check() -> None:
                 closing = html.split('<section class="closing school-closing" id="contact">', 1)[1].split('</section>', 1)[0]
                 if 'Данил Усик' in closing or 'linkedin.com' in closing:
                     errors.append(f"{url_path}: school contact CTA is still tied to an individual profile")
-                onsite = html.split('<section class="section school-onsite">', 1)[1].split('</section>', 1)[0]
-                if 'href="#contact"' not in onsite:
-                    errors.append(f"{url_path}: separate onsite contact path missing")
+                if 'school-onsite' in html or 'school-safety' in html:
+                    errors.append(f"{url_path}: format or data safety is still presented as a separate section")
+                if html.count('class="team-card"') != 3 or 'Юлия Крылова' not in html:
+                    errors.append(f"{url_path}: Julia's Practical AI profile is missing from the team section")
+                section_order = (
+                    '<section class="hero school-hero"',
+                    '<section class="section school-role-section"',
+                    '<section class="section school-demos"',
+                    '<section class="section school-preparation"',
+                    '<section class="section school-month"',
+                    '<section class="section school-assessment"',
+                    '<section class="section school-team"',
+                    '<section class="section school-faq"',
+                    '<section class="section school-pricing-section"',
+                    '<section class="closing school-closing"',
+                )
+                order_positions = [html.find(marker) for marker in section_order]
+                if any(position < 0 for position in order_positions) or order_positions != sorted(order_positions):
+                    errors.append(f"{url_path}: school page sections do not follow the requested order")
+                pricing_start = html.find('<section class="section school-pricing-section"')
+                if pricing_start >= 0 and any(token in html[:pricing_start] for token in ('€2 000', '$700')):
+                    errors.append(f"{url_path}: school pricing appears before the final pricing section")
                 if any(term in html for term in ('school-draft-notice', 'school-cta-pending', 'school-contact-pending', 'Требует подтверждения', 'локальный черновик')):
                     errors.append(f"{url_path}: internal draft-only release note remains on the public school page")
                 if 'https://wa.me/' not in html or not any(ref.startswith("https://www.linkedin.com/in/") for ref in parser.refs):
                     errors.append(f"{url_path}: WhatsApp form or team profile links missing")
                 if '€24,000' in html or any(term in html for term in ('$1,500', '$3,000', '$4,500', '$9,000', '$2,000')):
                     errors.append(f"{url_path}: outdated or unconfirmed school price remains")
-                if html.count('€2 000') < 3 or html.count('$700') < 3 or 'Вот как' in html:
+                if html.count('€2 000') < 1 or html.count('$700') < 2 or 'Вот как' in html:
                     errors.append(f"{url_path}: diagnostic or per-employee price, or example heading is missing")
                 if 'school-format-card' in html:
                     errors.append(f"{url_path}: outdated menu of separate school formats remains")
-                download_target = DOCS / "assets" / "downloads" / "practical-ai-school-program.html"
-                if not download_target.is_file():
-                    errors.append(f"{url_path}: handoff program download missing")
+                if 'href="/assets/downloads/practical-ai-school-program.pdf" download' not in html:
+                    errors.append(f"{url_path}: the program should download directly as a PDF")
+                pdf_target = DOCS / "assets" / "downloads" / "practical-ai-school-program.pdf"
+                if not pdf_target.is_file() or not pdf_target.read_bytes().startswith(b"%PDF-"):
+                    errors.append(f"{url_path}: downloadable program PDF is missing or invalid")
+                download_source = DOCS / "assets" / "downloads" / "practical-ai-school-program.html"
+                if not download_source.is_file():
+                    errors.append(f"{url_path}: print-ready program source is missing")
                 else:
-                    download_html = download_target.read_text(encoding="utf-8")
-                    if ('€2 000' not in download_html or '€24,000' in download_html
-                            or 'за каждого сотрудника, который участвует в обучении' not in download_html
-                            or 'за 4 недели' not in download_html or '$2,000' in download_html):
-                        errors.append(f"{url_path}: handoff program copy or price is inconsistent")
+                    download_html = download_source.read_text(encoding="utf-8")
+                    if ('€2 000' not in download_html or '$700' not in download_html
+                            or 'За четыре недели участники создают' not in download_html):
+                        errors.append(f"{url_path}: program PDF source copy or price is inconsistent")
                 if 'href="/"' not in html or 'hreflang="en"' in html:
                     errors.append(f"{url_path}: school page should switch to the English home page without claiming a translation")
                 if 'class="school-page"' not in html:
