@@ -102,52 +102,55 @@ def check() -> None:
                 errors.append(f"{url_path}: program thumbnails or audience details missing")
             if route == "for-schools":
                 school_requirements = (
-                    'class="school-format-card"',
-                    'class="school-roadmap-steps"',
-                    '<b>Выбрать задачу:</b>',
-                    '<b>Собрать сценарий:</b>',
-                    '<b>Создать и проверить:</b>',
-                    '<b>Определить следующий шаг:</b>',
-                    '<span>Программа и стоимость</span>',
-                    'class="school-info-card school-example-card"',
-                    'Сценарий для учителя',
-                    'Сценарий для директора',
-                    'Подготовка плана урока и заданий',
-                    'Подготовка к бюджетному совещанию',
-                    'Дорожная карта создания ИИ-помощника под конкретную задачу.',
-                    'Финансовый специалист проверит цифры и выводы по исходным данным.',
-                    'Автоматизируете один школьный процесс: подготовку ответов на типовые вопросы родителей по общим материалам школы.',
-                    'Работы и личные данные учащихся остаются внутри школы',
-                    'Все четыре формата проводим онлайн.',
-                    'Очный формат обсуждаем отдельно.',
-                    'Рассчитаем индивидуально для вашей школы.',
-                    'Разберётесь, как пользоваться инструментами ИИ.',
-                    'Связаться с командой Practical AI ↗',
-                    'Обсуждаем обучение.',
+                    'За 4 недели команда школы повышает квалификацию в работе с ИИ.',
+                    'class="school-offer-card"',
+                    'class="school-role-grid"',
+                    'class="school-demo-grid"',
+                    '<h2>Примеры рабочих задач с ИИ</h2>',
+                    '<summary class="school-demo-head"><span>Пример для учителя</span></summary>',
+                    '<summary class="school-demo-head"><span>Пример для директора</span></summary>',
+                    'class="school-week-grid"',
+                    'class="school-prep-grid"',
+                    'class="school-assessment-list"',
+                    'class="school-team-grid"',
+                    'Диагностика стоит €2 000. Если школа заключит договор на обучение, зачтём эту сумму в стоимость программы.',
+                    'Ориентир стоимости программы — $700 за каждого сотрудника, который участвует в обучении.',
+                    'Занятия проходят онлайн.',
+                    'Очное обучение в вашей школе обсуждаем отдельно.',
+                    'Обсуждаем программу повышения квалификации для вашей школы.',
+                    'https://wa.me/',
+                    'class="school-intake-form"',
+                    'WhatsApp откроет черновик сообщения с вашими ответами. Вы сможете проверить его и отправить.',
                 )
                 if any(requirement not in html for requirement in school_requirements):
-                    errors.append(f"{url_path}: school offer, active contact, learning example, or privacy copy missing")
-                if html.count('<details class="school-info-card school-example-card">') != 2:
+                    errors.append(f"{url_path}: school program, examples, pricing, format, or contact copy missing")
+                if html.count('class="school-demo-card"') != 2:
                     errors.append(f"{url_path}: teacher and director expandable examples are missing")
-                if 'school-practice' in html or 'school-flow-card' in html:
-                    errors.append(f"{url_path}: a standalone lesson example duplicates the two role cards")
                 closing = html.split('<section class="closing school-closing" id="contact">', 1)[1].split('</section>', 1)[0]
                 if 'Данил Усик' in closing or 'linkedin.com' in closing:
                     errors.append(f"{url_path}: school contact CTA is still tied to an individual profile")
                 onsite = html.split('<section class="section school-onsite">', 1)[1].split('</section>', 1)[0]
-                if 'class="button' in onsite:
-                    errors.append(f"{url_path}: duplicate contact CTA remains in the onsite block")
+                if 'href="#contact"' not in onsite:
+                    errors.append(f"{url_path}: separate onsite contact path missing")
                 if any(term in html for term in ('school-draft-notice', 'school-cta-pending', 'school-contact-pending', 'Требует подтверждения', 'локальный черновик')):
                     errors.append(f"{url_path}: internal draft-only release note remains on the public school page")
-                if not any(ref.startswith("https://wa.me/") for ref in parser.refs) or not any(ref.startswith("https://www.linkedin.com/in/") for ref in parser.refs):
-                    errors.append(f"{url_path}: active WhatsApp and LinkedIn school contact links missing")
-                if html.count('class="school-format-card') != 4:
-                    errors.append(f"{url_path}: four school program duration cards missing")
-                school_prices = ('$1,500', '$3,000', '$4,500', '$9,000', 'за группу до 15 человек', 'для группы до 200 человек за $9,000', 'Для групп другого размера подготовим индивидуальный расчёт')
-                if any(price not in html for price in school_prices) or html.count('class="school-format-card') != 4:
-                    errors.append(f"{url_path}: approved school format pricing missing or incomplete")
-                if 'Без публичной цены' in html:
-                    errors.append(f"{url_path}: outdated no-public-price copy remains")
+                if 'https://wa.me/' not in html or not any(ref.startswith("https://www.linkedin.com/in/") for ref in parser.refs):
+                    errors.append(f"{url_path}: WhatsApp form or team profile links missing")
+                if '€24,000' in html or any(term in html for term in ('$1,500', '$3,000', '$4,500', '$9,000', '$2,000')):
+                    errors.append(f"{url_path}: outdated or unconfirmed school price remains")
+                if html.count('€2 000') < 3 or html.count('$700') < 3 or 'Вот как' in html:
+                    errors.append(f"{url_path}: diagnostic or per-employee price, or example heading is missing")
+                if 'school-format-card' in html:
+                    errors.append(f"{url_path}: outdated menu of separate school formats remains")
+                download_target = DOCS / "assets" / "downloads" / "practical-ai-school-program.html"
+                if not download_target.is_file():
+                    errors.append(f"{url_path}: handoff program download missing")
+                else:
+                    download_html = download_target.read_text(encoding="utf-8")
+                    if ('€2 000' not in download_html or '€24,000' in download_html
+                            or 'за каждого сотрудника, который участвует в обучении' not in download_html
+                            or 'за 4 недели' not in download_html or '$2,000' in download_html):
+                        errors.append(f"{url_path}: handoff program copy or price is inconsistent")
                 if 'href="/"' not in html or 'hreflang="en"' in html:
                     errors.append(f"{url_path}: school page should switch to the English home page without claiming a translation")
                 if 'class="school-page"' not in html:
