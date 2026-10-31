@@ -135,7 +135,7 @@ COPY = {
         "footer": "Practical AI · Enterprise AI adoption and business transformation",
         "case_meta": {
             "shildpanel": ("ShildPanel case | Practical AI", "Interview-reported task outcomes across production reporting, ERP formulas, competitor analysis and an HR routine."),
-            "kerama-marazzi": ("Kerama Marazzi case | Practical AI", "An internal AI trainer programme: four prepared trainers, 70 days of training and mentoring, and 50+ practical cases explored.")},
+            "kerama-marazzi": ("Kerama Marazzi case | Practical AI", "The programme prepared four internal AI trainers through 70 days of training and mentoring and explored 50+ practical cases.")},
         "case_quote": "“Now I have a playbook I can hand to my team to put into practice.”",
         "case_quote_by": "Alexander · Operations Director",
         "case_detail_note": "Results describe specific reported tasks and programme activity. They are examples for these organisations; outcomes for a new organisation depend on its process, tools, adoption and baseline.",

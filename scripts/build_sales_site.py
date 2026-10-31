@@ -79,7 +79,7 @@ COPY = {
         "closing_cta": "Message Danil on WhatsApp",
         "contact_role": "Founder · your first contact",
         "footer_p": "Practical AI · corporate AI training built around real work",
-        "hr_eyebrow": "For HR and learning leaders", "hr_h1": "AI training your team can use in its work.",
+        "hr_eyebrow": "For HR and learning leaders", "hr_h1": "AI training your team can apply at work.",
         "hr_intro": "Choose a program around a real team task, agreed tools, clear review and a defined next step. Practical AI helps HR and L&D turn interest in AI into a focused learning brief.",
         "hr_questions_h2": "What should the first program solve?", "hr_questions_p": "A useful brief starts with the work, not the workshop length.",
         "hr_questions": [("Who is learning?", "Name the team, roles and process owner."), ("What work will they bring?", "Choose a recurring task with a visible output."), ("How will they check it?", "Agree on tools, data boundaries and human review."), ("What happens afterward?", "Define a small test for the next working week.")],
@@ -92,7 +92,7 @@ COPY = {
         "meta_home": ("Enterprise AI Adoption & Business Transformation | Practical AI", "Build lasting AI capabilities across your business. Discover high-value workflows, develop internal AI champions and measure operational improvements. Start with a 2–3 week assessment."),
         "meta_hr": ("AI Training for HR and L&D Teams | Practical AI", "Plan practical AI training for employees around real workflows, agreed tools, human review and a clear next step."),
         "meta_programs": ("Corporate AI Training Programs | Practical AI", "Compare a company-wide AI lab for up to 150 people, a small leadership sprint and a four-week program for around 15 middle managers."),
-        "meta_about": ("Our Team | Danil Usik, Svetlana Galakhova & Julia Krylova | Practical AI", "Meet the Practical AI core team, explore their experience and discuss corporate AI training with Danil Usik."),
+        "meta_about": ("Our Team | Danil Usik, Svetlana Galakhova & Julia Krylova | Practical AI", "Meet the Practical AI team, explore their experience and discuss AI training for your company."),
     },
     "ru": {
         "nav": ["Для HR и обучения", "Программы", "Команда", "Статьи"],
@@ -161,7 +161,7 @@ COPY = {
         "meta_home": ("AI-трансформация бизнеса и внедрение AI | Practical AI", "Развивайте устойчивые AI-компетенции в компании: находите ценные рабочие сценарии, готовьте внутренних AI-чемпионов и измеряйте изменения. Начните с диагностики на 2–3 недели."),
         "meta_hr": ("AI-обучение для HR и L&D | Practical AI", "Как организовать AI-обучение сотрудников на рабочих процессах: задачи, согласованные инструменты, проверка и следующий шаг."),
         "meta_programs": ("Программы корпоративного AI-обучения | Practical AI", "Сравните AI-лабораторию до 150 человек, спринт для небольшой группы руководителей и четырёхнедельную программу для примерно 15 руководителей среднего звена."),
-        "meta_about": ("Команда | Данил Усик, Светлана Галахова и Юлия Крылова | Practical AI", "Познакомьтесь с основной командой Practical AI и обсудите корпоративное AI-обучение с Данилом Усиком."),
+        "meta_about": ("Команда | Данил Усик, Светлана Галахова и Юлия Крылова | Practical AI", "Познакомьтесь с командой Practical AI, узнайте о её опыте и обсудите AI-обучение для своей компании."),
         "meta_for-schools": ("Повышение квалификации команды школы за 4 недели | Practical AI", "Практическая программа работы с ИИ для учителей, академических руководителей и административных команд частных школ."),
     },
 }
