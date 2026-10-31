@@ -5,8 +5,11 @@ Practical AI site and client presentations. The public site is published from
 
 ## Corporate site
 
-- Edit the EN/RU copy in `scripts/build_sales_site.py` and the shared layout in
-  `docs/assets/brand/sales-site.css`.
+- Enterprise homepage and case copy lives in `scripts/enterprise_site.py`;
+  supporting page copy stays in `scripts/build_sales_site.py`. The homepage
+  design is in `docs/assets/brand/enterprise-home.css`. Use
+  `python3 scripts/build_sales_site.py --enterprise-only` to build only the
+  EN/RU homepages and enterprise case pages while preserving other page files.
 - Run `python3 scripts/build_site.py` to generate the static home, HR, programs,
   team approach pages in both languages, the Russian schools page, the localized workflow SVGs, and the sitemap. Each page has its own
   URL, title, description, canonical, hreflang and JSON-LD.

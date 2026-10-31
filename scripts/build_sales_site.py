@@ -3,10 +3,13 @@
 from __future__ import annotations
 
 from html import escape
+import argparse
 import hashlib
 import json
 from pathlib import Path
 from urllib.parse import quote
+
+from enterprise_site import CASES as ENTERPRISE_CASES, render_case as enterprise_case, render_home as enterprise_home
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
@@ -86,7 +89,7 @@ COPY = {
         "about_eyebrow": "The people behind Practical AI", "about_h1": "A core team with business and AI experience.", "about_lead": "Get to know the people behind the program. We combine business training, AI implementation and commercial experience around the work your team wants to improve.",
         "about_method_h2": "One shared method", "about_method_p": "We start with a recurring task and the people responsible for it. Together we map an AI step, practise on a representative example, review the output and document a next test for normal work.",
         "about_background_h2": "A team around the task", "about_background_p": "Program roles follow the team's needs, tools and workflow. Practical AI coordinates the learning design, working sessions and review so each group has a clear path from its first task to a practical next step.",
-        "meta_home": ("Corporate AI Training for Business Teams | Practical AI", "Hands-on corporate AI training for business teams. One-day labs, one-week workflow sprints and four-week programs built around real work."),
+        "meta_home": ("Enterprise AI Adoption & Business Transformation | Practical AI", "Build lasting AI capabilities across your business. Discover high-value workflows, develop internal AI champions and measure operational improvements. Start with a 2–3 week assessment."),
         "meta_hr": ("AI Training for HR and L&D Teams | Practical AI", "Plan practical AI training for employees around real workflows, agreed tools, human review and a clear next step."),
         "meta_programs": ("Corporate AI Training Programs | Practical AI", "Compare a company-wide AI lab for up to 150 people, a small leadership sprint and a four-week program for around 15 middle managers."),
         "meta_about": ("Our Team | Danil Usik, Svetlana Galakhova & Julia Krylova | Practical AI", "Meet the Practical AI core team, explore their experience and discuss corporate AI training with Danil Usik."),
@@ -155,7 +158,7 @@ COPY = {
         "about_eyebrow": "Люди за Practical AI", "about_h1": "Команда с опытом в бизнесе и AI.", "about_lead": "Познакомьтесь с людьми, которые стоят за программой. Соединяем бизнес-обучение, внедрение AI и развитие бизнеса вокруг задач вашей команды.",
         "about_method_h2": "Общий метод", "about_method_p": "Начинаем с повторяющейся задачи и людей, которые за неё отвечают. Вместе размечаем AI-шаг, практикуемся на понятном примере, проверяем результат и документируем следующий тест для повседневной работы.",
         "about_background_h2": "Команда под задачу", "about_background_p": "Роли в программе зависят от команды, её инструментов и процесса. Practical AI координирует разработку программы, рабочие встречи и проверку результата, чтобы группа прошла понятный путь от первой задачи к следующему практическому шагу.",
-        "meta_home": ("Корпоративное AI-обучение для команд | Practical AI", "Практическое AI-обучение для бизнес-команд на реальных задачах: однодневная лаборатория, недельный спринт и четырёхнедельная программа."),
+        "meta_home": ("AI-трансформация бизнеса и внедрение AI | Practical AI", "Развивайте устойчивые AI-компетенции в компании: находите ценные рабочие сценарии, готовьте внутренних AI-чемпионов и измеряйте изменения. Начните с диагностики на 2–3 недели."),
         "meta_hr": ("AI-обучение для HR и L&D | Practical AI", "Как организовать AI-обучение сотрудников на рабочих процессах: задачи, согласованные инструменты, проверка и следующий шаг."),
         "meta_programs": ("Программы корпоративного AI-обучения | Practical AI", "Сравните AI-лабораторию до 150 человек, спринт для небольшой группы руководителей и четырёхнедельную программу для примерно 15 руководителей среднего звена."),
         "meta_about": ("Команда | Данил Усик, Светлана Галахова и Юлия Крылова | Practical AI", "Познакомьтесь с основной командой Practical AI и обсудите корпоративное AI-обучение с Данилом Усиком."),
@@ -424,7 +427,7 @@ def proof_cards(lang: str) -> str:
     return "".join(cards)
 
 
-def home(lang: str) -> str:
+def legacy_home(lang: str) -> str:
     c = COPY[lang]
     steps = "".join(f'<div class="flow-step"><span class="num">{i:02}</span><div><b>{esc(title)}</b><small>{esc(detail)}</small></div></div>' for i, (title, detail) in enumerate(c["flow_steps"], 1))
     method = "".join(f'<article class="method-card"><span class="step">{number}</span><h3>{esc(title)}</h3><p>{esc(detail)}</p></article>' for number, title, detail in c["method_steps"])
@@ -438,6 +441,10 @@ def home(lang: str) -> str:
 {team_section(lang)}
 <section class="section method"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c['method_eyebrow'])}</span><h2>{esc(c['method_h2'])}</h2></div><p>{esc(c['method_intro'])}</p></div><div class="method-grid">{method}</div>{method_visual(lang)}</div></section>
 <section class="section"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c['guides_eyebrow'])}</span><h2>{esc(c['guides_h2'])}</h2></div></div><div class="guide-grid">{guides}</div></div></section>{closing(lang)}'''
+
+
+def home(lang: str) -> str:
+    return enterprise_home(lang)
 
 
 def page_hero(lang: str, eyebrow: str, h1: str, intro: str) -> str:
@@ -462,32 +469,42 @@ def about(lang: str) -> str:
     return f'<section class="section editorial"><div class="wrap"><span class="eyebrow">{esc(c["about_eyebrow"])}</span><h1>{esc(c["about_h1"])}</h1><p class="lead">{esc(c["about_lead"])}</p><div class="content-grid"><div><h2>{esc(c["about_method_h2"])}</h2><p>{esc(c["about_method_p"])}</p></div><div><h2>{esc(c["about_background_h2"])}</h2><p>{esc(c["about_background_p"])}</p></div></div></div></section>' + team_section(lang) + f'<section class="section method"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c["method_eyebrow"])}</span><h2>{esc(c["method_h2"])}</h2></div><p>{esc(c["method_intro"])}</p></div><div class="method-grid">{method}</div>{method_visual(lang)}</div></section>{evidence_teaser(lang)}<section class="section programs"><div class="wrap"><div class="section-head"><div><span class="eyebrow">{esc(c["programs_eyebrow"])}</span><h2>{esc(c["programs_h2"])}</h2></div></div>{program_cards(lang)}</div></section>{closing(lang)}'
 
 
-def main() -> None:
-    page_makers = {"": home, "for-hr": hr, "programs": programs, "about": about}
+def main(enterprise_only: bool = False) -> None:
+    page_makers = {"": home} if enterprise_only else {"": home, "for-hr": hr, "programs": programs, "about": about}
     for lang in ("en", "ru"):
         for route, maker in page_makers.items():
             target = DOCS / ("ru" if lang == "ru" else "") / route / "index.html"
             target.parent.mkdir(parents=True, exist_ok=True)
-            target.write_text(shell(lang,route,maker(lang)) + "\n", encoding="utf-8")
-    school_target = DOCS / "ru" / "for-schools" / "index.html"
-    school_target.parent.mkdir(parents=True, exist_ok=True)
-    school_target.write_text(shell("ru", "for-schools", school_page()) + "\n", encoding="utf-8")
-    school_program_target = DOCS / "assets" / "downloads" / "practical-ai-school-program.html"
-    school_program_target.parent.mkdir(parents=True, exist_ok=True)
-    school_program_target.write_text(school_program_download() + "\n", encoding="utf-8")
+            page = enterprise_home(lang) if route == "" else shell(lang,route,maker(lang))
+            target.write_text(page + "\n", encoding="utf-8")
+        for slug in ENTERPRISE_CASES:
+            target = DOCS / ("ru" if lang == "ru" else "") / "cases" / slug / "index.html"
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(enterprise_case(lang, slug) + "\n", encoding="utf-8")
+    if not enterprise_only:
+        school_target = DOCS / "ru" / "for-schools" / "index.html"
+        school_target.parent.mkdir(parents=True, exist_ok=True)
+        school_target.write_text(shell("ru", "for-schools", school_page()) + "\n", encoding="utf-8")
+        school_program_target = DOCS / "assets" / "downloads" / "practical-ai-school-program.html"
+        school_program_target.parent.mkdir(parents=True, exist_ok=True)
+        school_program_target.write_text(school_program_download() + "\n", encoding="utf-8")
     sitemap = DOCS / "sitemap.xml"
     text = sitemap.read_text(encoding="utf-8")
     for lang in ("en", "ru"):
-        for route in page_makers:
+        for route in [*page_makers, *(f"cases/{slug}" for slug in ENTERPRISE_CASES)]:
             url = BASE + u(lang,route)
             if f"<loc>{url}</loc>" not in text:
                 text = text.replace("</urlset>", f"  <url><loc>{url}</loc></url>\n</urlset>")
-    school_url = BASE + u("ru", "for-schools")
-    if f"<loc>{school_url}</loc>" not in text:
-        text = text.replace("</urlset>", f"  <url><loc>{school_url}</loc></url>\n</urlset>")
+    if not enterprise_only:
+        school_url = BASE + u("ru", "for-schools")
+        if f"<loc>{school_url}</loc>" not in text:
+            text = text.replace("</urlset>", f"  <url><loc>{school_url}</loc></url>\n</urlset>")
     sitemap.write_text(text, encoding="utf-8")
-    print("Built nine sales-led static pages and updated sitemap")
+    label = "enterprise homepages and four case pages" if enterprise_only else "sales pages, enterprise case pages and sitemap"
+    print(f"Built bilingual {label}")
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="Build the Practical AI sales site.")
+    parser.add_argument("--enterprise-only", action="store_true", help="Write only the EN/RU homepages and four enterprise case pages.")
+    main(enterprise_only=parser.parse_args().enterprise_only)
