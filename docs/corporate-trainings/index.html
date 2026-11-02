@@ -1,0 +1,464 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<title>Practical AI Adoption Program</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head><body>
+<style>
+/* Layout: a 52-week program ledger. Each quarter is a chapter with "baseline → result" entries; one amber signal color marks measured outcomes. */
+:root{
+  --bg:#F1F4F3; --surface:#FFFFFF; --ink:#0F2A2E; --muted:#56696A; --line:#D3DCDA;
+  --accent:#D9612A; --accent-soft:#FBE7DC; --teal:#1F5F62; --teal-soft:#DCEBEA;
+  --f-display:"Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --f-body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0C1A1C; --surface:#122427; --ink:#E6EEEC; --muted:#9DB0AF; --line:#24393C;
+  --accent:#F08A4B; --accent-soft:#3A2418; --teal:#7FC4C2; --teal-soft:#16373A; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0C1A1C; --surface:#122427; --ink:#E6EEEC; --muted:#9DB0AF; --line:#24393C;
+  --accent:#F08A4B; --accent-soft:#3A2418; --teal:#7FC4C2; --teal-soft:#16373A; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16.5px;line-height:1.6}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+section{padding-block:72px;border-top:1px solid var(--line)}
+h1,h2,h3{font-family:var(--f-display);line-height:1.08;text-wrap:balance;margin:0;letter-spacing:-.015em}
+h1{font-size:clamp(2.4rem,6vw,4.6rem);font-weight:800}
+h2{font-size:clamp(1.8rem,3.6vw,2.7rem);font-weight:700}
+h3{font-size:1.35rem;font-weight:700}
+p{margin:0;max-width:65ch}
+.eyebrow{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+.lede{font-size:1.15rem;color:var(--muted)}
+.stack{display:flex;flex-direction:column;gap:18px}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#fff;font-weight:600;text-decoration:none;padding:14px 22px;border-radius:6px;width:fit-content}
+.btn:hover{filter:brightness(1.07)}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+.num{font-variant-numeric:tabular-nums}
+.note{font-family:var(--f-mono);font-size:.78rem;color:var(--muted)}
+
+/* Hero */
+.hero{padding-block:64px 56px;border-top:0}
+.hero-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:48px;align-items:end}
+.scope{display:grid;grid-template-columns:repeat(3,1fr);border-top:2px solid var(--ink)}
+.scope div{padding:14px 12px 0 0}
+.scope b{display:block;font-family:var(--f-display);font-size:2rem;font-weight:800;line-height:1.1}
+.scope span{font-size:.85rem;color:var(--muted)}
+.hero h1 em{font-style:normal;color:var(--accent)}
+
+/* Year bar */
+.yearbar{margin-top:44px}
+.weeks{display:grid;grid-template-columns:repeat(52,1fr);gap:2px;height:30px}
+.weeks i{background:var(--teal-soft);border-radius:1px}
+.weeks i.m{background:var(--accent)}
+.qlabels{display:grid;grid-template-columns:repeat(4,1fr);margin-top:8px}
+.qlabels span{font-family:var(--f-mono);font-size:.75rem;color:var(--muted);border-left:1px solid var(--line);padding-left:8px}
+
+/* Track record */
+.proof{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);background:var(--surface);border-radius:8px}
+.proof div{padding:22px;border-right:1px solid var(--line)}
+.proof div:last-child{border-right:0}
+.proof b{font-family:var(--f-display);font-size:2.3rem;font-weight:800;display:block;line-height:1}
+.proof span{font-size:.9rem;color:var(--muted)}
+.clients{display:flex;flex-wrap:wrap;gap:8px 22px;font-family:var(--f-display);font-weight:600;font-size:1.05rem;color:var(--muted)}
+
+/* Quarters */
+.quarter{display:grid;grid-template-columns:200px 1fr;gap:40px;padding-block:48px;border-top:1px solid var(--line)}
+.quarter:first-of-type{border-top:0}
+.qtag{position:sticky;top:calc(env(safe-area-inset-top, 0px) + 20px);align-self:start}
+.qtag b{font-family:var(--f-display);font-size:4rem;font-weight:800;line-height:.9;display:block;color:var(--teal)}
+.qtag span{font-family:var(--f-mono);font-size:.78rem;color:var(--muted)}
+.adkar{display:inline-block;margin-top:12px;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;background:var(--teal-soft);color:var(--teal);padding:4px 8px;border-radius:4px}
+.qbody{display:flex;flex-direction:column;gap:22px;min-width:0}
+.qbody ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.qbody li{padding-left:22px;position:relative;max-width:70ch}
+.qbody li::before{content:"";position:absolute;left:0;top:.7em;width:10px;height:2px;background:var(--accent)}
+.case{background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.case-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 20px;border-bottom:1px solid var(--line)}
+.case-head strong{font-family:var(--f-display);font-size:1.05rem}
+.case-head span{font-family:var(--f-mono);font-size:.75rem;color:var(--muted);align-self:center}
+.case-rows{display:grid;grid-template-columns:1fr 1fr}
+.case-rows > div{padding:16px 20px;min-width:0}
+.case-rows > div + div{border-left:1px solid var(--line)}
+.case-rows small{display:block;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.results{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--line);background:var(--accent-soft)}
+.results div{flex:1 1 150px;padding:14px 20px}
+.results b{font-family:var(--f-display);font-size:1.7rem;font-weight:800;color:var(--accent);display:block;line-height:1.1}
+.results span{font-size:.85rem}
+.deliv{border-left:3px solid var(--teal);padding:4px 0 4px 16px}
+.deliv b{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);display:block}
+
+/* Table */
+.tablebox{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:.95rem}
+th,td{text-align:left;padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+tr:last-child td{border-bottom:0}
+td:first-child{font-family:var(--f-display);font-weight:700}
+td.proj{color:var(--teal)}
+
+/* Metrics */
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.metric{display:flex;flex-direction:column;gap:14px;padding-top:16px;border-top:2px solid var(--ink)}
+.metric h3{font-size:1.1rem}
+.metric dl{margin:0;display:flex;flex-direction:column;gap:12px}
+.metric dt{font-family:var(--f-display);font-size:1.9rem;font-weight:800;line-height:1;color:var(--accent)}
+.metric dd{margin:2px 0 0;font-size:.92rem;color:var(--muted)}
+.formula{margin-top:28px;background:var(--surface);border:1px dashed var(--line);border-radius:8px;padding:18px 20px;font-family:var(--f-mono);font-size:.9rem;overflow-x:auto}
+.formula b{color:var(--accent)}
+
+/* ADKAR */
+.adkar-row{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;margin-top:8px}
+.adkar-row div{background:var(--surface);border:1px solid var(--line);padding:18px 16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.adkar-row b{font-family:var(--f-display);font-size:2.2rem;line-height:1;color:var(--teal)}
+.adkar-row strong{font-size:.95rem}
+.adkar-row span{font-size:.85rem;color:var(--muted)}
+.adkar-row em{font-style:normal;font-family:var(--f-mono);font-size:.7rem;color:var(--accent)}
+.principles{list-style:none;margin:32px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:2px solid var(--ink)}
+.principles li{display:flex;flex-direction:column;gap:10px;padding:20px 18px 6px 0;min-width:0}
+.principles li + li{padding-left:18px;border-left:1px solid var(--line)}
+.principles .pn{font-family:var(--f-mono);font-size:.8rem;color:var(--accent)}
+.principles h3{font-size:1.2rem}
+.principles p{font-size:.93rem;color:var(--muted)}
+.team{margin-top:56px}
+.roles{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-content:start}
+
+/* Photos */
+.ph{margin:0;position:relative;overflow:hidden;border-radius:8px;background:var(--teal-soft)}
+.ph img{display:block;width:100%;height:100%;object-fit:cover}
+.ph figcaption{position:absolute;left:0;bottom:0;right:0;padding:24px 14px 10px;font-family:var(--f-mono);font-size:.72rem;color:#fff;background:linear-gradient(transparent,rgba(8,20,22,.78))}
+.ph-hero{aspect-ratio:4/3;max-width:100%}
+.ph-hero img{object-position:50% 60%}
+.split{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:center}
+.ph-tall{aspect-ratio:4/3;max-width:100%}
+.ph-tall img{object-position:50% 35%}
+.mosaic{display:grid;grid-template-columns:1fr 1.6fr 1.2fr;grid-template-rows:200px 200px;gap:8px;margin-top:32px}
+.m-a{grid-row:1 / 3}
+.m-a img{object-position:50% 70%}
+.m-b{grid-column:2 / 4}
+.team-grid{display:grid;grid-template-columns:280px 1fr;gap:32px;align-items:start}
+.lead{margin:0;display:flex;flex-direction:column;gap:10px}
+.lead img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:35% 30%;border-radius:8px;display:block;max-width:100%}
+.lead strong{display:block;font-family:var(--f-display);font-size:1.1rem}
+.lead span{font-size:.85rem;color:var(--muted)}
+.roles div{border-top:1px solid var(--line);padding-top:10px}
+.roles strong{display:block;font-size:.95rem}
+.roles span{font-size:.85rem;color:var(--muted)}
+
+/* CTA */
+.cta{background:var(--ink);color:var(--bg);border-top:0}
+.cta .lede{color:var(--bg);opacity:.75}
+.cta .eyebrow{color:var(--accent)}
+.cta-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
+.steps{display:flex;flex-direction:column;gap:12px;margin:0;padding:0;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;display:flex;gap:14px;align-items:baseline}
+.steps li::before{content:counter(s);font-family:var(--f-mono);color:var(--accent);font-size:.85rem}
+
+@media (max-width:860px){
+  .hero-grid,.team,.cta-grid{grid-template-columns:1fr}
+  .quarter{grid-template-columns:1fr;gap:18px}
+  .qtag{position:static;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .qtag b{font-size:3rem}
+  .proof{grid-template-columns:1fr 1fr}
+  .proof div:nth-child(2){border-right:0}
+  .proof div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .metrics{grid-template-columns:1fr}
+  .principles{grid-template-columns:1fr 1fr}
+  .principles li,.principles li + li{padding:18px 16px 14px 0;border-left:0;border-bottom:1px solid var(--line)}
+  .split,.team-grid{grid-template-columns:1fr}
+  .lead{max-width:320px}
+  .mosaic{grid-template-columns:1fr 1fr;grid-template-rows:180px 180px 180px}
+  .m-a{grid-row:auto}
+  .m-b{grid-column:1 / 3}
+}
+@media (max-width:520px){
+  section{padding-block:52px}
+  .case-rows{grid-template-columns:1fr}
+  .case-rows > div + div{border-left:0;border-top:1px solid var(--line)}
+  .scope b{font-size:1.5rem}
+  .roles{grid-template-columns:1fr}
+  .principles{grid-template-columns:1fr}
+  .roles{grid-template-columns:1fr}
+  .mosaic{grid-template-columns:1fr;grid-template-rows:none;grid-auto-rows:200px}
+  .m-b{grid-column:auto}
+}
+@media (prefers-reduced-motion:no-preference){ .weeks i{transition:background .3s} }
+</style>
+
+<header class="wrap hero">
+  <div class="hero-grid">
+    <div class="stack">
+      <span class="eyebrow">Practical AI · by AIHUB.WORKS</span>
+      <h1>12 months to make AI part of <em>how your business works.</em></h1>
+      <p class="lede">Your team doesn't need another AI workshop. It needs a structured way to find valuable use cases, build AI assistants, put them into daily work and measure what changed.</p>
+      <p>Practical AI Adoption is a 12-month partnership with your corporate team. We work on your real business processes, build the solutions together with your people, and stay through adoption.</p>
+      <a class="btn" href="#assessment">Book an AI Adoption Assessment →</a>
+    </div>
+    <div class="stack">
+      <figure class="ph ph-hero"><img src="img/hero-class.jpg" alt="Svetlana Riabova with a group of workshop participants in a classroom"><figcaption>Hands-on AI workshop with a client team</figcaption></figure>
+      <div class="scope">
+        <div><b class="num">50–300</b><span>employees in scope</span></div>
+        <div><b class="num">8–12</b><span>business processes</span></div>
+        <div><b class="num">1</b><span>measurable transformation</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="yearbar" aria-label="52-week program timeline with four quarterly milestones">
+    <div class="weeks" id="weeks"></div>
+    <div class="qlabels"><span>Q1 · Build</span><span>Q2 · Embed</span><span>Q3 · Scale</span><span>Q4 · Measure</span></div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap stack" style="gap:28px">
+    <div class="split">
+      <div class="stack">
+        <span class="eyebrow">Who runs the program</span>
+        <h2>Practitioners who ship, then teach.</h2>
+        <p class="lede">We are an AI automation bureau first. Everything we teach your team comes from systems we built and run for clients in retail, manufacturing, real estate, robotics, finance and healthcare.</p>
+      </div>
+      <figure class="ph ph-tall"><img src="img/lead-screen.jpg" alt="Svetlana in front of a screen showing the talk 'AI: How Managers Win Back Time'" loading="lazy"><figcaption>“AI: How managers win back time”, management session</figcaption></figure>
+    </div>
+    <div class="proof">
+      <div><b class="num">8+</b><span>years automating operations, from robotics to back office</span></div>
+      <div><b class="num">50+</b><span>AI solutions delivered across enterprise verticals</span></div>
+      <div><b class="num">100+</b><span>companies advised on LLM strategy and execution</span></div>
+      <div><b class="num">100+</b><span>pilots managed in one portfolio, hypothesis to proof of concept</span></div>
+    </div>
+    <div class="clients" aria-label="Selected clients"><span>Yandex</span><span>X5 Retail Group</span><span>Kerama Marazzi</span><span>Kastell</span><span>CORE.XP</span><span>VDS Trade</span><span>Slise.xyz</span></div>
+  </div>
+</section>
+
+<section id="roadmap">
+  <div class="wrap">
+    <div class="stack" style="margin-bottom:24px">
+      <span class="eyebrow">Your 12-month roadmap</span>
+      <h2>Four quarters. One corporate team. A growing portfolio of AI solutions.</h2>
+    </div>
+
+    <article class="quarter">
+      <div class="qtag"><b>Q1</b><span>Weeks 1–13</span><div class="adkar">Focus · Discover & build</div></div>
+      <div class="qbody">
+        <h3>Build your first AI assistants</h3>
+        <p class="lede">We start with your team's real work: recurring tasks, bottlenecks, and processes where AI makes a measurable difference.</p>
+        <ul>
+          <li>Assess AI readiness across up to <b>300 employees</b> and <b>4–6 business functions</b> through interviews, a skills survey and process mapping.</li>
+          <li>Identify and prioritize <b>30+ potential use cases</b> on a value × feasibility × adoption matrix.</li>
+          <li>Select <b>3–5 pilot projects</b> with an economic model for each: volume, cost per task, expected savings.</li>
+          <li>Train a first cohort of <b>20–30 employees</b> in a 4-module hands-on course: role-based prompting, research and competitor analysis, knowledge work with NotebookLM and Perplexity, and rapid prototyping with Claude, Gamma and Lovable.</li>
+          <li>Build and test <b>5 AI assistants</b> on real business tasks, during the sessions, with your data.</li>
+        </ul>
+        <div class="case">
+          <div class="case-head"><strong>CORE.XP · Valuation & property management</strong><span>Back-office AI</span></div>
+          <div class="case-rows">
+            <div><small>Challenge</small>Property listings arrived daily in mixed formats: PDFs, scans, spreadsheets. Analysts copied the data into the CRM by hand, with errors that spread into valuations.</div>
+            <div><small>Solution</small>An intelligent CRM enrichment assistant that recognizes multi-format documents, extracts the fields and writes clean records into the CRM.</div>
+          </div>
+          <div class="results">
+            <div><b class="num">10,000+</b><span>listings processed daily</span></div>
+            <div><b class="num">95%</b><span>data accuracy in the CRM</span></div>
+            <div><b class="num">~610</b><span>employees work on top of the enriched data</span></div>
+          </div>
+        </div>
+        <div class="deliv"><b>Quarterly deliverable</b>5 tested AI assistants, a prioritized implementation roadmap, and a baseline for every pilot process.</div>
+      </div>
+    </article>
+
+    <article class="quarter">
+      <div class="qtag"><b>Q2</b><span>Weeks 14–26</span><div class="adkar">Focus · Embed in workflows</div></div>
+      <div class="qbody">
+        <h3>Put AI into daily workflows</h3>
+        <p class="lede">We take the strongest Q1 solutions and build them into the way the team works every day.</p>
+        <ul>
+          <li>Select <b>2–3 pilot workflows</b> for full implementation.</li>
+          <li>Connect assistants to your <b>CRM, ERP (1C, ERPNext), knowledge base, Slack or Teams</b>.</li>
+          <li>Train <b>50+ employees</b> in the new workflows with step-by-step video walkthroughs and prompt libraries per role.</li>
+          <li>Set quality checks, human-in-the-loop escalation rules and usage guidelines.</li>
+          <li>Measure adoption and compare every workflow with its Q1 baseline.</li>
+        </ul>
+        <div class="case">
+          <div class="case-head"><strong>Cyprus bank (NDA) · Content & search visibility</strong><span>AI workflow · 90 days</span></div>
+          <div class="case-rows">
+            <div><small>Before</small>The content team had no scalable way to research the market. Every article meant manual monitoring, writing, design and voice-over.</div>
+            <div><small>After</small>A 9-step agent workflow: it collects signals from LinkedIn, Reddit and industry media, clusters topics, drafts Q&A articles in the bank's tone of voice, adds branded images and audio, and delivers them to the CMS for editor approval.</div>
+          </div>
+          <div class="results">
+            <div><b class="num">12–16 min</b><span>from signal to ready article</span></div>
+            <div><b class="num">+34%</b><span>organic traffic in 90 days</span></div>
+            <div><b class="num">18</b><span>financial queries where AI search cites the bank</span></div>
+            <div><b class="num">3–5/wk</b><span>publications with the same team</span></div>
+          </div>
+        </div>
+        <div class="deliv"><b>Quarterly deliverable</b>2–3 AI-powered workflows running in real business processes, with documented results and usage guidelines.</div>
+      </div>
+    </article>
+
+    <article class="quarter">
+      <div class="qtag"><b>Q3</b><span>Weeks 27–39</span><div class="adkar">Focus · Scale & champions</div></div>
+      <div class="qbody">
+        <h3>Scale adoption across the organization</h3>
+        <p class="lede">We expand what has proven its value and remove the barriers that stop wider use.</p>
+        <ul>
+          <li>Expand successful workflows to <b>3–5 additional teams or departments</b>.</li>
+          <li>Train <b>100+ new employees</b> and run weekly office hours for existing users.</li>
+          <li>Establish internal AI champions in every business function, about <b>1 champion per 15–20 employees</b>.</li>
+          <li>Improve solutions based on employee feedback and usage data.</li>
+          <li>Track weekly active usage, task completion and business impact on a shared dashboard.</li>
+        </ul>
+        <div class="case">
+          <div class="case-head"><strong>BATUMI.WORKS · Tech hub operations</strong><span>Automation at scale</span></div>
+          <div class="case-rows">
+            <div><small>Initial pilot</small>One operations team managing bookings, members and equipment across spreadsheets and messengers.</div>
+            <div><small>Scale-up</small>An integrated CRM and booking platform with automated workflows, rolled out across a 10,000 m² hub and its whole member base.</div>
+          </div>
+          <div class="results">
+            <div><b class="num">1,000+</b><span>active members served</span></div>
+            <div><b class="num">−30%</b><span>operating costs</span></div>
+            <div><b class="num">55%</b><span>retention, 25 points above industry average</span></div>
+          </div>
+        </div>
+        <div class="deliv"><b>Quarterly deliverable</b>150+ employees using AI in daily work, with proven workflows adopted across 3–5 departments.</div>
+      </div>
+    </article>
+
+    <article class="quarter">
+      <div class="qtag"><b>Q4</b><span>Weeks 40–52</span><div class="adkar">Focus · Measure & hand over</div></div>
+      <div class="qbody">
+        <h3>Measure impact and build the next roadmap</h3>
+        <p class="lede">We evaluate the year, document what works, and prepare the next stage.</p>
+        <ul>
+          <li>Measure every implemented solution against its original baseline.</li>
+          <li>Evaluate adoption, efficiency, quality and employee experience.</li>
+          <li>Identify the next wave of automation and AI integration.</li>
+          <li>Hand over ownership: governance, an internal AI portfolio owner and a continuous improvement routine.</li>
+          <li>Develop the next 12-month AI adoption roadmap with your leadership team.</li>
+        </ul>
+        <div class="case">
+          <div class="case-head"><strong>Innopolis University · Science & business cluster</strong><span>Portfolio management</span></div>
+          <div class="case-rows">
+            <div><small>Initial baseline</small>8 research labs with strong R&D in robotics, computer vision and AI, but no shared path from idea to a deployable solution.</div>
+            <div><small>End result</small>One managed pipeline: opportunity identification, team assembly, proof of concept, stakeholder presentation. Each pilot judged on feasibility, demand and strategic value.</div>
+          </div>
+          <div class="results">
+            <div><b class="num">100+</b><span>concurrent pilots in one portfolio</span></div>
+            <div><b class="num">8</b><span>labs on one prioritization model</span></div>
+          </div>
+        </div>
+        <div class="deliv"><b>Quarterly deliverable</b>A documented impact report, an operational AI portfolio with owners, and a prioritized roadmap for the next 12 months.</div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section>
+  <div class="wrap stack" style="gap:26px">
+    <div class="stack">
+      <span class="eyebrow">The business cases we work on</span>
+      <h2>Your processes, not hypothetical AI exercises.</h2>
+      <p class="lede">For each use case we set a baseline, build and test a solution, and measure the result after rollout.</p>
+    </div>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>Business function</th><th>AI application</th><th>What we measure</th><th>From our projects</th></tr></thead>
+        <tbody>
+          <tr><td>Sales</td><td>Lead research, meeting preparation, CRM updates, product mapping for proposals</td><td>Time per lead, preparation time, time to proposal</td><td class="proj">VDS Trade: 40,000+ SKUs mapped and priced automatically into ERP-ready proposals</td></tr>
+          <tr><td>Customer support</td><td>Knowledge retrieval, response drafting, ticket classification, omnichannel inbox</td><td>Resolution time, response quality</td><td class="proj">Clinic network: AI assistant and knowledge base across WhatsApp, Instagram and CRM</td></tr>
+          <tr><td>Marketing</td><td>Research, content production, campaign analysis, A/B testing</td><td>Production time, output volume, cost per channel</td><td class="proj">Ad platform: analytics engine across 4 channels with AI recommendations</td></tr>
+          <tr><td>Operations</td><td>Document processing, reporting, performance monitoring, workflow automation</td><td>Processing time, error rate</td><td class="proj">Kastell: robot performance monitoring and reporting across EU sites</td></tr>
+          <tr><td>Finance</td><td>Invoice preparation, bank statement reconciliation, expense collection</td><td>Manual share of invoices, close time</td><td class="proj">Fintech: automation plan for invoices, statements and expense bots</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="stack" style="margin-bottom:32px">
+      <span class="eyebrow">How we measure success</span>
+      <h2>We don't count workshops. We count what changed.</h2>
+      <p class="lede">We measure whether employees use the solutions, whether processes improve, and whether those improvements create value you can put in a budget.</p>
+    </div>
+    <div class="metrics">
+      <div class="metric"><h3>Adoption</h3><dl>
+        <div><dt class="num">60%+</dt><dd>of target employees use AI solutions every week</dd></div>
+        <div><dt class="num">150+</dt><dd>employees trained and able to work with AI on their own</dd></div>
+      </dl></div>
+      <div class="metric"><h3>Efficiency</h3><dl>
+        <div><dt class="num">1,000+</dt><dd>hours saved per month across implemented workflows</dd></div>
+        <div><dt class="num">30–50%</dt><dd>less processing time in selected workflows</dd></div>
+      </dl></div>
+      <div class="metric"><h3>Business impact</h3><dl>
+        <div><dt class="num">95%</dt><dd>data accuracy target for automated data entry</dd></div>
+        <div><dt class="num">€500k+</dt><dd>estimated annual value from implemented solutions</dd></div>
+      </dl></div>
+    </div>
+    <div class="formula">How we estimate value: <b>200</b> employees × <b>5</b> hours saved per month × <b>€45</b> loaded hourly cost × <b>12</b> months = <b>€540,000</b> per year</div>
+    <p class="note" style="margin-top:14px">Figures above are typical program targets for a 200–300 person team. Your targets are agreed after the initial assessment and baseline measurement.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="stack">
+      <span class="eyebrow">How we teach</span>
+      <h2>Five principles to take you from theory to application.</h2>
+      <p class="lede">Fast and sustainable. Your team learns by doing, on its own tasks, and leaves every session with something that works.</p>
+    </div>
+    <div class="mosaic">
+      <figure class="ph m-a"><img src="img/workshop.jpg" alt="Trainers running a live demo from a laptop in front of a projected screen" loading="lazy"><figcaption>Hands-on: building live, on screen</figcaption></figure>
+      <figure class="ph m-b"><img src="img/community.jpg" alt="Large group photo of a tech community event" loading="lazy"><figcaption>Community: 100+ people at one meetup</figcaption></figure>
+      <figure class="ph m-c"><img src="img/experts.jpg" alt="Svetlana and a guest expert speaking with microphones" loading="lazy"><figcaption>Experts: guest practitioners on stage</figcaption></figure>
+      <figure class="ph m-d"><img src="img/webinar.jpg" alt="Practical RAG Automations webinar: workflow diagram and video of the trainer" loading="lazy"><figcaption>Materials: Practical RAG Automations video unit</figcaption></figure>
+    </div>
+    <ol class="principles">
+      <li><span class="pn">01</span><h3>Hands-on first</h3><p>Instead of just listening to theory, your team works with us in practice from the very first session. Through our challenges, people apply AI to their own tasks right away and gain real experience.</p></li>
+      <li><span class="pn">02</span><h3>Community</h3><p>No one learns alone. In our learning environment, colleagues meet people with similar goals, share what works and learn from each other. Internal AI champions keep that exchange going.</p></li>
+      <li><span class="pn">03</span><h3>Experts</h3><p>Our trainers are practitioners who build AI systems for clients. They guide your team step by step, give feedback on real work and are always there for questions.</p></li>
+      <li><span class="pn">04</span><h3>Materials</h3><p>Easy-to-follow videos combined with concrete methods, clear checklists, role-based prompt libraries and proven frameworks from real projects.</p></li>
+      <li><span class="pn">05</span><h3>Flexibility</h3><p>On the go or between tasks. Short units and our practical learning app let employees fit the program into a normal working day.</p></li>
+    </ol>
+    <div class="team">
+      <div class="stack">
+        <span class="eyebrow">Built around your team</span>
+        <h3>Who works with you</h3>
+        <div class="team-grid">
+        <figure class="lead"><img src="img/portrait.jpg" alt="Portrait of Svetlana Riabova speaking with a microphone" loading="lazy"><figcaption><strong>Svetlana Riabova</strong><span>Founder, AIHUB.WORKS · Program lead</span></figcaption></figure>
+        <div class="roles">
+          <div><strong>Program lead</strong><span>Founder of AIHUB.WORKS. Led AI transformation for enterprise clients and managed cross-functional teams of 50+.</span></div>
+          <div><strong>AI & automation engineers</strong><span>Build assistants, agents and integrations with your CRM, ERP and data.</span></div>
+          <div><strong>Learning methodologist</strong><span>Designs the course modules, exercises and role-based prompt libraries.</span></div>
+          <div><strong>Change & project manager</strong><span>Runs the cadence, tracks adoption and supports your AI champions.</span></div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="assessment">
+  <div class="wrap cta-grid">
+    <div class="stack">
+      <span class="eyebrow">Start with your first use case</span>
+      <h2>Tell us which process you want to improve.</h2>
+      <p class="lede">We'll assess its fit for AI and define what a successful pilot looks like: scope, baseline, target and cost.</p>
+      <a class="btn" href="#assessment">Book an AI Adoption Assessment →</a>
+    </div>
+    <ol class="steps">
+      <li>30-minute call about your team and processes</li>
+      <li>Readiness snapshot and 3 candidate use cases</li>
+      <li>Pilot proposal with an economic model</li>
+    </ol>
+  </div>
+</section>
+
+<script>
+(function(){
+  var w=document.getElementById('weeks'), milestones=[13,26,39,52];
+  for(var i=1;i<=52;i++){var el=document.createElement('i'); if(milestones.indexOf(i)>-1) el.className='m'; w.appendChild(el);}
+})();
+</script>
+
+</body></html>

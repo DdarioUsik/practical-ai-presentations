@@ -13,7 +13,7 @@ COPY = {
         "meta": ("Enterprise AI Adoption & Business Transformation | Practical AI",
                  "Build lasting AI capabilities across your business. Discover high-value workflows, develop internal AI champions and measure operational improvements. Start with a 2–3 week assessment."),
         "switch": "RU", "switch_label": "Switch language to Russian", "home_label": "Practical AI home",
-        "nav": [("#cases", "Results"), ("#method", "Approach"), ("#roadmap", "Roadmap"), ("#security", "Security"), ("#assessment", "Assessment")],
+        "nav": [("#cases", "Results"), ("#method", "Approach"), ("#roadmap", "Roadmap"), ("#security", "Security"), ("#assessment", "Assessment"), ("/corporate-trainings/", "Corporate")],
         "cta": "Discuss the assessment", "menu": "Menu", "skip": "Skip to main content",
         "eyebrow": "Enterprise AI adoption · Practical AI",
         "h1": "Turn AI into a working capability across your company.",
@@ -145,7 +145,7 @@ COPY = {
         "meta": ("AI-трансформация бизнеса и внедрение AI | Practical AI",
                  "Развивайте устойчивые AI-компетенции в компании: находите ценные рабочие сценарии, готовьте внутренних AI-чемпионов и измеряйте изменения. Начните с диагностики на 2–3 недели."),
         "switch": "EN", "switch_label": "Переключить язык на английский", "home_label": "Practical AI — на главную",
-        "nav": [("#cases", "Результаты"), ("#method", "Подход"), ("#roadmap", "План"), ("#security", "Безопасность"), ("#assessment", "Диагностика")],
+        "nav": [("#cases", "Результаты"), ("#method", "Подход"), ("#roadmap", "План"), ("#security", "Безопасность"), ("#assessment", "Диагностика"), ("/corporate-trainings/", "Corporate")],
         "cta": "Обсудить диагностику", "menu": "Меню", "skip": "Перейти к содержанию",
         "eyebrow": "AI-трансформация бизнеса · Practical AI",
         "h1": "Превратите AI в рабочую компетенцию всей компании.",
@@ -303,7 +303,7 @@ def meta_for(lang: str, route: str) -> tuple[str, str]:
 def header(lang: str, route: str = "") -> str:
     c = COPY[lang]
     other = "ru" if lang == "en" else "en"
-    nav = "".join(f'<a href="{esc(dest if not route else home_url(lang) + dest)}">{esc(label)}</a>' for dest, label in c["nav"])
+    nav = "".join(f'<a href="{esc(dest if dest.startswith("/") or not route else home_url(lang) + dest)}">{esc(label)}</a>' for dest, label in c["nav"])
     case_switch = f"cases/{route.removeprefix('cases/')}" if route.startswith("cases/") else ""
     switch_url = ("/ru" if other == "ru" else "") + "/" + (case_switch + "/" if case_switch else "")
     contact = f'<a class="button button--small" href="{home_url(lang)}#assessment">{esc(c["cta"])}</a>'

@@ -210,7 +210,8 @@ def site_header(lang: str, route: str, switch_route: str | None = None) -> str:
     nav_items = list(zip(nav_routes, c["nav"]))
     if lang == "ru":
         nav_items.append(("for-schools", "Для школ"))
-    nav = "".join(f'<a href="{u(lang, route_name)}"' + (' aria-current="page"' if route == route_name else '') + f'>{esc(label)}</a>' for route_name, label in nav_items)
+    nav_items.append(("/corporate-trainings/", "Corporate"))
+    nav = "".join(f'<a href="{route_name if route_name.startswith("/") else u(lang, route_name)}"' + (' aria-current="page"' if route == route_name else '') + f'>{esc(label)}</a>' for route_name, label in nav_items)
     lang_label = "Переключить язык на русский" if lang == "en" else "Switch language to English"
     home_label = "Practical AI home" if lang == "en" else "Practical AI — на главную"
     skip_label = "Skip to main content" if lang == "en" else "Перейти к содержанию"
@@ -491,7 +492,10 @@ def main(enterprise_only: bool = False) -> None:
     sitemap = DOCS / "sitemap.xml"
     text = sitemap.read_text(encoding="utf-8")
     for lang in ("en", "ru"):
-        for route in [*page_makers, *(f"cases/{slug}" for slug in ENTERPRISE_CASES)]:
+        routes = [*page_makers, *(f"cases/{slug}" for slug in ENTERPRISE_CASES)]
+        if lang == "en":
+            routes.append("corporate-trainings")
+        for route in routes:
             url = BASE + u(lang,route)
             if f"<loc>{url}</loc>" not in text:
                 text = text.replace("</urlset>", f"  <url><loc>{url}</loc></url>\n</urlset>")
