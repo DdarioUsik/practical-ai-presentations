@@ -55,7 +55,7 @@ def check() -> None:
     errors = []
     checked = 0
     routes = [(lang, route) for lang in ("en", "ru") for route in ("", "for-hr", "programs", "about")]
-    routes.append(("ru", "for-schools"))
+    routes.extend((lang, "for-schools") for lang in ("en", "ru"))
     for lang, route in routes:
             url_path = ("/ru" if lang == "ru" else "") + "/" + (route + "/" if route else "")
             path = DOCS / url_path.lstrip("/") / "index.html"
@@ -69,13 +69,10 @@ def check() -> None:
             if not parser.title or not parser.description: errors.append(f"{url_path}: metadata missing")
             if parser.h1 != 1: errors.append(f"{url_path}: {parser.h1} H1 elements")
             if len(parser.schemas) != 1: errors.append(f"{url_path}: JSON-LD count {len(parser.schemas)}")
-            if route == "for-schools":
-                if parser.hreflang.get("ru") != expected or parser.hreflang.get("x-default") != expected or "en" in parser.hreflang:
-                    errors.append(f"{url_path}: Russian-only language alternates mismatch")
-            else:
-                for other in ("en", "ru"):
-                    alternate = BASE + ("/ru" if other == "ru" else "") + "/" + (route + "/" if route else "")
-                    if parser.hreflang.get(other) != alternate: errors.append(f"{url_path}: {other} alternate mismatch")
+            for other in ("en", "ru"):
+                alternate = BASE + ("/ru" if other == "ru" else "") + "/" + (route + "/" if route else "")
+                if parser.hreflang.get(other) != alternate:
+                    errors.append(f"{url_path}: {other} alternate mismatch")
             if route == "":
                 if parser.sections[:4] != ["", "problem", "cases", "programs"]:
                     errors.append(f"{url_path}: expected hero, problem, cases and formats in that order")
@@ -93,8 +90,8 @@ def check() -> None:
                 errors.append(f"{url_path}: WhatsApp primary or LinkedIn alternative missing")
             if lang == "ru" and 'href="/ru/for-schools/"' not in html:
                 errors.append(f"{url_path}: Russian school navigation missing")
-            if lang == "en" and 'href="/for-schools/"' in html:
-                errors.append(f"{url_path}: untranslated school route linked from English page")
+            if lang == "en" and 'href="/for-schools/"' not in html:
+                errors.append(f"{url_path}: English schools link missing")
             if route == "about":
                 names = ("Danil Usik", "Svetlana Galakhova", "Julia Krylova") if lang == "en" else ("Данил Усик", "Светлана Галахова", "Юлия Крылова")
                 if html.count('class="team-card"') != 3 or any(name not in html for name in names):
@@ -105,7 +102,7 @@ def check() -> None:
                 errors.append(f"{url_path}: four ShildPanel results missing")
             if route not in ("", "for-schools") and (html.count('class="program-visual"') != 3 or html.count('class="program-fit"') != 3):
                 errors.append(f"{url_path}: program thumbnails or audience details missing")
-            if route == "for-schools":
+            if route == "for-schools" and lang == "ru":
                 school_requirements = (
                     'За четыре недели участник создаёт и проверяет ИИ-помощника для своей задачи.',
                     'class="school-offer-card school-result-card"',
@@ -180,8 +177,8 @@ def check() -> None:
                     if ('€2 000' not in download_html or '$700' not in download_html
                             or 'За четыре недели участники создают' not in download_html):
                         errors.append(f"{url_path}: program PDF source copy or price is inconsistent")
-                if 'href="/"' not in html or 'hreflang="en"' in html:
-                    errors.append(f"{url_path}: school page should switch to the English home page without claiming a translation")
+                if 'class="lang-switch" href="/for-schools/"' not in html:
+                    errors.append(f"{url_path}: school page should switch to the equivalent English page")
                 if 'class="school-page"' not in html:
                     errors.append(f"{url_path}: school page styles are not scoped")
             if '<figcaption>Illustration</figcaption>' in html or '<figcaption>Иллюстрация</figcaption>' in html:

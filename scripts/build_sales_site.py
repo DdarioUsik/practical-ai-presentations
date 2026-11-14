@@ -9,6 +9,7 @@ import json
 from pathlib import Path
 from urllib.parse import quote
 
+from school_english import school_page_en
 from enterprise_site import CASES as ENTERPRISE_CASES, render_case as enterprise_case, render_home as enterprise_home
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -208,8 +209,7 @@ def site_header(lang: str, route: str, switch_route: str | None = None) -> str:
     other = "ru" if lang == "en" else "en"
     nav_routes = ["for-hr", "programs", "about", "blog"]
     nav_items = list(zip(nav_routes, c["nav"]))
-    if lang == "ru":
-        nav_items.append(("for-schools", "Для школ"))
+    nav_items.append(("for-schools", "For schools" if lang == "en" else "Для школ"))
     nav_items.append(("/corporate-trainings/", "Corporate"))
     nav = "".join(f'<a href="{route_name if route_name.startswith("/") else u(lang, route_name)}"' + (' aria-current="page"' if route == route_name else '') + f'>{esc(label)}</a>' for route_name, label in nav_items)
     lang_label = "Переключить язык на русский" if lang == "en" else "Switch language to English"
@@ -235,8 +235,7 @@ def site_header(lang: str, route: str, switch_route: str | None = None) -> str:
 def site_footer(lang: str, route: str = "") -> str:
     c = COPY[lang]
     nav_items = list(zip(["for-hr", "programs", "about", "blog"], c["nav"]))
-    if lang == "ru":
-        nav_items.append(("for-schools", "Для школ"))
+    nav_items.append(("for-schools", "For schools" if lang == "en" else "Для школ"))
     nav = "".join(f'<a href="{u(lang, route_name)}"' + (' aria-current="page"' if route == route_name else '') + f'>{esc(label)}</a>' for route_name, label in nav_items)
     footer_label = "Footer navigation" if lang == "en" else "Навигация в подвале"
     if lang == "ru" and route == "for-schools":
@@ -254,16 +253,12 @@ def site_footer(lang: str, route: str = "") -> str:
 def shell(lang: str, route: str, body: str) -> str:
     c = COPY[lang]
     key = "home" if not route else route.replace("for-hr", "hr")
-    title, description = c["meta_" + key]
+    title, description = (("AI Training for Private Schools | Practical AI", "A four-week AI programme for teachers, academic leads and school administrators.") if lang == "en" and route == "for-schools" else c["meta_" + key])
     title, description = esc(title), esc(description)
     canonical = BASE + u(lang, route)
     site_name = "Practical AI"
-    if lang == "ru" and route == "for-schools":
-        alternates = f'<link rel="alternate" hreflang="ru" href="{canonical}"><link rel="alternate" hreflang="x-default" href="{canonical}">'
-        body_class = ' class="school-page"'
-    else:
-        alternates = f'<link rel="alternate" hreflang="en" href="{BASE + u("en",route)}"><link rel="alternate" hreflang="ru" href="{BASE + u("ru",route)}"><link rel="alternate" hreflang="x-default" href="{BASE + u("en",route)}">'
-        body_class = ""
+    alternates = f'<link rel="alternate" hreflang="en" href="{BASE + u("en",route)}"><link rel="alternate" hreflang="ru" href="{BASE + u("ru",route)}"><link rel="alternate" hreflang="x-default" href="{BASE + u("en",route)}">'
+    body_class = ' class="school-page"' if route == "for-schools" else ""
     return f'''<!doctype html>
 <html lang="{lang}"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -275,7 +270,7 @@ def shell(lang: str, route: str, body: str) -> str:
 <link rel="icon" type="image/svg+xml" href="/assets/brand/glass/favicon.svg"><link rel="stylesheet" href="{style_ref()}"><link rel="stylesheet" href="{style_ref("glass.css")}">
 <script type="application/ld+json">{json.dumps(schema(lang,route),ensure_ascii=False,separators=(',',':'))}</script>
 </head><body{body_class}>
-{site_header(lang,route,switch_route="" if lang == "ru" and route == "for-schools" else None)}
+{site_header(lang,route)}
 <main id="main-content" tabindex="-1">{body}</main>
 {site_footer(lang,route)}
 </body></html>'''
@@ -485,6 +480,9 @@ def main(enterprise_only: bool = False) -> None:
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_text(enterprise_case(lang, slug) + "\n", encoding="utf-8")
     if not enterprise_only:
+        school_en = DOCS / "for-schools" / "index.html"
+        school_en.parent.mkdir(parents=True, exist_ok=True)
+        school_en.write_text(shell("en", "for-schools", school_page_en()) + "\n", encoding="utf-8")
         school_target = DOCS / "ru" / "for-schools" / "index.html"
         school_target.parent.mkdir(parents=True, exist_ok=True)
         school_target.write_text(shell("ru", "for-schools", school_page()) + "\n", encoding="utf-8")
@@ -496,7 +494,7 @@ def main(enterprise_only: bool = False) -> None:
     for lang in ("en", "ru"):
         routes = [*page_makers, *(f"cases/{slug}" for slug in ENTERPRISE_CASES)]
         if lang == "en":
-            routes.append("corporate-trainings")
+            routes.extend(("corporate-trainings", "for-schools"))
         for route in routes:
             url = BASE + u(lang,route)
             if f"<loc>{url}</loc>" not in text:
