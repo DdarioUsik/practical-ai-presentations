@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <title>Practical AI</title>
+  <defs>
+    <linearGradient id="shell" x1="0" x2="0" y1="0" y2="1">
+      <stop stop-color="#434b30"/>
+      <stop offset="1" stop-color="#171e13"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="18" fill="url(#shell)" stroke="#c6df83" stroke-width="2"/>
+  <path d="M13 46 25 18h8L21 46Zm18 0 12-28h8L39 46Z" fill="#d4f438"/>
+</svg>

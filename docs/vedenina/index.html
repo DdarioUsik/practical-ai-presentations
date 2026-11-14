@@ -45,6 +45,8 @@
   /* ── VEDENINA PROFILE ── */
   .vd-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
   @media(max-width:860px){ .vd-grid { grid-template-columns:1fr 1fr; } }
+  .vd-item-wide { grid-column: 1 / -1; }
+  @media(max-width:540px){ .vd-grid { grid-template-columns: minmax(0, 1fr); } }
   .vd-item { background:var(--surface2); border-radius:12px; padding:13px 15px; }
   .vd-label { font-size:9px; color:var(--muted); text-transform:uppercase; letter-spacing:0.8px; margin-bottom:4px; }
   .vd-value { font-size:12px; font-weight:600; }
@@ -156,8 +158,10 @@
   .c-orange { color:var(--orange); } .c-blue { color:var(--blue); }
   .c-muted { color:var(--muted); } .c-accent { color:var(--accent); }
 </style>
+<link rel="stylesheet" href="/assets/brand/glass-standalone.css">
+<link rel="icon" type="image/svg+xml" href="/assets/brand/glass/favicon.svg">
 </head>
-<body>
+<body class="glass-standalone">
 
 <!-- HEADER -->
 <div class="header">
@@ -214,7 +218,7 @@
       <div class="vd-value">Behance · Telegram-канал (дизайн и арт-лайфстайл)</div>
     </div>
 
-    <div class="vd-item" style="grid-column:span 3">
+    <div class="vd-item vd-item-wide">
       <div class="vd-label">Продукты</div>
       <div style="margin-top:5px">
         <span class="tag green">Шёлковые платки 100%</span>
@@ -225,7 +229,7 @@
       </div>
     </div>
 
-    <div class="vd-item" style="grid-column:span 3">
+    <div class="vd-item vd-item-wide">
       <div class="vd-label">Источники вдохновения (культурный контекст)</div>
       <div style="margin-top:5px">
         <span class="tag blue">Поэзия и проза</span>
@@ -237,7 +241,7 @@
       </div>
     </div>
 
-    <div class="vd-item" style="grid-column:span 3">
+    <div class="vd-item vd-item-wide">
       <div class="vd-label">Ценности бренда</div>
       <div style="margin-top:5px">
         <span class="tag">Уникальный дизайн</span>

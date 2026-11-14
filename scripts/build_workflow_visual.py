@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """Build readable EN/RU desktop and mobile SVG examples of the Practical AI method."""
 from pathlib import Path
-from xml.sax.saxutils import escape
+from html import escape
 
 OUT_DIR = Path(__file__).resolve().parents[1] / "docs/assets/brand"
-NAVY = "#17213D"
-YELLOW = "#F4D447"
-INK = "#233451"
-MUTED = "#5B6B82"
-PAPER = "#F6F8FB"
+NAVY = "#101010"
+YELLOW = "#D4F438"
+INK = "#101010"
+MUTED = "#555555"
+PAPER = "#F1F1F1"
 
 COPY = {
     "en": {
@@ -74,7 +74,7 @@ def build(lang: str, mobile: bool) -> str:
                   text(48, 202, c["headline"][1], 40, NAVY, 700)]
         y_positions = (270, 590, 910)
         for i, (y, item) in enumerate(zip(y_positions, c["stages"])):
-            parts.append(f'<path d="M48 {y - 22} H672" stroke="#CBD6E4" stroke-width="2"/>')
+            parts.append(f'<path d="M48 {y - 22} H672" stroke="#D2D2CB" stroke-width="2"/>')
             parts += stage(53, y + 13, item, True)
             if i < 2:
                 parts.append(text(623, y + 276, "↓", 37, NAVY, 700))
@@ -84,11 +84,11 @@ def build(lang: str, mobile: bool) -> str:
     else:
         parts += [text(50, 146, c["headline"][0], 42, NAVY, 700),
                   text(50, 195, c["headline"][1], 42, NAVY, 700),
-                  f'<path d="M50 240 H1150" stroke="#CBD6E4" stroke-width="2"/>']
+                  f'<path d="M50 240 H1150" stroke="#D2D2CB" stroke-width="2"/>']
         for i, (x, item) in enumerate(zip((52, 440, 825), c["stages"])):
             parts += stage(x, 282, item, False)
             if i < 2:
-                parts.append(f'<path d="M{414 if i == 0 else 800} 275 V510" stroke="#CBD6E4" stroke-width="2"/>')
+                parts.append(f'<path d="M{414 if i == 0 else 800} 275 V510" stroke="#D2D2CB" stroke-width="2"/>')
         parts.append(f'<rect x="50" y="562" width="1100" height="57" rx="9" fill="{YELLOW}"/>')
         parts.append(text(68, 599, c["output"], 24, NAVY, 800))
     parts.append("</svg>")

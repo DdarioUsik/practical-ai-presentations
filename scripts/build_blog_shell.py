@@ -41,8 +41,8 @@ def build_page(path: Path, lang: str, slug: str) -> None:
     )
     html = replace_once(
         html,
-        r'<link rel="stylesheet" href="[^"]*/assets/brand/(?:brand|sales-site)\.css(?:\?v=[a-f0-9]+)?">(?:<link rel="stylesheet" href="/assets/brand/blog-bridge\.css(?:\?v=[a-f0-9]+)?">)?',
-        f'<link rel="stylesheet" href="{style_ref()}"><link rel="stylesheet" href="{style_ref("blog-bridge.css")}">',
+        r'<link rel="stylesheet" href="[^"]*/assets/brand/(?:brand|sales-site)\.css(?:\?v=[a-f0-9]+)?">(?:<link rel="stylesheet" href="/assets/brand/(?:blog-bridge|glass)\.css(?:\?v=[a-f0-9]+)?">)*',
+        f'<link rel="stylesheet" href="{style_ref()}"><link rel="stylesheet" href="{style_ref("blog-bridge.css")}"><link rel="stylesheet" href="{style_ref("glass.css")}">',
         path,
     )
     html = replace_once(html, r'<body(?: class="site-blog")?>', '<body class="site-blog">', path)
@@ -56,8 +56,8 @@ def build_legacy_article(path: Path) -> None:
     html = replace_once(html, r'<header class="(?:nav|site-header)">.*?</header>', site_header("ru", "blog", "blog"), path)
     html = replace_once(html, r'<body class="(?:personal-article|personal-article site-blog)">', '<body class="personal-article site-blog">', path)
     html = html.replace('  <link rel="stylesheet" href="../../assets/brand/brand.css" />\n', '')
-    html = re.sub(r'<link rel="stylesheet" href="/assets/brand/(?:sales-site|blog-bridge)\.css(?:\?v=[a-f0-9]+)?">', '', html)
-    styles = f'<link rel="stylesheet" href="{style_ref()}"><link rel="stylesheet" href="{style_ref("blog-bridge.css")}">'
+    html = re.sub(r'<link rel="stylesheet" href="/assets/brand/(?:sales-site|blog-bridge|glass)\.css(?:\?v=[a-f0-9]+)?">', '', html)
+    styles = f'<link rel="stylesheet" href="{style_ref()}"><link rel="stylesheet" href="{style_ref("blog-bridge.css")}"><link rel="stylesheet" href="{style_ref("glass.css")}">'
     if styles not in html:
         html = html.replace('</head>', f'{styles}\n</head>', 1)
     footer = site_footer("ru", "blog")

@@ -1,39 +1,39 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
 <title id="title">A readable example of a Practical AI team workflow</title>
 <desc id="desc">Weekly team update: meeting notes, open actions and CRM status become an AI draft; a manager checks figures, context and owners before sharing the update.</desc>
-<rect width="1200" height="650" rx="24" fill="#F6F8FB"/>
-<path d="M52 49 L70 49 L52 87 L34 87 Z" fill="#17213D"/>
-<path d="M78 49 L96 49 L78 87 L60 87 Z" fill="#F4D447"/>
-<text x="118" y="76" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="800" letter-spacing="1">WORKED EXAMPLE / WEEKLY TEAM UPDATE</text>
-<text x="50" y="146" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700" letter-spacing="0">From scattered notes</text>
-<text x="50" y="195" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700" letter-spacing="0">to an approved update</text>
-<path d="M50 240 H1150" stroke="#CBD6E4" stroke-width="2"/>
-<text x="52" y="282" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="800" letter-spacing="1">01 / TEAM MATERIAL</text>
-<text x="52" y="325" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" letter-spacing="0">What people bring</text>
-<circle cx="59" cy="366" r="5" fill="#F4D447"/>
-<text x="74" y="373" fill="#5B6B82" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" letter-spacing="0">Meeting notes</text>
-<circle cx="59" cy="404" r="5" fill="#F4D447"/>
-<text x="74" y="411" fill="#5B6B82" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" letter-spacing="0">Open actions</text>
-<circle cx="59" cy="442" r="5" fill="#F4D447"/>
-<text x="74" y="449" fill="#5B6B82" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" letter-spacing="0">Latest CRM status</text>
-<path d="M414 275 V510" stroke="#CBD6E4" stroke-width="2"/>
-<text x="440" y="282" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="800" letter-spacing="1">02 / AI DRAFT</text>
-<text x="440" y="325" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" letter-spacing="0">What AI prepares</text>
-<circle cx="447" cy="366" r="5" fill="#F4D447"/>
-<text x="462" y="373" fill="#5B6B82" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" letter-spacing="0">What changed</text>
-<circle cx="447" cy="404" r="5" fill="#F4D447"/>
-<text x="462" y="411" fill="#5B6B82" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" letter-spacing="0">What needs a decision</text>
-<circle cx="447" cy="442" r="5" fill="#F4D447"/>
-<text x="462" y="449" fill="#5B6B82" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" letter-spacing="0">Who owns the next step</text>
-<path d="M800 275 V510" stroke="#CBD6E4" stroke-width="2"/>
-<text x="825" y="282" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="800" letter-spacing="1">03 / HUMAN REVIEW</text>
-<text x="825" y="325" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" letter-spacing="0">What the manager checks</text>
-<circle cx="832" cy="366" r="5" fill="#F4D447"/>
-<text x="847" y="373" fill="#5B6B82" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" letter-spacing="0">Figures against the source</text>
-<circle cx="832" cy="404" r="5" fill="#F4D447"/>
-<text x="847" y="411" fill="#5B6B82" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" letter-spacing="0">Missing context</text>
-<circle cx="832" cy="442" r="5" fill="#F4D447"/>
-<text x="847" y="449" fill="#5B6B82" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" letter-spacing="0">Owners and deadlines</text>
-<rect x="50" y="562" width="1100" height="57" rx="9" fill="#F4D447"/>
-<text x="68" y="599" fill="#17213D" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800" letter-spacing="0">OUTPUT  /  Approved weekly update + reusable review checklist</text>
+<rect width="1200" height="650" rx="24" fill="#F1F1F1"/>
+<path d="M52 49 L70 49 L52 87 L34 87 Z" fill="#101010"/>
+<path d="M78 49 L96 49 L78 87 L60 87 Z" fill="#D4F438"/>
+<text x="118" y="76" fill="#101010" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="800" letter-spacing="1">WORKED EXAMPLE / WEEKLY TEAM UPDATE</text>
+<text x="50" y="146" fill="#101010" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700" letter-spacing="0">From scattered notes</text>
+<text x="50" y="195" fill="#101010" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700" letter-spacing="0">to an approved update</text>
+<path d="M50 240 H1150" stroke="#D2D2CB" stroke-width="2"/>
+<text x="52" y="282" fill="#101010" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="800" letter-spacing="1">01 / TEAM MATERIAL</text>
+<text x="52" y="325" fill="#101010" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" letter-spacing="0">What people bring</text>
+<circle cx="59" cy="366" r="5" fill="#D4F438"/>
+<text x="74" y="373" fill="#555555" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" letter-spacing="0">Meeting notes</text>
+<circle cx="59" cy="404" r="5" fill="#D4F438"/>
+<text x="74" y="411" fill="#555555" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" letter-spacing="0">Open actions</text>
+<circle cx="59" cy="442" r="5" fill="#D4F438"/>
+<text x="74" y="449" fill="#555555" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" letter-spacing="0">Latest CRM status</text>
+<path d="M414 275 V510" stroke="#D2D2CB" stroke-width="2"/>
+<text x="440" y="282" fill="#101010" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="800" letter-spacing="1">02 / AI DRAFT</text>
+<text x="440" y="325" fill="#101010" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" letter-spacing="0">What AI prepares</text>
+<circle cx="447" cy="366" r="5" fill="#D4F438"/>
+<text x="462" y="373" fill="#555555" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" letter-spacing="0">What changed</text>
+<circle cx="447" cy="404" r="5" fill="#D4F438"/>
+<text x="462" y="411" fill="#555555" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" letter-spacing="0">What needs a decision</text>
+<circle cx="447" cy="442" r="5" fill="#D4F438"/>
+<text x="462" y="449" fill="#555555" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" letter-spacing="0">Who owns the next step</text>
+<path d="M800 275 V510" stroke="#D2D2CB" stroke-width="2"/>
+<text x="825" y="282" fill="#101010" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="800" letter-spacing="1">03 / HUMAN REVIEW</text>
+<text x="825" y="325" fill="#101010" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" letter-spacing="0">What the manager checks</text>
+<circle cx="832" cy="366" r="5" fill="#D4F438"/>
+<text x="847" y="373" fill="#555555" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" letter-spacing="0">Figures against the source</text>
+<circle cx="832" cy="404" r="5" fill="#D4F438"/>
+<text x="847" y="411" fill="#555555" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" letter-spacing="0">Missing context</text>
+<circle cx="832" cy="442" r="5" fill="#D4F438"/>
+<text x="847" y="449" fill="#555555" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" letter-spacing="0">Owners and deadlines</text>
+<rect x="50" y="562" width="1100" height="57" rx="9" fill="#D4F438"/>
+<text x="68" y="599" fill="#101010" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800" letter-spacing="0">OUTPUT  /  Approved weekly update + reusable review checklist</text>
 </svg>

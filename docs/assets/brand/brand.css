@@ -7,8 +7,8 @@
 }
 
 :root {
-  --ink: #17213d;
-  --lime: #f4d447;
+  --ink: #101010;
+  --lime: #d4f438;
   --body: "Practical Inter", Inter, Arial, sans-serif;
   --display: var(--body);
 }
@@ -74,14 +74,14 @@ body { font-family: var(--body); }
 .founder-strip p { margin: 0; font-size: 14px; }
 .founder-strip a { margin-left: auto; flex: none; color: #fff; font-size: 13px; font-weight: 700; text-underline-offset: 5px; }
 
-body.personal-article { --bg: #e9eff6; --ink: #17213d; --muted: #59667d; --lime: #f4d447; }
+body.personal-article { --bg: #f1f1f1; --ink: #101010; --muted: #555555; --lime: #d4f438; }
 body.personal-article .brand-lockup { width: 183px; }
 body.personal-article article p { color: #293550; }
 body.personal-article article a { color: #284d83; }
 
 .blog-nav { background: #111a31; border-bottom-color: rgba(255,255,255,.15); }
 .blog-nav-links a { color: #dce4ee; }
-.blog-nav-links a:hover { color: #f4d447; text-decoration-color: #f4d447; }
+.blog-nav-links a:hover { color: #d4f438; text-decoration-color: #d4f438; }
 .blog-nav .language-link { border-color: rgba(255,255,255,.4); }
 
 @media (max-width: 700px) {

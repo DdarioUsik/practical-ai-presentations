@@ -10,34 +10,33 @@ CASES = ("shildpanel", "kerama-marazzi")
 
 COPY = {
     "en": {
-        "meta": ("Enterprise AI Adoption & Business Transformation | Practical AI",
-                 "Build lasting AI capabilities across your business. Discover high-value workflows, develop internal AI champions and measure operational improvements. Start with a 2–3 week assessment."),
+        "meta": ("Get More from Your AI Subscription | Practical AI",
+                 "Help your team get more from Claude, ChatGPT or Copilot with hands-on training, repeatable workflows and a 2–3 week AI assessment."),
         "switch": "RU", "switch_label": "Switch language to Russian", "home_label": "Practical AI home",
-        "nav": [("#cases", "Results"), ("#method", "Approach"), ("#roadmap", "Roadmap"), ("#security", "Security"), ("#assessment", "Assessment"), ("/corporate-trainings/", "Corporate")],
+        "nav": [("#cases", "Case studies"), ("#programs", "Ways to start"), ("#method", "Approach"), ("#security", "Security"), ("/corporate-trainings/", "Corporate training")],
         "cta": "Discuss the assessment", "menu": "Menu", "skip": "Skip to main content",
-        "eyebrow": "Enterprise AI adoption · Practical AI",
-        "h1": "Turn AI into a working capability across your company.",
-        "lede": "We help business teams identify valuable opportunities, test practical workflows and build the internal capability to keep improving them.",
-        "hero_note": "Start with real processes. Agree on boundaries. Measure what changes.",
-        "hero_cta": "Discuss the AI assessment", "hero_secondary": "See how we work",
-        "hero_team_label": "A DELIVERY TEAM BUILT AROUND YOUR WORK",
-        "hero_team_context": "Three perspectives. One practical outcome.",
-        "hero_team_statement": "One shared goal: practical AI in everyday processes.",
-        "hero_team_roles": [
-            ("Business teams", "Priorities · process expertise"),
-            ("Practical AI", "Workflow design · implementation"),
-            ("IT & Security", "Tools · data · controls")],
-        "hero_team_footer": "Shared roadmap · clear owners · measured progress",
+        "eyebrow": "AI training and adoption for teams",
+        "h1": "Already paying for AI? Get more from your subscription.",
+        "lede": "We help your team use Claude, ChatGPT or Copilot for work they do every week, from preparing reports to reviewing documents. Together we build workflows and test what changes in time spent and output quality.",
+        "hero_cta": "Choose how to start", "hero_secondary": "See client results",
+        "hero_proof_source": "Time reported in a client interview",
+        "case_index_cta": "Explore more cases (in Russian)",
+        "formats_title": "Two ways to start",
+        "training_title": "Hands-on team training",
+        "training_intro": "Bring a task your team already does. In a live session, employees practise it using the AI tools your company has approved and learn how to review the output.",
+        "training_cta": "Explore training programmes",
+        "assessment_format_intro": "Find where AI could have the most impact across functions. We review your processes, current licences and data rules, then recommend which workflows to test first.",
+        "assessment_format_cta": "See what the assessment includes",
+        "cycle": ["Discover", "Test", "Review", "Share"],
         "team_contact_title": "Practical AI delivery team",
         "team_contact_subtitle": "AI strategy · workflows · adoption",
-        "hero_badge": "Independent first step", "hero_fee": "€5,000", "hero_duration": "2–3 weeks",
-        "hero_scope": "A bounded assessment, with a decision point before any next phase.",
-        "pain_eyebrow": "From access to adoption", "pain_title": "Teams already have tasks for AI. The work is building a reliable way to improve them.",
-        "pain_intro": "Useful adoption connects day-to-day work, employee capability and the company’s technical and governance boundaries.",
+        "pain_title": "What does AI look like in your team today?",
+        "pain_intro": "Start with a task people already know well. You can compare time and quality using a result your team can verify.",
         "pains": [
-            ("Repetitive work absorbs skilled time", "Teams compile reports, search across documents and repeat routine coordination every week."),
-            ("Useful discoveries stay in separate teams", "Employees experiment independently, while similar workflows get rebuilt and lessons remain hard to share."),
-            ("Learning needs a route into daily work", "Adoption grows through real processes, agreed tools, review criteria, clear ownership and follow-through.")],
+            ("The team mostly uses AI to draft messages", "Weekly reports, document reviews and competitor research still take hours of manual work."),
+            ("A useful workflow stays with one person", "A colleague gets a good result, but the prompt, source material and review steps live in a private chat."),
+            ("Licence renewals are coming up", "You know how much the seats cost and want to see which workflows save time and meet your quality standards."),
+        ],
         "outcomes_eyebrow": "What stays inside your company", "outcomes_title": "Build a repeatable way to improve work with AI.",
         "outcomes_intro": "The work leaves teams with reviewed practices they can use, adapt and improve after the engagement.",
         "outcomes": [
@@ -46,8 +45,8 @@ COPY = {
             ("Ownership", "Internal champions with a defined role and escalation path."),
             ("Reusable knowledge", "Workflow cards, instructions and quality criteria."),
             ("Measurement", "Baselines and follow-up measures for selected processes.")],
-        "cases_eyebrow": "Evidence from client work", "cases_title": "Real tasks. Reported outcomes.",
-        "cases_intro": "The examples below come from client interviews and project information. They describe specific work in those organisations; each new engagement starts with its own baseline.",
+        "cases_eyebrow": "Evidence from client work", "cases_title": "What changed for our clients",
+        "cases_intro": "ShildPanel shows what AI can change in a specific task. Kerama Marazzi shows how a company can teach people to build and share workflows internally.",
         "case_source": "Reported interview results · task-specific examples",
         "kerama_source": "Programme information · client case",
         "case_shildpanel": "ShildPanel", "case_shild_sub": "Practical AI in production and support workflows",
@@ -60,8 +59,8 @@ COPY = {
         "case_kerama": "Kerama Marazzi", "case_kerama_sub": "Building internal AI trainers through Train-the-Trainer",
         "case_kerama_desc": "A programme that developed internal capacity through training, mentoring and practical cases.",
         "kerama_metrics": [("4", "internal AI trainers prepared"), ("70 days", "of training and mentoring"), ("50+", "practical cases explored"), ("80 colleagues", "potential reach")],
-        "reach_note": "The figure of 80 describes potential reach. The case information reports a potential audience, not 80 confirmed active users.",
-        "case_link": "Read the case details", "case_note": "These task-level results are examples, not forecasts or guaranteed outcomes for another organisation.",
+        "reach_note": "The programme identified 80 colleagues as the potential audience for internal training.",
+        "case_link": "Read the case details", "case_note": "The figures describe the specific tasks discussed in client interviews.",
         "method_eyebrow": "How the work moves", "method_title": "From a useful experiment to an everyday business practice.",
         "method_intro": "Each workflow connects a process owner, an AI step, human review and a measurable next action.",
         "steps": [
@@ -124,14 +123,14 @@ COPY = {
         "faq_eyebrow": "Questions leaders ask", "faq_title": "What to expect from the first step.",
         "faq": [
             ("Is this a training programme?", "The assessment starts with business processes, readiness and constraints. Its findings can point to training, a workflow pilot, technical discovery, governance work or another next step."),
-            ("Do we need to choose AI tools first?", "The assessment records your current stack and IT and Security boundaries. Tool choices follow the process, risk and feasibility review."),
+            ("Can we use the AI licences we already pay for?", "Yes. We start with the tools your company has approved, whether that’s Claude, ChatGPT or Copilot. The workflows we test depend on your plan, permissions and data rules."),
             ("What happens after 2–3 weeks?", "You receive the assessment outputs and a decision session. Your company can continue internally or agree a separate next phase with Practical AI."),
             ("Can you guarantee savings or ROI?", "The work establishes baselines, tests assumptions and records observed changes. Financial outcomes follow actual adoption, costs and measured use of released capacity."),
             ("Who owns security and compliance decisions?", "Your authorised IT, Security, Legal and risk owners set and approve the applicable boundaries. Practical AI documents those decisions for the selected workflows."),
-            ("Can our current AI programmes continue?", "Yes. Company labs, leadership sprints and role-based programmes remain available as focused formats and supporting pages.")],
-        "final_eyebrow": "Start with the work", "final_title": "Choose a first step based on the processes your teams want to improve.",
-        "final_text": "A conversation can clarify the business context, functions involved and whether the assessment is a suitable first step.",
-        "final_cta": "Discuss the assessment", "programs": "Explore existing programmes", "hr": "For HR & L&D", "team": "Meet the team", "guides": "Read practical guides",
+            ("What can we measure?", "For each workflow, we compare time and output quality with the starting point. For a rollout, we also check how often the team uses the workflow.")],
+        "final_eyebrow": "Start with the work", "final_title": "Which task should your AI subscription help with first?",
+        "final_text": "Tell us which tool your team uses and which task comes up every week. We’ll discuss whether to start with hands-on training or an assessment.",
+        "final_cta": "Choose how to start", "programs": "Training programmes", "hr": "For HR & L&D", "team": "Meet the team", "guides": "Read practical guides",
         "footer": "Practical AI · Enterprise AI adoption and business transformation",
         "case_meta": {
             "shildpanel": ("ShildPanel case | Practical AI", "Interview-reported task outcomes across production reporting, ERP formulas, competitor analysis and an HR routine."),
@@ -142,34 +141,33 @@ COPY = {
         "case_back": "Back to the homepage", "case_cta": "Discuss an assessment for your company",
     },
     "ru": {
-        "meta": ("AI-трансформация бизнеса и внедрение AI | Practical AI",
-                 "Развивайте устойчивые AI-компетенции в компании: находите ценные рабочие сценарии, готовьте внутренних AI-чемпионов и измеряйте изменения. Начните с диагностики на 2–3 недели."),
+        "meta": ("Как использовать подписки на AI в работе команды | Practical AI",
+                 "Помогаем командам применять Claude, ChatGPT или Copilot в рабочих задачах. Практическое обучение и AI-диагностика за 2–3 недели."),
         "switch": "EN", "switch_label": "Переключить язык на английский", "home_label": "Practical AI — на главную",
-        "nav": [("#cases", "Результаты"), ("#method", "Подход"), ("#roadmap", "План"), ("#security", "Безопасность"), ("#assessment", "Диагностика"), ("/corporate-trainings/", "Corporate")],
+        "nav": [("#cases", "Кейсы"), ("#programs", "Форматы"), ("#method", "Подход"), ("#security", "Безопасность"), ("/ru/for-schools/", "Для школ")],
         "cta": "Обсудить диагностику", "menu": "Меню", "skip": "Перейти к содержанию",
-        "eyebrow": "AI-трансформация бизнеса · Practical AI",
-        "h1": "Превратите AI в рабочую компетенцию всей компании.",
-        "lede": "Помогаем бизнес-командам находить ценные возможности для AI, проверять рабочие сценарии и развивать внутреннюю способность улучшать их дальше.",
-        "hero_note": "Начинаем с реальных процессов. Согласуем границы. Измеряем изменения.",
-        "hero_cta": "Обсудить AI-диагностику", "hero_secondary": "Как устроена работа",
-        "hero_team_label": "КОМАНДА ВОКРУГ ВАШИХ ЗАДАЧ",
-        "hero_team_context": "Три перспективы. Один практический результат.",
-        "hero_team_statement": "Общая цель — практический AI в ежедневных процессах.",
-        "hero_team_roles": [
-            ("Бизнес-команда", "Приоритеты · знание процессов"),
-            ("Practical AI", "Сценарии · внедрение"),
-            ("IT и Security", "Инструменты · данные · контроль")],
-        "hero_team_footer": "Общий план · ясная ответственность · измеримые изменения",
+        "eyebrow": "Обучение и внедрение AI для команд",
+        "h1": "Уже платите за AI? Используйте его на полную.",
+        "lede": "Поможем команде применять Claude, ChatGPT или Copilot в повседневной работе. Настроим сценарии для отчётов, документов и анализа. Проверим, как меняются время выполнения и качество результата.",
+        "hero_cta": "Выбрать, с чего начать", "hero_secondary": "Посмотреть кейсы",
+        "hero_proof_source": "Время по данным интервью с клиентом",
+        "case_index_cta": "Другие кейсы Practical AI",
+        "formats_title": "Два способа начать",
+        "training_title": "Практическое обучение команды",
+        "training_intro": "Принесите задачу из работы команды. На занятии сотрудники выполнят её в разрешённом AI-инструменте и разберут, как проверять результат.",
+        "training_cta": "Выбрать программу обучения",
+        "assessment_format_intro": "Разберём процессы нескольких подразделений, доступные лицензии и правила работы с данными. Определим, какие сценарии стоит проверить первыми.",
+        "assessment_format_cta": "Что входит в диагностику",
+        "cycle": ["Найти", "Проверить", "Оценить", "Поделиться"],
         "team_contact_title": "Команда Practical AI",
         "team_contact_subtitle": "Стратегия AI · сценарии · внедрение",
-        "hero_badge": "Самостоятельный первый этап", "hero_fee": "€5 000", "hero_duration": "2–3 недели",
-        "hero_scope": "Ограниченный объём диагностики и решение до перехода к следующему этапу.",
-        "pain_eyebrow": "От доступа к внедрению", "pain_title": "У команд уже есть задачи для AI. Важно выстроить надёжный способ улучшать их.",
-        "pain_intro": "Практическое внедрение связывает ежедневную работу, компетенции сотрудников и технические и управленческие границы компании.",
+        "pain_title": "Узнаёте свою команду?",
+        "pain_intro": "Начните со знакомой задачи. На ней проще сравнить время и проверить качество результата.",
         "pains": [
-            ("Повторяющаяся работа занимает время специалистов", "Команды каждую неделю собирают отчёты, ищут информацию в документах и вручную координируют рутинные задачи."),
-            ("Полезные находки остаются внутри отдельных команд", "Сотрудники экспериментируют самостоятельно, похожие сценарии создаются заново, а опыт сложно передавать."),
-            ("Обучению нужен маршрут в ежедневную работу", "Внедрение развивается через реальные процессы, согласованные инструменты, критерии проверки, ответственность и продолжение практики.")],
+            ("AI открывают в основном ради писем", "Еженедельные отчёты, проверка документов и анализ конкурентов по-прежнему занимают часы ручной работы."),
+            ("Удачный сценарий остаётся у одного сотрудника", "Коллега получил хороший результат, а запрос, материалы и порядок проверки остались в его чате."),
+            ("Скоро продлевать лицензии", "Стоимость подписок известна. Хочется понять, где AI уже экономит время и сохраняет нужное качество."),
+        ],
         "outcomes_eyebrow": "Что остаётся в компании", "outcomes_title": "Создайте повторяемый способ улучшать работу с помощью AI.",
         "outcomes_intro": "После проекта у команд остаются проверенные практики, которые можно применять, адаптировать и развивать дальше.",
         "outcomes": [
@@ -178,8 +176,8 @@ COPY = {
             ("Ответственность", "Внутренние AI-чемпионы с определённой ролью и порядком эскалации."),
             ("Повторное использование", "Карточки сценариев, инструкции и критерии качества."),
             ("Измерение", "Исходные и повторные показатели для выбранных процессов.")],
-        "cases_eyebrow": "Результаты работы с клиентами", "cases_title": "Реальные задачи. Результаты из интервью.",
-        "cases_intro": "Примеры ниже взяты из интервью с клиентами и информации о проектах. Они описывают конкретные задачи этих компаний; для каждого нового проекта мы устанавливаем собственную исходную точку.",
+        "cases_eyebrow": "Результаты работы с клиентами", "cases_title": "Что изменилось у наших клиентов",
+        "cases_intro": "ShildPanel показывает, что меняется в конкретной задаче. Kerama Marazzi показывает, как научить сотрудников создавать сценарии и передавать их коллегам.",
         "case_source": "Результаты из интервью · отдельные примеры задач",
         "kerama_source": "Информация о программе · данные кейса",
         "case_shildpanel": "ShildPanel", "case_shild_sub": "AI в производственных и поддерживающих процессах",
@@ -192,8 +190,8 @@ COPY = {
         "case_kerama": "Kerama Marazzi", "case_kerama_sub": "Внутренние AI-тренеры: Train-the-Trainer",
         "case_kerama_desc": "Программа развивала внутреннюю экспертизу через обучение, наставничество и практические кейсы.",
         "kerama_metrics": [("4", "подготовленных внутренних AI-тренера"), ("70 дней", "обучения и наставничества"), ("50+", "рассмотренных практических кейсов"), ("80 коллег", "потенциальный охват")],
-        "reach_note": "Показатель 80 описывает потенциальный охват коллег. Это планируемая аудитория; фактическое использование AI 80 сотрудниками в кейсе не подтверждено.",
-        "case_link": "Подробнее о кейсе", "case_note": "Результаты относятся к конкретным задачам и описанной программе. Это примеры работы компаний, а не прогноз или гарантированный результат для другой организации.",
+        "reach_note": "80 коллег — потенциальная аудитория внутреннего обучения.",
+        "case_link": "Подробнее о кейсе", "case_note": "Цифры относятся к конкретным задачам, о которых клиенты рассказали в интервью.",
         "method_eyebrow": "Как устроена работа", "method_title": "От полезного эксперимента — к повседневной практике компании.",
         "method_intro": "Каждый сценарий связывает владельца процесса, шаг с AI, проверку человеком и измеримое следующее действие.",
         "steps": [
@@ -256,14 +254,14 @@ COPY = {
         "faq_eyebrow": "Вопросы руководителей", "faq_title": "Чего ждать от первого этапа.",
         "faq": [
             ("Это программа обучения?", "Диагностика начинается с бизнес-процессов, готовности и ограничений. По её итогам подходящим следующим шагом может стать обучение, пилот сценария, техническая проработка, управленческое решение или другой формат."),
-            ("Нужно ли заранее выбрать AI-инструменты?", "Диагностика учитывает текущий стек и границы, заданные IT и Security. Выбор инструментов следует из процесса, рисков и оценки реализуемости."),
+            ("Можно работать с лицензиями, которые мы уже оплачиваем?", "Да. Начинаем с Claude, ChatGPT или Copilot, который ваша компания уже согласовала. Сценарии подбираем с учётом тарифа, прав доступа и правил работы с данными."),
             ("Что будет через 2–3 недели?", "Вы получите результаты диагностики и встречу для принятия решения. Компания сможет продолжить своими силами или согласовать с Practical AI отдельный следующий этап."),
             ("Можно ли гарантировать экономию или ROI?", "Работа фиксирует исходные показатели, проверяет допущения и наблюдаемые изменения. Финансовый эффект оценивается по фактическому внедрению, затратам и использованию высвобождённой ёмкости."),
             ("Кто отвечает за решения по безопасности и соответствию?", "Уполномоченные владельцы IT, Security, Legal и рисков со стороны клиента утверждают применимые границы. Practical AI документирует эти решения для выбранных сценариев."),
-            ("Сохранятся ли текущие программы по AI?", "Да. Лаборатории для компаний, спринты для руководителей и ролевые программы остаются отдельными форматами и дополнительными страницами.")],
-        "final_eyebrow": "Начните с реальной работы", "final_title": "Выберите первый шаг, опираясь на процессы, которые команда хочет улучшить.",
-        "final_text": "В разговоре можно уточнить контекст бизнеса, функции и понять, подходит ли диагностика как первый шаг.",
-        "final_cta": "Обсудить диагностику", "programs": "Посмотреть программы", "hr": "Для HR и L&D", "team": "Познакомиться с командой", "guides": "Читать практические статьи",
+            ("Как измерить пользу от подписки?", "Для каждого сценария сравниваем время и качество с исходными показателями. При внедрении также смотрим, как часто сотрудники используют сценарий.")],
+        "final_eyebrow": "Начните с реальной работы", "final_title": "С какой задачи начнём?",
+        "final_text": "Расскажите, какой инструмент у вас уже есть и какую задачу команда выполняет каждую неделю. Обсудим, с чего начать — с практического обучения или диагностики.",
+        "final_cta": "Выбрать, с чего начать", "programs": "Программы обучения", "hr": "Для HR и L&D", "team": "Познакомиться с командой", "guides": "Читать практические статьи",
         "footer": "Practical AI · Внедрение AI и трансформация бизнеса",
         "case_meta": {
             "shildpanel": ("Кейс ShildPanel | Practical AI", "Результаты задач по данным интервью: производственная отчётность, формулы ERP, анализ конкурентов и HR-рутина."),
@@ -306,10 +304,10 @@ def header(lang: str, route: str = "") -> str:
     nav = "".join(f'<a href="{esc(dest if dest.startswith("/") or not route else home_url(lang) + dest)}">{esc(label)}</a>' for dest, label in c["nav"])
     case_switch = f"cases/{route.removeprefix('cases/')}" if route.startswith("cases/") else ""
     switch_url = ("/ru" if other == "ru" else "") + "/" + (case_switch + "/" if case_switch else "")
-    contact = f'<a class="button button--small" href="{home_url(lang)}#assessment">{esc(c["cta"])}</a>'
+    contact = f'<a class="button button--small" href="{home_url(lang)}#programs">{esc(c["hero_cta"])}</a>'
     menu = f'<details class="enterprise-mobile-menu"><summary>{esc(c["menu"])}</summary><nav aria-label="{esc(c["menu"])}">{nav}{contact}</nav></details>'
     return (f'<header class="site-header enterprise-header"><a class="skip-link" href="#main-content">{esc(c["skip"])}</a>'
-            f'<div class="wrap nav"><a href="{home_url(lang)}" aria-label="{esc(c["home_label"])}"><img class="brand-lockup" src="/assets/brand/logo-reverse.svg" alt="Practical AI" width="760" height="152"></a>'
+            f'<div class="wrap nav"><a href="{home_url(lang)}" aria-label="{esc(c["home_label"])}"><img class="brand-lockup" src="/assets/brand/glass/wordmark.svg" alt="Practical AI" width="470" height="140"></a>'
             f'<nav class="nav-links" aria-label="{"Main navigation" if lang == "en" else "Основная навигация"}">{nav}</nav>'
             f'<div class="nav-end">{menu}<a class="lang-switch" href="{switch_url}" lang="{other}" aria-label="{esc(c["switch_label"])}">{esc(c["switch"])}</a>{contact}</div></div></header>')
 
@@ -321,7 +319,7 @@ def footer(lang: str) -> str:
               ("/about/" if lang == "en" else "/ru/about/", c["team"]),
               ("/blog/" if lang == "en" else "/ru/blog/", c["guides"])]
     nav = "".join(f'<a href="{url}">{esc(label)}</a>' for url, label in routes)
-    return (f'<footer class="site-footer enterprise-footer"><div class="wrap footer-inner"><div class="footer-brand"><a href="{home_url(lang)}"><img class="brand-lockup" src="/assets/brand/logo-reverse.svg" alt="Practical AI" width="760" height="152"></a><p>{esc(c["footer"])}</p></div>'
+    return (f'<footer class="site-footer enterprise-footer"><div class="wrap footer-inner"><div class="footer-brand"><a href="{home_url(lang)}"><img class="brand-lockup" src="/assets/brand/glass/wordmark.svg" alt="Practical AI" width="470" height="140"></a><p>{esc(c["footer"])}</p></div>'
             f'<div class="footer-column"><nav class="footer-links" aria-label="{"Footer navigation" if lang == "en" else "Навигация в подвале"}">{nav}</nav><div class="footer-contact"><a href="https://wa.me/34627184000" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a><a href="https://www.linkedin.com/in/danielusik/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div></div></div></footer>')
 
 
@@ -334,7 +332,7 @@ def shell(lang: str, route: str, body: str, include_js: bool = False) -> str:
     page_url = canonical
     service_name = title.split(" | ")[0]
     graph = {"@context": "https://schema.org", "@graph": [
-        {"@type": "Organization", "@id": home_id, "name": "Practical AI", "url": BASE + "/", "logo": BASE + "/assets/brand/logo-primary.svg", "founder": {"@type": "Person", "name": "Danil Usik", "sameAs": "https://www.linkedin.com/in/danielusik/"}},
+        {"@type": "Organization", "@id": home_id, "name": "Practical AI", "url": BASE + "/", "logo": BASE + "/assets/brand/glass/wordmark.svg", "founder": {"@type": "Person", "name": "Danil Usik", "sameAs": "https://www.linkedin.com/in/danielusik/"}},
         {"@type": "WebSite", "@id": BASE + "/#website", "name": "Practical AI", "url": BASE + "/", "publisher": {"@id": home_id}},
         {"@type": "WebPage", "@id": page_url + "#webpage", "url": page_url, "inLanguage": lang, "isPartOf": {"@id": BASE + "/#website"}},
         {"@type": "Service", "name": service_name, "provider": {"@id": home_id}, "url": page_url}]}
@@ -343,12 +341,12 @@ def shell(lang: str, route: str, body: str, include_js: bool = False) -> str:
     return f'''<!doctype html>
 <html lang="{lang}"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#17213d"><meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#f1f1f1"><meta name="robots" content="index,follow,max-image-preview:large">
 <title>{esc(title)}</title><meta name="description" content="{esc(description)}">
 <link rel="canonical" href="{esc(canonical)}"><link rel="alternate" hreflang="en" href="{esc(BASE + (route and '/' + route + '/' or '/'))}"><link rel="alternate" hreflang="ru" href="{esc(BASE + '/ru' + (route and '/' + route + '/' or '/'))}"><link rel="alternate" hreflang="x-default" href="{esc(BASE + (route and '/' + route + '/' or '/'))}">
 <meta property="og:type" content="website"><meta property="og:site_name" content="Practical AI"><meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(description)}"><meta property="og:url" content="{esc(canonical)}"><meta property="og:locale" content="{'en_US' if lang == 'en' else 'ru_RU'}"><meta property="og:image" content="{BASE}/assets/brand/social-card.png">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{esc(title)}"><meta name="twitter:description" content="{esc(description)}"><meta name="twitter:image" content="{BASE}/assets/brand/social-card.png">
-<link rel="icon" type="image/svg+xml" href="/assets/brand/symbol-primary.svg"><link rel="stylesheet" href="/assets/brand/sales-site.css"><link rel="stylesheet" href="/assets/brand/enterprise-home.css">
+<link rel="icon" type="image/svg+xml" href="/assets/brand/glass/favicon.svg"><link rel="stylesheet" href="/assets/brand/sales-site.css"><link rel="stylesheet" href="/assets/brand/enterprise-home.css"><link rel="stylesheet" href="/assets/brand/glass.css">
 <script type="application/ld+json">{__import__('json').dumps(graph, ensure_ascii=False, separators=(',', ':'))}</script>{script}
 </head><body{body_class}>
 {header(lang, route)}<main id="main-content" tabindex="-1">{body}</main>{footer(lang)}</body></html>'''
@@ -356,9 +354,8 @@ def shell(lang: str, route: str, body: str, include_js: bool = False) -> str:
 
 def render_home(lang: str) -> str:
     c = COPY[lang]
-    pains = "".join(f'<article class="ea-card"><span class="ea-index">{i:02}</span><h3>{esc(title)}</h3><p>{esc(text)}</p></article>' for i, (title, text) in enumerate(c["pains"], 1))
+    pains = "".join(f'<article class="ea-card"><h3>{esc(title)}</h3><p>{esc(text)}</p></article>' for title, text in c["pains"])
     outcomes = "".join(f'<article class="ea-outcome"><span>{i:02}</span><div><h3>{esc(title)}</h3><p>{esc(text)}</p></div></article>' for i, (title, text) in enumerate(c["outcomes"], 1))
-    team_roles = "".join(f'<li><span class="ea-team-index">{i:02}</span><span class="ea-team-role-copy"><strong>{esc(role)}</strong><small>{esc(description)}</small></span><span class="ea-team-role-mark" aria-hidden="true">↗</span></li>' for i, (role, description) in enumerate(c["hero_team_roles"], 1))
     metrics = "".join(
         f'<article class="ea-metric"><span class="ea-metric-title">{esc(name)}</span>'
         + (f'<div class="ea-metric-value"><span>{esc(before)}</span><b aria-hidden="true">→</b><strong>{esc(after)}</strong></div>' if before else f'<div class="ea-metric-value ea-single"><strong>{esc(after)}</strong></div>')
@@ -375,11 +372,50 @@ def render_home(lang: str) -> str:
     inputs = list_html(c["inputs"], "ea-check-list")
     faq = "".join(f'<details class="ea-faq"><summary>{esc(q)}<span aria-hidden="true">+</span></summary><p>{esc(a)}</p></details>' for q, a in c["faq"])
     case1, case2 = case_url(lang, "shildpanel"), case_url(lang, "kerama-marazzi")
-    body = f'''<section class="ea-hero"><div class="wrap ea-hero-grid"><div class="ea-hero-copy"><span class="eyebrow">{esc(c["eyebrow"])}</span><h1>{esc(c["h1"])}</h1><p class="ea-lede">{esc(c["lede"])}</p><div class="ea-actions"><a class="button" href="#assessment">{esc(c["hero_cta"])} <span aria-hidden="true">↓</span></a><a class="button button--ghost" href="#method">{esc(c["hero_secondary"])}</a></div><p class="ea-hero-note">{esc(c["hero_note"])}</p><div class="ea-price-line"><strong>{esc(c["hero_fee"])}</strong><span>{esc(c["hero_duration"])}</span><small>{esc(c["hero_scope"])}</small></div></div><div class="ea-hero-team" role="group" aria-label="{esc(c["hero_team_label"])}"><div class="ea-team-board-top"><span class="ea-team-kicker">{esc(c["hero_team_label"])}</span><span class="ea-team-board-mark" aria-hidden="true">PA / TEAM</span></div><div class="ea-team-board-statement"><span>{esc(c["hero_team_context"])}</span><strong>{esc(c["hero_team_statement"])}</strong></div><ol class="ea-team-roles">{team_roles}</ol><div class="ea-team-board-footer"><span>{esc(c["hero_team_footer"])}</span><span aria-hidden="true">↗</span></div></div></div></section>
-<section class="ea-section ea-pain" id="problem"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["pain_eyebrow"])}</span><h2>{esc(c["pain_title"])}</h2></div><p>{esc(c["pain_intro"])}</p></div><div class="ea-grid ea-grid-3">{pains}</div></div></section>
+    report_name, report_before, report_after, _ = c["shild_metrics"][0]
+    report_time = f"{report_before} → {report_after}"
+    programs_url = home_url(lang) + "programs/"
+    body = f'''<section class="ea-hero"><div class="wrap ea-hero-grid">
+  <div class="ea-hero-copy">
+    <span class="eyebrow">{esc(c["eyebrow"])}</span>
+    <h1>{esc(c["h1"])}</h1>
+    <p class="ea-lede">{esc(c["lede"])}</p>
+    <div class="ea-actions">
+      <a class="button" href="#programs">{esc(c["hero_cta"])} <span aria-hidden="true">↓</span></a>
+      <a class="button button--ghost" href="#cases">{esc(c["hero_secondary"])}</a>
+    </div>
+  </div>
+  <div class="ea-hero-visual">
+  <img class="ea-hero-lime" src="/assets/brand/glass/lime.webp" alt="" width="900" height="670" fetchpriority="high">
+  <aside class="ea-hero-proof" aria-label="{esc(c["case_shildpanel"])}">
+    <span class="ea-proof-client">{esc(c["case_shildpanel"])}</span>
+    <p class="ea-proof-task">{esc(report_name)}</p>
+    <p class="ea-proof-time" aria-label="{esc(report_time)}"><span>{esc(report_before)}</span><span aria-hidden="true">→</span><strong>{esc(report_after)}</strong></p>
+    <p class="ea-proof-source">{esc(c["hero_proof_source"])}</p>
+    <a href="{case1}">{esc(c["case_link"])} <span aria-hidden="true">↗</span></a>
+  </aside>
+  </div>
+</div></section>
+<section class="ea-section ea-pain" id="problem"><div class="wrap"><div class="ea-section-head"><div><h2>{esc(c["pain_title"])}</h2></div><p>{esc(c["pain_intro"])}</p></div><div class="ea-grid ea-grid-3">{pains}</div></div></section>
+<section class="ea-section ea-cases" id="cases"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["cases_eyebrow"])}</span><h2>{esc(c["cases_title"])}</h2></div><p>{esc(c["cases_intro"])}</p></div><article class="ea-case-card ea-case-shild" id="case"><div class="ea-case-head"><div class="ea-case-identification"><img class="ea-case-illustration" src="/assets/brand/glass/report.webp" alt="" width="420" height="420" loading="lazy"><div><span class="ea-case-tag">{esc(c["case_source"])}</span><h3>{esc(c["case_shildpanel"])}</h3><p>{esc(c["case_shild_sub"])}</p></div></div><a class="ea-text-link" href="{case1}">{esc(c["case_link"])} <span aria-hidden="true">↗</span></a></div><p class="ea-case-desc">{esc(c["case_shild_desc"])}</p><div class="ea-metrics">{metrics}</div><p class="ea-caveat">{esc(c["case_note"])}</p></article><article class="ea-case-card ea-case-kerama"><div class="ea-kerama-copy"><img class="ea-case-illustration" src="/assets/brand/glass/trainers.webp" alt="" width="360" height="360" loading="lazy"><span class="ea-case-tag">Train-the-Trainer</span><h3>{esc(c["case_kerama"])}</h3><p>{esc(c["case_kerama_sub"])}</p><p>{esc(c["case_kerama_desc"])}</p><a class="ea-text-link" href="{case2}">{esc(c["case_link"])} <span aria-hidden="true">↗</span></a></div><div class="ea-case-stats">{k_metrics}</div><p class="ea-caveat ea-reach-note">{esc(c["reach_note"])}</p></article><a class="ea-text-link ea-case-index-link" href="/cases/" hreflang="ru">{esc(c["case_index_cta"])} <span aria-hidden="true">↗</span></a></div></section>
+<section class="ea-section ea-formats" id="programs"><div class="wrap">
+  <div class="ea-section-head"><div><h2>{esc(c["formats_title"])}</h2></div></div>
+  <div class="ea-format-grid">
+    <article class="ea-card">
+      <h3>{esc(c["training_title"])}</h3>
+      <p>{esc(c["training_intro"])}</p>
+      <a class="ea-text-link" href="{programs_url}">{esc(c["training_cta"])} <span aria-hidden="true">↗</span></a>
+    </article>
+    <article class="ea-card">
+      <h3>{esc(c["assessment_title"])}</h3>
+      <p>{esc(c["assessment_format_intro"])}</p>
+      <p class="ea-format-price"><strong>{esc(c["assessment_price"])}</strong> · {esc(c["assessment_duration"])}</p>
+      <a class="ea-text-link" href="#assessment">{esc(c["assessment_format_cta"])} <span aria-hidden="true">↓</span></a>
+    </article>
+  </div>
+</div></section>
 <section class="ea-section ea-outcomes-section" id="results"><div class="wrap ea-split"><div><span class="eyebrow">{esc(c["outcomes_eyebrow"])}</span><h2>{esc(c["outcomes_title"])}</h2><p class="ea-muted">{esc(c["outcomes_intro"])}</p><a class="ea-text-link" href="#assessment">{esc(c["cta"])} <span aria-hidden="true">→</span></a></div><div class="ea-outcomes">{outcomes}</div></div></section>
-<section class="ea-section ea-cases" id="cases"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["cases_eyebrow"])}</span><h2>{esc(c["cases_title"])}</h2></div><p>{esc(c["cases_intro"])}</p></div><article class="ea-case-card ea-case-shild"><div class="ea-case-head"><div><span class="ea-case-tag">{esc(c["case_source"])}</span><h3>{esc(c["case_shildpanel"])}</h3><p>{esc(c["case_shild_sub"])}</p></div><a class="ea-text-link" href="{case1}">{esc(c["case_link"])} <span aria-hidden="true">↗</span></a></div><p class="ea-case-desc">{esc(c["case_shild_desc"])}</p><div class="ea-metrics">{metrics}</div><p class="ea-caveat">{esc(c["case_note"])}</p></article><article class="ea-case-card ea-case-kerama"><div class="ea-kerama-copy"><span class="ea-case-tag">Train-the-Trainer</span><h3>{esc(c["case_kerama"])}</h3><p>{esc(c["case_kerama_sub"])}</p><p>{esc(c["case_kerama_desc"])}</p><a class="ea-text-link" href="{case2}">{esc(c["case_link"])} <span aria-hidden="true">↗</span></a></div><div class="ea-case-stats">{k_metrics}</div><p class="ea-caveat ea-reach-note">{esc(c["reach_note"])}</p></article></div></section>
-<section class="ea-section ea-method" id="method"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["method_eyebrow"])}</span><h2>{esc(c["method_title"])}</h2></div><p>{esc(c["method_intro"])}</p></div><div class="ea-step-grid">{steps}</div><p class="ea-method-caption">{esc(c["method_caption"])}</p><div class="ea-cycle" aria-label="{esc(c["method_caption"])}"><span>Discover</span><b aria-hidden="true">→</b><span>Test</span><b aria-hidden="true">→</b><span>Review</span><b aria-hidden="true">→</b><span>Share</span><b aria-hidden="true">↺</b></div></div></section>
+<section class="ea-section ea-method" id="method"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["method_eyebrow"])}</span><h2>{esc(c["method_title"])}</h2></div><p>{esc(c["method_intro"])}</p></div><div class="ea-step-grid">{steps}</div><p class="ea-method-caption">{esc(c["method_caption"])}</p><div class="ea-cycle" aria-label="{esc(c["method_caption"])}"><span>{esc(c["cycle"][0])}</span><b aria-hidden="true">→</b><span>{esc(c["cycle"][1])}</span><b aria-hidden="true">→</b><span>{esc(c["cycle"][2])}</span><b aria-hidden="true">→</b><span>{esc(c["cycle"][3])}</span><b aria-hidden="true">↺</b></div></div></section>
 <section class="ea-section ea-roadmap" id="roadmap"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["roadmap_eyebrow"])}</span><h2>{esc(c["roadmap_title"])}</h2></div><p>{esc(c["roadmap_intro"])}</p></div><div class="ea-phases">{phases}</div></div></section>
 <section class="ea-section ea-map" id="opportunity-map"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["map_eyebrow"])}</span><h2>{esc(c["map_title"])}</h2></div></div><p class="ea-map-label">{esc(c["map_label"])}</p><div class="ea-table-scroll" role="region" aria-label="{esc(c["map_title"])}" tabindex="0"><table><thead><tr>{headers}</tr></thead><tbody>{map_rows}</tbody></table></div><a class="button button--dark" href="#assessment">{esc(c["map_cta"])}</a></div></section>
 <section class="ea-section ea-estimator" id="estimator"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["calc_eyebrow"])}</span><h2>{esc(c["calc_title"])}</h2></div><p>{esc(c["calc_intro"])}</p></div><div class="ea-estimator-card"><div class="ea-inputs">{calc_fields}</div><div class="ea-results"><div class="ea-result"><span>{esc(c["capacity_label"])}</span><strong id="ea-capacity" aria-live="polite">5,280 h</strong></div><div class="ea-result"><span>{esc(c["value_label"])}</span><strong id="ea-value" aria-live="polite">€211,200</strong></div><p class="ea-caveat">{esc(c["calc_note"])}</p></div></div></div></section>
@@ -387,7 +423,7 @@ def render_home(lang: str) -> str:
 <section class="ea-section ea-measure" id="measurement"><div class="wrap ea-split"><div><span class="eyebrow">{esc(c["measure_eyebrow"])}</span><h2>{esc(c["measure_title"])}</h2></div><div><ul class="ea-measures">{measures}</ul><p class="ea-muted">{esc(c["measure_note"])}</p></div></div></section>
 <section class="ea-section ea-assessment" id="assessment"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["assessment_eyebrow"])}</span><h2>{esc(c["assessment_title"])}</h2></div><div class="ea-price-box"><strong>{esc(c["assessment_price"])}</strong><span>{esc(c["assessment_duration"])}</span></div></div><p class="ea-assessment-intro">{esc(c["assessment_intro"])}</p><div class="ea-assessment-grid"><article class="ea-scope-card"><h3>{esc(c["scope_title"])}</h3>{scope}<h3>{esc(c["inputs_title"])}</h3>{inputs}<p class="ea-caveat">{esc(c["offer_note"])}</p></article><article class="ea-form-card"><div class="ea-form-team"><span class="ea-form-team-mark" aria-hidden="true">PA</span><div><b>{esc(c["team_contact_title"])}</b><span>{esc(c["team_contact_subtitle"])}</span></div></div><h3>{esc(c["form_title"])}</h3><p>{esc(c["form_intro"])}</p><form id="enterprise-assessment-form" data-lang="{lang}"><label for="ea-company">{esc(c["form_company"])} <span aria-hidden="true">*</span></label><input id="ea-company" name="company" autocomplete="organization" required><label for="ea-email">{esc(c["form_email"])} <span aria-hidden="true">*</span></label><input id="ea-email" name="email" type="email" autocomplete="email" required><label for="ea-role">{esc(c["form_role"])}</label><input id="ea-role" name="role" autocomplete="organization-title"><label for="ea-process">{esc(c["form_process"])}</label><textarea id="ea-process" name="process" rows="3"></textarea><button class="button button--dark" type="submit">{esc(c["form_submit"])} ↗</button><p class="ea-form-disclosure">{esc(c["form_disclosure"])}</p><p class="ea-form-status" id="ea-form-status" role="status" aria-live="polite"></p></form><a class="ea-secondary-contact" href="https://www.linkedin.com/in/danielusik/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></article></div></div></section>
 <section class="ea-section ea-faq" id="faq"><div class="wrap ea-split"><div><span class="eyebrow">{esc(c["faq_eyebrow"])}</span><h2>{esc(c["faq_title"])}</h2></div><div class="ea-faq-list">{faq}</div></div></section>
-<section class="ea-final" id="contact"><div class="wrap ea-final-inner"><div><span class="eyebrow">{esc(c["final_eyebrow"])}</span><h2>{esc(c["final_title"])}</h2><p>{esc(c["final_text"])}</p></div><a class="button" href="#assessment">{esc(c["final_cta"])} ↓</a></div><div class="wrap ea-secondary-links"><a href="{('/ru' if lang == 'ru' else '')}/programs/">{esc(c["programs"])}</a><a href="{('/ru' if lang == 'ru' else '')}/for-hr/">{esc(c["hr"])}</a><a href="{('/ru' if lang == 'ru' else '')}/about/">{esc(c["team"])}</a><a href="{('/ru' if lang == 'ru' else '')}/blog/">{esc(c["guides"])}</a></div></section>'''
+<section class="ea-final" id="contact"><div class="wrap ea-final-inner"><div><span class="eyebrow">{esc(c["final_eyebrow"])}</span><h2>{esc(c["final_title"])}</h2><p>{esc(c["final_text"])}</p></div><a class="button" href="#programs">{esc(c["final_cta"])} ↓</a></div><div class="wrap ea-secondary-links"><a href="{('/ru' if lang == 'ru' else '')}/programs/">{esc(c["programs"])}</a><a href="{('/ru' if lang == 'ru' else '')}/for-hr/">{esc(c["hr"])}</a><a href="{('/ru' if lang == 'ru' else '')}/about/">{esc(c["team"])}</a><a href="{('/ru' if lang == 'ru' else '')}/blog/">{esc(c["guides"])}</a></div></section>'''
     return shell(lang, "", body, include_js=True)
 
 

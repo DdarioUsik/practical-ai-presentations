@@ -192,7 +192,7 @@ def style_ref(name: str = "sales-site.css") -> str:
 
 
 def schema(lang: str, route: str) -> dict:
-    org = {"@type": "Organization", "@id": BASE + "/#organization", "name": "Practical AI", "url": BASE + "/", "logo": BASE + "/assets/brand/logo-primary.svg", "founder": {"@type": "Person", "name": "Danil Usik", "sameAs": TEAM_PROFILES[0]["linkedin"]}}
+    org = {"@type": "Organization", "@id": BASE + "/#organization", "name": "Practical AI", "url": BASE + "/", "logo": BASE + "/assets/brand/glass/wordmark.svg", "founder": {"@type": "Person", "name": "Danil Usik", "sameAs": TEAM_PROFILES[0]["linkedin"]}}
     webpage = {"@type": "WebPage", "@id": BASE + u(lang, route) + "#webpage", "url": BASE + u(lang, route), "inLanguage": lang, "isPartOf": {"@id": BASE + "/#website"}}
     graph = [org, {"@type": "WebSite", "@id": BASE + "/#website", "name": "Practical AI", "url": BASE + "/", "publisher": {"@id": BASE + "/#organization"}}, webpage]
     if route != "about":
@@ -227,7 +227,9 @@ def site_header(lang: str, route: str, switch_route: str | None = None) -> str:
         contact_short = "WhatsApp"
         contact_url = contact(lang)
         header_contact = f'<a class="button button--small" aria-label="{contact_label}" href="{contact_url}" target="_blank" rel="noopener noreferrer"><span class="contact-label">{esc(contact_text)}</span><span class="contact-short" aria-hidden="true">{contact_short}</span><span aria-hidden="true">↗</span></a>'
-    return f'<header class="site-header"><a class="skip-link" href="#main-content">{skip_label}</a><div class="wrap nav"><a href="{u(lang)}" aria-label="{home_label}"><img class="brand-lockup" src="/assets/brand/logo-reverse.svg" alt="Practical AI" width="760" height="152"></a><nav class="nav-links" aria-label="{"Main navigation" if lang == "en" else "Основная навигация"}">{nav}</nav><div class="nav-end"><a class="lang-switch" href="{u(other,switch_route if switch_route is not None else route)}" lang="{other}" aria-label="{lang_label}">{esc(c["language"])}</a>{header_contact}</div></div></header>'
+    menu_label = "Menu" if lang == "en" else "Меню"
+    mobile_menu = f'<details class="pa-mobile-menu"><summary>{menu_label}</summary><nav aria-label="{menu_label}">{nav}{header_contact}</nav></details>'
+    return f'<header class="site-header"><a class="skip-link" href="#main-content">{skip_label}</a><div class="wrap nav"><a href="{u(lang)}" aria-label="{home_label}"><img class="brand-lockup" src="/assets/brand/glass/wordmark.svg" alt="Practical AI" width="470" height="140"></a><nav class="nav-links" aria-label="{"Main navigation" if lang == "en" else "Основная навигация"}">{nav}</nav><div class="nav-end"><a class="lang-switch" href="{u(other,switch_route if switch_route is not None else route)}" lang="{other}" aria-label="{lang_label}">{esc(c["language"])}</a>{header_contact}{mobile_menu}</div></div></header>'
 
 
 def site_footer(lang: str, route: str = "") -> str:
@@ -246,7 +248,7 @@ def site_footer(lang: str, route: str = "") -> str:
         contacts = f'<div class="footer-contact"><a href="{whatsapp_contact}" target="_blank" rel="noopener noreferrer">Связаться с командой Practical AI</a></div>'
     else:
         contacts = f'<div class="footer-contact"><a href="{whatsapp_contact}" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a><a href="{linkedin_contact}" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div>'
-    return f'<footer class="site-footer"><div class="wrap footer-inner"><div class="footer-brand"><a href="{u(lang)}"><img class="brand-lockup" src="/assets/brand/logo-reverse.svg" alt="Practical AI" width="760" height="152"></a><p>{esc(c["footer_p"])}</p></div><div class="footer-column"><nav class="footer-links" aria-label="{footer_label}">{nav}</nav>{contacts}</div></div></footer>'
+    return f'<footer class="site-footer"><div class="wrap footer-inner"><div class="footer-brand"><a href="{u(lang)}"><img class="brand-lockup" src="/assets/brand/glass/wordmark.svg" alt="Practical AI" width="470" height="140"></a><p>{esc(c["footer_p"])}</p></div><div class="footer-column"><nav class="footer-links" aria-label="{footer_label}">{nav}</nav>{contacts}</div></div></footer>'
 
 
 def shell(lang: str, route: str, body: str) -> str:
@@ -265,12 +267,12 @@ def shell(lang: str, route: str, body: str) -> str:
     return f'''<!doctype html>
 <html lang="{lang}"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#17213d"><meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#f1f1f1"><meta name="robots" content="index,follow,max-image-preview:large">
 <title>{title}</title><meta name="description" content="{description}">
 <link rel="canonical" href="{canonical}">{alternates}
 <meta property="og:type" content="website"><meta property="og:site_name" content="{site_name}"><meta property="og:title" content="{title}"><meta property="og:description" content="{description}"><meta property="og:url" content="{canonical}"><meta property="og:locale" content="{'en_US' if lang == 'en' else 'ru_RU'}"><meta property="og:image" content="{BASE}/assets/brand/social-card.png">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{title}"><meta name="twitter:description" content="{description}"><meta name="twitter:image" content="{BASE}/assets/brand/social-card.png">
-<link rel="icon" type="image/svg+xml" href="/assets/brand/symbol-primary.svg"><link rel="stylesheet" href="{style_ref()}">
+<link rel="icon" type="image/svg+xml" href="/assets/brand/glass/favicon.svg"><link rel="stylesheet" href="{style_ref()}"><link rel="stylesheet" href="{style_ref("glass.css")}">
 <script type="application/ld+json">{json.dumps(schema(lang,route),ensure_ascii=False,separators=(',',':'))}</script>
 </head><body{body_class}>
 {site_header(lang,route,switch_route="" if lang == "ru" and route == "for-schools" else None)}
@@ -283,7 +285,7 @@ def school_page() -> str:
     return '''
 
 
-<section class="hero school-hero"><div class="wrap school-hero-grid"><div class="school-hero-copy"><span class="eyebrow">Повышение квалификации команды частной школы</span><h1>Команда школы освоит и внедрит ИИ за четыре недели.</h1><p class="hero-lede">Команда школы осваивает ИИ на рабочих задачах: от выбора сценария до проверки ответов помощника и оценки результата.</p><div class="hero-actions"><a class="button button--dark" href="#contact">Связаться с командой Practical AI</a><a class="button button--light" href="#program">К программе ↓</a></div><p class="hero-note">Занятия проходят онлайн. Очное обучение в вашей школе обсуждаем отдельно.</p></div><aside class="school-offer-card school-result-card"><span class="school-offer-label">Результат программы</span><strong class="school-offer-price">ИИ-помощники для задач школы</strong><p>Команда выберет рабочие задачи, подготовит помощников и проверит, как применять их в работе.</p><ul><li>сценарии под задачи школы;</li><li>критерии проверки ответов;</li><li>план дальнейшего применения.</li></ul></aside></div></section>
+<section class="hero school-hero"><div class="wrap school-hero-grid"><div class="school-hero-copy"><span class="eyebrow">Повышение квалификации команды частной школы</span><h1>Команда школы освоит и внедрит ИИ за четыре недели.</h1><p class="hero-lede">Команда школы осваивает ИИ на рабочих задачах: от выбора сценария до проверки ответов помощника и оценки результата.</p><div class="hero-actions"><a class="button button--dark" href="#contact">Связаться с командой Practical AI</a><a class="button button--light" href="#program">К программе ↓</a></div><p class="hero-note">Занятия проходят онлайн. Очное обучение в вашей школе обсуждаем отдельно.</p></div><aside class="school-offer-card school-result-card"><img class="school-brand-art" src="/assets/brand/glass/school.webp" alt="" width="418" height="418" fetchpriority="high"><span class="school-offer-label">Результат программы</span><strong class="school-offer-price">ИИ-помощники для задач школы</strong><p>Команда выберет рабочие задачи, подготовит помощников и проверит, как применять их в работе.</p><ul><li>сценарии под задачи школы;</li><li>критерии проверки ответов;</li><li>план дальнейшего применения.</li></ul></aside></div></section>
 
 <section class="section school-role-section" id="program"><div class="wrap"><div class="section-head"><div><span class="eyebrow">Для разных ролей в школе</span><h2>У каждой роли в школе — свои задачи для работы с ИИ.</h2></div><p>Задачи учителей, руководителей учебной части и администрации различаются. После диагностики подберём содержание программы под задачи каждой группы.</p></div><div class="school-role-grid"><article class="school-role-card"><span>Учителя</span><h3>Учебные материалы и обратная связь</h3><p>Черновики заданий для разных уровней подготовки, варианты объяснений и упражнений, критерии оценки и комментарии к письменным работам.</p><small>Учитель сверяет материалы с программой и решает, что использовать.</small></article><article class="school-role-card"><span>Руководители учебной части</span><h3>Методическая работа и учебная документация</h3><p>Наведение порядка в методических материалах, подготовка отчётов и разбор обезличенных данных об учебном процессе.</p><small>Руководитель учебной части сверяет выводы с документами и учитывает контекст школы.</small></article><article class="school-role-card"><span>Руководство и администрация</span><h3>Бюджет, документы и решения</h3><p>Сводки по обезличенным данным, подготовка вопросов к совещаниям, поиск информации в документах школы и черновики регламентов.</p><small>Руководитель сверяет данные и сам принимает решение.</small></article></div></div></section>
 

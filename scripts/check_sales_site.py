@@ -76,42 +76,38 @@ def check() -> None:
                 for other in ("en", "ru"):
                     alternate = BASE + ("/ru" if other == "ru" else "") + "/" + (route + "/" if route else "")
                     if parser.hreflang.get(other) != alternate: errors.append(f"{url_path}: {other} alternate mismatch")
-            if route == "" and parser.sections[:2] != ["", "programs"]:
-                errors.append(f"{url_path}: programs must be the second section")
             if route == "":
-                teaser_terms = (
-                    'class="section school-home-teaser"',
-                    'href="/ru/for-schools/"',
-                    'lang="ru" hreflang="ru"' if lang == "en" else 'Посмотреть программу для школ',
-                    '8 hours of online sessions' if lang == "en" else '8 часов онлайн-занятий',
+                if parser.sections[:4] != ["", "problem", "cases", "programs"]:
+                    errors.append(f"{url_path}: expected hero, problem, cases and formats in that order")
+                home_requirements = (
+                    "Claude, ChatGPT", "Copilot", 'class="ea-hero-proof"',
+                    'id="enterprise-assessment-form"', "/assets/brand/glass.css",
+                    f'href="{url_path}cases/shildpanel/"', f'href="{url_path}cases/kerama-marazzi/"',
+                    f'href="{url_path}programs/"', 'href="#assessment"',
                 )
-                if any(term not in html for term in teaser_terms):
-                    errors.append(f"{url_path}: school program teaser or language label missing")
+                if any(term not in html for term in home_requirements):
+                    errors.append(f"{url_path}: subscription positioning, proved cases or entry routes missing")
             if 'href="#main-content"' not in html or 'id="main-content"' not in html:
                 errors.append(f"{url_path}: keyboard skip target missing")
-            if route != "for-schools" and ('https://wa.me/34627184000?text=' not in html or 'https://www.linkedin.com/in/danielusik/' not in html):
+            if route not in ("", "for-schools") and ('https://wa.me/34627184000?text=' not in html or 'https://www.linkedin.com/in/danielusik/' not in html):
                 errors.append(f"{url_path}: WhatsApp primary or LinkedIn alternative missing")
             if lang == "ru" and 'href="/ru/for-schools/"' not in html:
                 errors.append(f"{url_path}: Russian school navigation missing")
             if lang == "en" and 'href="/for-schools/"' in html:
                 errors.append(f"{url_path}: untranslated school route linked from English page")
-            if route in ("", "about"):
+            if route == "about":
                 names = ("Danil Usik", "Svetlana Galakhova", "Julia Krylova") if lang == "en" else ("Данил Усик", "Светлана Галахова", "Юлия Крылова")
                 if html.count('class="team-card"') != 3 or any(name not in html for name in names):
                     errors.append(f"{url_path}: three named core-team profiles missing")
                 if any(profile not in html for profile in ('https://www.linkedin.com/in/danielusik/', 'https://www.linkedin.com/in/svetlana-galakhova/', 'https://www.linkedin.com/in/juliakrl/')):
                     errors.append(f"{url_path}: core-team profile links missing")
-            if route == "" and ("class=\"quote-grid\"" not in html or "class=\"proof-facts\"" not in html):
-                errors.append(f"{url_path}: case metrics or participant quotes missing")
-            if route == "":
-                proof_terms = ("Reports and presentations", "Market and competitor research", "ERP formula debugging", "HR routine with voice input") if lang == "en" else ("Отчёты и презентации", "Анализ рынка и конкурентов", "Отладка формул в ERP", "HR-рутина с голосовым вводом")
-                if html.count('class="proof-metric"') != 4 or any(term not in html for term in proof_terms):
-                    errors.append(f"{url_path}: four explained case results missing")
-            if route != "for-schools" and (html.count('class="program-visual"') != 3 or html.count('class="program-fit"') != 3):
+            if route == "" and html.count('class="ea-metric"') != 4:
+                errors.append(f"{url_path}: four ShildPanel results missing")
+            if route not in ("", "for-schools") and (html.count('class="program-visual"') != 3 or html.count('class="program-fit"') != 3):
                 errors.append(f"{url_path}: program thumbnails or audience details missing")
             if route == "for-schools":
                 school_requirements = (
-                    'За четыре недели каждый участник создаёт и проверяет ИИ-помощника для своей задачи.',
+                    'За четыре недели участник создаёт и проверяет ИИ-помощника для своей задачи.',
                     'class="school-offer-card school-result-card"',
                     'class="school-role-grid"',
                     'class="school-demo-grid"',
@@ -122,8 +118,8 @@ def check() -> None:
                     'class="school-prep-grid"',
                     'class="school-assessment-list"',
                     'class="school-team-grid"',
-                    'Диагностика стоит €2 000. Если школа заключит договор на обучение, зачтём эту сумму в стоимость программы.',
-                    'Ориентир стоимости программы — $700 за каждого сотрудника, который участвует в обучении.',
+                    'При подписании договора на обучение €2 000 зачтём в его общую стоимость.',
+                    '<span>Обучение одного сотрудника</span>',
                     'Занятия проходят онлайн.',
                     'Очное обучение в вашей школе обсуждаем отдельно.',
                     'Обсуждаем программу повышения квалификации для вашей школы.',
@@ -167,7 +163,7 @@ def check() -> None:
                     errors.append(f"{url_path}: WhatsApp form or team profile links missing")
                 if '€24,000' in html or any(term in html for term in ('$1,500', '$3,000', '$4,500', '$9,000', '$2,000')):
                     errors.append(f"{url_path}: outdated or unconfirmed school price remains")
-                if html.count('€2 000') < 1 or html.count('$700') < 2 or 'Вот как' in html:
+                if html.count('€2 000') < 1 or html.count('$700') < 1 or 'Вот как' in html:
                     errors.append(f"{url_path}: diagnostic or per-employee price, or example heading is missing")
                 if 'school-format-card' in html:
                     errors.append(f"{url_path}: outdated menu of separate school formats remains")
@@ -193,9 +189,9 @@ def check() -> None:
             language_label = "RU" if lang == "en" else "EN"
             if f'class="lang-switch"' not in html or f'>{language_label}</a>' not in html:
                 errors.append(f"{url_path}: language switch label missing")
-            if route in ("", "programs", "about") and f'/assets/brand/workflow-method-{lang}.svg' not in html:
+            if route in ("programs", "about") and f'/assets/brand/workflow-method-{lang}.svg' not in html:
                 errors.append(f"{url_path}: localized method visual missing")
-            if route in ("", "programs", "about") and f'/assets/brand/workflow-method-{lang}-mobile.svg' not in html:
+            if route in ("programs", "about") and f'/assets/brand/workflow-method-{lang}-mobile.svg' not in html:
                 errors.append(f"{url_path}: readable mobile method visual missing")
             if route == "" and 'class="case-image"' in html:
                 errors.append(f"{url_path}: synthetic image remains in the evidence block")

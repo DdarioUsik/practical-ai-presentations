@@ -406,6 +406,8 @@
     .scope-label { font-size: 12px; color: var(--muted); margin-bottom: 6px; font-weight: 500; }
     .scope-value { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; }
     .scope-card.highlight { border-color: rgba(59,130,246,0.35); background: rgba(59,130,246,0.07); }
+    .scope-grid--three { grid-template-columns: repeat(3,minmax(0,1fr)); }
+    @media screen and (max-width: 640px) { .scope-grid--three { grid-template-columns: minmax(0,1fr); } }
     .scope-card.highlight .scope-value { color: var(--blue); }
     .scope-card .scope-sub { font-size: 12px; color: var(--muted); margin-top: 3px; }
 
@@ -625,8 +627,10 @@
       .header-inner { flex-wrap: wrap; }
     }
   </style>
+<link rel="stylesheet" href="/assets/brand/glass-standalone.css">
+<link rel="icon" type="image/svg+xml" href="/assets/brand/glass/favicon.svg">
 </head>
-<body>
+<body class="glass-standalone">
 
 <!-- ── PRINT BUTTON ── -->
 <div style="position:fixed; bottom:24px; right:24px; z-index:999;" class="no-print">
@@ -785,7 +789,7 @@
       </div>
     </div>
 
-    <div class="scope-grid" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="scope-grid scope-grid--three">
       <div class="scope-card highlight">
         <div class="scope-label">Start Smart — Phase 1 only</div>
         <div class="scope-value">€5,000</div>
@@ -1078,7 +1082,7 @@
       </div>
     </div>
 
-    <div class="scope-grid" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="scope-grid scope-grid--three">
       <div class="scope-card highlight">
         <div class="scope-label">Стартовый — только Этап 1</div>
         <div class="scope-value">€5 000</div>

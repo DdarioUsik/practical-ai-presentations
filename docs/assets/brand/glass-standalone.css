@@ -1,0 +1,56 @@
+@import url("./brand.css");
+@import url("./glass.css");
+
+/* Standalone case pages and proposals retain their own layouts and status colours. */
+body.glass-standalone {
+  --bg: var(--pa-paper);
+  --bg2: #e7e7df;
+  --bg3: #deded4;
+  --bg4: #f5f5ef;
+  --surface: #fff;
+  --surface2: #ecece5;
+  --card: #fff;
+  --card2: #f7f7ee;
+  --text: var(--pa-ink);
+  --ink: var(--pa-ink);
+  --muted: var(--pa-muted);
+  --subtle: #42433a;
+  --border: var(--pa-line);
+  --border2: #b9bbad;
+  --line: var(--pa-line);
+  --accent: #485600;
+  --accent2: #5a6900;
+  --accent-dim: #d4f43838;
+  --accent-glow: #d4f43860;
+  --accent-soft: #eff5c9;
+  --teal: #485600;
+  --teal-soft: #e9edda;
+  --f-display: var(--pa-font);
+  --f-body: var(--pa-font);
+  color-scheme: light;
+  background: var(--pa-paper);
+  color: var(--pa-ink);
+  font-family: var(--pa-font);
+}
+.glass-standalone > :is(.nav.scrolled,.header),
+.glass-standalone > .nav:first-child { background: #f8f8f3f0; border-color: var(--pa-line); }
+.glass-standalone :is(.case-card,.meta,.step,.feat-card,.sit-card,.m-card,.phase-card,.scope-card,.cc,.finding,.kb-card,.proof,.case,.tablebox) {
+  background: var(--pa-glass);
+  border-color: var(--pa-line);
+  box-shadow: var(--pa-shadow);
+}
+.glass-standalone :is(.nav-cta,.logo-icon) { background: var(--pa-lime); color: var(--pa-ink); }
+.glass-standalone :is(.eyebrow,.case-tag,.section-label) { color: #485600; border-color: #a9b358; }
+.glass-standalone .hero::after { display: none; }
+.glass-standalone .hero::before {
+  background: radial-gradient(ellipse, #d4f43843, transparent 68%);
+}
+.glass-standalone .footer { border-color: var(--pa-line); }
+.glass-corporate .hero { background: var(--pa-cover); color: var(--pa-ink); }
+.glass-corporate .hero .lede { color: var(--pa-ink); }
+.glass-corporate .hero h1 em { color: var(--pa-ink); }
+.glass-corporate .btn { background: var(--pa-lime); color: var(--pa-ink); border: 1px solid #10101036; border-radius: 999px; }
+.glass-corporate .hero .btn { background: var(--pa-ink); color: #fff; }
+.glass-corporate .yearbar .weeks i.m { background: #556500; }
+.glass-corporate .results b { color: #425000; }
+
