@@ -54,3 +54,5 @@ body.glass-standalone {
 .glass-corporate .yearbar .weeks i.m { background: #556500; }
 .glass-corporate .results b { color: #425000; }
 
+
+.pa-standalone-mark { display: block; width: clamp(118px, 15vw, 156px); height: auto; }

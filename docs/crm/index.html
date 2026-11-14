@@ -268,6 +268,8 @@
     nav { padding:12px 18px; }
     .metric-nums { gap:16px; }
   }
+@media screen and (max-width: 480px) { .mockup-body, .mockup-content, .kanban > *, .demo-grid > * { min-width: 0; } .kanban { grid-template-columns: minmax(0,1fr); } .metric-nums { flex-wrap: wrap; } }
+@media screen and (max-width: 480px) { html { overflow-x: clip; } }
 </style>
 <link rel="stylesheet" href="/assets/brand/glass-standalone.css">
 <link rel="icon" type="image/svg+xml" href="/assets/brand/glass/favicon.svg">
@@ -277,7 +279,7 @@
 <div id="progress-bar"></div>
 
 <nav>
-  <div class="logo">Practical<span>.AI</span></div>
+  <img class="pa-standalone-mark" src="/assets/brand/glass/wordmark.svg" alt="Practical AI" width="470" height="140">
   <a href="https://t.me/danil_alto">Написать в Telegram</a>
 </nav>
 
