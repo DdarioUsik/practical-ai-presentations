@@ -74,13 +74,13 @@ def check() -> None:
                 if parser.hreflang.get(other) != alternate:
                     errors.append(f"{url_path}: {other} alternate mismatch")
             if route == "":
-                if parser.sections[:4] != ["", "problem", "cases", "programs"]:
-                    errors.append(f"{url_path}: expected hero, problem, cases and formats in that order")
+                if parser.sections != ["", "problem", "cases", "programs", "method", "contact"]:
+                    errors.append(f"{url_path}: unexpected short homepage section order")
                 home_requirements = (
                     "Claude, ChatGPT", "Copilot", 'class="ea-hero-proof"',
-                    'id="enterprise-assessment-form"', "/assets/brand/glass.css",
+                    "/assets/brand/glass.css",
                     f'href="{url_path}cases/shildpanel/"', f'href="{url_path}cases/kerama-marazzi/"',
-                    f'href="{url_path}programs/"', 'href="#assessment"',
+                    f'href="{url_path}programs/"', f'href="{url_path}assessment/#assessment-form"',
                 )
                 if any(term not in html for term in home_requirements):
                     errors.append(f"{url_path}: subscription positioning, proved cases or entry routes missing")
@@ -98,8 +98,6 @@ def check() -> None:
                     errors.append(f"{url_path}: three named core-team profiles missing")
                 if any(profile not in html for profile in ('https://www.linkedin.com/in/danielusik/', 'https://www.linkedin.com/in/svetlana-galakhova/', 'https://www.linkedin.com/in/juliakrl/')):
                     errors.append(f"{url_path}: core-team profile links missing")
-            if route == "" and html.count('class="ea-metric"') != 4:
-                errors.append(f"{url_path}: four ShildPanel results missing")
             if route not in ("", "for-schools") and (html.count('class="program-visual"') != 3 or html.count('class="program-fit"') != 3):
                 errors.append(f"{url_path}: program thumbnails or audience details missing")
             if route == "for-schools" and lang == "ru":

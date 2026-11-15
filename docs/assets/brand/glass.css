@@ -70,37 +70,22 @@ body .eyebrow::before, .enterprise-home .ea-case-page .eyebrow::before {
 .ea-hero h1 { max-width: 18ch; }
 .ea-hero .eyebrow::before, .school-page .school-hero .eyebrow::before { background: var(--pa-ink); }
 .ea-hero-visual {
-  position: relative;
-  align-self: stretch;
-  isolation: isolate;
   display: grid;
-  align-items: end;
-  justify-items: end;
-  min-height: 360px;
-}
-.ea-hero-lime {
-  position: absolute;
-  top: 0;
-  right: -7%;
-  z-index: -1;
-  width: min(118%,560px);
-  height: auto;
-  max-width: none;
-  pointer-events: none;
+  min-width: 0;
+  gap: 12px;
+  width: min(100%, 430px);
+  margin-inline: auto;
 }
 .ea-hero-proof {
-  width: min(100%,350px);
-  margin-top: 145px;
-  padding: 25px;
-  border: 1px solid #fff;
-  border-radius: 22px;
-  background: linear-gradient(145deg,#ffffffeb,#fafbe0cb);
-  box-shadow: var(--pa-shadow);
+  width: 100%;
+  padding: 17px 20px;
+  border: 1px solid var(--pa-line);
+  border-radius: 16px;
+  background: #fff;
   color: var(--pa-ink);
-  backdrop-filter: blur(12px);
 }
 .ea-hero-proof :is(.ea-proof-client,.ea-proof-task,.ea-proof-time,.ea-proof-source,a) { color: var(--pa-ink); }
-.ea-hero-proof .ea-proof-time strong { color: var(--pa-ink); }
+.ea-hero-proof .ea-proof-time strong { color: var(--pa-ink); font-size: clamp(26px,3vw,38px); }
 .ea-proof-task { margin-top: 9px; }
 .ea-hero-proof a { margin-top: 16px; }
 
@@ -157,9 +142,6 @@ body .eyebrow::before, .enterprise-home .ea-case-page .eyebrow::before {
   .enterprise-mobile-menu nav { background: #f5f5ef; border-color: var(--pa-line); }
   .enterprise-mobile-menu nav > a:not(.button) { color: var(--pa-ink); }
   .enterprise-mobile-menu nav > a:hover { background: #e9edcc; }
-  .ea-hero-visual { min-height: 290px; justify-items: start; }
-  .ea-hero-lime { right: 0; width: min(72%,390px); }
-  .ea-hero-proof { justify-self: start; }
 }
 @media (max-width: 1160px) {
   .site-header .nav { flex-wrap: nowrap; gap: 10px; padding-block: 8px; }
@@ -204,9 +186,6 @@ body .eyebrow::before, .enterprise-home .ea-case-page .eyebrow::before {
   :is(.pa-mobile-menu,.enterprise-mobile-menu) nav > a:hover:not(.button) { text-decoration: underline; }
 }
 @media (max-width: 560px) {
-  .ea-hero-visual { min-height: 0; }
-  .ea-hero-lime { top: -8px; right: -8px; width: min(62%,225px); }
-  .ea-hero-proof { margin-top: 72px; width: 100%; padding: 20px; }
   .ea-case-illustration { width: 84px; }
 }
 @media (prefers-reduced-transparency: reduce) {
@@ -226,3 +205,31 @@ body .eyebrow::before, .enterprise-home .ea-case-page .eyebrow::before {
 @media (max-width: 360px) {
   .personal-article.site-blog .site-header .brand-lockup { width: 140px; }
 }
+
+/* Keep editorial and commercial pages on the deck's neutral canvas. */
+.eyebrow::before, body .eyebrow::before,
+.enterprise-home .ea-case-page .eyebrow::before,
+.site-blog .blog-list-card::before,
+.glass-standalone .hero::before { display: none; }
+
+:is(.ea-cases,.ea-estimator,.ea-formats,.programs,.page-hero,.editorial,.school-pricing-section) {
+  background: var(--pa-paper);
+}
+:is(.ea-card,.ea-case-card,.team-card,.program-card,.method-card,.school-role-card,.school-demo-card,.school-price-card),
+.site-blog .blog-list-card {
+  background: #fff;
+  box-shadow: 0 6px 18px #1010100a;
+}
+
+.ea-case-illustration, .school-brand-art, .program-visual img {
+  object-fit: contain;
+}
+.school-brand-art { border-radius: 0; }
+.program-visual { background: var(--pa-paper); }
+
+.ea-assessment h1, .ea-estimator h1 {
+  margin: 12px 0 0;
+  font-size: clamp(36px, 5vw, 60px);
+}
+#assessment-form { scroll-margin-top: 100px; }
+.ea-step p { max-width: 34ch; }

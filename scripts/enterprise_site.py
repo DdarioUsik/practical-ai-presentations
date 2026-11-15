@@ -12,13 +12,14 @@ COPY = {
     "en": {
         "meta": ("Get More from Your AI Subscription | Practical AI",
                  "Help your team get more from Claude, ChatGPT or Copilot with hands-on training, repeatable workflows and a 2–3 week AI assessment."),
+        "calc_page_title": 'AI capacity calculator',
+        "short_steps": [('Choose a recurring task', 'Agree what a good result looks like and how long the task takes today.'), ('Test it in a pilot', 'Use the AI tools and data your company approves. A team member checks the output.'), ('Roll out what works', 'Compare time and quality, then document the workflow for other teams.')],
         "switch": "RU", "switch_label": "Switch language to Russian", "home_label": "Practical AI home",
         "nav": [("#cases", "Case studies"), ("#programs", "Ways to start"), ("#method", "Approach"), ("/corporate-trainings/", "Corporate training"), ("/for-schools/", "For schools")],
         "cta": "Discuss the assessment", "menu": "Menu", "skip": "Skip to main content",
         "eyebrow": "AI training and adoption for teams",
         "h1": "Already paying for AI? Make your subscription work harder.",
         "lede": "We help your team put Claude, ChatGPT or Copilot to work on recurring tasks, from preparing reports to reviewing documents. Together we build workflows and measure their effect on turnaround time and output quality.",
-        "hero_cta": "Choose how to start", "hero_secondary": "See client results",
         "hero_proof_source": "Time reported in a client interview",
         "case_index_cta": "Explore more cases (in Russian)",
         "formats_title": "Two ways to start",
@@ -145,13 +146,14 @@ COPY = {
     "ru": {
         "meta": ("Как использовать подписки на AI в работе команды | Practical AI",
                  "Помогаем командам применять Claude, ChatGPT или Copilot в рабочих задачах. Практическое обучение и AI-диагностика за 2–3 недели."),
+        "calc_page_title": 'Калькулятор экономии времени',
+        "short_steps": [('Выбираем рабочую задачу', 'Фиксируем, сколько времени она занимает сейчас и каким должен быть результат.'), ('Проверяем сценарий в пилоте', 'Работаем в согласованном сервисе и с разрешёнными данными. Результат проверяет сотрудник.'), ('Передаём удачный сценарий коллегам', 'Сравниваем время и качество, затем описываем шаги, чтобы другие команды могли их повторить.')],
         "switch": "EN", "switch_label": "Переключить язык на английский", "home_label": "Practical AI — на главную",
-        "nav": [("#cases", "Кейсы"), ("#programs", "Форматы"), ("#method", "Подход"), ("#security", "Безопасность"), ("/ru/for-schools/", "Для школ")],
+        "nav": [("#cases", "Кейсы"), ("#programs", "Форматы"), ("#method", "Подход"), ("/ru/assessment/#security", "Безопасность"), ("/ru/for-schools/", "Для школ")],
         "cta": "Обсудить диагностику", "menu": "Меню", "skip": "Перейти к содержанию",
         "eyebrow": "Обучение и внедрение AI для команд",
         "h1": "Уже платите за ИИ? Используйте подписку в полную силу.",
         "lede": "Поможем команде использовать Claude, ChatGPT или Copilot там, где работа повторяется из недели в неделю. Вместе настроим сценарии для отчётов, проверки документов и анализа. Сравним, сколько времени занимает задача и каким получается результат.",
-        "hero_cta": "Выбрать, с чего начать", "hero_secondary": "Посмотреть кейсы",
         "hero_proof_source": "Время по данным интервью с клиентом",
         "case_index_cta": "Другие кейсы Practical AI",
         "formats_title": "Два способа начать",
@@ -159,7 +161,7 @@ COPY = {
         "roadmap_link": "Как проходит пилот и внедрение",
         "training_title": "Практическое обучение команды",
         "training_intro": "Принесите задачу из работы команды. На занятии сотрудники выполнят её в разрешённом AI-инструменте и разберут, как проверять результат.",
-        "training_cta": "Выбрать программу обучения",
+        "training_cta": "Посмотреть обучение",
         "assessment_format_intro": "Разберём процессы нескольких подразделений, доступные лицензии и правила работы с данными. Определим, какие сценарии стоит проверить первыми.",
         "assessment_format_cta": "Что входит в диагностику",
         "cycle": ["Найти", "Проверить", "Оценить", "Поделиться"],
@@ -243,7 +245,7 @@ COPY = {
         "measure_eyebrow": "Измерение", "measure_title": "Сравнивайте каждую инициативу с её исходной точкой.",
         "measures": ["Время на определённый процесс", "Качество результата по согласованным критериям", "Регулярность использования и объём доработок", "Уверенность сотрудников", "Проверенные сценарии в активной работе"],
         "measure_note": "В ходе диагностики стороны согласуют релевантные KPI, исходные значения, источники данных и способ проверки. Целевые значения следуют из процесса и доступных данных.",
-        "assessment_eyebrow": "Ограниченный первый шаг", "assessment_title": "AI Opportunity & Readiness Assessment",
+        "assessment_eyebrow": "Ограниченный первый шаг", "assessment_title": "Диагностика возможностей внедрения ИИ",
         "assessment_price": "€5 000", "assessment_duration": "2–3 недели",
         "assessment_intro": "Фокусная диагностика выбранных функций и процессов. Состав интервью и глубину разбора согласуем со спонсором до начала работ.",
         "scope_title": "Что входит в диагностику", "scope": [
@@ -299,6 +301,10 @@ def meta_for(lang: str, route: str) -> tuple[str, str]:
     c = COPY[lang]
     if route.startswith("cases/"):
         return c["case_meta"][route.removeprefix("cases/")]
+    if route == "assessment":
+        return c["assessment_title"] + " | Practical AI", c["assessment_format_intro"]
+    if route == "resources/ai-capacity-calculator":
+        return c["calc_page_title"] + " | Practical AI", c["calc_intro"]
     return c["meta"]
 
 
@@ -306,9 +312,8 @@ def header(lang: str, route: str = "") -> str:
     c = COPY[lang]
     other = "ru" if lang == "en" else "en"
     nav = "".join(f'<a href="{esc(dest if dest.startswith("/") or not route else home_url(lang) + dest)}">{esc(label)}</a>' for dest, label in c["nav"])
-    case_switch = f"cases/{route.removeprefix('cases/')}" if route.startswith("cases/") else ""
-    switch_url = ("/ru" if other == "ru" else "") + "/" + (case_switch + "/" if case_switch else "")
-    contact = f'<a class="button button--small" href="{home_url(lang)}#programs">{esc(c["hero_cta"])}</a>'
+    switch_url = home_url(other) + (route + "/" if route else "")
+    contact = f'<a class="button button--small" href="{home_url(lang)}assessment/#assessment-form">{esc(c["cta"])}</a>'
     menu = f'<details class="enterprise-mobile-menu"><summary>{esc(c["menu"])}</summary><nav aria-label="{esc(c["menu"])}">{nav}{contact}</nav></details>'
     return (f'<header class="site-header enterprise-header"><a class="skip-link" href="#main-content">{esc(c["skip"])}</a>'
             f'<div class="wrap nav"><a href="{home_url(lang)}" aria-label="{esc(c["home_label"])}"><img class="brand-lockup" src="/assets/brand/glass/wordmark.svg" alt="Practical AI" width="470" height="140"></a>'
@@ -321,7 +326,8 @@ def footer(lang: str) -> str:
     routes = [("/programs/" if lang == "en" else "/ru/programs/", c["programs"]),
               ("/for-hr/" if lang == "en" else "/ru/for-hr/", c["hr"]),
               ("/about/" if lang == "en" else "/ru/about/", c["team"]),
-              ("/blog/" if lang == "en" else "/ru/blog/", c["guides"])]
+              ("/blog/" if lang == "en" else "/ru/blog/", c["guides"]),
+              (home_url(lang) + "resources/ai-capacity-calculator/", c["calc_page_title"])]
     nav = "".join(f'<a href="{url}">{esc(label)}</a>' for url, label in routes)
     return (f'<footer class="site-footer enterprise-footer"><div class="wrap footer-inner"><div class="footer-brand"><a href="{home_url(lang)}"><img class="brand-lockup" src="/assets/brand/glass/wordmark.svg" alt="Practical AI" width="470" height="140"></a><p>{esc(c["footer"])}</p></div>'
             f'<div class="footer-column"><nav class="footer-links" aria-label="{"Footer navigation" if lang == "en" else "Навигация в подвале"}">{nav}</nav><div class="footer-contact"><a href="https://wa.me/34627184000" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a><a href="https://www.linkedin.com/in/danielusik/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div></div></div></footer>')
@@ -359,38 +365,26 @@ def shell(lang: str, route: str, body: str, include_js: bool = False) -> str:
 def render_home(lang: str) -> str:
     c = COPY[lang]
     pains = "".join(f'<article class="ea-card"><h3>{esc(title)}</h3><p>{esc(text)}</p></article>' for title, text in c["pains"])
-    outcomes = "".join(f'<article class="ea-outcome"><span>{i:02}</span><div><h3>{esc(title)}</h3><p>{esc(text)}</p></div></article>' for i, (title, text) in enumerate(c["outcomes"], 1))
-    metrics = "".join(
-        f'<article class="ea-metric"><span class="ea-metric-title">{esc(name)}</span>'
-        + (f'<div class="ea-metric-value"><span>{esc(before)}</span><b aria-hidden="true">→</b><strong>{esc(after)}</strong></div>' if before else f'<div class="ea-metric-value ea-single"><strong>{esc(after)}</strong></div>')
-        + f'<p>{esc(note)}</p></article>' for name, before, after, note in c["shild_metrics"])
-    k_metrics = "".join(f'<div class="ea-case-stat"><strong>{esc(value)}</strong><span>{esc(label)}</span></div>' for value, label in c["kerama_metrics"])
-    steps = "".join(f'<article class="ea-step"><span>{esc(n)}</span><h3>{esc(title)}</h3><p>{esc(text)}</p></article>' for n, title, text in c["steps"])
-    phases = "".join(f'<details class="ea-phase" {"open" if i == 0 else ""}><summary><span class="ea-phase-n">{esc(phase)}</span><span class="ea-phase-main"><b>{esc(title)}</b><small>{esc(when)}</small></span><span class="ea-phase-plus" aria-hidden="true">+</span></summary><div class="ea-phase-body"><p>{esc(description)}</p><div><b>{esc(c["roadmap_outputs"])}</b>{list_html(outputs.split(" · "))}</div><div><b>{esc(c["roadmap_decision"])}</b><p>{esc(decision)}</p></div></div></details>' for i, (phase, title, when, description, outputs, decision) in enumerate(c["phases"]))
-    headers = "".join(f"<th scope=\"col\">{esc(x)}</th>" for x in c["map_headers"])
-    map_rows = "".join("<tr>" + "".join(f"<td>{esc(cell)}</td>" for cell in row) + "</tr>" for row in c["map_rows"])
-    calc_fields = "".join(f'<label class="ea-field" for="ea-{id}"><span>{esc(label)}</span><input id="ea-{id}" name="{id}" type="number" inputmode="decimal" min="{minimum}" max="{maximum}" step="{step}" value="{value}" data-calc="{id}"></label>' for id, label, value, minimum, maximum, step in c["calc_fields"])
-    owners = "".join(f'<div class="ea-owner"><b>{esc(name)}</b><p>{esc(text)}</p></div>' for name, text in c["owners"])
-    measures = "".join(f'<li>{esc(x)}</li>' for x in c["measures"])
-    scope = list_html(c["scope"], "ea-check-list")
-    inputs = list_html(c["inputs"], "ea-check-list")
-    faq = "".join(f'<details class="ea-faq"><summary>{esc(q)}<span aria-hidden="true">+</span></summary><p>{esc(a)}</p></details>' for q, a in c["faq"])
     case1, case2 = case_url(lang, "shildpanel"), case_url(lang, "kerama-marazzi")
     report_name, report_before, report_after, _ = c["shild_metrics"][0]
     report_time = f"{report_before} → {report_after}"
     programs_url = home_url(lang) + "programs/"
+    assessment_url = home_url(lang) + "assessment/"
+    steps = "".join(
+        f'<article class="ea-step"><h3>{esc(title)}</h3><p>{esc(text)}</p></article>'
+        for title, text in c["short_steps"]
+    )
     body = f'''<section class="ea-hero"><div class="wrap ea-hero-grid">
   <div class="ea-hero-copy">
     <span class="eyebrow">{esc(c["eyebrow"])}</span>
     <h1>{esc(c["h1"])}</h1>
     <p class="ea-lede">{esc(c["lede"])}</p>
     <div class="ea-actions">
-      <a class="button" href="#programs">{esc(c["hero_cta"])} <span aria-hidden="true">↓</span></a>
-      <a class="button button--ghost" href="#cases">{esc(c["hero_secondary"])}</a>
+      <a class="button" href="{assessment_url}#assessment-form">{esc(c["cta"])}</a>
+      <a class="button button--ghost" href="{programs_url}">{esc(c["training_cta"])}</a>
     </div>
   </div>
   <div class="ea-hero-visual">
-  <img class="ea-hero-lime" src="/assets/brand/glass/lime.webp" alt="" width="900" height="670" fetchpriority="high">
   <aside class="ea-hero-proof" aria-label="{esc(c["case_shildpanel"])}">
     <span class="ea-proof-client">{esc(c["case_shildpanel"])}</span>
     <p class="ea-proof-task">{esc(report_name)}</p>
@@ -401,7 +395,22 @@ def render_home(lang: str) -> str:
   </div>
 </div></section>
 <section class="ea-section ea-pain" id="problem"><div class="wrap"><div class="ea-section-head"><div><h2>{esc(c["pain_title"])}</h2></div><p>{esc(c["pain_intro"])}</p></div><div class="ea-grid ea-grid-3">{pains}</div></div></section>
-<section class="ea-section ea-cases" id="cases"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["cases_eyebrow"])}</span><h2>{esc(c["cases_title"])}</h2></div><p>{esc(c["cases_intro"])}</p></div><article class="ea-case-card ea-case-shild" id="case"><div class="ea-case-head"><div class="ea-case-identification"><img class="ea-case-illustration" src="/assets/brand/glass/report.webp" alt="" width="420" height="420" loading="lazy"><div><span class="ea-case-tag">{esc(c["case_source"])}</span><h3>{esc(c["case_shildpanel"])}</h3><p>{esc(c["case_shild_sub"])}</p></div></div><a class="ea-text-link" href="{case1}">{esc(c["case_link"])} <span aria-hidden="true">↗</span></a></div><p class="ea-case-desc">{esc(c["case_shild_desc"])}</p><div class="ea-metrics">{metrics}</div><p class="ea-caveat">{esc(c["case_note"])}</p></article><article class="ea-case-card ea-case-kerama"><div class="ea-kerama-copy"><img class="ea-case-illustration" src="/assets/brand/glass/trainers.webp" alt="" width="360" height="360" loading="lazy"><span class="ea-case-tag">Train-the-Trainer</span><h3>{esc(c["case_kerama"])}</h3><p>{esc(c["case_kerama_sub"])}</p><p>{esc(c["case_kerama_desc"])}</p><a class="ea-text-link" href="{case2}">{esc(c["case_link"])} <span aria-hidden="true">↗</span></a></div><div class="ea-case-stats">{k_metrics}</div><p class="ea-caveat ea-reach-note">{esc(c["reach_note"])}</p></article><a class="ea-text-link ea-case-index-link" href="/cases/" hreflang="ru">{esc(c["case_index_cta"])} <span aria-hidden="true">↗</span></a></div></section>
+<section class="ea-section ea-cases" id="cases"><div class="wrap">
+  <div class="ea-section-head"><div><h2>{esc(c["cases_title"])}</h2></div></div>
+  <div class="ea-format-grid">
+    <article class="ea-card" id="case">
+      <h3>{esc(c["case_shildpanel"])}</h3>
+      <p>{esc(report_name)} · <strong>{esc(report_time)}</strong></p>
+      <p>{esc(c["hero_proof_source"])}</p>
+      <a class="ea-text-link" href="{case1}">{esc(c["case_link"])} <span aria-hidden="true">↗</span></a>
+    </article>
+    <article class="ea-card">
+      <h3>{esc(c["case_kerama"])}</h3>
+      <p><strong>{esc(c["kerama_metrics"][0][0])}</strong> {esc(c["kerama_metrics"][0][1])}</p>
+      <a class="ea-text-link" href="{case2}">{esc(c["case_link"])} <span aria-hidden="true">↗</span></a>
+    </article>
+  </div>
+</div></section>
 <section class="ea-section ea-formats" id="programs"><div class="wrap">
   <div class="ea-section-head"><div><h2>{esc(c["formats_title"])}</h2></div></div>
   <div class="ea-format-grid">
@@ -414,21 +423,43 @@ def render_home(lang: str) -> str:
       <h3>{esc(c["assessment_title"])}</h3>
       <p>{esc(c["assessment_format_intro"])}</p>
       <p class="ea-format-price"><strong>{esc(c["assessment_price"])}</strong> · {esc(c["assessment_duration"])}</p>
-      <a class="ea-text-link" href="#assessment">{esc(c["assessment_format_cta"])} <span aria-hidden="true">↓</span></a>
+      <a class="ea-text-link" href="{assessment_url}">{esc(c["assessment_format_cta"])} <span aria-hidden="true">↗</span></a>
     </article>
   </div>
 </div></section>
-<section class="ea-section ea-outcomes-section" id="results"><div class="wrap ea-split"><div><span class="eyebrow">{esc(c["outcomes_eyebrow"])}</span><h2>{esc(c["outcomes_title"])}</h2><p class="ea-muted">{esc(c["outcomes_intro"])}</p><a class="ea-text-link" href="#assessment">{esc(c["cta"])} <span aria-hidden="true">→</span></a></div><div class="ea-outcomes">{outcomes}</div></div></section>
-<section class="ea-section ea-method" id="method"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["method_eyebrow"])}</span><h2>{esc(c["method_title"])}</h2></div><p>{esc(c["method_intro"])}</p></div><div class="ea-step-grid">{steps}</div><p class="ea-method-caption">{esc(c["method_caption"])}</p><div class="ea-cycle" aria-label="{esc(c["method_caption"])}"><span>{esc(c["cycle"][0])}</span><b aria-hidden="true">→</b><span>{esc(c["cycle"][1])}</span><b aria-hidden="true">→</b><span>{esc(c["cycle"][2])}</span><b aria-hidden="true">→</b><span>{esc(c["cycle"][3])}</span><b aria-hidden="true">↺</b></div></div></section>
-<section class="ea-section ea-roadmap" id="roadmap"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["roadmap_eyebrow"])}</span><h2>{esc(c["roadmap_title"])}</h2></div><p>{esc(c["roadmap_intro"])}</p></div><div class="ea-phases">{phases}</div></div></section>
-<section class="ea-section ea-map" id="opportunity-map"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["map_eyebrow"])}</span><h2>{esc(c["map_title"])}</h2></div></div><p class="ea-map-label">{esc(c["map_label"])}</p><div class="ea-table-scroll" role="region" aria-label="{esc(c["map_title"])}" tabindex="0"><table><thead><tr>{headers}</tr></thead><tbody>{map_rows}</tbody></table></div><a class="button button--dark" href="#assessment">{esc(c["map_cta"])}</a></div></section>
-<section class="ea-section ea-estimator" id="estimator"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["calc_eyebrow"])}</span><h2>{esc(c["calc_title"])}</h2></div><p>{esc(c["calc_intro"])}</p></div><div class="ea-estimator-card"><div class="ea-inputs">{calc_fields}</div><div class="ea-results"><div class="ea-result"><span>{esc(c["capacity_label"])}</span><strong id="ea-capacity" aria-live="polite">5,280 h</strong></div><div class="ea-result"><span>{esc(c["value_label"])}</span><strong id="ea-value" aria-live="polite">€211,200</strong></div><p class="ea-caveat">{esc(c["calc_note"])}</p></div></div></div></section>
-<section class="ea-section ea-security" id="security"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["security_eyebrow"])}</span><h2>{esc(c["security_title"])}</h2></div><p>{esc(c["security_intro"])}</p></div><div class="ea-owner-grid">{owners}</div><p class="ea-caveat">{esc(c["security_note"])}</p></div></section>
-<section class="ea-section ea-measure" id="measurement"><div class="wrap ea-split"><div><span class="eyebrow">{esc(c["measure_eyebrow"])}</span><h2>{esc(c["measure_title"])}</h2></div><div><ul class="ea-measures">{measures}</ul><p class="ea-muted">{esc(c["measure_note"])}</p></div></div></section>
-<section class="ea-section ea-assessment" id="assessment"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["assessment_eyebrow"])}</span><h2>{esc(c["assessment_title"])}</h2></div><div class="ea-price-box"><strong>{esc(c["assessment_price"])}</strong><span>{esc(c["assessment_duration"])}</span></div></div><p class="ea-assessment-intro">{esc(c["assessment_intro"])}</p><div class="ea-assessment-grid"><article class="ea-scope-card"><h3>{esc(c["scope_title"])}</h3>{scope}<h3>{esc(c["inputs_title"])}</h3>{inputs}<p class="ea-caveat">{esc(c["offer_note"])}</p><p>{esc(c["next_after_assessment"])}</p><a class="ea-text-link" href="#roadmap">{esc(c["roadmap_link"])} <span aria-hidden="true">↑</span></a></article><article class="ea-form-card"><div class="ea-form-team"><span class="ea-form-team-mark" aria-hidden="true">PA</span><div><b>{esc(c["team_contact_title"])}</b><span>{esc(c["team_contact_subtitle"])}</span></div></div><h3>{esc(c["form_title"])}</h3><p>{esc(c["form_intro"])}</p><form id="enterprise-assessment-form" data-lang="{lang}"><label for="ea-company">{esc(c["form_company"])} <span aria-hidden="true">*</span></label><input id="ea-company" name="company" autocomplete="organization" required><label for="ea-email">{esc(c["form_email"])} <span aria-hidden="true">*</span></label><input id="ea-email" name="email" type="email" autocomplete="email" required><label for="ea-role">{esc(c["form_role"])}</label><input id="ea-role" name="role" autocomplete="organization-title"><label for="ea-process">{esc(c["form_process"])}</label><textarea id="ea-process" name="process" rows="3"></textarea><button class="button button--dark" type="submit">{esc(c["form_submit"])} ↗</button><p class="ea-form-disclosure">{esc(c["form_disclosure"])}</p><p class="ea-form-status" id="ea-form-status" role="status" aria-live="polite"></p></form><a class="ea-secondary-contact" href="https://www.linkedin.com/in/danielusik/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></article></div></div></section>
-<section class="ea-section ea-faq" id="faq"><div class="wrap ea-split"><div><span class="eyebrow">{esc(c["faq_eyebrow"])}</span><h2>{esc(c["faq_title"])}</h2></div><div class="ea-faq-list">{faq}</div></div></section>
-<section class="ea-final" id="contact"><div class="wrap ea-final-inner"><div><span class="eyebrow">{esc(c["final_eyebrow"])}</span><h2>{esc(c["final_title"])}</h2><p>{esc(c["final_text"])}</p></div><a class="button" href="#assessment">{esc(c["cta"])} ↓</a></div><div class="wrap ea-secondary-links"><a href="{('/ru' if lang == 'ru' else '')}/programs/">{esc(c["programs"])}</a><a href="{('/ru' if lang == 'ru' else '')}/for-hr/">{esc(c["hr"])}</a><a href="{('/ru' if lang == 'ru' else '')}/about/">{esc(c["team"])}</a><a href="{('/ru' if lang == 'ru' else '')}/blog/">{esc(c["guides"])}</a></div></section>'''
+<section class="ea-section ea-method" id="method"><div class="wrap">
+  <div class="ea-section-head"><div><h2>{esc(c["method_eyebrow"])}</h2></div></div>
+  <div class="ea-grid ea-grid-3">{steps}</div>
+</div></section>
+<section class="ea-final" id="contact"><div class="wrap ea-final-inner" id="assessment">
+  <div><h2>{esc(c["final_title"])}</h2><p>{esc(c["final_text"])}</p></div>
+  <a class="button" href="{assessment_url}#assessment-form">{esc(c["cta"])}</a>
+</div></section>'''
     return shell(lang, "", body, include_js=True)
+
+
+def render_assessment(lang: str) -> str:
+    c = COPY[lang]
+    phases = "".join(f'<details class="ea-phase" {"open" if i == 0 else ""}><summary><span class="ea-phase-n">{esc(phase)}</span><span class="ea-phase-main"><b>{esc(title)}</b><small>{esc(when)}</small></span><span class="ea-phase-plus" aria-hidden="true">+</span></summary><div class="ea-phase-body"><p>{esc(description)}</p><div><b>{esc(c["roadmap_outputs"])}</b>{list_html(outputs.split(" · "))}</div><div><b>{esc(c["roadmap_decision"])}</b><p>{esc(decision)}</p></div></div></details>' for i, (phase, title, when, description, outputs, decision) in enumerate(c["phases"]))
+    headers = "".join(f"<th scope=\"col\">{esc(x)}</th>" for x in c["map_headers"])
+    map_rows = "".join("<tr>" + "".join(f"<td>{esc(cell)}</td>" for cell in row) + "</tr>" for row in c["map_rows"])
+    owners = "".join(f'<div class="ea-owner"><b>{esc(name)}</b><p>{esc(text)}</p></div>' for name, text in c["owners"])
+    scope = list_html(c["scope"], "ea-check-list")
+    inputs = list_html(c["inputs"], "ea-check-list")
+    faq = "".join(f'<details class="ea-faq"><summary>{esc(q)}<span aria-hidden="true">+</span></summary><p>{esc(a)}</p></details>' for q, a in c["faq"])
+    body = f'''<section class="ea-section ea-assessment" id="assessment"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["assessment_eyebrow"])}</span><h1>{esc(c["assessment_title"])}</h1></div><div class="ea-price-box"><strong>{esc(c["assessment_price"])}</strong><span>{esc(c["assessment_duration"])}</span></div></div><p class="ea-assessment-intro">{esc(c["assessment_intro"])}</p><div class="ea-assessment-grid"><article class="ea-scope-card"><h3>{esc(c["scope_title"])}</h3>{scope}<h3>{esc(c["inputs_title"])}</h3>{inputs}<p class="ea-caveat">{esc(c["offer_note"])}</p><p>{esc(c["next_after_assessment"])}</p><a class="ea-text-link" href="#roadmap">{esc(c["roadmap_link"])} <span aria-hidden="true">↑</span></a></article><article class="ea-form-card" id="assessment-form"><div class="ea-form-team"><span class="ea-form-team-mark" aria-hidden="true">PA</span><div><b>{esc(c["team_contact_title"])}</b><span>{esc(c["team_contact_subtitle"])}</span></div></div><h3>{esc(c["form_title"])}</h3><p>{esc(c["form_intro"])}</p><form id="enterprise-assessment-form" data-lang="{lang}"><label for="ea-company">{esc(c["form_company"])} <span aria-hidden="true">*</span></label><input id="ea-company" name="company" autocomplete="organization" required><label for="ea-email">{esc(c["form_email"])} <span aria-hidden="true">*</span></label><input id="ea-email" name="email" type="email" autocomplete="email" required><label for="ea-role">{esc(c["form_role"])}</label><input id="ea-role" name="role" autocomplete="organization-title"><label for="ea-process">{esc(c["form_process"])}</label><textarea id="ea-process" name="process" rows="3"></textarea><button class="button button--dark" type="submit">{esc(c["form_submit"])} ↗</button><p class="ea-form-disclosure">{esc(c["form_disclosure"])}</p><p class="ea-form-status" id="ea-form-status" role="status" aria-live="polite"></p></form><a class="ea-secondary-contact" href="https://www.linkedin.com/in/danielusik/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></article></div></div></section>
+<section class="ea-section ea-map" id="opportunity-map"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["map_eyebrow"])}</span><h2>{esc(c["map_title"])}</h2></div></div><p class="ea-map-label">{esc(c["map_label"])}</p><div class="ea-table-scroll" role="region" aria-label="{esc(c["map_title"])}" tabindex="0"><table><thead><tr>{headers}</tr></thead><tbody>{map_rows}</tbody></table></div><a class="button button--dark" href="#assessment-form">{esc(c["map_cta"])}</a></div></section>
+<section class="ea-section ea-roadmap" id="roadmap"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["roadmap_eyebrow"])}</span><h2>{esc(c["roadmap_title"])}</h2></div><p>{esc(c["roadmap_intro"])}</p></div><div class="ea-phases">{phases}</div></div></section>
+<section class="ea-section ea-security" id="security"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["security_eyebrow"])}</span><h2>{esc(c["security_title"])}</h2></div><p>{esc(c["security_intro"])}</p></div><div class="ea-owner-grid">{owners}</div><p class="ea-caveat">{esc(c["security_note"])}</p></div></section>
+<section class="ea-section ea-faq" id="faq"><div class="wrap ea-split"><div><span class="eyebrow">{esc(c["faq_eyebrow"])}</span><h2>{esc(c["faq_title"])}</h2></div><div class="ea-faq-list">{faq}</div></div></section>'''
+    return shell(lang, "assessment", body, include_js=True)
+
+
+def render_calculator(lang: str) -> str:
+    c = COPY[lang]
+    calc_fields = "".join(f'<label class="ea-field" for="ea-{id}"><span>{esc(label)}</span><input id="ea-{id}" name="{id}" type="number" inputmode="decimal" min="{minimum}" max="{maximum}" step="{step}" value="{value}" data-calc="{id}"></label>' for id, label, value, minimum, maximum, step in c["calc_fields"])
+    body = f'''<section class="ea-section ea-estimator" id="estimator"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["calc_eyebrow"])}</span><h1>{esc(c["calc_page_title"])}</h1></div><p>{esc(c["calc_intro"])}</p></div><div class="ea-estimator-card"><div class="ea-inputs">{calc_fields}</div><div class="ea-results"><div class="ea-result"><span>{esc(c["capacity_label"])}</span><strong id="ea-capacity" aria-live="polite">5,280 h</strong></div><div class="ea-result"><span>{esc(c["value_label"])}</span><strong id="ea-value" aria-live="polite">€211,200</strong></div><p class="ea-caveat">{esc(c["calc_note"])}</p></div></div></div></section>'''
+    return shell(lang, "resources/ai-capacity-calculator", body, include_js=True)
 
 
 def render_case(lang: str, slug: str) -> str:
@@ -442,6 +473,6 @@ def render_case(lang: str, slug: str) -> str:
         stats = "".join(f'<div class="ea-case-stat"><strong>{esc(value)}</strong><span>{esc(label)}</span></div>' for value, label in c["kerama_metrics"])
         detail = f'<div class="ea-case-stats ea-case-detail-stats">{stats}</div><p class="ea-caveat ea-reach-note">{esc(c["reach_note"])}</p>'
     source = c["case_source"] if slug == "shildpanel" else c["kerama_source"]
-    body = f'''<section class="ea-case-page"><div class="wrap"><a class="ea-back-link" href="{home_url(lang)}#cases">← {esc(c["case_back"])}</a><span class="eyebrow">{esc(source)}</span><h1>{esc(title)}</h1><p class="ea-case-page-subtitle">{esc(subtitle)}</p><p class="ea-case-desc">{esc(summary)}</p>{detail}<p class="ea-caveat ea-case-disclaimer">{esc(c["case_detail_note"])}</p><a class="button button--dark" href="{home_url(lang)}#assessment">{esc(c["case_cta"])}</a></div></section>'''
+    body = f'''<section class="ea-case-page"><div class="wrap"><a class="ea-back-link" href="{home_url(lang)}#cases">← {esc(c["case_back"])}</a><span class="eyebrow">{esc(source)}</span><h1>{esc(title)}</h1><p class="ea-case-page-subtitle">{esc(subtitle)}</p><p class="ea-case-desc">{esc(summary)}</p>{detail}<p class="ea-caveat ea-case-disclaimer">{esc(c["case_detail_note"])}</p><a class="button button--dark" href="{home_url(lang)}assessment/#assessment-form">{esc(c["case_cta"])}</a></div></section>'''
     return shell(lang, f"cases/{slug}", body)
 

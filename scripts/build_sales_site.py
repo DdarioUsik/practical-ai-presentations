@@ -10,7 +10,7 @@ from pathlib import Path
 from urllib.parse import quote
 
 from school_english import school_page_en
-from enterprise_site import CASES as ENTERPRISE_CASES, render_case as enterprise_case, render_home as enterprise_home
+from enterprise_site import CASES as ENTERPRISE_CASES, render_case as enterprise_case, render_home as enterprise_home, render_assessment, render_calculator
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
@@ -469,12 +469,17 @@ def about(lang: str) -> str:
 
 def main(enterprise_only: bool = False) -> None:
     page_makers = {"": home} if enterprise_only else {"": home, "for-hr": hr, "programs": programs, "about": about}
+    resource_pages = {"assessment": render_assessment, "resources/ai-capacity-calculator": render_calculator}
     for lang in ("en", "ru"):
         for route, maker in page_makers.items():
             target = DOCS / ("ru" if lang == "ru" else "") / route / "index.html"
             target.parent.mkdir(parents=True, exist_ok=True)
             page = enterprise_home(lang) if route == "" else shell(lang,route,maker(lang))
             target.write_text(page + "\n", encoding="utf-8")
+        for route, render in resource_pages.items():
+            target = DOCS / u(lang, route).strip("/") / "index.html"
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(render(lang) + "\n", encoding="utf-8")
         for slug in ENTERPRISE_CASES:
             target = DOCS / ("ru" if lang == "ru" else "") / "cases" / slug / "index.html"
             target.parent.mkdir(parents=True, exist_ok=True)
@@ -492,7 +497,7 @@ def main(enterprise_only: bool = False) -> None:
     sitemap = DOCS / "sitemap.xml"
     text = sitemap.read_text(encoding="utf-8")
     for lang in ("en", "ru"):
-        routes = [*page_makers, *(f"cases/{slug}" for slug in ENTERPRISE_CASES)]
+        routes = [*page_makers, *resource_pages, *(f"cases/{slug}" for slug in ENTERPRISE_CASES)]
         if lang == "en":
             routes.extend(("corporate-trainings", "for-schools"))
         for route in routes:
