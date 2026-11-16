@@ -374,6 +374,7 @@ def render_home(lang: str) -> str:
     </div>
   </div>
   <div class="ea-hero-visual">
+  <img class="ea-hero-fruit" src="/assets/brand/glass/lime.webp" alt="" width="900" height="670">
   <aside class="ea-hero-proof" aria-label="{esc(c["case_shildpanel"])}">
     <span class="ea-proof-client">{esc(c["case_shildpanel"])}</span>
     <p class="ea-proof-task">{esc(report_name)}</p>
@@ -408,7 +409,10 @@ def render_home(lang: str) -> str:
   </div>
 </div></section>
 <section class="ea-section ea-formats" id="programs"><div class="wrap">
-  <div class="ea-section-head"><div><h2>{esc(c["formats_title"])}</h2></div></div>
+  <div class="ea-section-head ea-formats-head">
+    <div><h2>{esc(c["formats_title"])}</h2></div>
+    <img class="ea-format-fruit" src="/assets/brand/glass/raspberry.webp" alt="" width="338" height="360" loading="lazy">
+  </div>
   <div class="ea-format-grid">
     <article class="ea-card">
       <h3>{esc(c["training_title"])}</h3>

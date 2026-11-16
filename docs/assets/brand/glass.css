@@ -333,3 +333,23 @@ body .eyebrow::before, .enterprise-home .ea-case-page .eyebrow::before {
 }
 
 .site-header .skip-link:not(:focus) { clip-path: inset(50%); }
+
+.ea-hero-fruit {
+  display: block;
+  width: min(100%, 310px);
+  height: auto;
+  justify-self: center;
+}
+.ea-formats .ea-formats-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.ea-format-fruit {
+  width: clamp(65px, 11vw, 140px);
+  height: auto;
+  flex-shrink: 0;
+}
+@media (max-width: 560px) {
+  .ea-hero-fruit { width: min(68%, 210px); }
+}
