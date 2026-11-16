@@ -122,7 +122,6 @@ td.proj{color:var(--teal)}
 .principles h3{font-size:1.2rem}
 .principles p{font-size:.93rem;color:var(--muted)}
 .team{margin-top:56px}
-.roles{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-content:start}
 
 /* Photos */
 .ph{margin:0;position:relative;overflow:hidden;border-radius:8px;background:var(--teal-soft)}
@@ -137,14 +136,15 @@ td.proj{color:var(--teal)}
 .m-a{grid-row:1 / 3}
 .m-a img{object-position:50% 70%}
 .m-b{grid-column:2 / 4}
-.team-grid{display:grid;grid-template-columns:280px 1fr;gap:32px;align-items:start}
-.lead{margin:0;display:flex;flex-direction:column;gap:10px}
-.lead img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:35% 30%;border-radius:8px;display:block;max-width:100%}
-.lead strong{display:block;font-family:var(--f-display);font-size:1.1rem}
-.lead span{font-size:.85rem;color:var(--muted)}
-.roles div{border-top:1px solid var(--line);padding-top:10px}
-.roles strong{display:block;font-size:.95rem}
-.roles span{font-size:.85rem;color:var(--muted)}
+.team-heading{font-size:clamp(1.7rem,3vw,2.4rem);margin-bottom:18px}
+.team-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.team-profile{min-width:0;padding:22px;border:1px solid var(--line);border-radius:16px;background:#fff;color:var(--ink)}
+.team-profile img{display:block;width:72px;height:72px;object-fit:cover;border-radius:50%;margin-bottom:14px}
+.team-profile h4{margin:0;font-size:1.18rem}
+.team-profile p{font-size:.92rem;color:var(--muted)}
+.team-support{margin-top:16px;color:var(--muted)}
+.team-profile .profile-role{margin:3px 0 10px;color:#475300;font-weight:700}
+.team-text-link{color:#475300;font-weight:700;text-underline-offset:4px}
 
 /* CTA */
 .cta{background:var(--ink);color:var(--bg);border-top:0}
@@ -196,7 +196,7 @@ td.proj{color:var(--teal)}
       <a class="btn" href="#assessment">Book an AI Adoption Assessment →</a>
     </div>
     <div class="stack">
-      <figure class="ph ph-hero"><img src="img/hero-class.jpg" alt="Svetlana Riabova with a group of workshop participants in a classroom"><figcaption>Hands-on AI workshop with a client team</figcaption></figure>
+      <figure class="ph ph-hero"><img src="img/hero-class.jpg" alt="Svetlana with a group of workshop participants in a classroom"><figcaption>Hands-on AI workshop with a client team</figcaption></figure>
       <div class="scope">
         <div><b class="num">50–300</b><span>employees in scope</span></div>
         <div><b class="num">8–12</b><span>business processes</span></div>
@@ -216,6 +216,7 @@ td.proj{color:var(--teal)}
       <div class="stack">
         <span class="eyebrow">Who runs the program</span>
         <h2>Practitioners who ship, then teach.</h2>
+        <a class="team-text-link" href="#team">Meet Svetlana, Danil and Julia ↓</a>
         <p class="lede">We are an AI automation bureau first. Everything we teach your team comes from systems we built and run for clients in retail, manufacturing, real estate, robotics, finance and healthcare.</p>
       </div>
       <figure class="ph ph-tall"><img src="img/lead-screen.jpg" alt="Svetlana in front of a screen showing the talk 'AI: How Managers Win Back Time'" loading="lazy"><figcaption>“AI: How managers win back time”, management session</figcaption></figure>
@@ -419,20 +420,29 @@ td.proj{color:var(--teal)}
       <li><span class="pn">04</span><h3>Materials</h3><p>Easy-to-follow videos combined with concrete methods, clear checklists, role-based prompt libraries and proven frameworks from real projects.</p></li>
       <li><span class="pn">05</span><h3>Flexibility</h3><p>On the go or between tasks. Short units and our practical learning app let employees fit the program into a normal working day.</p></li>
     </ol>
-    <div class="team">
-      <div class="stack">
-        <span class="eyebrow">Built around your team</span>
-        <h3>Who works with you</h3>
-        <div class="team-grid">
-        <figure class="lead"><img src="img/portrait.jpg" alt="Portrait of Svetlana Riabova speaking with a microphone" loading="lazy"><figcaption><strong>Svetlana Riabova</strong><span>Founder, AIHUB.WORKS · Program lead</span></figcaption></figure>
-        <div class="roles">
-          <div><strong>Program lead</strong><span>Founder of AIHUB.WORKS. Led AI transformation for enterprise clients and managed cross-functional teams of 50+.</span></div>
-          <div><strong>AI & automation engineers</strong><span>Build assistants, agents and integrations with your CRM, ERP and data.</span></div>
-          <div><strong>Learning methodologist</strong><span>Designs the course modules, exercises and role-based prompt libraries.</span></div>
-          <div><strong>Change & project manager</strong><span>Runs the cadence, tracks adoption and supports your AI champions.</span></div>
-        </div>
-        </div>
+    <div class="team" id="team">
+      <h3 class="team-heading">Who you’ll work with</h3>
+      <div class="team-grid">
+        <article class="team-profile">
+          <img src="/assets/team/svetlana-galakhova.jpg" alt="" width="96" height="96" loading="lazy">
+          <h4>Svetlana Galakhova</h4>
+          <p class="profile-role">AI strategy and implementation</p>
+          <p>Svetlana co-founded AIHUB.WORKS. She turns business tasks into workflows and leads hands-on sessions so your team can build and test them.</p>
+        </article>
+        <article class="team-profile">
+          <img src="/assets/team/danil-usik.jpg" alt="" width="96" height="96" loading="lazy">
+          <h4>Danil Usik</h4>
+          <p class="profile-role">Business training and your first contact</p>
+          <p>Danil helps you choose where to start and connects your business priorities with what your team will practise during the programme.</p>
+        </article>
+        <article class="team-profile">
+          <img src="/assets/team/julia-krylova.jpg" alt="" width="96" height="96" loading="lazy">
+          <h4>Julia Krylova</h4>
+          <p class="profile-role">Marketing and business development</p>
+          <p>Julia brings a commercial perspective from fintech, blockchain and e-commerce, with experience in marketing, fundraising and investor communications.</p>
+        </article>
       </div>
+      <p class="team-support">AI and automation engineers, a learning designer and a project manager support implementation and help your team put new workflows into practice.</p>
     </div>
   </div>
 </section>
