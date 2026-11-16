@@ -79,10 +79,10 @@ def check() -> None:
                 home_requirements = (
                     "Claude, ChatGPT", "Copilot", 'class="ea-hero-proof"',
                     "/assets/brand/glass.css",
-                    f'href="{url_path}cases/shildpanel/"', f'href="{url_path}cases/kerama-marazzi/"',
+                    f'href="{url_path}cases/shildpanel/"', "Kerama Marazzi",
                     f'href="{url_path}programs/"', f'href="{url_path}assessment/#assessment-form"',
                 )
-                if any(term not in html for term in home_requirements):
+                if html.count('class="ea-case-facts"') != 2 or any(term not in html for term in home_requirements):
                     errors.append(f"{url_path}: subscription positioning, proved cases or entry routes missing")
             if 'href="#main-content"' not in html or 'id="main-content"' not in html:
                 errors.append(f"{url_path}: keyboard skip target missing")

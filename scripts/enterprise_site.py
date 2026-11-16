@@ -20,7 +20,6 @@ COPY = {
         "eyebrow": "AI training and adoption for teams",
         "h1": "Already paying for AI? Make your subscription work harder.",
         "lede": "We help your team put Claude, ChatGPT or Copilot to work on recurring tasks, from preparing reports to reviewing documents. Together we build workflows and measure their effect on turnaround time and output quality.",
-        "hero_proof_source": "Time reported in a client interview",
         "case_index_cta": "Explore more cases (in Russian)",
         "formats_title": "Two ways to start",
         "next_after_assessment": "After the assessment, choose a workflow to pilot. If the results support it, expand it to other teams.",
@@ -50,20 +49,17 @@ COPY = {
             ("Measurement", "Baselines and follow-up measures for selected processes.")],
         "cases_eyebrow": "Evidence from client work", "cases_title": "What changed for our clients",
         "cases_intro": "ShildPanel shows what AI can change in a specific task. Kerama Marazzi shows how a company can teach people to build and share workflows internally.",
-        "case_source": "Reported interview results · task-specific examples",
-        "kerama_source": "Programme information · client case",
-        "case_shildpanel": "ShildPanel", "case_shild_sub": "Practical AI in production and support workflows",
-        "case_shild_desc": "Interview figures from four operational examples across reporting, ERP work, competitor analysis and HR.",
+        "case_shildpanel": "ShildPanel",
+        "case_shild_desc": "ShildPanel leaders shared how they used AI in production, finance and HR.",
         "shild_metrics": [
-            ("Production report", "8 hours", "15 minutes", "Time reported for preparing a production report."),
-            ("ERP formulas", "12 hours", "30 minutes", "Time reported for the ERP formula task."),
-            ("Competitor analysis", "7 days", "Under 6 hours", "Time reported for a competitor analysis."),
-            ("HR routine", "", "About 30 minutes a day", "Daily HR administrative time reported as released." )],
-        "case_kerama": "Kerama Marazzi", "case_kerama_sub": "Building internal AI trainers through Train-the-Trainer",
-        "case_kerama_desc": "A programme that developed internal capacity through training, mentoring and practical cases.",
+            ("Production report", "8 hours", "15 minutes"),
+            ("ERP formulas", "12 hours", "30 minutes"),
+            ("Competitor analysis", "7 days", "Under 6 hours"),
+            ("Time saved on HR administration", "", "About 30 minutes a day")],
+        "case_kerama": "Kerama Marazzi",
+        "case_kerama_desc": "Kerama Marazzi trained its own instructors to teach colleagues how to use AI at work.",
         "kerama_metrics": [("4", "internal AI trainers prepared"), ("70 days", "of training and mentoring"), ("50+", "practical cases explored"), ("80 colleagues", "potential reach")],
-        "reach_note": "The programme identified 80 colleagues as the potential audience for internal training.",
-        "case_link": "Read the case details", "case_note": "The figures describe the specific tasks discussed in client interviews.",
+        "case_link": "Read the case details",
         "method_eyebrow": "How the work moves", "method_title": "From a useful experiment to an everyday business practice.",
         "method_intro": "Each workflow connects a process owner, an AI step, human review and a measurable next action.",
         "steps": [
@@ -140,7 +136,6 @@ COPY = {
             "kerama-marazzi": ("Kerama Marazzi case | Practical AI", "The programme prepared four internal AI trainers through 70 days of training and mentoring and explored 50+ practical cases.")},
         "case_quote": "“Now I have a playbook I can hand to my team to put into practice.”",
         "case_quote_by": "Alexander · Operations Director",
-        "case_detail_note": "Results describe specific reported tasks and programme activity. They are examples for these organisations; outcomes for a new organisation depend on its process, tools, adoption and baseline.",
         "case_back": "Back to the homepage", "case_cta": "Discuss an assessment for your company",
     },
     "ru": {
@@ -154,7 +149,6 @@ COPY = {
         "eyebrow": "Обучение и внедрение AI для команд",
         "h1": "Уже платите за ИИ? Используйте подписку в полную силу.",
         "lede": "Поможем команде использовать Claude, ChatGPT или Copilot там, где работа повторяется из недели в неделю. Вместе настроим сценарии для отчётов, проверки документов и анализа. Сравним, сколько времени занимает задача и каким получается результат.",
-        "hero_proof_source": "Время по данным интервью с клиентом",
         "case_index_cta": "Другие кейсы Practical AI",
         "formats_title": "Два способа начать",
         "next_after_assessment": "После диагностики выберите задачу для пилота. Если результат подтвердится, подключите другие команды.",
@@ -184,20 +178,17 @@ COPY = {
             ("Измерение", "Исходные и повторные показатели для выбранных процессов.")],
         "cases_eyebrow": "Результаты работы с клиентами", "cases_title": "Что изменилось у наших клиентов",
         "cases_intro": "ShildPanel показывает, что меняется в конкретной задаче. Kerama Marazzi показывает, как научить сотрудников создавать сценарии и передавать их коллегам.",
-        "case_source": "Результаты из интервью · отдельные примеры задач",
-        "kerama_source": "Информация о программе · данные кейса",
-        "case_shildpanel": "ShildPanel", "case_shild_sub": "AI в производственных и поддерживающих процессах",
-        "case_shild_desc": "Данные интервью по четырём операционным примерам: отчётность, задачи в ERP, анализ конкурентов и HR.",
+        "case_shildpanel": "ShildPanel",
+        "case_shild_desc": "Руководители ShildPanel рассказали, как применили ИИ в производстве, анализе и работе с персоналом.",
         "shild_metrics": [
-            ("Производственный отчёт", "8 часов", "15 минут", "Время подготовки производственного отчёта по данным интервью."),
-            ("Формулы в ERP", "12 часов", "30 минут", "Время выполнения задачи с формулами ERP по данным интервью."),
-            ("Анализ конкурентов", "7 дней", "Менее 6 часов", "Время анализа конкурентов по данным интервью."),
-            ("HR-рутина", "", "Около 30 минут в день", "По данным интервью, высвобождалось ежедневное время на HR-администрирование.")],
-        "case_kerama": "Kerama Marazzi", "case_kerama_sub": "Внутренние AI-тренеры: Train-the-Trainer",
-        "case_kerama_desc": "Программа развивала внутреннюю экспертизу через обучение, наставничество и практические кейсы.",
+            ("Производственный отчёт", "8 часов", "15 минут"),
+            ("Формулы в ERP", "12 часов", "30 минут"),
+            ("Анализ конкурентов", "7 дней", "Менее 6 часов"),
+            ("Экономия времени на кадровых задачах", "", "Около 30 минут в день")],
+        "case_kerama": "Kerama Marazzi",
+        "case_kerama_desc": "В Kerama Marazzi подготовили сотрудников, которые смогут обучать коллег работе с ИИ.",
         "kerama_metrics": [("4", "подготовленных внутренних AI-тренера"), ("70 дней", "обучения и наставничества"), ("50+", "рассмотренных практических кейсов"), ("80 коллег", "потенциальный охват")],
-        "reach_note": "80 коллег — потенциальная аудитория внутреннего обучения.",
-        "case_link": "Подробнее о кейсе", "case_note": "Цифры относятся к конкретным задачам, о которых клиенты рассказали в интервью.",
+        "case_link": "Подробнее о кейсе",
         "method_eyebrow": "Как устроена работа", "method_title": "От полезного эксперимента — к повседневной практике компании.",
         "method_intro": "Каждый сценарий связывает владельца процесса, шаг с AI, проверку человеком и измеримое следующее действие.",
         "steps": [
@@ -274,7 +265,6 @@ COPY = {
             "kerama-marazzi": ("Кейс Kerama Marazzi | Practical AI", "Внутренние AI-тренеры: 4 подготовленных специалиста, 70 дней обучения и наставничества, более 50 практических кейсов.")},
         "case_quote": "«Теперь у меня есть плейбук, который можно передать команде, чтобы она всё реализовала.»",
         "case_quote_by": "Александр · операционный директор",
-        "case_detail_note": "Результаты описывают конкретные задачи и программу. Это примеры данных компаний; эффект нового проекта зависит от его процессов, инструментов, внедрения и исходной точки.",
         "case_back": "На главную", "case_cta": "Обсудить диагностику для вашей компании",
     },
 }
@@ -365,8 +355,8 @@ def shell(lang: str, route: str, body: str, include_js: bool = False) -> str:
 def render_home(lang: str) -> str:
     c = COPY[lang]
     pains = "".join(f'<article class="ea-card"><h3>{esc(title)}</h3><p>{esc(text)}</p></article>' for title, text in c["pains"])
-    case1, case2 = case_url(lang, "shildpanel"), case_url(lang, "kerama-marazzi")
-    report_name, report_before, report_after, _ = c["shild_metrics"][0]
+    case1 = case_url(lang, "shildpanel")
+    report_name, report_before, report_after = c["shild_metrics"][0]
     report_time = f"{report_before} → {report_after}"
     programs_url = home_url(lang) + "programs/"
     assessment_url = home_url(lang) + "assessment/"
@@ -389,7 +379,6 @@ def render_home(lang: str) -> str:
     <span class="ea-proof-client">{esc(c["case_shildpanel"])}</span>
     <p class="ea-proof-task">{esc(report_name)}</p>
     <p class="ea-proof-time" aria-label="{esc(report_time)}"><span>{esc(report_before)}</span><span aria-hidden="true">→</span><strong>{esc(report_after)}</strong></p>
-    <p class="ea-proof-source">{esc(c["hero_proof_source"])}</p>
     <a href="{case1}">{esc(c["case_link"])} <span aria-hidden="true">↗</span></a>
   </aside>
   </div>
@@ -400,14 +389,14 @@ def render_home(lang: str) -> str:
   <div class="ea-format-grid">
     <article class="ea-card" id="case">
       <h3>{esc(c["case_shildpanel"])}</h3>
-      <p>{esc(report_name)} · <strong>{esc(report_time)}</strong></p>
-      <p>{esc(c["hero_proof_source"])}</p>
-      <a class="ea-text-link" href="{case1}">{esc(c["case_link"])} <span aria-hidden="true">↗</span></a>
+      <p>{esc(c["case_shild_desc"])}</p>
+      {render_case_metrics(c, "shildpanel")}
+      {render_case_quote(c)}
     </article>
     <article class="ea-card">
       <h3>{esc(c["case_kerama"])}</h3>
-      <p><strong>{esc(c["kerama_metrics"][0][0])}</strong> {esc(c["kerama_metrics"][0][1])}</p>
-      <a class="ea-text-link" href="{case2}">{esc(c["case_link"])} <span aria-hidden="true">↗</span></a>
+      <p>{esc(c["case_kerama_desc"])}</p>
+      {render_case_metrics(c, "kerama-marazzi")}
     </article>
   </div>
 </div></section>
@@ -447,10 +436,10 @@ def render_assessment(lang: str) -> str:
     scope = list_html(c["scope"], "ea-check-list")
     inputs = list_html(c["inputs"], "ea-check-list")
     faq = "".join(f'<details class="ea-faq"><summary>{esc(q)}<span aria-hidden="true">+</span></summary><p>{esc(a)}</p></details>' for q, a in c["faq"])
-    body = f'''<section class="ea-section ea-assessment" id="assessment"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["assessment_eyebrow"])}</span><h1>{esc(c["assessment_title"])}</h1></div><div class="ea-price-box"><strong>{esc(c["assessment_price"])}</strong><span>{esc(c["assessment_duration"])}</span></div></div><p class="ea-assessment-intro">{esc(c["assessment_intro"])}</p><div class="ea-assessment-grid"><article class="ea-scope-card"><h3>{esc(c["scope_title"])}</h3>{scope}<h3>{esc(c["inputs_title"])}</h3>{inputs}<p class="ea-caveat">{esc(c["offer_note"])}</p><p>{esc(c["next_after_assessment"])}</p><a class="ea-text-link" href="#roadmap">{esc(c["roadmap_link"])} <span aria-hidden="true">↑</span></a></article><article class="ea-form-card" id="assessment-form"><div class="ea-form-team"><span class="ea-form-team-mark" aria-hidden="true">PA</span><div><b>{esc(c["team_contact_title"])}</b><span>{esc(c["team_contact_subtitle"])}</span></div></div><h3>{esc(c["form_title"])}</h3><p>{esc(c["form_intro"])}</p><form id="enterprise-assessment-form" data-lang="{lang}"><label for="ea-company">{esc(c["form_company"])} <span aria-hidden="true">*</span></label><input id="ea-company" name="company" autocomplete="organization" required><label for="ea-email">{esc(c["form_email"])} <span aria-hidden="true">*</span></label><input id="ea-email" name="email" type="email" autocomplete="email" required><label for="ea-role">{esc(c["form_role"])}</label><input id="ea-role" name="role" autocomplete="organization-title"><label for="ea-process">{esc(c["form_process"])}</label><textarea id="ea-process" name="process" rows="3"></textarea><button class="button button--dark" type="submit">{esc(c["form_submit"])} ↗</button><p class="ea-form-disclosure">{esc(c["form_disclosure"])}</p><p class="ea-form-status" id="ea-form-status" role="status" aria-live="polite"></p></form><a class="ea-secondary-contact" href="https://www.linkedin.com/in/danielusik/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></article></div></div></section>
+    body = f'''<section class="ea-section ea-assessment" id="assessment"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["assessment_eyebrow"])}</span><h1>{esc(c["assessment_title"])}</h1></div><div class="ea-price-box"><strong>{esc(c["assessment_price"])}</strong><span>{esc(c["assessment_duration"])}</span></div></div><p class="ea-assessment-intro">{esc(c["assessment_intro"])}</p><div class="ea-assessment-grid"><article class="ea-scope-card"><h3>{esc(c["scope_title"])}</h3>{scope}<h3>{esc(c["inputs_title"])}</h3>{inputs}<p class="ea-content-note">{esc(c["offer_note"])}</p><p>{esc(c["next_after_assessment"])}</p><a class="ea-text-link" href="#roadmap">{esc(c["roadmap_link"])} <span aria-hidden="true">↑</span></a></article><article class="ea-form-card" id="assessment-form"><div class="ea-form-team"><span class="ea-form-team-mark" aria-hidden="true">PA</span><div><b>{esc(c["team_contact_title"])}</b><span>{esc(c["team_contact_subtitle"])}</span></div></div><h3>{esc(c["form_title"])}</h3><p>{esc(c["form_intro"])}</p><form id="enterprise-assessment-form" data-lang="{lang}"><label for="ea-company">{esc(c["form_company"])} <span aria-hidden="true">*</span></label><input id="ea-company" name="company" autocomplete="organization" required><label for="ea-email">{esc(c["form_email"])} <span aria-hidden="true">*</span></label><input id="ea-email" name="email" type="email" autocomplete="email" required><label for="ea-role">{esc(c["form_role"])}</label><input id="ea-role" name="role" autocomplete="organization-title"><label for="ea-process">{esc(c["form_process"])}</label><textarea id="ea-process" name="process" rows="3"></textarea><button class="button button--dark" type="submit">{esc(c["form_submit"])} ↗</button><p class="ea-form-disclosure">{esc(c["form_disclosure"])}</p><p class="ea-form-status" id="ea-form-status" role="status" aria-live="polite"></p></form><a class="ea-secondary-contact" href="https://www.linkedin.com/in/danielusik/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></article></div></div></section>
 <section class="ea-section ea-map" id="opportunity-map"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["map_eyebrow"])}</span><h2>{esc(c["map_title"])}</h2></div></div><p class="ea-map-label">{esc(c["map_label"])}</p><div class="ea-table-scroll" role="region" aria-label="{esc(c["map_title"])}" tabindex="0"><table><thead><tr>{headers}</tr></thead><tbody>{map_rows}</tbody></table></div><a class="button button--dark" href="#assessment-form">{esc(c["map_cta"])}</a></div></section>
 <section class="ea-section ea-roadmap" id="roadmap"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["roadmap_eyebrow"])}</span><h2>{esc(c["roadmap_title"])}</h2></div><p>{esc(c["roadmap_intro"])}</p></div><div class="ea-phases">{phases}</div></div></section>
-<section class="ea-section ea-security" id="security"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["security_eyebrow"])}</span><h2>{esc(c["security_title"])}</h2></div><p>{esc(c["security_intro"])}</p></div><div class="ea-owner-grid">{owners}</div><p class="ea-caveat">{esc(c["security_note"])}</p></div></section>
+<section class="ea-section ea-security" id="security"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["security_eyebrow"])}</span><h2>{esc(c["security_title"])}</h2></div><p>{esc(c["security_intro"])}</p></div><div class="ea-owner-grid">{owners}</div><p class="ea-content-note">{esc(c["security_note"])}</p></div></section>
 <section class="ea-section ea-faq" id="faq"><div class="wrap ea-split"><div><span class="eyebrow">{esc(c["faq_eyebrow"])}</span><h2>{esc(c["faq_title"])}</h2></div><div class="ea-faq-list">{faq}</div></div></section>'''
     return shell(lang, "assessment", body, include_js=True)
 
@@ -458,21 +447,37 @@ def render_assessment(lang: str) -> str:
 def render_calculator(lang: str) -> str:
     c = COPY[lang]
     calc_fields = "".join(f'<label class="ea-field" for="ea-{id}"><span>{esc(label)}</span><input id="ea-{id}" name="{id}" type="number" inputmode="decimal" min="{minimum}" max="{maximum}" step="{step}" value="{value}" data-calc="{id}"></label>' for id, label, value, minimum, maximum, step in c["calc_fields"])
-    body = f'''<section class="ea-section ea-estimator" id="estimator"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["calc_eyebrow"])}</span><h1>{esc(c["calc_page_title"])}</h1></div><p>{esc(c["calc_intro"])}</p></div><div class="ea-estimator-card"><div class="ea-inputs">{calc_fields}</div><div class="ea-results"><div class="ea-result"><span>{esc(c["capacity_label"])}</span><strong id="ea-capacity" aria-live="polite">5,280 h</strong></div><div class="ea-result"><span>{esc(c["value_label"])}</span><strong id="ea-value" aria-live="polite">€211,200</strong></div><p class="ea-caveat">{esc(c["calc_note"])}</p></div></div></div></section>'''
+    body = f'''<section class="ea-section ea-estimator" id="estimator"><div class="wrap"><div class="ea-section-head"><div><span class="eyebrow">{esc(c["calc_eyebrow"])}</span><h1>{esc(c["calc_page_title"])}</h1></div><p>{esc(c["calc_intro"])}</p></div><div class="ea-estimator-card"><div class="ea-inputs">{calc_fields}</div><div class="ea-results"><div class="ea-result"><span>{esc(c["capacity_label"])}</span><strong id="ea-capacity" aria-live="polite">5,280 h</strong></div><div class="ea-result"><span>{esc(c["value_label"])}</span><strong id="ea-value" aria-live="polite">€211,200</strong></div><p class="ea-content-note">{esc(c["calc_note"])}</p></div></div></div></section>'''
     return shell(lang, "resources/ai-capacity-calculator", body, include_js=True)
+
+
+def render_case_metrics(c: dict, slug: str) -> str:
+    if slug == "shildpanel":
+        rows = [
+            (label, f"{before} → {after}" if before else after)
+            for label, before, after in c["shild_metrics"]
+        ]
+    else:
+        rows = [(label, value) for value, label in c["kerama_metrics"]]
+    items = "".join(
+        f"<div><dt>{esc(label)}</dt><dd>{esc(value)}</dd></div>" for label, value in rows
+    )
+    return f'<dl class="ea-case-facts">{items}</dl>'
+
+
+def render_case_quote(c: dict) -> str:
+    return f'<blockquote class="ea-quote">{esc(c["case_quote"])}<cite>{esc(c["case_quote_by"])}</cite></blockquote>'
 
 
 def render_case(lang: str, slug: str) -> str:
     c = COPY[lang]
     if slug == "shildpanel":
-        title, subtitle, summary = c["case_shildpanel"], c["case_shild_sub"], c["case_shild_desc"]
-        cards = "".join(f'<article class="ea-metric"><span class="ea-metric-title">{esc(name)}</span><div class="ea-metric-value">' + (f'<span>{esc(before)}</span><b aria-hidden="true">→</b><strong>{esc(after)}</strong>' if before else f'<strong>{esc(after)}</strong>') + f'</div><p>{esc(note)}</p></article>' for name, before, after, note in c["shild_metrics"])
-        detail = f'<div class="ea-metrics ea-case-detail-metrics">{cards}</div><blockquote class="ea-quote">{esc(c["case_quote"])}<cite>{esc(c["case_quote_by"])}</cite></blockquote>'
+        title, summary = c["case_shildpanel"], c["case_shild_desc"]
     else:
-        title, subtitle, summary = c["case_kerama"], c["case_kerama_sub"], c["case_kerama_desc"]
-        stats = "".join(f'<div class="ea-case-stat"><strong>{esc(value)}</strong><span>{esc(label)}</span></div>' for value, label in c["kerama_metrics"])
-        detail = f'<div class="ea-case-stats ea-case-detail-stats">{stats}</div><p class="ea-caveat ea-reach-note">{esc(c["reach_note"])}</p>'
-    source = c["case_source"] if slug == "shildpanel" else c["kerama_source"]
-    body = f'''<section class="ea-case-page"><div class="wrap"><a class="ea-back-link" href="{home_url(lang)}#cases">← {esc(c["case_back"])}</a><span class="eyebrow">{esc(source)}</span><h1>{esc(title)}</h1><p class="ea-case-page-subtitle">{esc(subtitle)}</p><p class="ea-case-desc">{esc(summary)}</p>{detail}<p class="ea-caveat ea-case-disclaimer">{esc(c["case_detail_note"])}</p><a class="button button--dark" href="{home_url(lang)}assessment/#assessment-form">{esc(c["case_cta"])}</a></div></section>'''
+        title, summary = c["case_kerama"], c["case_kerama_desc"]
+    detail = render_case_metrics(c, slug)
+    if slug == "shildpanel":
+        detail += render_case_quote(c)
+    body = f'''<section class="ea-case-page"><div class="wrap"><a class="ea-back-link" href="{home_url(lang)}#cases">← {esc(c["case_back"])}</a><h1>{esc(title)}</h1><p class="ea-case-desc">{esc(summary)}</p>{detail}<a class="button button--dark" href="{home_url(lang)}assessment/#assessment-form">{esc(c["case_cta"])}</a></div></section>'''
     return shell(lang, f"cases/{slug}", body)
 

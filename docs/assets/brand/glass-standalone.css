@@ -56,3 +56,25 @@ body.glass-standalone {
 
 
 .pa-standalone-mark { display: block; width: clamp(118px, 15vw, 156px); height: auto; }
+
+.capital-cases :is(.hero-for,.section-divider p,.metric-label) { color: #3c441f; }
+.capital-cases .problem.case-block .case-block-label { color: #9b2929; }
+.capital-cases footer a { color: #fff; }
+
+.crm-case .stat-num,
+.drhead-case :is(.hero-label,.hero h1 em,.insight-badge),
+.welcs-case :is(.hero-tag,#r_total,#r_total-ru) { color: #475300; }
+.drhead-case button[onclick], .welcs-case button[onclick="window.print()"] {
+  background: var(--pa-lime);
+  color: var(--pa-ink);
+}
+.welcs-case .logo-mark { color: var(--pa-ink); }
+
+.vedenina-case { --yellow: #665200; }
+.vedenina-case :is(.c-orange,.swot-title.t,.tbadge.indirect) { color: #774015; }
+.vedenina-case :is(.tag,.swot-list li) { color: var(--pa-ink); }
+.vedenina-case :is(.green.tag,.swot-title.s) { color: #146033; }
+.vedenina-case :is(.blue.tag,.swot-title.o) { color: #175a56; }
+.vedenina-case :is(.swot-title.w,.tbadge.direct) { color: #932f48; }
+
+.glass-corporate .cta-grid .eyebrow { color: var(--pa-lime); }

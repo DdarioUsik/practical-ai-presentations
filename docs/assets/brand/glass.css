@@ -233,3 +233,37 @@ body .eyebrow::before, .enterprise-home .ea-case-page .eyebrow::before {
 }
 #assessment-form { scroll-margin-top: 100px; }
 .ea-step p { max-width: 34ch; }
+
+.ea-case-facts {
+  width: 100%;
+  display: grid;
+  gap: 8px;
+  margin: 8px 0 0;
+}
+.ea-case-facts > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4px 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--pa-line);
+}
+.ea-case-facts dt { color: var(--pa-muted); }
+.ea-case-facts dd { margin: 0; font-weight: 750; color: var(--pa-ink); }
+.ea-case-page .ea-case-facts { max-width: 760px; margin-bottom: 24px; }
+.ea-cases .ea-quote { margin: 8px 0 0; padding: 10px 16px; font-size: 16px; color: var(--pa-ink); }
+.ea-content-note { margin: 16px 0 0; font-size: 15px; line-height: 1.5; }
+.ea-results .ea-content-note { grid-column: 1 / -1; color: #fff; }
+
+/* Foreground and background travel together when a shared card changes theme. */
+.method .method-card { background: #fff; color: var(--pa-ink); }
+.method .method-card h3 { color: var(--pa-ink); }
+.method .method-card p { color: var(--pa-muted); }
+.method .method-card .step { color: #475300; }
+
+.site-blog :is(.breadcrumbs,.article-meta time),
+.personal-article.site-blog article > .kicker { color: var(--pa-muted); }
+.personal-article.site-blog .site-header .nav-links a[aria-current="page"],
+.personal-article.site-blog .site-header .nav-links a:hover { color: #475300; }
+.personal-article.site-blog .site-header .lang-switch { color: var(--pa-ink); }
