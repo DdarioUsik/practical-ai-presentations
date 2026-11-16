@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from html import escape
 from urllib.parse import quote
+from site_chrome import destinations
 
 
 BASE = "https://practical-ai.pro"
@@ -15,7 +16,6 @@ COPY = {
         "calc_page_title": 'AI capacity calculator',
         "short_steps": [('Choose a recurring task', 'Agree what a good result looks like and how long the task takes today.'), ('Test it in a pilot', 'Use the AI tools and data your company approves. A team member checks the output.'), ('Roll out what works', 'Compare time and quality, then document the workflow for other teams.')],
         "switch": "RU", "switch_label": "Switch language to Russian", "home_label": "Practical AI home",
-        "nav": [("#cases", "Case studies"), ("#programs", "Ways to start"), ("#method", "Approach"), ("/corporate-trainings/", "Corporate training"), ("/for-schools/", "For schools")],
         "cta": "Discuss the assessment", "menu": "Menu", "skip": "Skip to main content",
         "eyebrow": "AI training and adoption for teams",
         "h1": "Already paying for AI? Make your subscription work harder.",
@@ -58,7 +58,7 @@ COPY = {
             ("Time saved on HR administration", "", "About 30 minutes a day")],
         "case_kerama": "Kerama Marazzi",
         "case_kerama_desc": "Kerama Marazzi trained its own instructors to teach colleagues how to use AI at work.",
-        "kerama_metrics": [("4", "internal AI trainers prepared"), ("70 days", "of training and mentoring"), ("50+", "practical cases explored"), ("80 colleagues", "potential reach")],
+        "kerama_metrics": [("4", "internal AI trainers prepared"), ("70 days", "of training and mentoring"), ("50+", "practical cases explored"), ("80 colleagues", "potential training reach")],
         "case_link": "Read the case details",
         "method_eyebrow": "How the work moves", "method_title": "From a useful experiment to an everyday business practice.",
         "method_intro": "Each workflow connects a process owner, an AI step, human review and a measurable next action.",
@@ -144,7 +144,6 @@ COPY = {
         "calc_page_title": 'Калькулятор экономии времени',
         "short_steps": [('Выбираем рабочую задачу', 'Фиксируем, сколько времени она занимает сейчас и каким должен быть результат.'), ('Проверяем сценарий в пилоте', 'Работаем в согласованном сервисе и с разрешёнными данными. Результат проверяет сотрудник.'), ('Передаём удачный сценарий коллегам', 'Сравниваем время и качество, затем описываем шаги, чтобы другие команды могли их повторить.')],
         "switch": "EN", "switch_label": "Переключить язык на английский", "home_label": "Practical AI — на главную",
-        "nav": [("#cases", "Кейсы"), ("#programs", "Форматы"), ("#method", "Подход"), ("/ru/assessment/#security", "Безопасность"), ("/ru/for-schools/", "Для школ")],
         "cta": "Обсудить диагностику", "menu": "Меню", "skip": "Перейти к содержанию",
         "eyebrow": "Обучение и внедрение AI для команд",
         "h1": "Уже платите за ИИ? Используйте подписку в полную силу.",
@@ -187,7 +186,7 @@ COPY = {
             ("Экономия времени на кадровых задачах", "", "Около 30 минут в день")],
         "case_kerama": "Kerama Marazzi",
         "case_kerama_desc": "В Kerama Marazzi подготовили сотрудников, которые смогут обучать коллег работе с ИИ.",
-        "kerama_metrics": [("4", "подготовленных внутренних AI-тренера"), ("70 дней", "обучения и наставничества"), ("50+", "рассмотренных практических кейсов"), ("80 коллег", "потенциальный охват")],
+        "kerama_metrics": [("4", "подготовленных внутренних AI-тренера"), ("70 дней", "обучения и наставничества"), ("50+", "рассмотренных практических кейсов"), ("80 коллег", "потенциальный охват обучения")],
         "case_link": "Подробнее о кейсе",
         "method_eyebrow": "Как устроена работа", "method_title": "От полезного эксперимента — к повседневной практике компании.",
         "method_intro": "Каждый сценарий связывает владельца процесса, шаг с AI, проверку человеком и измеримое следующее действие.",
@@ -301,7 +300,7 @@ def meta_for(lang: str, route: str) -> tuple[str, str]:
 def header(lang: str, route: str = "") -> str:
     c = COPY[lang]
     other = "ru" if lang == "en" else "en"
-    nav = "".join(f'<a href="{esc(dest if dest.startswith("/") or not route else home_url(lang) + dest)}">{esc(label)}</a>' for dest, label in c["nav"])
+    nav = "".join(f'<a href="{esc(dest if dest.startswith("/") or not route else home_url(lang) + dest)}">{esc(label)}</a>' for dest, label in destinations(lang))
     switch_url = home_url(other) + (route + "/" if route else "")
     contact = f'<a class="button button--small" href="{home_url(lang)}assessment/#assessment-form">{esc(c["cta"])}</a>'
     menu = f'<details class="enterprise-mobile-menu"><summary>{esc(c["menu"])}</summary><nav aria-label="{esc(c["menu"])}">{nav}{contact}</nav></details>'
@@ -386,17 +385,25 @@ def render_home(lang: str) -> str:
 <section class="ea-section ea-pain" id="problem"><div class="wrap"><div class="ea-section-head"><div><h2>{esc(c["pain_title"])}</h2></div><p>{esc(c["pain_intro"])}</p></div><div class="ea-grid ea-grid-3">{pains}</div></div></section>
 <section class="ea-section ea-cases" id="cases"><div class="wrap">
   <div class="ea-section-head"><div><h2>{esc(c["cases_title"])}</h2></div></div>
-  <div class="ea-format-grid">
-    <article class="ea-card" id="case">
-      <h3>{esc(c["case_shildpanel"])}</h3>
-      <p>{esc(c["case_shild_desc"])}</p>
-      {render_case_metrics(c, "shildpanel")}
-      {render_case_quote(c)}
+  <div class="ea-client-stories">
+    <article class="ea-client-story" id="case">
+      <header class="ea-client-context">
+        <h3>{esc(c["case_shildpanel"])}</h3>
+        <p>{esc(c["case_shild_desc"])}</p>
+      </header>
+      <div class="ea-client-results">
+        {render_case_metrics(c, "shildpanel")}
+        {render_case_quote(c)}
+      </div>
     </article>
-    <article class="ea-card">
-      <h3>{esc(c["case_kerama"])}</h3>
-      <p>{esc(c["case_kerama_desc"])}</p>
-      {render_case_metrics(c, "kerama-marazzi")}
+    <article class="ea-client-story">
+      <header class="ea-client-context">
+        <h3>{esc(c["case_kerama"])}</h3>
+        <p>{esc(c["case_kerama_desc"])}</p>
+      </header>
+      <div class="ea-client-results">
+        {render_case_metrics(c, "kerama-marazzi")}
+      </div>
     </article>
   </div>
 </div></section>

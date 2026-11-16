@@ -10,6 +10,7 @@ from pathlib import Path
 from urllib.parse import quote
 
 from school_english import school_page_en
+from site_chrome import destinations
 from enterprise_site import CASES as ENTERPRISE_CASES, render_case as enterprise_case, render_home as enterprise_home, render_assessment, render_calculator
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -205,18 +206,17 @@ def schema(lang: str, route: str) -> dict:
 def site_header(lang: str, route: str, switch_route: str | None = None) -> str:
     c = COPY[lang]
     other = "ru" if lang == "en" else "en"
-    nav_routes = ["for-hr", "programs", "about", "blog"]
-    nav_items = list(zip(nav_routes, c["nav"]))
-    nav_items.append(("for-schools", "For schools" if lang == "en" else "Для школ"))
-    nav_items.append(("/corporate-trainings/", "Corporate"))
-    nav = "".join(f'<a href="{route_name if route_name.startswith("/") else u(lang, route_name)}"' + (' aria-current="page"' if route == route_name else '') + f'>{esc(label)}</a>' for route_name, label in nav_items)
+    nav_items = destinations(lang)
+    hr_route = u(lang, "for-hr")
+    nav_items.append((hr_route, c["nav"][0]))
+    nav = "".join(f'<a href="{route_name if route_name.startswith("/") else u(lang, route_name)}"' + (' aria-current="page"' if u(lang, route) == route_name else '') + f'>{esc(label)}</a>' for route_name, label in nav_items)
     lang_label = "Переключить язык на русский" if lang == "en" else "Switch language to English"
     home_label = "Practical AI home" if lang == "en" else "Practical AI — на главную"
     skip_label = "Skip to main content" if lang == "en" else "Перейти к содержанию"
-    if lang == "ru" and route == "for-schools":
-        contact_label = "Связаться с командой Practical AI"
-        contact_text = "Связаться с командой Practical AI"
-        contact_short = "Связаться с командой Practical AI"
+    if route == "for-schools":
+        contact_label = "School enquiry form" if lang == "en" else "Заявка на обучение для школы"
+        contact_text = contact_label
+        contact_short = contact_label
         contact_url = "#contact"
         header_contact = f'<a class="button button--small" aria-label="{contact_label}" href="{contact_url}"><span class="contact-label">{esc(contact_text)}</span><span class="contact-short" aria-hidden="true">{contact_short}</span></a>'
     else:

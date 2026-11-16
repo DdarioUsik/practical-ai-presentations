@@ -267,3 +267,69 @@ body .eyebrow::before, .enterprise-home .ea-case-page .eyebrow::before {
 .personal-article.site-blog .site-header .nav-links a[aria-current="page"],
 .personal-article.site-blog .site-header .nav-links a:hover { color: #475300; }
 .personal-article.site-blog .site-header .lang-switch { color: var(--pa-ink); }
+
+.ea-client-stories {
+  border-top: 1px solid var(--pa-line);
+}
+.ea-client-story {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2.5fr);
+  gap: clamp(24px, 5vw, 72px);
+  padding-block: clamp(28px, 4vw, 52px);
+  border-bottom: 1px solid var(--pa-line);
+}
+.ea-client-context h3 {
+  margin: 0 0 12px;
+  font-size: clamp(26px, 3vw, 36px);
+}
+.ea-client-context p {
+  margin: 0;
+  color: var(--pa-muted);
+  max-width: 32ch;
+}
+.ea-client-results .ea-case-facts {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px 22px;
+  margin: 0;
+}
+.ea-client-results .ea-case-facts > div {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0;
+  border: 0;
+  gap: 5px;
+}
+.ea-client-results .ea-case-facts dd {
+  font-size: clamp(18px, 2vw, 24px);
+  line-height: 1.18;
+}
+.ea-client-results .ea-case-facts dt { font-size: 14px; }
+.ea-client-results .ea-case-facts > div:first-child {
+  grid-column: 1 / -1;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: #e9efcc;
+}
+.ea-client-results .ea-case-facts > div:first-child dd {
+  font-size: clamp(30px, 4.2vw, 54px);
+  letter-spacing: -.045em;
+}
+.ea-client-results .ea-quote {
+  margin-top: 24px;
+  padding-block: 0;
+  background: transparent;
+  border-left-color: #84932f;
+}
+.ea-client-results .ea-quote cite { color: var(--pa-muted); }
+@media (max-width: 840px) {
+  .ea-client-story { grid-template-columns: 1fr; }
+  .ea-client-context p { max-width: 56ch; }
+}
+@media (max-width: 480px) {
+  .ea-client-results .ea-case-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ea-client-results .ea-case-facts > div:nth-child(4) { grid-column: 1 / -1; }
+}
+
+.site-header .skip-link:not(:focus) { clip-path: inset(50%); }

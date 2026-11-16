@@ -29,8 +29,32 @@ def school_page_en() -> str:
 <section class="section school-demos" id="examples"><div class="wrap">
   <div class="section-head"><h2>Two examples from a school workday</h2><p>Both examples use fictional data.</p></div>
   <div class="school-demo-grid">
-    <details class="school-demo-card"><summary class="school-demo-head"><span>For a teacher</span></summary><div class="school-demo-content"><h3>Three ways to teach the water cycle</h3><p>Draft a sequencing exercise, an explanation and an experiment. The teacher checks each activity for age and curriculum fit.</p></div></details>
-    <details class="school-demo-card"><summary class="school-demo-head"><span>For a school director</span></summary><div class="school-demo-content"><h3>Prepare questions for a budget review</h3><p>Use an approved spreadsheet to draft a short note on differences between planned and actual spending. The budget owner checks the numbers and decides what to raise.</p></div></details>
+    <details class="school-demo-card">
+      <summary class="school-demo-head"><span>For a teacher</span></summary>
+      <div class="school-demo-content">
+        <h3>Water cycle activities for Year 5</h3>
+        <div class="school-demo-flow">
+          <div><b>The task</b><p>Design three activities for the same learning objective, at different levels of difficulty.</p></div>
+          <div class="school-artifact"><b>AI draft</b><ol>
+            <li>Foundation: put the stages of the water cycle in order.</li>
+            <li>Core: explain how water from a puddle evaporates and becomes part of a cloud.</li>
+            <li>Extension: design an experiment that demonstrates evaporation and condensation.</li>
+          </ol></div>
+          <div><b>Teacher review</b><p>Check each activity against the lesson objective, pupils’ age and the curriculum. Adjust the wording where needed.</p></div>
+        </div>
+      </div>
+    </details>
+    <details class="school-demo-card">
+      <summary class="school-demo-head"><span>For a school director</span></summary>
+      <div class="school-demo-content">
+        <h3>Prepare questions for a school budget review</h3>
+        <div class="school-demo-flow">
+          <div><b>The task</b><p>Use an approved spreadsheet with planned and actual spending to prepare a short note for the budget meeting.</p></div>
+          <div class="school-artifact"><b>Excerpt from the AI draft</b><p>“Spending on teaching materials was 6 units over budget. Ask the person responsible when the purchases were made and what drove the difference.”</p></div>
+          <div><b>Director review</b><p>Check the figure against the spreadsheet, confirm the context and decide which questions to raise.</p></div>
+        </div>
+      </div>
+    </details>
   </div>
 </div></section>
 <section class="section school-month" id="month"><div class="wrap">
@@ -52,5 +76,13 @@ def school_page_en() -> str:
 </div></section>
 <section class="closing school-closing" id="contact"><div class="wrap closing-inner">
   <div class="closing-copy"><h2>Discuss the programme for your school</h2><p>Tell us which staff would take part, your preferred training language and when you would like to start.</p></div>
-  <a class="button button--dark" href="https://wa.me/34627184000?text=Hello%20Practical%20AI.%20I%20would%20like%20to%20discuss%20AI%20training%20for%20our%20school.">Message Practical AI on WhatsApp ↗</a>
+  <form class="school-intake-form" id="school-intake-form" data-school-language="en">
+    <label>School name<input name="school" autocomplete="organization" required></label>
+    <label>Expected number of participants<input name="participants" type="number" min="1" inputmode="numeric"></label>
+    <label>Which staff will take part?<input name="roles" placeholder="Teachers, leaders, administrators"></label>
+    <label>Preferred training language<input name="language"></label>
+    <label>Preferred start date<input name="start"></label>
+    <div class="school-form-actions"><button class="button button--dark" type="submit">Prepare WhatsApp message</button></div>
+    <p class="school-cta-status">You can review the draft in WhatsApp before sending.</p>
+  </form>
 </div></section>'''
